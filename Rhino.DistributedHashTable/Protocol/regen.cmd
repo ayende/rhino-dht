@@ -1,2 +1,2 @@
-..\..\..\SharedLibs\Google\protoc Master.proto -oMaster.proto.bin
-..\..\..\SharedLibs\Google\protogen Master.proto.bin
+..\..\..\SharedLibs\Google\protoc ProtocolDef.proto -oProtocolDef.proto.bin
+..\..\..\SharedLibs\Google\protogen ProtocolDef.proto.bin

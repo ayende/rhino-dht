@@ -1,0 +1,147 @@
+package Rhino.DistributedHashTable.Protocol;
+
+option optimize_for = SPEED;
+
+message NodeEndpoint
+{
+	required string Sync = 1;
+	required string Async = 2;
+}
+
+message JoinRequestMessage
+{
+	required NodeEndpoint EndpointJoining = 1;
+}
+
+message JoinResponseMessage
+{
+	repeated Segment Segments = 1;
+}
+
+message Segment
+{
+	required int32 Index = 1;
+	required bytes Version = 2;
+	required NodeEndpoint AssignedEndpoint = 3;
+	optional NodeEndpoint InProcessOfMovingToEndpoint = 4;
+	repeated NodeEndpoint Backups = 5;
+}
+
+message TopologyResultMessage
+{
+	required double TimestampAsDouble = 1;
+	required bytes Version = 2;
+	repeated Segment Segments = 3;
+}
+
+enum MasterMessageType
+{
+	GetTopologyRequest = 1;
+	GetTopologyResult = 2;
+	JoinRequest = 3;
+	JoinResult = 4;
+	MasterErrorResult = 5;
+}
+	
+message MasterMessageUnion
+{	
+	required MasterMessageType Type = 1;
+	optional JoinRequestMessage JoinRequest = 2;
+	optional JoinResponseMessage JoinResponse = 3;
+	optional TopologyResultMessage Topology = 4;
+	optional Error Exception = 5;
+}
+
+enum StorageMessageType
+{
+	GetRequests = 1;
+	PutRequests = 2;
+	RemoveRequests = 3;
+	GetResponses = 4;
+	PutResponses = 5;
+	RemoveResponses = 6;
+	StorageErrorResult = 7;
+}
+
+message GetRequest
+{
+	required string Key = 1;
+	required int32 Segment = 2;
+	optional ValueVersion SpecificVersion = 3;
+}
+
+message GetResponse
+{
+	repeated Value Values = 1;
+}
+
+message RemoveRequest
+{
+	required string Key = 1;
+	required int32 Segment = 2;
+	required bool IsReplicationRequest = 4;
+	optional ValueVersion SpecificVersion = 3;
+}
+
+message ValueVersion
+{
+	required int32 Number = 1;
+	required bytes InstanceId = 2;
+}
+
+message PutRequest
+{
+	required string Key = 1;
+	required int32 Segment = 2;
+	repeated ValueVersion ParentVersions = 3;
+	required bool OptimisticConcurrency = 4;
+	required bool IsReadOnly = 5;
+	required bytes Bytes = 6;
+	required bool IsReplicationRequest =11;
+	optional ValueVersion ReplicationVersion = 7;
+	optional double ExpiresAtAsDouble = 8;
+	optional double ReplicationTimeStampAsDouble = 9;
+	optional int32 Tag = 10;
+}
+
+message PutResponse
+{
+	required ValueVersion Version = 1;
+	required bool ConflictExists = 2;
+}
+
+message RemoveResponse
+{
+	required bool WasRemoved = 1;
+}
+
+message Error
+{
+	required string Message = 1;
+}
+
+message Value
+{
+	required string Key = 1;
+	required double TimeStampAsDouble = 2;
+	required ValueVersion Version = 3;
+	required bool ReadOnly = 5;
+	required bytes Data = 6;
+	required bytes Sha256Hash = 7;
+	repeated ValueVersion ParentVersions = 8;
+	optional double ExpiresAtAsDouble = 10;
+	optional int32 Tag = 11;
+}
+
+message StorageMessageUnion
+{
+	required StorageMessageType Type = 1;
+	required bytes TopologyVersion = 2;
+	repeated GetRequest GetRequests = 3;
+	repeated PutRequest PutRequests = 4;
+	repeated PutResponse PutResponses = 7;
+	repeated RemoveRequest RemoveRequests = 5;
+	repeated RemoveResponse RemoveRespones = 8;
+	repeated GetResponse GetResponses = 6;
+	optional Error Exception = 9;
+}

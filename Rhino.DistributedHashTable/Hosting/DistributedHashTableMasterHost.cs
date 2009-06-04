@@ -1,15 +1,19 @@
 using System;
+using System.Linq;
 using System.Net.Sockets;
 using Google.ProtocolBuffers;
+using log4net;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Protocol;
-using NodeEndpoint=Rhino.DistributedHashTable.Internal.NodeEndpoint;
-using Segment=Rhino.DistributedHashTable.Protocol.Segment;
+using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
+using Segment = Rhino.DistributedHashTable.Protocol.Segment;
 
 namespace Rhino.DistributedHashTable.Hosting
 {
 	public class DistributedHashTableMasterHost : IDisposable
 	{
+		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableStorageHost));
+
 		private readonly TcpListener listener;
 		private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
 
@@ -19,7 +23,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		}
 
 		public DistributedHashTableMasterHost(string name,
-		                                      int port)
+											  int port)
 		{
 		}
 
@@ -56,24 +60,46 @@ namespace Rhino.DistributedHashTable.Hosting
 				using (client)
 				using (var stream = client.GetStream())
 				{
-					var writer = new MessageStreamWriter<MessageWrapper>(stream);
-					foreach (var wrapper in MessageStreamIterator<MessageWrapper>.FromStreamProvider(() => stream))
+						var writer = new MessageStreamWriter<MasterMessageUnion>(stream);
+					try
 					{
-						switch (wrapper.Type)
+						foreach (var wrapper in MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => stream))
 						{
-							case MessageType.GetTopologyRequest:
-								HandleGetToplogy(stream, writer);
-								break;
-							case MessageType.JoinRequest:
-								HandleJoin(wrapper, writer);
-								break;
-							default:
-								throw new ArgumentOutOfRangeException();
+							log.DebugFormat("Accepting message from {0} - {1}",
+							                client.Client.RemoteEndPoint,
+							                wrapper.Type);
+							switch (wrapper.Type)
+							{
+								case MasterMessageType.GetTopologyRequest:
+									HandleGetToplogy(writer);
+									break;
+								case MasterMessageType.JoinRequest:
+									HandleJoin(wrapper, writer);
+									break;
+								default:
+									throw new ArgumentOutOfRangeException();
+							}
 						}
+						writer.Flush();
+						stream.Flush();
 					}
-					writer.Flush();
-					stream.Flush();
+					catch (Exception e)
+					{
+						log.Warn("Error performing request",e );
+						writer.Write(new MasterMessageUnion.Builder
+						{
+							Type = MasterMessageType.MasterErrorResult,
+                            Exception = new Error.Builder
+                            {
+                            	Message = e.ToString()
+                            }.Build()
+						}.Build());
+					}
 				}
+			}
+			catch (Exception e)
+			{
+				log.Warn("Error when processing request to master, error reporting failed as well!", e);
 			}
 			finally
 			{
@@ -81,8 +107,8 @@ namespace Rhino.DistributedHashTable.Hosting
 			}
 		}
 
-		private void HandleJoin(MessageWrapper wrapper,
-		                        MessageStreamWriter<MessageWrapper> writer)
+		private void HandleJoin(MasterMessageUnion wrapper,
+								MessageStreamWriter<MasterMessageUnion> writer)
 		{
 			var endpoint = wrapper.JoinRequest.EndpointJoining;
 			var segments = master.Join(new NodeEndpoint
@@ -90,39 +116,34 @@ namespace Rhino.DistributedHashTable.Hosting
 				Async = new Uri(endpoint.Async),
 				Sync = new Uri(endpoint.Sync)
 			});
-			var joinResponse = new JoinResponseMessage.Builder();
-			foreach (var segment in segments)
+			var joinResponse = new JoinResponseMessage.Builder
 			{
-				joinResponse.SegmentsList.Add(ConverToProtocolSegment(segment));
-			}
-			writer.Write(new MessageWrapper.Builder
+				SegmentsList = {segments.Select(x => ConvertToProtocolSegment(x))}
+			};
+			writer.Write(new MasterMessageUnion.Builder
 			{
-				Type = MessageType.JoinResult,
+				Type = MasterMessageType.JoinResult,
 				JoinResponse = joinResponse.Build()
 			}.Build());
 		}
 
-		private void HandleGetToplogy(NetworkStream stream,
-		                              MessageStreamWriter<MessageWrapper> writer)
+		private void HandleGetToplogy(MessageStreamWriter<MasterMessageUnion> writer)
 		{
 			var topology = master.GetTopology();
 			var topologyResultMessage = new TopologyResultMessage.Builder
 			{
 				Version = ByteString.CopyFrom(topology.Version.ToByteArray()),
 				TimestampAsDouble = topology.Timestamp.ToOADate(),
+				SegmentsList = { topology.Segments.Select(x => ConvertToProtocolSegment(x)) }
 			};
-			foreach (var segment in topology.Segments)
+			writer.Write(new MasterMessageUnion.Builder
 			{
-				topologyResultMessage.SegmentsList.Add(ConverToProtocolSegment(segment));
-			}
-			writer.Write(new MessageWrapper.Builder
-			{
-				Type = MessageType.GetTopologyResult,
+				Type = MasterMessageType.GetTopologyResult,
 				Topology = topologyResultMessage.Build()
 			}.Build());
 		}
 
-		private static Segment ConverToProtocolSegment(Internal.Segment segment)
+		private static Segment ConvertToProtocolSegment(Internal.Segment segment)
 		{
 			return new Segment.Builder
 			{
@@ -133,14 +154,14 @@ namespace Rhino.DistributedHashTable.Hosting
 					Sync = segment.AssignedEndpoint.Sync.ToString()
 				}.Build(),
 				InProcessOfMovingToEndpoint = segment.InProcessOfMovingToEndpoint == null
-				                              	?
-				                              		Protocol.NodeEndpoint.DefaultInstance
-				                              	:
-				                              		new Protocol.NodeEndpoint.Builder
-				                              		{
-				                              			Async = segment.InProcessOfMovingToEndpoint.Async.ToString(),
-				                              			Sync = segment.InProcessOfMovingToEndpoint.Sync.ToString(),
-				                              		}.Build(),
+												?
+													Protocol.NodeEndpoint.DefaultInstance
+												:
+													new Protocol.NodeEndpoint.Builder
+													{
+														Async = segment.InProcessOfMovingToEndpoint.Async.ToString(),
+														Sync = segment.InProcessOfMovingToEndpoint.Sync.ToString(),
+													}.Build(),
 				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
 			}.Build();
 		}

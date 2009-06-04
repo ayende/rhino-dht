@@ -1,0 +1,102 @@
+
+™
+ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"+
+NodeEndpoint
+Sync (	
+Async (	"`
+JoinRequestMessageJ
+EndpointJoining (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"U
+JoinResponseMessage>
+Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"’
+Segment
+Index (
+Version (K
+AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
+InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
+Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"ƒ
+TopologyResultMessage
+TimestampAsDouble (
+Version (>
+Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"…
+MasterMessageUnionD
+Type (26.Rhino.DistributedHashTable.Protocol.MasterMessageTypeL
+JoinRequest (27.Rhino.DistributedHashTable.Protocol.JoinRequestMessageN
+JoinResponse (28.Rhino.DistributedHashTable.Protocol.JoinResponseMessageL
+Topology (2:.Rhino.DistributedHashTable.Protocol.TopologyResultMessage=
+	Exception (2*.Rhino.DistributedHashTable.Protocol.Error"v
+
+GetRequest
+Key (	
+Segment (J
+SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"I
+GetResponse:
+Values (2*.Rhino.DistributedHashTable.Protocol.Value"—
+RemoveRequest
+Key (	
+Segment (
+IsReplicationRequest (J
+SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"2
+ValueVersion
+Number (
+
+InstanceId ("ò
+
+PutRequest
+Key (	
+Segment (I
+ParentVersions (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+OptimisticConcurrency (
+
+IsReadOnly (
+Bytes (
+IsReplicationRequest (M
+ReplicationVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ExpiresAtAsDouble ($
+ReplicationTimeStampAsDouble	 (
+Tag
+ ("i
+PutResponseB
+Version (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ConflictExists ("$
+RemoveResponse
+
+WasRemoved ("
+Error
+Message (	"š
+Value
+Key (	
+TimeStampAsDouble (B
+Version (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ReadOnly (
+Data (
+
+Sha256Hash (I
+ParentVersions (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ExpiresAtAsDouble
+ (
+Tag ("é
+StorageMessageUnionE
+Type (27.Rhino.DistributedHashTable.Protocol.StorageMessageType
+TopologyVersion (D
+GetRequests (2/.Rhino.DistributedHashTable.Protocol.GetRequestD
+PutRequests (2/.Rhino.DistributedHashTable.Protocol.PutRequestF
+PutResponses (20.Rhino.DistributedHashTable.Protocol.PutResponseJ
+RemoveRequests (22.Rhino.DistributedHashTable.Protocol.RemoveRequestK
+RemoveRespones (23.Rhino.DistributedHashTable.Protocol.RemoveResponseF
+GetResponses (20.Rhino.DistributedHashTable.Protocol.GetResponse=
+	Exception	 (2*.Rhino.DistributedHashTable.Protocol.Error*z
+MasterMessageType
+GetTopologyRequest
+GetTopologyResult
+JoinRequest
+
+JoinResult
+MasterErrorResult*›
+StorageMessageType
+GetRequests
+PutRequests
+RemoveRequests
+GetResponses
+PutResponses
+RemoveResponses
+StorageErrorResultBH

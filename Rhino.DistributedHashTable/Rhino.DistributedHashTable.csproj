@@ -71,10 +71,10 @@
     <Compile Include="Internal\DistributedHashTableNode.cs" />
     <Compile Include="Internal\DistributedHashTableMaster.cs" />
     <Compile Include="Internal\ThreadPoolExecuter.cs" />
-    <Compile Include="Protocol\Master.cs" />
     <Compile Include="Internal\IDistributedHashTableStorage.cs" />
     <Compile Include="Internal\IDistributedHashTableNode.cs" />
     <Compile Include="Parameters\ExtendedGetRequest.cs" />
+    <Compile Include="Protocol\ProtocolDef.cs" />
     <Compile Include="Remote\DistributedHashTableNodeReplication.cs" />
     <Compile Include="Remote\IDistributedHashTableNodeReplication.cs" />
     <Compile Include="Internal\IExecuter.cs" />
@@ -98,9 +98,6 @@
     <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Protocol\Master.proto" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\pht\Rhino.PersistentHashTable\Rhino.PersistentHashTable.csproj">
       <Project>{F30B2D63-CED5-4C8A-908F-0B5503D984A9}</Project>
       <Name>Rhino.PersistentHashTable</Name>
@@ -109,6 +106,9 @@
       <Project>{398BF580-41F5-418E-A017-19D19B289A97}</Project>
       <Name>Rhino.Queues</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Protocol\ProtocolDef.proto" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
