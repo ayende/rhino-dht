@@ -1,0 +1,51 @@
+package Rhino.DistributedHashTable.Protocol;
+
+option optimize_for = SPEED;
+
+message NodeEndpoint
+{
+	required string Sync = 1;
+	required string Async = 2;
+}
+
+message JoinRequestMessage
+{
+	required NodeEndpoint EndpointJoining = 1;
+}
+
+message JoinResponseMessage
+{
+	repeated Segment Segments = 1;
+}
+
+message Segment
+{
+	required int32 Index = 1;
+	required bytes Version = 2;
+	required NodeEndpoint AssignedEndpoint = 3;
+	optional NodeEndpoint InProcessOfMovingToEndpoint = 4;
+	repeated NodeEndpoint Backups = 5;
+}
+
+message TopologyResultMessage
+{
+	required double TimestampAsDouble = 1;
+	required bytes Version = 2;
+	repeated Segment Segments = 3;
+}
+
+enum MessageType
+{
+	GetTopologyRequest = 1;
+	GetTopologyResult = 2;
+	JoinRequest = 3;
+	JoinResult = 4;
+}
+	
+message MessageWrapper
+{	
+	required MessageType Type=1;
+	optional JoinRequestMessage JoinRequest=2;
+	optional JoinResponseMessage JoinResponse=3;
+	optional TopologyResultMessage Topology=4;
+}
