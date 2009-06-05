@@ -4,7 +4,7 @@ using Rhino.DistributedHashTable.Internal;
 
 namespace Rhino.DistributedHashTable.Commands
 {
-	public class RearrangeBackups
+	public class RearsegmentBackups
 	{
 		private readonly HashSet<NodeEndpoint> endpoints;
 		private readonly int fairDistribution;
@@ -14,14 +14,14 @@ namespace Rhino.DistributedHashTable.Commands
 
 		public ICollection<BackUpAdded> Changed = new List<BackUpAdded>();
 
-		public RearrangeBackups(IEnumerable<Segment> ranges,
+		public RearsegmentBackups(IEnumerable<Segment> segments,
 		                        HashSet<NodeEndpoint> endpoints,
 		                        int numberOfBackCopiesToKeep)
 		{
-			this.segments = ranges;
+			this.segments = segments;
 			this.endpoints = endpoints;
 			this.numberOfBackCopiesToKeep = numberOfBackCopiesToKeep;
-			fairDistribution = (ranges.Count() * numberOfBackCopiesToKeep) / endpoints.Count() + 1;
+			fairDistribution = (segments.Count() * numberOfBackCopiesToKeep) / endpoints.Count() + 1;
 			currentDistribution = PrepareDistributions();
 		}
 

@@ -5,11 +5,11 @@
 
 * Fairness monitor:
 	* distribute the backup responsability to all nodes
-	* distribute ranges fairly across all nodes
+	* distribute segments fairly across all nodes
 	
 * Is Alive monitor
-	* Clear assignments to take over a range
+	* Clear assignments to take over a segment
 	* Detect if node is down for extended period of time
 	
-* When topology change see if replication failure for assigning range will remove the SeeOther restriction
+* When topology change see if replication failure for assigning segment will remove the SeeOther restriction
 * MasterSelectionStrategy (low priority)

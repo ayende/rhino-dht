@@ -16,27 +16,27 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 		}
 
-		public Topology(Segment[] ranges, Guid version)
+		public Topology(Segment[] segments, Guid version)
 		{
-			Segments = ranges;
+			Segments = segments;
 			Version = version;
 			Timestamp = DateTime.Now;
 		}
 
-		public Topology(Segment[] ranges)
-			: this(ranges, Guid.NewGuid())
+		public Topology(Segment[] segments)
+			: this(segments, Guid.NewGuid())
 		{
 		}
 
 		public bool IsOwnedBy(NodeEndpoint endpoint,
-		                      int range)
+		                      int segment)
 		{
-			return GetSegment(range).AssignedEndpoint == endpoint;
+			return GetSegment(segment).AssignedEndpoint == endpoint;
 		}
 
-		public Segment GetSegment(int range)
+		public Segment GetSegment(int segment)
 		{
-			return Segments[range];
+			return Segments[segment];
 		}
 	}
 }

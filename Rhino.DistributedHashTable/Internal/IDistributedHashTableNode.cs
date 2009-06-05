@@ -9,20 +9,20 @@ namespace Rhino.DistributedHashTable.Internal
 
 		Guid GetTopologyVersion();
 
-		bool IsSegmentOwned(int range);
+		bool IsSegmentOwned(int segment);
 
-		void SendToOwner(int range,
+		void SendToOwner(int segment,
 						 params IExtendedRequest[] requests);
 
-		void SendToAllOtherBackups(int range,
+		void SendToAllOtherBackups(int segment,
 								   params IExtendedRequest[] requests);
 
-		void DoneReplicatingSegments(ReplicationType type, params int[] ranges);
+		void DoneReplicatingSegments(ReplicationType type, params int[] segments);
 
 
 		IDistributedHashTableStorage Storage { get; set; }
 		NodeEndpoint Endpoint { get; }
-		void GivingUpOn(ReplicationType type, params int[] rangesGivingUpOn);
+		void GivingUpOn(ReplicationType type, params int[] segmentsGivingUpOn);
 		void Start();
 	}
 }

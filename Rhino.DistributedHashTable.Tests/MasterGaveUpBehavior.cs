@@ -32,6 +32,23 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.Null(range.InProcessOfMovingToEndpoint);
 			}
+
+			[Fact]
+			public void WhenGivingUpOnBackupsWillRemoveFromPendingBackups()
+			{
+				master.CaughtUp(endPoint, ReplicationType.Ownership,
+								master.Join(endPoint).Select(x => x.Index).ToArray());
+
+				var segment = master.Topology.Segments.First(x => x.PendingBackups.Count > 0);
+
+				master.GaveUp(segment.PendingBackups.First(), ReplicationType.Backup,
+								segment.Index);
+
+				segment = master.Topology.Segments[segment.Index];
+
+				Assert.Empty(segment.PendingBackups);
+				Assert.Equal(0, segment.Backups.Count);
+			}
 		}
 	}
 }

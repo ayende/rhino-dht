@@ -49,10 +49,10 @@ namespace Rhino.DistributedHashTable.Commands
 				return false;
 			try
 			{
-				var rangesToLoad = AssignAllEmptySegmentsFromEndpoint(processedSegments);
+				var segmentsToLoad = AssignAllEmptySegmentsFromEndpoint(processedSegments);
 				if (continueWorking == false)
 					return false;
-				return ProcessSegmentsWithData(rangesToLoad, processedSegments) == false;
+				return ProcessSegmentsWithData(segmentsToLoad, processedSegments) == false;
 			}
 			catch (Exception e)
 			{
@@ -85,23 +85,23 @@ namespace Rhino.DistributedHashTable.Commands
 			}
 		}
 
-		private bool ProcessSegmentsWithData(IEnumerable<Segment> rangesToLoad,
+		private bool ProcessSegmentsWithData(IEnumerable<Segment> segmentsToLoad,
 										   ICollection<int> processedSegments)
 		{
 			var someFailed = false;
 			int numberOfFailures = 0;
-			foreach (var range in rangesToLoad)
+			foreach (var segment in segmentsToLoad)
 			{
 				if (continueWorking == false)
 					return true;
 				try
 				{
-					ReplicateSegment(range);
-					processedSegments.Add(range.Index);
+					ReplicateSegment(segment);
+					processedSegments.Add(segment.Index);
 				}
 				catch (Exception e)
 				{
-					log.Error("Failed to replicate range " + range, e);
+					log.Error("Failed to replicate segment " + segment, e);
 					numberOfFailures += 1;
 					if (numberOfFailures > 5)
 					{
@@ -109,25 +109,25 @@ namespace Rhino.DistributedHashTable.Commands
 									   numberOfFailures);
 						break;
 					}
-					node.GivingUpOn(type, range.Index);
-					processedSegments.Add(range.Index);
+					node.GivingUpOn(type, segment.Index);
+					processedSegments.Add(segment.Index);
 					someFailed |= true;
 				}
 			}
 			return someFailed;
 		}
 
-		private void ReplicateSegment(Segment range)
+		private void ReplicateSegment(Segment segment)
 		{
 			while (true)
 			{
-				log.DebugFormat("Starting replication of range [{0}] from {1}",
-								range,
+				log.DebugFormat("Starting replication of segment [{0}] from {1}",
+								segment,
 								endpoint);
 
-				var result = otherNode.ReplicateNextPage(node.Endpoint, range.Index);
-				log.DebugFormat("Replication of range [{0}] from {1} got {2} puts & {3} removals",
-								range,
+				var result = otherNode.ReplicateNextPage(node.Endpoint, segment.Index);
+				log.DebugFormat("Replication of segment [{0}] from {1} got {2} puts & {3} removals",
+								segment,
 								endpoint,
 								result.PutRequests.Length,
 								result.RemoveRequests.Length);
@@ -141,7 +141,7 @@ namespace Rhino.DistributedHashTable.Commands
 				if (result.Done)
 					break;
 			}
-			node.DoneReplicatingSegments(type, range.Index);
+			node.DoneReplicatingSegments(type, segment.Index);
 		}
 
 		private List<Segment> AssignAllEmptySegmentsFromEndpoint(List<int> processedSegments)

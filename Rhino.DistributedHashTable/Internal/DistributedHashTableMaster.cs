@@ -39,8 +39,8 @@ namespace Rhino.DistributedHashTable.Internal
 
 		/// <summary>
 		/// This method is called when a new node wants to join the cluster.
-		/// The result is the ranges that this node is responsible for, if it is an
-		/// existing one, or the list of ranges that it needs to pull from the currently 
+		/// The result is the segments that this node is responsible for, if it is an
+		/// existing one, or the list of segments that it needs to pull from the currently 
 		/// assigned node.
 		/// Note:
 		/// that if it needs to pull date from the currently assigned node, it will
@@ -50,40 +50,79 @@ namespace Rhino.DistributedHashTable.Internal
 		public Segment[] Join(NodeEndpoint endpoint)
 		{
 			var newlyAlocatedSegments = JoinInternal(endpoint);
-			RearrangeBackups();
+			RearsegmentBackups();
 			LogCurrentSegmentAssignment();
 			return newlyAlocatedSegments;
 		}
 
 		/// <summary>
-		/// Notify the master that the endpoint has caught up on all the specified ranges
+		/// Notify the master that the endpoint has caught up on all the specified segments
 		/// </summary>
 		public void CaughtUp(NodeEndpoint endpoint,
 							 ReplicationType type,
 							 params int[] caughtUpSegments)
 		{
-			if (type == ReplicationType.Ownership)
-				CaughtUpOnOwnership(caughtUpSegments, endpoint);
+			var matchingSegments = GetMatchingSegments(caughtUpSegments, endpoint);
+
+			var modifiedSegments = from segment in Segments
+								   join caughtUpSegment in matchingSegments on segment.Index equals caughtUpSegment.Index into
+									maybeMatchingSegment
+								   select
+									new MatchSegment{ Segment = segment, Matching = maybeMatchingSegment }; 
+			
+			switch (type)
+			{
+				case ReplicationType.Ownership:
+					CaughtUpOnOwnership(modifiedSegments, endpoint);
+					break;
+                case ReplicationType.Backup:
+					CaughtUpOnBackups(modifiedSegments, endpoint);
+					break;
+				default:
+					throw new InvalidOperationException("Unknown replication type: " + type);
+			}
 			LogCurrentSegmentAssignment();
 			TopologyChanged();
 		}
 
-		private void CaughtUpOnOwnership(int[] caughtUpSegments,
+		public class MatchSegment
+		{
+			public Segment Segment;
+			public IEnumerable<Segment> Matching;
+		}
+
+		private void CaughtUpOnBackups(IEnumerable<MatchSegment> modifiedSegments,
+		                               NodeEndpoint endpoint)
+		{
+			Topology = new Topology((
+			                        	from modifiedSegment in modifiedSegments
+			                        	let x = modifiedSegment.Matching.FirstOrDefault()
+			                        	select x == null
+			                        	       	? modifiedSegment.Segment
+			                        	       	: new Segment
+			                        	       	{
+			                        	       		Index = x.Index,
+			                        	       		InProcessOfMovingToEndpoint = null,
+			                        	       		AssignedEndpoint = endpoint,
+			                        	       		PendingBackups = x.PendingBackups
+			                        	       			.Where(e => e != endpoint)
+			                        	       			.ToSet(),
+			                        	       		Backups = x.Backups
+			                        	       			.Append(endpoint)
+			                        	       			.ToSet()
+			                        	       	}).ToArray()
+				);
+
+		}
+
+		private void CaughtUpOnOwnership(IEnumerable<MatchSegment> modifiedSegments,
 										 NodeEndpoint endpoint)
 		{
-			var matchingSegments = GetMatchingSegments(caughtUpSegments, endpoint);
-
-			var modifiedSegments = from range in Segments
-								   join caughtUpSegment in matchingSegments on range.Index equals caughtUpSegment.Index into
-									maybeMatchingSegment
-								   select
-									new { range, maybeMatchingSegment };
-
 			Topology = new Topology((
 										from modifiedSegment in modifiedSegments
-										let x = modifiedSegment.maybeMatchingSegment.FirstOrDefault()
+										let x = modifiedSegment.Matching.FirstOrDefault()
 										select x == null
-												? modifiedSegment.range
+												? modifiedSegment.Segment
 												: new Segment
 												{
 													Index = x.Index,
@@ -95,17 +134,20 @@ namespace Rhino.DistributedHashTable.Internal
 														.ToSet()
 												}).ToArray()
 				);
-			RearrangeBackups();
+			RearsegmentBackups();
 		}
 
 		public void GaveUp(NodeEndpoint endpoint,
 						   ReplicationType type,
-						   params int[] rangesGivingUpOn)
+						   params int[] segmentsGivingUpOn)
 		{
-			var matchingSegments = GetMatchingSegments(rangesGivingUpOn, endpoint);
-			foreach (var range in matchingSegments)
+			var matchingSegments = GetMatchingSegments(segmentsGivingUpOn, endpoint);
+			foreach (var segment in matchingSegments)
 			{
-				range.InProcessOfMovingToEndpoint = null;
+				if (type == ReplicationType.Ownership)
+					segment.InProcessOfMovingToEndpoint = null;
+				else
+					segment.PendingBackups.Remove(endpoint);
 			}
 		}
 
@@ -121,11 +163,11 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			for (var i = 0; i < 8192; i++)
 			{
-				var range = new Segment
+				var segment = new Segment
 				{
 					Index = i
 				};
-				yield return range;
+				yield return segment;
 			}
 		}
 
@@ -193,27 +235,28 @@ namespace Rhino.DistributedHashTable.Internal
 			log.Debug(sb.ToString());
 		}
 
-		private Segment[] GetMatchingSegments(IEnumerable<int> ranges,
+		private Segment[] GetMatchingSegments(IEnumerable<int> segments,
 											  NodeEndpoint endpoint)
 		{
-			var matchingSegments = ranges.Select(i => Segments[i]).ToArray();
+			var matchingSegments = segments.Select(i => Segments[i]).ToArray();
 
-			var rangesNotBeloningToThespecifiedEndpoint = matchingSegments
+			var segmentsNotBeloningToThespecifiedEndpoint = matchingSegments
 				.Where(x => x.InProcessOfMovingToEndpoint != null)
-				.Where(x => endpoint.Equals(x.InProcessOfMovingToEndpoint) == false);
+				.Where(x => endpoint.Equals(x.InProcessOfMovingToEndpoint) == false &&
+				            x.PendingBackups.Contains(endpoint) == false);
 
-			if (rangesNotBeloningToThespecifiedEndpoint.Count() != 0)
-				throw new InvalidOperationException("Could not catch up or give up on ranges that belong to another endpoint");
+			if (segmentsNotBeloningToThespecifiedEndpoint.Count() != 0)
+				throw new InvalidOperationException("Could not catch up or give up on segments that belong to another endpoint");
 			return matchingSegments;
 		}
 
-		private void RearrangeBackups()
+		private void RearsegmentBackups()
 		{
-			var rearranger = new RearrangeBackups(Segments, endpoints, NumberOfBackCopiesToKeep);
-			var rearranged = rearranger.Rearranging();
-			if (rearranged == false)
+			var rearsegmentr = new RearsegmentBackups(Segments, endpoints, NumberOfBackCopiesToKeep);
+			var rearsegmentd = rearsegmentr.Rearranging();
+			if (rearsegmentd == false)
 				return;
-			foreach (var backUpAdded in rearranger.Changed)
+			foreach (var backUpAdded in rearsegmentr.Changed)
 			{
 				BackupChanged(BackupState.Added, backUpAdded.Endpoint, backUpAdded.Segment);
 			}
@@ -229,17 +272,17 @@ namespace Rhino.DistributedHashTable.Internal
 				return Segments.Where(x => x.BelongsTo(endpoint)).ToArray();
 			}
 
-			var rangesThatHadNoOwner = Segments
+			var segmentsThatHadNoOwner = Segments
 				.Where(x => x.AssignedEndpoint == null)
 				.Apply(x => x.AssignedEndpoint = endpoint)
 				.ToArray();
-			if (rangesThatHadNoOwner.Length > 0)
+			if (segmentsThatHadNoOwner.Length > 0)
 			{
-				log.DebugFormat("Endpoint {0} was assigned all ranges without owners", endpoint.Sync);
-				return rangesThatHadNoOwner;
+				log.DebugFormat("Endpoint {0} was assigned all segments without owners", endpoint.Sync);
+				return segmentsThatHadNoOwner;
 			}
 
-			log.DebugFormat("New endpoint {0}, allocating ranges for it", endpoint.Sync);
+			log.DebugFormat("New endpoint {0}, allocating segments for it", endpoint.Sync);
 
 			return RestructureSegmentsFairly(endpoint);
 		}
@@ -248,28 +291,28 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			var newSegments = new List<Segment>();
 			var index = 0;
-			foreach (var range in Segments)
+			foreach (var segment in Segments)
 			{
 				index += 1;
 
-				if (range.InProcessOfMovingToEndpoint != null)
+				if (segment.InProcessOfMovingToEndpoint != null)
 				{
-					newSegments.Add(range);
+					newSegments.Add(segment);
 					continue;
 				}
 				if (index % endpoints.Count == 0)
 				{
 					newSegments.Add(new Segment
 					{
-						AssignedEndpoint = range.AssignedEndpoint,
+						AssignedEndpoint = segment.AssignedEndpoint,
 						InProcessOfMovingToEndpoint = point,
-						Index = range.Index,
-						PendingBackups = range.PendingBackups
+						Index = segment.Index,
+						PendingBackups = segment.PendingBackups
 					});
 				}
 				else
 				{
-					newSegments.Add(range);
+					newSegments.Add(segment);
 				}
 			}
 			// this does NOT create a new topology version

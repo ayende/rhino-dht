@@ -17,14 +17,14 @@ namespace Rhino.DistributedHashTable.Remote
 		}
 
 		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
-												   int range)
+												   int segment)
 		{
 			var putRequests = new List<ExtendedPutRequest>();
 			var removalRequests = new List<ExtendedRemoveRequest>();
 			bool done = false;
 			hashTable.Batch(actions =>
 			{
-				foreach (var getRequest in actions.GetKeysForTag(range))
+				foreach (var getRequest in actions.GetKeysForTag(segment))
 				{
 					var alreadyReplicated = actions.HasReplicationInfo(getRequest.Key,
 														  getRequest.SpecifiedVersion,
@@ -73,7 +73,7 @@ namespace Rhino.DistributedHashTable.Remote
 				done = putRequests.Count == 0 && removalRequests.Count == 0;
 				if (done)
 				{
-					MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, range);
+					MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment);
 				}
 
 				actions.Commit();
@@ -88,19 +88,19 @@ namespace Rhino.DistributedHashTable.Remote
 		}
 
 		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
-										   int[] ranges)
+										   int[] segments)
 		{
 			var reservedSegments = new List<int>();
 
 			hashTable.Batch(actions =>
 			{
-				foreach (var range in ranges)
+				foreach (var segment in segments)
 				{
-					if (actions.HasTag((int)range))
+					if (actions.HasTag((int)segment))
 						continue;
-					if (MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, range) == false)
+					if (MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment) == false)
 						continue;
-					reservedSegments.Add(range);
+					reservedSegments.Add(segment);
 				}
 				actions.Commit();
 			});
@@ -110,11 +110,11 @@ namespace Rhino.DistributedHashTable.Remote
 
 		private static bool MarkSegmentAsAssignedToEndpoint(PersistentHashTableActions actions,
 												   NodeEndpoint endpoint,
-												   int range)
+												   int segment)
 		{
 			var result = actions.Put(new PutRequest
 			{
-				Key = Constants.MovedSegment + range,
+				Key = Constants.MovedSegment + segment,
 				OptimisticConcurrency = true,
 				Bytes = endpoint.ToBytes(),
 			});

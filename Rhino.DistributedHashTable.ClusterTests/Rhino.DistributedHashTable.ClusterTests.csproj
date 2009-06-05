@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9DE3DFC2-9F51-4339-9192-483C2B62CE01}</ProjectGuid>
+    <ProjectGuid>{D9377684-AC14-47F6-A3E8-E84AD0FC2BAA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Rhino.DistributedHashTable.IntegrationTests</RootNamespace>
-    <AssemblyName>Rhino.DistributedHashTable.IntegrationTests</AssemblyName>
+    <RootNamespace>Rhino.DistributedHashTable.ClusterTests</RootNamespace>
+    <AssemblyName>Rhino.DistributedHashTable.ClusterTests</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,16 +35,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Rhino.DistributedHashTable\bin\Debug\log4net.dll</HintPath>
     </Reference>
-    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OSS\rhino-tools\build\net-3.5\debug\Rhino.Mocks.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.ServiceModel">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -56,14 +49,14 @@
     <Reference Include="System.Xml" />
     <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OSS\rhino-tools\SharedLibs\xUnit\xunit.dll</HintPath>
+      <HintPath>..\Rhino.DistributedHashTable.Tests\bin\Debug\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DistributedHashTableReplicationTest.cs" />
-    <Compile Include="DistributedHashTableStorageTest.cs" />
-    <Compile Include="EsentTestBase.cs" />
-    <Compile Include="OnlineRangeReplicationCommandTest.cs" />
+    <Compile Include="ClusterTests.cs" />
+    <Compile Include="FullIntegrationTest.cs" />
+    <Compile Include="MasterOverTheNetwork.cs" />
+    <Compile Include="NodeOverTheNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

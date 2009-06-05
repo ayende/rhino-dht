@@ -54,15 +54,15 @@ namespace Rhino.DistributedHashTable.Internal
 			return Topology.Version;
 		}
 
-		public bool IsSegmentOwned(int range)
+		public bool IsSegmentOwned(int segment)
 		{
-			return Topology.IsOwnedBy(endpoint, range);
+			return Topology.IsOwnedBy(endpoint, segment);
 		}
 
-		public void SendToOwner(int range,
+		public void SendToOwner(int segment,
 								IExtendedRequest[] requests)
 		{
-			var ownerSegment = Topology.GetSegment(range);
+			var ownerSegment = Topology.GetSegment(segment);
 			if (ownerSegment.AssignedEndpoint == null)
 				return;
 			queueManager.Send(ownerSegment.AssignedEndpoint.Async,
@@ -72,10 +72,10 @@ namespace Rhino.DistributedHashTable.Internal
 							  });
 		}
 
-		public void SendToAllOtherBackups(int range,
+		public void SendToAllOtherBackups(int segment,
 										  IExtendedRequest[] requests)
 		{
-			var ownerSegment = Topology.GetSegment(range);
+			var ownerSegment = Topology.GetSegment(segment);
 			foreach (var otherBackup in ownerSegment.PendingBackups
 				.Append(ownerSegment.AssignedEndpoint)
 				.Where(x => x != endpoint))
@@ -96,9 +96,9 @@ namespace Rhino.DistributedHashTable.Internal
 			State = NodeState.Started;
 		}
 
-		public void GivingUpOn(ReplicationType type, params int[] rangesGivingUpOn)
+		public void GivingUpOn(ReplicationType type, params int[] segmentsGivingUpOn)
 		{
-			master.GaveUp(endpoint, type, rangesGivingUpOn);
+			master.GaveUp(endpoint, type, segmentsGivingUpOn);
 		}
 
 		public IDistributedHashTableStorage Storage { get; set; }
@@ -107,10 +107,10 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			var assignedSegments = master.Join(endpoint);
 			Topology = master.GetTopology();
-			var rangesThatWeAreCatchingUpOnOwnership = assignedSegments
+			var segmentsThatWeAreCatchingUpOnOwnership = assignedSegments
 				.Where(x => x.AssignedEndpoint != endpoint)
 				.ToArray();
-			foreach (var segmentToReplicate in rangesThatWeAreCatchingUpOnOwnership
+			foreach (var segmentToReplicate in segmentsThatWeAreCatchingUpOnOwnership
 				.GroupBy(x => x.AssignedEndpoint))
 			{
 				executer.RegisterForExecution(

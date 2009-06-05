@@ -130,7 +130,7 @@ namespace Rhino.DistributedHashTable.Client
 
 		public void GaveUp(NodeEndpoint endpoint,
 			ReplicationType type,
-						   params int[] rangesGivingUpOn)
+						   params int[] segmentsGivingUpOn)
 		{
 			Execute((writer,
 							stream) =>
@@ -140,7 +140,7 @@ namespace Rhino.DistributedHashTable.Client
 					Type = MasterMessageType.GaveUpRequest,
 					GaveUp = new GaveUpRequestMessage.Builder
 					{
-						GaveUpSegmentsList = { rangesGivingUpOn },
+						GaveUpSegmentsList = { segmentsGivingUpOn },
 						Type = type == ReplicationType.Backup ? Protocol.ReplicationType.Backup : Protocol.ReplicationType.Ownership,
 						Endpoint = new Protocol.NodeEndpoint.Builder
 						{

@@ -171,7 +171,7 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
-		                                           int range)
+		                                           int segment)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
@@ -183,7 +183,7 @@ namespace Rhino.DistributedHashTable.Client
 						Async = replicationEndpoint.Async.ToString(),
 						Sync = replicationEndpoint.Sync.ToString()
 					}.Build(),
-					Segment = range
+					Segment = segment
 				}.Build()
 			}.Build());
 			writer.Flush();
@@ -204,7 +204,7 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
-		                                    int[] ranges)
+		                                    int[] segments)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
@@ -216,7 +216,7 @@ namespace Rhino.DistributedHashTable.Client
 						Async = replicationEndpoint.Async.ToString(),
                         Sync = replicationEndpoint.Sync.ToString()
 					}.Build(),
-                    SegmentsList = { ranges }
+                    SegmentsList = { segments }
 				}.Build()
 			}.Build());
 			writer.Flush();
