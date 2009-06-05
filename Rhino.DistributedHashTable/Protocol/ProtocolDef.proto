@@ -13,6 +13,18 @@ enum StorageMessageType
 	StorageErrorResult = 7;
 }
 
+enum MasterMessageType
+{
+	GetTopologyRequest = 1;
+	GetTopologyResult = 2;
+	JoinRequest = 3;
+	JoinResult = 4;
+	MasterErrorResult = 5;
+	CaughtUpRequest = 6;
+	CaughtUpResponse = 7;
+	GaveUpRequest = 8;
+	GaveUpResponse = 9;
+}
 
 message Value
 {
@@ -25,17 +37,6 @@ message Value
 	repeated ValueVersion ParentVersions = 8;
 	optional double ExpiresAtAsDouble = 10;
 	optional int32 Tag = 11;
-}
-
-enum MasterMessageType
-{
-	GetTopologyRequest = 1;
-	GetTopologyResult = 2;
-	JoinRequest = 3;
-	JoinResult = 4;
-	MasterErrorResult = 5;
-	CaughtUpRequest = 6;
-	CaughtUpResponse = 7;
 }
 
 message NodeEndpoint
@@ -80,6 +81,12 @@ message CaughtUpRequestMessage
 {
 	required NodeEndpoint Endpoint = 1;
 	repeated int32 CaughtUpSegments = 2;
+}
+
+message GaveUpRequestMessage
+{
+	required NodeEndpoint Endpoint = 1;
+	repeated int32 GaveUpSegments = 2;
 }
 
 message GetRequestMessage
@@ -141,6 +148,7 @@ message MasterMessageUnion
 	optional TopologyResultMessage Topology = 4;
 	optional ErrorMessage Exception = 5;
 	optional CaughtUpRequestMessage CaughtUp = 6;
+	optional GaveUpRequestMessage GaveUp = 7;
 }
 
 message StorageMessageUnion

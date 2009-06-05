@@ -13,7 +13,7 @@ namespace Rhino.DistributedHashTable.Hosting
 {
 	public class DistributedHashTableMasterHost : IDisposable
 	{
-		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableStorageHost));
+		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableMasterHost));
 
 		private readonly TcpListener listener;
 		private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
@@ -80,6 +80,9 @@ namespace Rhino.DistributedHashTable.Hosting
 								case MasterMessageType.CaughtUpRequest:
 									HandleCatchUp(wrapper, writer);
 									break;
+                                case MasterMessageType.GaveUpRequest:
+									HandleGaveUp(wrapper, writer);
+									break;
 								default:
 									throw new ArgumentOutOfRangeException();
 							}
@@ -131,6 +134,20 @@ namespace Rhino.DistributedHashTable.Hosting
 			writer.Write(new MasterMessageUnion.Builder
 			{
 				Type = MasterMessageType.CaughtUpResponse
+			}.Build());
+		}
+
+		private void HandleGaveUp(MasterMessageUnion wrapper,
+								   MessageStreamWriter<MasterMessageUnion> writer)
+		{
+			master.GaveUp(new NodeEndpoint
+			{
+				Async = new Uri(wrapper.GaveUp.Endpoint.Async),
+				Sync = new Uri(wrapper.GaveUp.Endpoint.Sync)
+			}, wrapper.GaveUp.GaveUpSegmentsList.ToArray());
+			writer.Write(new MasterMessageUnion.Builder
+			{
+				Type = MasterMessageType.GaveUpResponse
 			}.Build());
 		}
 

@@ -39,61 +39,66 @@ namespace Rhino.DistributedHashTable.Protocol {
         "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlNlZ21lbnQi" + 
         "dwoWQ2F1Z2h0VXBSZXF1ZXN0TWVzc2FnZRJDCghFbmRwb2ludBgBIAIoCzIx" + 
         "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5vZGVFbmRw" + 
-        "b2ludBIYChBDYXVnaHRVcFNlZ21lbnRzGAIgAygFIn0KEUdldFJlcXVlc3RN" + 
-        "ZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEkoKD1NwZWNp" + 
+        "b2ludBIYChBDYXVnaHRVcFNlZ21lbnRzGAIgAygFInMKFEdhdmVVcFJlcXVl" + 
+        "c3RNZXNzYWdlEkMKCEVuZHBvaW50GAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0" + 
+        "ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50EhYKDkdhdmVVcFNl" + 
+        "Z21lbnRzGAIgAygFIn0KEUdldFJlcXVlc3RNZXNzYWdlEgsKA0tleRgBIAIo" + 
+        "CRIPCgdTZWdtZW50GAIgAigFEkoKD1NwZWNpZmljVmVyc2lvbhgDIAEoCzIx" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVy" + 
+        "c2lvbiJQChJHZXRSZXNwb25zZU1lc3NhZ2USOgoGVmFsdWVzGAEgAygLMiou" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWUingEK" + 
+        "FFJlbW92ZVJlcXVlc3RNZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50" + 
+        "GAIgAigFEhwKFElzUmVwbGljYXRpb25SZXF1ZXN0GAQgAigIEkoKD1NwZWNp" + 
         "ZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxl" + 
-        "LlByb3RvY29sLlZhbHVlVmVyc2lvbiJQChJHZXRSZXNwb25zZU1lc3NhZ2US" + 
-        "OgoGVmFsdWVzGAEgAygLMiouUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuVmFsdWUingEKFFJlbW92ZVJlcXVlc3RNZXNzYWdlEgsKA0tl" + 
-        "eRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEhwKFElzUmVwbGljYXRpb25SZXF1" + 
-        "ZXN0GAQgAigIEkoKD1NwZWNpZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5vLkRp" + 
-        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbiL5AgoR" + 
-        "UHV0UmVxdWVzdE1lc3NhZ2USCwoDS2V5GAEgAigJEg8KB1NlZ21lbnQYAiAC" + 
-        "KAUSSQoOUGFyZW50VmVyc2lvbnMYAyADKAsyMS5SaGluby5EaXN0cmlidXRl" + 
-        "ZEhhc2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNpb24SHQoVT3B0aW1pc3Rp" + 
-        "Y0NvbmN1cnJlbmN5GAQgAigIEhIKCklzUmVhZE9ubHkYBSACKAgSDQoFQnl0" + 
-        "ZXMYBiACKAwSHAoUSXNSZXBsaWNhdGlvblJlcXVlc3QYCyACKAgSTQoSUmVw" + 
-        "bGljYXRpb25WZXJzaW9uGAcgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhkKEUV4cGlyZXNBdEFzRG91" + 
-        "YmxlGAggASgBEiQKHFJlcGxpY2F0aW9uVGltZVN0YW1wQXNEb3VibGUYCSAB" + 
-        "KAESCwoDVGFnGAogASgFInAKElB1dFJlc3BvbnNlTWVzc2FnZRJCCgdWZXJz" + 
-        "aW9uGAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9j" + 
-        "b2wuVmFsdWVWZXJzaW9uEhYKDkNvbmZsaWN0RXhpc3RzGAIgAigIIisKFVJl" + 
-        "bW92ZVJlc3BvbnNlTWVzc2FnZRISCgpXYXNSZW1vdmVkGAEgAigIIh8KDEVy" + 
-        "cm9yTWVzc2FnZRIPCgdNZXNzYWdlGAEgAigJItsDChJNYXN0ZXJNZXNzYWdl" + 
-        "VW5pb24SRAoEVHlwZRgBIAIoDjI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRh" + 
-        "YmxlLlByb3RvY29sLk1hc3Rlck1lc3NhZ2VUeXBlEkwKC0pvaW5SZXF1ZXN0" + 
-        "GAIgASgLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wu" + 
-        "Sm9pblJlcXVlc3RNZXNzYWdlEk4KDEpvaW5SZXNwb25zZRgDIAEoCzI4LlJo" + 
-        "aW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkpvaW5SZXNwb25z" + 
-        "ZU1lc3NhZ2USTAoIVG9wb2xvZ3kYBCABKAsyOi5SaGluby5EaXN0cmlidXRl" + 
-        "ZEhhc2hUYWJsZS5Qcm90b2NvbC5Ub3BvbG9neVJlc3VsdE1lc3NhZ2USRAoJ" + 
-        "RXhjZXB0aW9uGAUgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuRXJyb3JNZXNzYWdlEk0KCENhdWdodFVwGAYgASgLMjsuUmhp" + 
-        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuQ2F1Z2h0VXBSZXF1" + 
-        "ZXN0TWVzc2FnZSKaBQoTU3RvcmFnZU1lc3NhZ2VVbmlvbhJFCgRUeXBlGAEg" + 
-        "AigOMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuU3Rv" + 
-        "cmFnZU1lc3NhZ2VUeXBlEhcKD1RvcG9sb2d5VmVyc2lvbhgCIAIoDBJLCgtH" + 
-        "ZXRSZXF1ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxl" + 
-        "LlByb3RvY29sLkdldFJlcXVlc3RNZXNzYWdlEksKC1B1dFJlcXVlc3RzGAQg" + 
-        "AygLMjYuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0" + 
-        "UmVxdWVzdE1lc3NhZ2USTQoMUHV0UmVzcG9uc2VzGAcgAygLMjcuUmhpbm8u" + 
-        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVzcG9uc2VNZXNz" + 
-        "YWdlElEKDlJlbW92ZVJlcXVlc3RzGAUgAygLMjkuUmhpbm8uRGlzdHJpYnV0" + 
-        "ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVzdE1lc3NhZ2USUgoO" + 
-        "UmVtb3ZlUmVzcG9uZXMYCCADKAsyOi5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
-        "YWJsZS5Qcm90b2NvbC5SZW1vdmVSZXNwb25zZU1lc3NhZ2USTQoMR2V0UmVz" + 
-        "cG9uc2VzGAYgAygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJv" + 
-        "dG9jb2wuR2V0UmVzcG9uc2VNZXNzYWdlEkQKCUV4Y2VwdGlvbhgJIAEoCzIx" + 
-        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkVycm9yTWVz" + 
-        "c2FnZSqbAQoSU3RvcmFnZU1lc3NhZ2VUeXBlEg8KC0dldFJlcXVlc3RzEAES" + 
-        "DwoLUHV0UmVxdWVzdHMQAhISCg5SZW1vdmVSZXF1ZXN0cxADEhAKDEdldFJl" + 
-        "c3BvbnNlcxAEEhAKDFB1dFJlc3BvbnNlcxAFEhMKD1JlbW92ZVJlc3BvbnNl" + 
-        "cxAGEhYKElN0b3JhZ2VFcnJvclJlc3VsdBAHKqUBChFNYXN0ZXJNZXNzYWdl" + 
-        "VHlwZRIWChJHZXRUb3BvbG9neVJlcXVlc3QQARIVChFHZXRUb3BvbG9neVJl" + 
-        "c3VsdBACEg8KC0pvaW5SZXF1ZXN0EAMSDgoKSm9pblJlc3VsdBAEEhUKEU1h" + 
-        "c3RlckVycm9yUmVzdWx0EAUSEwoPQ2F1Z2h0VXBSZXF1ZXN0EAYSFAoQQ2F1" + 
-        "Z2h0VXBSZXNwb25zZRAHQgJIAQ=="),
+        "LlByb3RvY29sLlZhbHVlVmVyc2lvbiL5AgoRUHV0UmVxdWVzdE1lc3NhZ2US" + 
+        "CwoDS2V5GAEgAigJEg8KB1NlZ21lbnQYAiACKAUSSQoOUGFyZW50VmVyc2lv" + 
+        "bnMYAyADKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
+        "bC5WYWx1ZVZlcnNpb24SHQoVT3B0aW1pc3RpY0NvbmN1cnJlbmN5GAQgAigI" + 
+        "EhIKCklzUmVhZE9ubHkYBSACKAgSDQoFQnl0ZXMYBiACKAwSHAoUSXNSZXBs" + 
+        "aWNhdGlvblJlcXVlc3QYCyACKAgSTQoSUmVwbGljYXRpb25WZXJzaW9uGAcg" + 
+        "ASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFs" + 
+        "dWVWZXJzaW9uEhkKEUV4cGlyZXNBdEFzRG91YmxlGAggASgBEiQKHFJlcGxp" + 
+        "Y2F0aW9uVGltZVN0YW1wQXNEb3VibGUYCSABKAESCwoDVGFnGAogASgFInAK" + 
+        "ElB1dFJlc3BvbnNlTWVzc2FnZRJCCgdWZXJzaW9uGAEgAigLMjEuUmhpbm8u" + 
+        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhYK" + 
+        "DkNvbmZsaWN0RXhpc3RzGAIgAigIIisKFVJlbW92ZVJlc3BvbnNlTWVzc2Fn" + 
+        "ZRISCgpXYXNSZW1vdmVkGAEgAigIIh8KDEVycm9yTWVzc2FnZRIPCgdNZXNz" + 
+        "YWdlGAEgAigJIqYEChJNYXN0ZXJNZXNzYWdlVW5pb24SRAoEVHlwZRgBIAIo" + 
+        "DjI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk1hc3Rl" + 
+        "ck1lc3NhZ2VUeXBlEkwKC0pvaW5SZXF1ZXN0GAIgASgLMjcuUmhpbm8uRGlz" + 
+        "dHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuSm9pblJlcXVlc3RNZXNzYWdl" + 
+        "Ek4KDEpvaW5SZXNwb25zZRgDIAEoCzI4LlJoaW5vLkRpc3RyaWJ1dGVkSGFz" + 
+        "aFRhYmxlLlByb3RvY29sLkpvaW5SZXNwb25zZU1lc3NhZ2USTAoIVG9wb2xv" + 
+        "Z3kYBCABKAsyOi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
+        "bC5Ub3BvbG9neVJlc3VsdE1lc3NhZ2USRAoJRXhjZXB0aW9uGAUgASgLMjEu" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuRXJyb3JNZXNz" + 
+        "YWdlEk0KCENhdWdodFVwGAYgASgLMjsuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
+        "VGFibGUuUHJvdG9jb2wuQ2F1Z2h0VXBSZXF1ZXN0TWVzc2FnZRJJCgZHYXZl" + 
+        "VXAYByABKAsyOS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
+        "bC5HYXZlVXBSZXF1ZXN0TWVzc2FnZSKaBQoTU3RvcmFnZU1lc3NhZ2VVbmlv" + 
+        "bhJFCgRUeXBlGAEgAigOMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
+        "UHJvdG9jb2wuU3RvcmFnZU1lc3NhZ2VUeXBlEhcKD1RvcG9sb2d5VmVyc2lv" + 
+        "bhgCIAIoDBJLCgtHZXRSZXF1ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1" + 
+        "dGVkSGFzaFRhYmxlLlByb3RvY29sLkdldFJlcXVlc3RNZXNzYWdlEksKC1B1" + 
+        "dFJlcXVlc3RzGAQgAygLMjYuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
+        "UHJvdG9jb2wuUHV0UmVxdWVzdE1lc3NhZ2USTQoMUHV0UmVzcG9uc2VzGAcg" + 
+        "AygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0" + 
+        "UmVzcG9uc2VNZXNzYWdlElEKDlJlbW92ZVJlcXVlc3RzGAUgAygLMjkuUmhp" + 
+        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVz" + 
+        "dE1lc3NhZ2USUgoOUmVtb3ZlUmVzcG9uZXMYCCADKAsyOi5SaGluby5EaXN0" + 
+        "cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZW1vdmVSZXNwb25zZU1lc3Nh" + 
+        "Z2USTQoMR2V0UmVzcG9uc2VzGAYgAygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
+        "YXNoVGFibGUuUHJvdG9jb2wuR2V0UmVzcG9uc2VNZXNzYWdlEkQKCUV4Y2Vw" + 
+        "dGlvbhgJIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
+        "Y29sLkVycm9yTWVzc2FnZSqbAQoSU3RvcmFnZU1lc3NhZ2VUeXBlEg8KC0dl" + 
+        "dFJlcXVlc3RzEAESDwoLUHV0UmVxdWVzdHMQAhISCg5SZW1vdmVSZXF1ZXN0" + 
+        "cxADEhAKDEdldFJlc3BvbnNlcxAEEhAKDFB1dFJlc3BvbnNlcxAFEhMKD1Jl" + 
+        "bW92ZVJlc3BvbnNlcxAGEhYKElN0b3JhZ2VFcnJvclJlc3VsdBAHKswBChFN" + 
+        "YXN0ZXJNZXNzYWdlVHlwZRIWChJHZXRUb3BvbG9neVJlcXVlc3QQARIVChFH" + 
+        "ZXRUb3BvbG9neVJlc3VsdBACEg8KC0pvaW5SZXF1ZXN0EAMSDgoKSm9pblJl" + 
+        "c3VsdBAEEhUKEU1hc3RlckVycm9yUmVzdWx0EAUSEwoPQ2F1Z2h0VXBSZXF1" + 
+        "ZXN0EAYSFAoQQ2F1Z2h0VXBSZXNwb25zZRAHEhEKDUdhdmVVcFJlcXVlc3QQ" + 
+        "CBISCg5HYXZlVXBSZXNwb25zZRAJQgJIAQ=="),
         new pbd::FileDescriptor[] {
         });
     #endregion
@@ -139,48 +144,53 @@ namespace Rhino.DistributedHashTable.Protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__Descriptor,
             new string[] { "Endpoint", "CaughtUpSegments", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GaveUpRequestMessage__Descriptor
         = Descriptor.MessageTypes[8];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GaveUpRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GaveUpRequestMessage__Descriptor,
+            new string[] { "Endpoint", "GaveUpSegments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor
+        = Descriptor.MessageTypes[9];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor,
             new string[] { "Key", "Segment", "SpecificVersion", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__Descriptor
-        = Descriptor.MessageTypes[9];
+        = Descriptor.MessageTypes[10];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__Descriptor,
             new string[] { "Values", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__Descriptor
-        = Descriptor.MessageTypes[10];
+        = Descriptor.MessageTypes[11];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__Descriptor,
             new string[] { "Key", "Segment", "IsReplicationRequest", "SpecificVersion", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__Descriptor
-        = Descriptor.MessageTypes[11];
+        = Descriptor.MessageTypes[12];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__Descriptor,
             new string[] { "Key", "Segment", "ParentVersions", "OptimisticConcurrency", "IsReadOnly", "Bytes", "IsReplicationRequest", "ReplicationVersion", "ExpiresAtAsDouble", "ReplicationTimeStampAsDouble", "Tag", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__Descriptor
-        = Descriptor.MessageTypes[12];
+        = Descriptor.MessageTypes[13];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__Descriptor,
             new string[] { "Version", "ConflictExists", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__Descriptor
-        = Descriptor.MessageTypes[13];
+        = Descriptor.MessageTypes[14];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__Descriptor,
             new string[] { "WasRemoved", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor
-        = Descriptor.MessageTypes[14];
+        = Descriptor.MessageTypes[15];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor,
             new string[] { "Message", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor
-        = Descriptor.MessageTypes[15];
+        = Descriptor.MessageTypes[16];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor,
-            new string[] { "Type", "JoinRequest", "JoinResponse", "Topology", "Exception", "CaughtUp", });
+            new string[] { "Type", "JoinRequest", "JoinResponse", "Topology", "Exception", "CaughtUp", "GaveUp", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor
-        = Descriptor.MessageTypes[16];
+        = Descriptor.MessageTypes[17];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor,
             new string[] { "Type", "TopologyVersion", "GetRequests", "PutRequests", "PutResponses", "RemoveRequests", "RemoveRespones", "GetResponses", "Exception", });
@@ -205,6 +215,8 @@ namespace Rhino.DistributedHashTable.Protocol {
     MasterErrorResult = 5,
     CaughtUpRequest = 6,
     CaughtUpResponse = 7,
+    GaveUpRequest = 8,
+    GaveUpResponse = 9,
   }
   
   #endregion
@@ -2776,6 +2788,290 @@ namespace Rhino.DistributedHashTable.Protocol {
     }
   }
   
+  public sealed partial class GaveUpRequestMessage : pb::GeneratedMessage<GaveUpRequestMessage, GaveUpRequestMessage.Builder> {
+    private static readonly GaveUpRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static GaveUpRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GaveUpRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override GaveUpRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GaveUpRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GaveUpRequestMessage, GaveUpRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GaveUpRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasEndpoint {
+      get { return hasEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Endpoint {
+      get { return endpoint_; }
+    }
+    
+    private pbc::PopsicleList<int> gaveUpSegments_ = new pbc::PopsicleList<int>();
+    public scg::IList<int> GaveUpSegmentsList {
+      get { return pbc::Lists.AsReadOnly(gaveUpSegments_); }
+    }
+    public int GaveUpSegmentsCount {
+      get { return gaveUpSegments_.Count; }
+    }
+    public int GetGaveUpSegments(int index) {
+      return gaveUpSegments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasEndpoint) return false;
+        if (!Endpoint.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasEndpoint) {
+        output.WriteMessage(1, Endpoint);
+      }
+      if (gaveUpSegments_.Count > 0) {
+        foreach (int element in gaveUpSegments_) {
+          output.WriteInt32(2, element);
+        }
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Endpoint);
+        }
+        {
+          int dataSize = 0;
+          foreach (int element in GaveUpSegmentsList) {
+            dataSize += pb::CodedOutputStream.ComputeInt32SizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * gaveUpSegments_.Count;
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GaveUpRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GaveUpRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GaveUpRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<GaveUpRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      GaveUpRequestMessage result = new GaveUpRequestMessage();
+      
+      protected override GaveUpRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new GaveUpRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return GaveUpRequestMessage.Descriptor; }
+      }
+      
+      public override GaveUpRequestMessage DefaultInstanceForType {
+        get { return GaveUpRequestMessage.DefaultInstance; }
+      }
+      
+      public override GaveUpRequestMessage BuildPartial() {
+        result.gaveUpSegments_.MakeReadOnly();
+        GaveUpRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GaveUpRequestMessage) {
+          return MergeFrom((GaveUpRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GaveUpRequestMessage other) {
+        if (other == GaveUpRequestMessage.DefaultInstance) return this;
+        if (other.HasEndpoint) {
+          MergeEndpoint(other.Endpoint);
+        }
+        if (other.gaveUpSegments_.Count != 0) {
+          base.AddRange(other.gaveUpSegments_, result.gaveUpSegments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasEndpoint) {
+                subBuilder.MergeFrom(Endpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Endpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              AddGaveUpSegments(input.ReadInt32());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasEndpoint {
+       get { return result.HasEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Endpoint {
+        get { return result.Endpoint; }
+        set { SetEndpoint(value); }
+      }
+      public Builder SetEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasEndpoint = true;
+        result.endpoint_ = value;
+        return this;
+      }
+      public Builder SetEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasEndpoint = true;
+        result.endpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasEndpoint &&
+            result.endpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.endpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.endpoint_ = value;
+        }
+        result.hasEndpoint = true;
+        return this;
+      }
+      public Builder ClearEndpoint() {
+        result.hasEndpoint = false;
+        result.endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<int> GaveUpSegmentsList {
+        get { return result.gaveUpSegments_; }
+      }
+      public int GaveUpSegmentsCount {
+        get { return result.GaveUpSegmentsCount; }
+      }
+      public int GetGaveUpSegments(int index) {
+        return result.GetGaveUpSegments(index);
+      }
+      public Builder SetGaveUpSegments(int index, int value) {
+        result.gaveUpSegments_[index] = value;
+        return this;
+      }
+      public Builder AddGaveUpSegments(int value) {
+        result.gaveUpSegments_.Add(value);
+        return this;
+      }
+      public Builder AddRangeGaveUpSegments(scg::IEnumerable<int> values) {
+        base.AddRange(values, result.gaveUpSegments_);
+        return this;
+      }
+      public Builder ClearGaveUpSegments() {
+        result.gaveUpSegments_.Clear();
+        return this;
+      }
+    }
+  }
+  
   public sealed partial class GetRequestMessage : pb::GeneratedMessage<GetRequestMessage, GetRequestMessage.Builder> {
     private static readonly GetRequestMessage defaultInstance = new Builder().BuildPartial();
     public static GetRequestMessage DefaultInstance {
@@ -5077,6 +5373,15 @@ namespace Rhino.DistributedHashTable.Protocol {
       get { return caughtUp_; }
     }
     
+    private bool hasGaveUp;
+    private global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage gaveUp_ = global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.DefaultInstance;
+    public bool HasGaveUp {
+      get { return hasGaveUp; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage GaveUp {
+      get { return gaveUp_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasType) return false;
@@ -5094,6 +5399,9 @@ namespace Rhino.DistributedHashTable.Protocol {
         }
         if (HasCaughtUp) {
           if (!CaughtUp.IsInitialized) return false;
+        }
+        if (HasGaveUp) {
+          if (!GaveUp.IsInitialized) return false;
         }
         return true;
       }
@@ -5117,6 +5425,9 @@ namespace Rhino.DistributedHashTable.Protocol {
       }
       if (HasCaughtUp) {
         output.WriteMessage(6, CaughtUp);
+      }
+      if (HasGaveUp) {
+        output.WriteMessage(7, GaveUp);
       }
       UnknownFields.WriteTo(output);
     }
@@ -5145,6 +5456,9 @@ namespace Rhino.DistributedHashTable.Protocol {
         }
         if (HasCaughtUp) {
           size += pb::CodedOutputStream.ComputeMessageSize(6, CaughtUp);
+        }
+        if (HasGaveUp) {
+          size += pb::CodedOutputStream.ComputeMessageSize(7, GaveUp);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -5247,6 +5561,9 @@ namespace Rhino.DistributedHashTable.Protocol {
         if (other.HasCaughtUp) {
           MergeCaughtUp(other.CaughtUp);
         }
+        if (other.HasGaveUp) {
+          MergeGaveUp(other.GaveUp);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -5334,6 +5651,15 @@ namespace Rhino.DistributedHashTable.Protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               CaughtUp = subBuilder.BuildPartial();
+              break;
+            }
+            case 58: {
+              global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.CreateBuilder();
+              if (HasGaveUp) {
+                subBuilder.MergeFrom(GaveUp);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              GaveUp = subBuilder.BuildPartial();
               break;
             }
           }
@@ -5536,6 +5862,42 @@ namespace Rhino.DistributedHashTable.Protocol {
       public Builder ClearCaughtUp() {
         result.hasCaughtUp = false;
         result.caughtUp_ = global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasGaveUp {
+       get { return result.HasGaveUp; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage GaveUp {
+        get { return result.GaveUp; }
+        set { SetGaveUp(value); }
+      }
+      public Builder SetGaveUp(global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasGaveUp = true;
+        result.gaveUp_ = value;
+        return this;
+      }
+      public Builder SetGaveUp(global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasGaveUp = true;
+        result.gaveUp_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeGaveUp(global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasGaveUp &&
+            result.gaveUp_ != global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.DefaultInstance) {
+            result.gaveUp_ = global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.CreateBuilder(result.gaveUp_).MergeFrom(value).BuildPartial();
+        } else {
+          result.gaveUp_ = value;
+        }
+        result.hasGaveUp = true;
+        return this;
+      }
+      public Builder ClearGaveUp() {
+        result.hasGaveUp = false;
+        result.gaveUp_ = global::Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage.DefaultInstance;
         return this;
       }
     }

@@ -1,5 +1,5 @@
 
-ö
+Ý
 ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
 Value
 Key (	
@@ -36,7 +36,10 @@ InstanceId ("’
 Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"w
 CaughtUpRequestMessageC
 Endpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
-CaughtUpSegments ("}
+CaughtUpSegments ("s
+GaveUpRequestMessageC
+Endpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
+GaveUpSegments ("}
 GetRequestMessage
 Key (	
 Segment (J
@@ -69,14 +72,15 @@ IsReadOnly (
 
 WasRemoved ("
 ErrorMessage
-Message (	"Û
+Message (	"¦
 MasterMessageUnionD
 Type (26.Rhino.DistributedHashTable.Protocol.MasterMessageTypeL
 JoinRequest (27.Rhino.DistributedHashTable.Protocol.JoinRequestMessageN
 JoinResponse (28.Rhino.DistributedHashTable.Protocol.JoinResponseMessageL
 Topology (2:.Rhino.DistributedHashTable.Protocol.TopologyResultMessageD
 	Exception (21.Rhino.DistributedHashTable.Protocol.ErrorMessageM
-CaughtUp (2;.Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage"š
+CaughtUp (2;.Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessageI
+GaveUp (29.Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage"š
 StorageMessageUnionE
 Type (27.Rhino.DistributedHashTable.Protocol.StorageMessageType
 TopologyVersion (K
@@ -94,7 +98,7 @@ WasRemoved ("
 GetResponses
 PutResponses
 RemoveResponses
-StorageErrorResult*¥
+StorageErrorResult*Ì
 MasterMessageType
 GetTopologyRequest
 GetTopologyResult
@@ -103,4 +107,6 @@ WasRemoved ("
 JoinResult
 MasterErrorResult
 CaughtUpRequest
-CaughtUpResponseBH
+CaughtUpResponse
+GaveUpRequest
+GaveUpResponse	BH

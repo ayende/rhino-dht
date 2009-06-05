@@ -6,7 +6,7 @@ namespace Rhino.DistributedHashTable.Commands
 {
 	public class RearrangeBackups
 	{
-		private readonly HashSet<NodeEndpoint> endPoints;
+		private readonly HashSet<NodeEndpoint> endpoints;
 		private readonly int fairDistribution;
 		private readonly int numberOfBackCopiesToKeep;
 		private readonly IEnumerable<Segment> ranges;
@@ -15,13 +15,13 @@ namespace Rhino.DistributedHashTable.Commands
 		public ICollection<BackUpAdded> Changed = new List<BackUpAdded>();
 
 		public RearrangeBackups(IEnumerable<Segment> ranges,
-		                        HashSet<NodeEndpoint> endPoints,
+		                        HashSet<NodeEndpoint> endpoints,
 		                        int numberOfBackCopiesToKeep)
 		{
 			this.ranges = ranges;
-			this.endPoints = endPoints;
+			this.endpoints = endpoints;
 			this.numberOfBackCopiesToKeep = numberOfBackCopiesToKeep;
-			fairDistribution = (ranges.Count() * numberOfBackCopiesToKeep) / endPoints.Count() + 1;
+			fairDistribution = (ranges.Count() * numberOfBackCopiesToKeep) / endpoints.Count() + 1;
 			currentDistribution = PrepareDistributions();
 		}
 
@@ -29,7 +29,7 @@ namespace Rhino.DistributedHashTable.Commands
 		{
 			foreach (var range in ranges.Where(x => x.Backups.Count < numberOfBackCopiesToKeep))
 			{
-				var endPointsToAddToBackups = currentDistribution
+				var endpointsToAddToBackups = currentDistribution
 					.Where(
 					x => range.AssignedEndpoint != x.Endpoint &&
 					     range.InProcessOfMovingToEndpoint != x.Endpoint &&
@@ -38,15 +38,15 @@ namespace Rhino.DistributedHashTable.Commands
 					)
 					.Take(numberOfBackCopiesToKeep - range.Backups.Count);
 
-				foreach (var endPointToAddToBackups in endPointsToAddToBackups)
+				foreach (var endpointToAddToBackups in endpointsToAddToBackups)
 				{
 					Changed.Add(new BackUpAdded
 					{
-						Endpoint = endPointToAddToBackups.Endpoint,
+						Endpoint = endpointToAddToBackups.Endpoint,
 						Segment = range
 					});
-					range.Backups.Add(endPointToAddToBackups.Endpoint);
-					endPointToAddToBackups.Count += 1;
+					range.Backups.Add(endpointToAddToBackups.Endpoint);
+					endpointToAddToBackups.Count += 1;
 				}
 			}
 			return Changed.Count > 0;
@@ -61,12 +61,12 @@ namespace Rhino.DistributedHashTable.Commands
 			                          		select new BackupCount { Endpoint = g.Key, Count = g.Count() }
 			                          ).ToList();
 
-			foreach (var endPointThatHasNoBackups in endPoints.Except(currentDistribution.Select(x => x.Endpoint)))
+			foreach (var endpointThatHasNoBackups in endpoints.Except(currentDistribution.Select(x => x.Endpoint)))
 			{
 				currentDistribution.Add(new BackupCount
 				{
 					Count = 0,
-					Endpoint = endPointThatHasNoBackups
+					Endpoint = endpointThatHasNoBackups
 				});
 			}
 			return currentDistribution;

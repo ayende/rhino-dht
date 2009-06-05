@@ -11,7 +11,7 @@ namespace Rhino.DistributedHashTable.Internal
 {
 	public class DistributedHashTableNode : IDistributedHashTableNode
 	{
-		private readonly NodeEndpoint endPoint;
+		private readonly NodeEndpoint endpoint;
 		private readonly IExecuter executer;
 		private readonly IDistributedHashTableMaster master;
 		private readonly IMessageSerializer messageSerializer;
@@ -23,14 +23,14 @@ namespace Rhino.DistributedHashTable.Internal
 		public DistributedHashTableNode(IDistributedHashTableMaster master,
 		                                IExecuter executer,
 		                                IMessageSerializer messageSerializer,
-		                                NodeEndpoint endPoint,
+		                                NodeEndpoint endpoint,
 		                                IQueueManager queueManager,
 										IDistributedHashTableNodeReplicationFactory replicationFactory)
 		{
 			this.master = master;
 			this.executer = executer;
 			this.messageSerializer = messageSerializer;
-			this.endPoint = endPoint;
+			this.endpoint = endpoint;
 			this.queueManager = queueManager;
 			this.replicationFactory = replicationFactory;
 			State = NodeState.NotStarted;
@@ -42,7 +42,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public NodeEndpoint Endpoint
 		{
-			get { return endPoint; }
+			get { return endpoint; }
 		}
 
 		public Guid GetTopologyVersion()
@@ -52,7 +52,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public bool IsSegmentOwned(int range)
 		{
-			return Topology.IsOwnedBy(endPoint, range);
+			return Topology.IsOwnedBy(endpoint, range);
 		}
 
 		public void SendToOwner(int range,
@@ -70,7 +70,7 @@ namespace Rhino.DistributedHashTable.Internal
 		                                  IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(range);
-			foreach (var endpoint in ownerSegment.Backups.Append(ownerSegment.AssignedEndpoint).Where(x => x != endPoint))
+			foreach (var endpoint in ownerSegment.Backups.Append(ownerSegment.AssignedEndpoint).Where(x => x != endpoint))
 			{
 				queueManager.Send(endpoint.Async,
 				                  new MessagePayload
@@ -82,14 +82,14 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public void DoneReplicatingSegments(int[] replicatedSegments)
 		{
-			master.CaughtUp(endPoint, replicatedSegments);
+			master.CaughtUp(endpoint, replicatedSegments);
 			rangesThatWeAreCatchingUpOn.MoveTo(ranges, x => replicatedSegments.Contains(x.Index));
 			State = NodeState.Started;
 		}
 
 		public void GivingUpOn(params int[] rangesGivingUpOn)
 		{
-			master.GaveUp(endPoint, rangesGivingUpOn);
+			master.GaveUp(endpoint, rangesGivingUpOn);
 			rangesThatWeAreCatchingUpOn.RemoveAll(x => rangesGivingUpOn.Contains(x.Index));
 		}
 
@@ -98,9 +98,9 @@ namespace Rhino.DistributedHashTable.Internal
 		public void Start()
 		{
 			Topology = master.GetTopology();
-			var assignedSegments = master.Join(endPoint);
+			var assignedSegments = master.Join(endpoint);
 			rangesThatWeAreCatchingUpOn = assignedSegments
-				.Where(x => x.AssignedEndpoint != endPoint)
+				.Where(x => x.AssignedEndpoint != endpoint)
 				.ToList();
 			foreach (var rangeToReplicate in rangesThatWeAreCatchingUpOn.GroupBy(x => x.AssignedEndpoint))
 			{
@@ -109,10 +109,10 @@ namespace Rhino.DistributedHashTable.Internal
 						rangeToReplicate.Key,
 						rangeToReplicate.ToArray(), 
 						this,
-						replicationFactory.Create(endPoint))
+						replicationFactory.Create(endpoint))
 					);
 			}
-			ranges = assignedSegments.Where(x => x.AssignedEndpoint == endPoint).ToList();
+			ranges = assignedSegments.Where(x => x.AssignedEndpoint == endpoint).ToList();
 			State =
 				ranges.Count > 0
 					?

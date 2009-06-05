@@ -62,15 +62,15 @@ namespace Rhino.DistributedHashTable.Internal
 		/// also need to call the <see cref="CaughtUp"/> method to let the master know 
 		/// that it is done and that the topology changed.
 		/// </summary>
-		public Segment[] Join(NodeEndpoint endPoint)
+		public Segment[] Join(NodeEndpoint endpoint)
 		{
-			var newlyAlocatedSegments = JoinInternal(endPoint);
+			var newlyAlocatedSegments = JoinInternal(endpoint);
 			RearrangeBackups();
 			if (log.IsDebugEnabled)
 			{
 				var sb = new StringBuilder()
 					.Append("After join of ")
-					.Append(endPoint)
+					.Append(endpoint)
 					.Append(" range allocation is:")
 					.AppendLine();
 				foreach (var range in Segments)
@@ -85,9 +85,9 @@ namespace Rhino.DistributedHashTable.Internal
 		/// <summary>
 		/// Notify the master that the endpoint has caught up on all the specified ranges
 		/// </summary>
-		public void CaughtUp(NodeEndpoint endPoint, params int[] caughtUpSegments)
+		public void CaughtUp(NodeEndpoint endpoint, params int[] caughtUpSegments)
 		{
-			Segment[] matchingSegments = GetMatchingSegments(caughtUpSegments, endPoint);
+			Segment[] matchingSegments = GetMatchingSegments(caughtUpSegments, endpoint);
 
 			var modifiedSegments = from range in Segments
 								   join caughtUpSegment in matchingSegments on range.Index equals caughtUpSegment.Index into maybeMatchingSegment
@@ -103,10 +103,10 @@ namespace Rhino.DistributedHashTable.Internal
 												{
 													Index = x.Index,
 													InProcessOfMovingToEndpoint = null,
-													AssignedEndpoint = endPoint,
+													AssignedEndpoint = endpoint,
 													Backups = x.Backups
 														.Append(x.AssignedEndpoint)
-														.Where(e => e != endPoint)
+														.Where(e => e != endpoint)
 														.ToSet()
 												}).ToArray()
 				);
@@ -125,13 +125,13 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		private Segment[] GetMatchingSegments(IEnumerable<int> ranges,
-										  NodeEndpoint endPoint)
+										  NodeEndpoint endpoint)
 		{
 			var matchingSegments = ranges.Select(i => Segments[i]).ToArray();
 
 			var rangesNotBeloningToThespecifiedEndpoint = matchingSegments
 				.Where(x => x.InProcessOfMovingToEndpoint != null)
-				.Where(x => endPoint.Equals(x.InProcessOfMovingToEndpoint) == false);
+				.Where(x => endpoint.Equals(x.InProcessOfMovingToEndpoint) == false);
 
 			if (rangesNotBeloningToThespecifiedEndpoint.Count() != 0)
 				throw new InvalidOperationException("Could not catch up or give up on ranges that belong to another endpoint");
@@ -150,29 +150,29 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
-		private Segment[] JoinInternal(NodeEndpoint endPoint)
+		private Segment[] JoinInternal(NodeEndpoint endpoint)
 		{
-			log.DebugFormat("Endpoint {0} joining", endPoint);
-			endpoints.Add(endPoint);
-			if (Segments.Any(x => x.BelongsTo(endPoint)))
+			log.DebugFormat("Endpoint {0} joining", endpoint);
+			endpoints.Add(endpoint);
+			if (Segments.Any(x => x.BelongsTo(endpoint)))
 			{
-				log.DebugFormat("Endpoint {0} is already registered, probably an end point restart, ignoring", endPoint);
-				return Segments.Where(x => x.BelongsTo(endPoint)).ToArray();
+				log.DebugFormat("Endpoint {0} is already registered, probably an end point restart, ignoring", endpoint);
+				return Segments.Where(x => x.BelongsTo(endpoint)).ToArray();
 			}
 
 			var rangesThatHadNoOwner = Segments
 				.Where(x => x.AssignedEndpoint == null)
-				.Apply(x => x.AssignedEndpoint = endPoint)
+				.Apply(x => x.AssignedEndpoint = endpoint)
 				.ToArray();
 			if (rangesThatHadNoOwner.Length > 0)
 			{
-				log.DebugFormat("Endpoint {0} was assigned all ranges without owners", endPoint);
+				log.DebugFormat("Endpoint {0} was assigned all ranges without owners", endpoint);
 				return rangesThatHadNoOwner;
 			}
 
-			log.DebugFormat("New endpoint {0}, allocating ranges for it", endPoint);
+			log.DebugFormat("New endpoint {0}, allocating ranges for it", endpoint);
 
-			return RestructureSegmentsFairly(endPoint);
+			return RestructureSegmentsFairly(endpoint);
 		}
 
 		private Segment[] RestructureSegmentsFairly(NodeEndpoint point)
@@ -208,7 +208,7 @@ namespace Rhino.DistributedHashTable.Internal
 			return Segments.Where(x => x.BelongsTo(point)).ToArray();
 		}
 
-		public void Decommision(NodeEndpoint endPoint)
+		public void Decommision(NodeEndpoint endpoint)
 		{
 			throw new NotImplementedException();
 		}

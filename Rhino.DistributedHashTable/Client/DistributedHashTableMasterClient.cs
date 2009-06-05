@@ -44,7 +44,7 @@ namespace Rhino.DistributedHashTable.Client
 			});
 		}
 
-		public Segment[] Join(NodeEndpoint endPoint)
+		public Segment[] Join(NodeEndpoint endpoint)
 		{
 			return Execute((writer, iterator, stream) =>
 			{
@@ -55,8 +55,8 @@ namespace Rhino.DistributedHashTable.Client
 					{
 						EndpointJoining = new Protocol.NodeEndpoint.Builder
 						{
-							Async = endPoint.Async.ToString(),
-							Sync = endPoint.Sync.ToString()
+							Async = endpoint.Async.ToString(),
+							Sync = endpoint.Sync.ToString()
 						}.Build()
 					}.Build()
 				}.Build());
@@ -75,7 +75,7 @@ namespace Rhino.DistributedHashTable.Client
 			});
 		}
 
-		public void CaughtUp(NodeEndpoint endPoint,
+		public void CaughtUp(NodeEndpoint endpoint,
 							 params int[] caughtUpSegments)
 		{
 			Execute((writer,
@@ -90,15 +90,13 @@ namespace Rhino.DistributedHashTable.Client
 						CaughtUpSegmentsList = { caughtUpSegments },
 						Endpoint = new Protocol.NodeEndpoint.Builder
 						{
-							Async = endPoint.Async.ToString(),
-							Sync = endPoint.Sync.ToString()
+							Async = endpoint.Async.ToString(),
+							Sync = endpoint.Sync.ToString()
 						}.Build()
 					}.Build()
 				}.Build());
 				writer.Flush();
 				stream.Flush();
-
-				Thread.Sleep(15000);
 
 				var union = iterator.First();
 				if (union.Type == MasterMessageType.MasterErrorResult)
@@ -165,7 +163,32 @@ namespace Rhino.DistributedHashTable.Client
 		public void GaveUp(NodeEndpoint endpoint,
 						   params int[] rangesGivingUpOn)
 		{
-			throw new NotImplementedException();
+			Execute((writer,
+							iterator,
+							stream) =>
+			{
+				writer.Write(new MasterMessageUnion.Builder
+				{
+					Type = MasterMessageType.GaveUpRequest,
+					GaveUp = new GaveUpRequestMessage.Builder
+					{
+						GaveUpSegmentsList = { rangesGivingUpOn },
+						Endpoint = new Protocol.NodeEndpoint.Builder
+						{
+							Async = endpoint.Async.ToString(),
+							Sync = endpoint.Sync.ToString()
+						}.Build()
+					}.Build()
+				}.Build());
+				writer.Flush();
+				stream.Flush();
+
+				var union = iterator.First();
+				if (union.Type == MasterMessageType.MasterErrorResult)
+					throw new RemoteNodeException(union.Exception.Message);
+				if (union.Type != MasterMessageType.GaveUpResponse)
+					throw new UnexpectedReplyException("Got reply " + union.Type + " but expected GaveUpResponse");
+			});
 		}
 	}
 }

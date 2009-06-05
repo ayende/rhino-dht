@@ -72,6 +72,34 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				Assert.Equal(endpoint, topology.Segments[segments[2].Index].InProcessOfMovingToEndpoint);
 			}
 
+			[Fact]
+			public void CanGiveUpOnSegment()
+			{
+				var existingEndpoint = new NodeEndpoint
+				{
+					Async = new Uri("rhino.queues://other:2202"),
+					Sync = new Uri("rhino.dht://other:2201")
+				};
+				masterProxy.Join(existingEndpoint);
+				
+				var newEndpoint = new NodeEndpoint
+				{
+					Async = new Uri("rhino.queues://localhost:2202"),
+					Sync = new Uri("rhino.dht://localhost:2201")
+				};
+				
+				var segments = masterProxy.Join(newEndpoint);
+
+				masterProxy.GaveUp(newEndpoint, segments[0].Index, segments[1].Index);
+
+				var topology = masterProxy.GetTopology();
+				Assert.Equal(existingEndpoint,topology.Segments[segments[0].Index].AssignedEndpoint);
+				Assert.Equal(existingEndpoint, topology.Segments[segments[1].Index].AssignedEndpoint);
+
+				Assert.Null(topology.Segments[segments[0].Index].InProcessOfMovingToEndpoint);
+				Assert.Null(topology.Segments[segments[1].Index].InProcessOfMovingToEndpoint);
+			}
+
 			public void Dispose()
 			{
 				masterHost.Dispose();

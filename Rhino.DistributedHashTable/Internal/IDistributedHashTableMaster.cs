@@ -12,14 +12,14 @@ namespace Rhino.DistributedHashTable.Internal
 		/// also need to call the <see cref="DistributedHashTableMaster.CaughtUp"/> method to let the master know 
 		/// that it is done and that the topology changed.
 		/// </summary>
-		Segment[] Join(NodeEndpoint endPoint);
+		Segment[] Join(NodeEndpoint endpoint);
 
 		/// <summary>
 		/// Notify the master that the endpoint has caught up on all the specified ranges
 		/// </summary>
-		void CaughtUp(NodeEndpoint endPoint, params int[] caughtUpSegments);
+		void CaughtUp(NodeEndpoint endpoint, params int[] caughtUpSegments);
 
-		//void Decommision(NodeEndpoint endPoint);
+		//void Decommision(NodeEndpoint endpoint);
 
 		///// <summary>
 		///// Sync the master with the list of items maintained by a copy of the master

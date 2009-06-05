@@ -28,10 +28,10 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 		}
 
-		public bool IsOwnedBy(NodeEndpoint endPoint,
+		public bool IsOwnedBy(NodeEndpoint endpoint,
 		                      int range)
 		{
-			return GetSegment(range).AssignedEndpoint == endPoint;
+			return GetSegment(range).AssignedEndpoint == endpoint;
 		}
 
 		public Segment GetSegment(int range)
