@@ -76,7 +76,9 @@ namespace Rhino.DistributedHashTable.Internal
 										  IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(segment);
-			foreach (var otherBackup in ownerSegment.PendingBackups
+			foreach (var otherBackup in ownerSegment
+				.PendingBackups
+				.Concat(ownerSegment.Backups)
 				.Append(ownerSegment.AssignedEndpoint)
 				.Where(x => x != endpoint))
 			{
