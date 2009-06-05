@@ -48,7 +48,7 @@ namespace Rhino.DistributedHashTable.Remote
 						ReplicationTimeStamp = value.Timestamp,
 						ReplicationVersion = value.Version,
 						Tag = value.Tag,
-						Segment = value.Tag,
+						Segment = value.Tag.Value,
 					});
 
 					actions.AddReplicationInfo(getRequest.Key,

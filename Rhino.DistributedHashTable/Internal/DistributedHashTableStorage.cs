@@ -79,7 +79,7 @@ namespace Rhino.DistributedHashTable.Internal
 					{
 						AssertSegmentNotMoved(actions, request.Segment);
 
-						request.Tag = (int)request.Segment;
+						request.Tag = request.Segment;
 
 						if (request.ParentVersions == null)
 							throw new ArgumentException("Could not accept request with no ParentVersions");
@@ -103,18 +103,18 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		private static void AssertSegmentNotMoved(PersistentHashTableActions actions,
-		                                 int? range)
+		                                 int? segment)
 		{
-			if(range == null)
-				throw new ArgumentNullException("range","Segment cannot be null");
+			if(segment < 0)
+				throw new ArgumentNullException("segment", "Segment cannot be negative");
 
 			var values = actions.Get(new GetRequest
 			{
-				Key = Constants.MovedSegment + range
+				Key = Constants.MovedSegment + segment
 			});
 			if(values.Length>0)
 			{
-				throw new SeeOtherException("This key belongs to a range assigned to another node")
+				throw new SeeOtherException("This key belongs to a segment assigned to another node")
 				{
 					Endpoint = NodeEndpoint.FromBytes(values[0].Data)
 				};
@@ -177,13 +177,13 @@ namespace Rhino.DistributedHashTable.Internal
 			if (valuesToSend[0].IsReplicationRequest) 
 				return;
 
-			if (distributedHashTableNode.IsSegmentOwned(valuesToSend[0].Segment.Value) == false)
+			if (distributedHashTableNode.IsSegmentOwned(valuesToSend[0].Segment) == false)
 			{
 				// if this got to us because of fail over, and we need to replicate to the real owner
 				// and to any other backups
-				distributedHashTableNode.SendToOwner(valuesToSend[0].Segment.Value, valuesToSend);
+				distributedHashTableNode.SendToOwner(valuesToSend[0].Segment, valuesToSend);
 			}
-			distributedHashTableNode.SendToAllOtherBackups(valuesToSend[0].Segment.Value, valuesToSend);
+			distributedHashTableNode.SendToAllOtherBackups(valuesToSend[0].Segment, valuesToSend);
 		}
 
 		public Value[][] Get(Guid topologyVersion,params ExtendedGetRequest[] valuesToGet)

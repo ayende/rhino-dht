@@ -22,31 +22,29 @@ namespace Rhino.DistributedHashTable.Client
 			this.uri = uri;
 		}
 
-		private T Execute<T>(Func<MessageStreamWriter<MasterMessageUnion>, MessageStreamIterator<MasterMessageUnion>, Stream, T> func)
+		private T Execute<T>(Func<MessageStreamWriter<MasterMessageUnion>, Stream, T> func)
 		{
 			using (var client = new TcpClient(uri.Host, uri.Port))
 			using (var stream = client.GetStream())
 			{
 				var writer = new MessageStreamWriter<MasterMessageUnion>(stream);
-				var reader = MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => stream);
-				return func(writer, reader, stream);
+				return func(writer, stream);
 			}
 		}
 
-		private void Execute(Action<MessageStreamWriter<MasterMessageUnion>, MessageStreamIterator<MasterMessageUnion>, Stream> func)
+		private void Execute(Action<MessageStreamWriter<MasterMessageUnion>, Stream> func)
 		{
 			Execute<object>((writer,
-							 iterator,
 							 stream) =>
 			{
-				func(writer, iterator, stream);
+				func(writer, stream);
 				return null;
 			});
 		}
 
 		public Segment[] Join(NodeEndpoint endpoint)
 		{
-			return Execute((writer, iterator, stream) =>
+			return Execute((writer, stream) =>
 			{
 				writer.Write(new MasterMessageUnion.Builder
 				{
@@ -63,11 +61,7 @@ namespace Rhino.DistributedHashTable.Client
 				writer.Flush();
 				stream.Flush();
 
-				var union = iterator.First();
-				if (union.Type == MasterMessageType.MasterErrorResult)
-					throw new RemoteNodeException(union.Exception.Message);
-				if (union.Type != MasterMessageType.JoinResult)
-					throw new UnexpectedReplyException("Got reply " + union.Type + " but expected JoinResult");
+				var union = ReadReply(MasterMessageType.JoinResult, stream);
 
 				var response = union.JoinResponse;
 
@@ -75,11 +69,23 @@ namespace Rhino.DistributedHashTable.Client
 			});
 		}
 
+		private MasterMessageUnion ReadReply(MasterMessageType responses, Stream stream)
+		{
+			var iterator = MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => new UndisposableStream(stream));
+			var union = iterator.First();
+
+			if (union.Type == MasterMessageType.MasterErrorResult)
+				throw new RemoteNodeException(union.Exception.Message);
+			if (union.Type != responses)
+				throw new UnexpectedReplyException("Got reply " + union.Type + " but expected " + responses);
+
+			return union;
+		}
+
 		public void CaughtUp(NodeEndpoint endpoint,
 							 params int[] caughtUpSegments)
 		{
 			Execute((writer,
-							iterator,
 							stream) =>
 			{
 				writer.Write(new MasterMessageUnion.Builder
@@ -98,17 +104,13 @@ namespace Rhino.DistributedHashTable.Client
 				writer.Flush();
 				stream.Flush();
 
-				var union = iterator.First();
-				if (union.Type == MasterMessageType.MasterErrorResult)
-					throw new RemoteNodeException(union.Exception.Message);
-				if (union.Type != MasterMessageType.CaughtUpResponse)
-					throw new UnexpectedReplyException("Got reply " + union.Type + " but expected CaughtUpResponse");
+				ReadReply(MasterMessageType.CaughtUpResponse, stream);
 			});
 		}
 
 		public Topology GetTopology()
 		{
-			return Execute((writer, iterator, stream) =>
+			return Execute((writer, stream) =>
 			{
 				writer.Write(new MasterMessageUnion.Builder
 				{
@@ -117,11 +119,7 @@ namespace Rhino.DistributedHashTable.Client
 				writer.Flush();
 				stream.Flush();
 
-				var union = iterator.First();
-				if (union.Type == MasterMessageType.MasterErrorResult)
-					throw new RemoteNodeException(union.Exception.Message);
-				if (union.Type != MasterMessageType.GetTopologyResult)
-					throw new UnexpectedReplyException("Got reply " + union.Type + " but expected GetTopologyResult");
+				var union = ReadReply(MasterMessageType.GetTopologyResult, stream);
 
 				var topology = union.Topology;
 				var segments = topology.SegmentsList.Select(x => ConvertSegment(x));
@@ -164,7 +162,6 @@ namespace Rhino.DistributedHashTable.Client
 						   params int[] rangesGivingUpOn)
 		{
 			Execute((writer,
-							iterator,
 							stream) =>
 			{
 				writer.Write(new MasterMessageUnion.Builder
@@ -183,11 +180,7 @@ namespace Rhino.DistributedHashTable.Client
 				writer.Flush();
 				stream.Flush();
 
-				var union = iterator.First();
-				if (union.Type == MasterMessageType.MasterErrorResult)
-					throw new RemoteNodeException(union.Exception.Message);
-				if (union.Type != MasterMessageType.GaveUpResponse)
-					throw new UnexpectedReplyException("Got reply " + union.Type + " but expected GaveUpResponse");
+				ReadReply(MasterMessageType.GaveUpResponse, stream);
 			});
 		}
 	}
