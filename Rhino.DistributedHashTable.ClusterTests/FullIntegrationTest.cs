@@ -3,7 +3,7 @@ using log4net.Appender;
 using log4net.Config;
 using log4net.Layout;
 
-namespace Rhino.DistributedHashTable.IntegrationTests
+namespace Rhino.DistributedHashTable.ClusterTests
 {
 	public class FullIntegrationTest
 	{

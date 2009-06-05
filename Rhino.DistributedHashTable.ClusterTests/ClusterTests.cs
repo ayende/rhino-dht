@@ -6,7 +6,7 @@ using Rhino.DistributedHashTable.Hosting;
 using Rhino.DistributedHashTable.Parameters;
 using Xunit;
 
-namespace Rhino.DistributedHashTable.IntegrationTests
+namespace Rhino.DistributedHashTable.ClusterTests
 {
 	public class ClusterTests
 	{
@@ -52,13 +52,13 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					results.TryGetValue(storageHostA.Endpoint, out countOfSegmentsInA);
 					results.TryGetValue(storageHostB.Endpoint, out countOfSegmentsInB);
 					if (countOfSegmentsInA == countOfSegmentsInB &&
-						countOfSegmentsInB == 4096)
+					    countOfSegmentsInB == 4096)
 						return;
 					Thread.Sleep(500);
 				}
 				Assert.True(false,
-							"Should have found two nodes sharing responsability for the geometry: " + countOfSegmentsInA + " - " +
-							countOfSegmentsInB);
+				            "Should have found two nodes sharing responsability for the geometry: " + countOfSegmentsInA + " - " +
+				            countOfSegmentsInB);
 			}
 
 			[Fact]
@@ -82,7 +82,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				{
 					var topology = masterProxy.GetTopology();
 					if(topology.Segments[1].AssignedEndpoint == 
-						storageHostB.Endpoint)
+					   storageHostB.Endpoint)
 						break;
 					Thread.Sleep(500);
 				}

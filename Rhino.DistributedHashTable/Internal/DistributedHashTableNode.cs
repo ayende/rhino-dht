@@ -1,12 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Transactions;
+using Google.ProtocolBuffers;
+using log4net;
 using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Parameters;
+using Rhino.DistributedHashTable.Protocol;
 using Rhino.DistributedHashTable.Remote;
 using Rhino.DistributedHashTable.Util;
 using Rhino.Queues;
+using Rhino.Queues.Model;
 
 namespace Rhino.DistributedHashTable.Internal
 {
@@ -18,6 +24,8 @@ namespace Rhino.DistributedHashTable.Internal
 		private readonly IMessageSerializer messageSerializer;
 		private readonly IQueueManager queueManager;
 		private readonly IDistributedHashTableNodeReplicationFactory replicationFactory;
+		private readonly Thread backgroundReplication;
+		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableNode));
 
 		public DistributedHashTableNode(IDistributedHashTableMaster master,
 										IExecuter executer,
@@ -33,6 +41,52 @@ namespace Rhino.DistributedHashTable.Internal
 			this.queueManager = queueManager;
 			this.replicationFactory = replicationFactory;
 			State = NodeState.NotStarted;
+			backgroundReplication = new Thread(BackgroundReplication);
+		}
+
+		private void BackgroundReplication()
+		{
+			var errors = new Dictionary<MessageId, int>();
+			while (disposed == false)
+			{
+				int numOfErrors = 0;
+				MessageId id = null;
+				try
+				{
+					using (var tx = new TransactionScope())
+					{
+						var message = queueManager.Receive("replication");
+						id = message.Id;
+						if (errors.TryGetValue(id, out numOfErrors) == false)
+							numOfErrors = 0;
+						if (numOfErrors > 5)
+						{
+							log.ErrorFormat("Could not process message {0}, failed too many times, discarding", id);
+							continue;
+						}
+
+						var requests = messageSerializer.Deserialize(message.Data);
+						var puts = requests.OfType<ExtendedPutRequest>().ToArray();
+						var removes = requests.OfType<ExtendedRemoveRequest>().ToArray();
+						if (puts.Length > 0)
+							Storage.Put(GetTopologyVersion(), puts);
+						if (removes.Length > 0)
+							Storage.Remove(GetTopologyVersion(), removes);
+						tx.Complete();
+					}
+					errors.Remove(id);
+				}
+				catch (ObjectDisposedException)
+				{
+
+				}
+				catch (Exception e)
+				{
+					log.Error("Could not process message, will retry again", e);
+					if (id != null)
+						errors[id] = numOfErrors + 1;
+				}
+			}
 		}
 
 		public NodeState State { get; set; }
@@ -161,10 +215,13 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		protected int currentlyReplicatingBackups;
+		private volatile bool disposed;
 
 		public void Dispose()
 		{
+			disposed = true;
 			executer.Dispose();
+			backgroundReplication.Join();
 		}
 
 		public void SetTopology(Topology topology)

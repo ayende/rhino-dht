@@ -36,7 +36,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			Endpoint = new NodeEndpoint
 			{
 				Sync = new Uri("rhino.dht://" + Environment.MachineName + ":" + port + "/"),
-				Async = new Uri("rhino.queues://" + Environment.MachineName + ":" + (port + 1) + "/")
+				Async = new Uri("rhino.queues://" + Environment.MachineName + ":" + (port + 1) + "/replication")
 			};
 			queueManager = new QueueManager(new IPEndPoint(IPAddress.Any, port + 1), name + ".queue.esent");
 
@@ -274,9 +274,10 @@ namespace Rhino.DistributedHashTable.Hosting
 		public void Dispose()
 		{
 			listener.Stop();
+			queueManager.Dispose();
+
 			node.Dispose();
 			storage.Dispose();
-			queueManager.Dispose();
 		}
 	}
 }

@@ -11,13 +11,23 @@ namespace Rhino.DistributedHashTable.Internal
 		private byte[] serializedEndpoint;
 		private byte[] hash;
 		public Uri Sync { get; set; }
-		public Uri Async { get; set; }
+		private Uri async;
+		public Uri Async
+		{
+			get { return async; }
+			set
+			{
+				if (value.AbsolutePath.EndsWith("replication")==false)
+					throw new ArgumentException("Async uri must ends with 'replication'", "value");
+				async = value;
+			}
+		}
 
 		public static NodeEndpoint ForTest(int port)
 		{
 			return new NodeEndpoint
 			{
-				Async = new Uri("rhino.queues://test:" + port),
+				Async = new Uri("rhino.queues://test:" + port +"/replication"),
 				Sync = new Uri("tcp://test:" + port)
 			};
 		}

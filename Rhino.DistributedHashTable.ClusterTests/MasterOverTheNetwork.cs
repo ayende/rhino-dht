@@ -5,7 +5,7 @@ using Rhino.DistributedHashTable.Internal;
 using Xunit;
 using System.Linq;
 
-namespace Rhino.DistributedHashTable.IntegrationTests
+namespace Rhino.DistributedHashTable.ClusterTests
 {
 	public class MasterOverTheNetwork
 	{
@@ -39,7 +39,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var endpoint = new NodeEndpoint
 				{
-					Async = new Uri("rhino.queues://localhost:2202"),
+					Async = new Uri("rhino.queues://localhost:2202/replication"),
 					Sync = new Uri("rhino.dht://localhost:2201")
 				};
 				var segments = masterProxy.Join(endpoint);
@@ -52,12 +52,12 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var endpoint = new NodeEndpoint
 				{
-					Async = new Uri("rhino.queues://localhost:2202"),
+					Async = new Uri("rhino.queues://localhost:2202/replication"),
 					Sync = new Uri("rhino.dht://localhost:2201")
 				};
 				masterProxy.Join(new NodeEndpoint
 				{
-					Async = new Uri("rhino.queues://other:2202"),
+					Async = new Uri("rhino.queues://other:2202/replication"),
 					Sync = new Uri("rhino.dht://other:2201")
 				});
 				var segments = masterProxy.Join(endpoint);
@@ -77,14 +77,14 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var existingEndpoint = new NodeEndpoint
 				{
-					Async = new Uri("rhino.queues://other:2202"),
+					Async = new Uri("rhino.queues://other:2202/replication"),
 					Sync = new Uri("rhino.dht://other:2201")
 				};
 				masterProxy.Join(existingEndpoint);
 				
 				var newEndpoint = new NodeEndpoint
 				{
-					Async = new Uri("rhino.queues://localhost:2202"),
+					Async = new Uri("rhino.queues://localhost:2202/replication"),
 					Sync = new Uri("rhino.dht://localhost:2201")
 				};
 				

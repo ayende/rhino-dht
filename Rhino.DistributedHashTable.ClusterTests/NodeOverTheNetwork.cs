@@ -6,7 +6,7 @@ using Rhino.DistributedHashTable.Parameters;
 using Xunit;
 using System.Linq;
 
-namespace Rhino.DistributedHashTable.IntegrationTests
+namespace Rhino.DistributedHashTable.ClusterTests
 {
 	public class NodeOverTheNetwork : FullIntegrationTest, IDisposable
 	{
@@ -132,7 +132,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				{
 					Key = "test",
 					Segment = 1,
-                    SpecificVersion = result.PutRequests[0].ReplicationVersion
+					SpecificVersion = result.PutRequests[0].ReplicationVersion
 				});
 
 				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
@@ -179,7 +179,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				var values = storageProxy.Get(topology.Version, new ExtendedGetRequest
 				{
 					Key = "test",
-                    Segment = 1
+					Segment = 1
 				});
 
 				Assert.Equal(1, values[0].Length);
