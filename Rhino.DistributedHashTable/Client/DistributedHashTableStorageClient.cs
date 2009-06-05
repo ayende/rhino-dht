@@ -52,6 +52,7 @@ namespace Rhino.DistributedHashTable.Client
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.PutRequests,
+				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				PutRequestsList =
                 	{
                 		valuesToAdd.Select(x => CreatePutRequest(x))
@@ -118,6 +119,7 @@ namespace Rhino.DistributedHashTable.Client
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.RemoveRequests,
+				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				RemoveRequestsList = 
                 	{
                 		valuesToRemove.Select(x => new RemoveRequestMessage.Builder
@@ -146,6 +148,7 @@ namespace Rhino.DistributedHashTable.Client
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.GetRequests,
+				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				GetRequestsList = 
                 	{
                 		valuesToGet.Select(x => CreateGetRequest(x))
@@ -154,7 +157,7 @@ namespace Rhino.DistributedHashTable.Client
 			writer.Flush();
 			stream.Flush();
 
-			var union = ReadReply(StorageMessageType.RemoveResponses);
+			var union = ReadReply(StorageMessageType.GetResponses);
 			return union.GetResponsesList.Select(x => 
 				x.ValuesList.Select(y=> new Value
 				{

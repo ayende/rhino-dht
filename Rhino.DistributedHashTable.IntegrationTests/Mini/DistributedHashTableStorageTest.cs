@@ -27,7 +27,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[]{1,2,4},
-					TopologyVersion = guid,
 					Segment = 0,
 				});
 			}
@@ -82,7 +81,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
-					TopologyVersion = guid,
 					Segment = 0,
 				});
 				Assert.NotNull(results[0].Version);
@@ -96,7 +94,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Put(guid, request);
@@ -111,7 +108,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Put(guid, request);
@@ -126,7 +122,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Put(guid, request);
@@ -158,7 +153,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
-					TopologyVersion = guid,
 					Segment = 0,
 				});
 				version = results[0].Version;
@@ -171,7 +165,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					SpecificVersion = version, 
-					TopologyVersion = guid,
 					Segment = 0,
 				});
 				Assert.True(results[0]);
@@ -184,7 +177,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test2",
 					SpecificVersion = version, 
-					TopologyVersion = guid,
 					Segment = 0,
 				});
 				Assert.False(results[0]);
@@ -198,7 +190,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					SpecificVersion = version, 
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Remove(guid, request);
@@ -213,7 +204,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					SpecificVersion = version, 
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Remove(guid, request);
@@ -228,7 +218,6 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 				{
 					Key = "test",
 					SpecificVersion = version, 
-					TopologyVersion = guid,
 					Segment = 0,
 				};
 				distributedHashTableStorage.Remove(guid, request);

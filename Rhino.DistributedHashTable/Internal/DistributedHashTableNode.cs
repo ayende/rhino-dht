@@ -59,6 +59,8 @@ namespace Rhino.DistributedHashTable.Internal
 		                        IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(range);
+			if (ownerSegment.AssignedEndpoint == null)
+				return;
 			queueManager.Send(ownerSegment.AssignedEndpoint.Async,
 			                  new MessagePayload
 			                  {
@@ -70,9 +72,13 @@ namespace Rhino.DistributedHashTable.Internal
 		                                  IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(range);
-			foreach (var endpoint in ownerSegment.Backups.Append(ownerSegment.AssignedEndpoint).Where(x => x != endpoint))
+			foreach (var otherBackup in ownerSegment.Backups
+				.Append(ownerSegment.AssignedEndpoint)
+				.Where(x => x != endpoint))
 			{
-				queueManager.Send(endpoint.Async,
+				if(otherBackup == null)
+					continue;
+				queueManager.Send(otherBackup.Async,
 				                  new MessagePayload
 				                  {
 				                  	Data = messageSerializer.Serialize(requests),
@@ -97,8 +103,8 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public void Start()
 		{
-			Topology = master.GetTopology();
 			var assignedSegments = master.Join(endpoint);
+			Topology = master.GetTopology();
 			rangesThatWeAreCatchingUpOn = assignedSegments
 				.Where(x => x.AssignedEndpoint != endpoint)
 				.ToList();

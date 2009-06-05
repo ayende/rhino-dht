@@ -9,7 +9,6 @@ namespace Rhino.DistributedHashTable.Parameters
 		{
 			Segment = -1;
 		}
-		public Guid TopologyVersion { get; set; }
 		public int Segment { get; set; }
 		public bool IsReplicationRequest { get; set; }
 	}

@@ -73,6 +73,10 @@ namespace Rhino.DistributedHashTable.Hosting
 			{
 				return;
 			}
+			catch(InvalidOperationException)
+			{
+				return;
+			}
 			try
 			{
 				using (client)
@@ -130,7 +134,6 @@ namespace Rhino.DistributedHashTable.Hosting
 			var requests = wrapper.RemoveRequestsList.Select(x =>
 			                                                 new ExtendedRemoveRequest
 			                                                 {
-			                                                 	TopologyVersion = topologyVersion,
 			                                                 	Segment = x.Segment,
 			                                                 	Key = x.Key,
 			                                                 	SpecificVersion = GetVersion(x.SpecificVersion),
@@ -140,6 +143,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.RemoveResponses,
+				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				RemoveResponesList =
 					{
 						removed.Select(x => new RemoveResponseMessage.Builder
@@ -157,22 +161,31 @@ namespace Rhino.DistributedHashTable.Hosting
 			var puts = wrapper.PutRequestsList.Select(x => new ExtendedPutRequest
 			{
 				Bytes = x.Bytes.ToByteArray(),
-				ExpiresAt = x.ExpiresAtAsDouble != null ? DateTime.FromOADate(x.ExpiresAtAsDouble.Value) : (DateTime?)null,
+				ExpiresAt = x.HasExpiresAtAsDouble ? 
+					DateTime.FromOADate(x.ExpiresAtAsDouble.Value) : 
+					(DateTime?)null,
 				IsReadOnly = x.IsReadOnly,
 				IsReplicationRequest = x.IsReplicationRequest,
 				Key = x.Key,
 				OptimisticConcurrency = x.OptimisticConcurrency,
 				ParentVersions = x.ParentVersionsList.Select(y => GetVersion(y)).ToArray(),
-				ReplicationTimeStamp = x.ReplicationTimeStampAsDouble != null ? DateTime.FromOADate(x.ReplicationTimeStampAsDouble.Value) : (DateTime?)null,
+				ReplicationTimeStamp = x.HasReplicationTimeStampAsDouble ? 
+					DateTime.FromOADate(x.ReplicationTimeStampAsDouble.Value) : 
+					(DateTime?)null,
 				ReplicationVersion = GetVersion(x.ReplicationVersion),
 				Segment = x.Segment,
-				TopologyVersion = topologyVersion,
 				Tag = x.Tag
 			}).ToArray();
 			var results = storage.Put(topologyVersion, puts);
+			var xx = storage.Get(topologyVersion, new ExtendedGetRequest
+			{
+				Key = puts[0].Key,
+				Segment = 1,
+			});
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.PutResponses,
+                TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				PutResponsesList = 
 					{
 						results.Select(x=> new PutResponseMessage.Builder
@@ -193,7 +206,6 @@ namespace Rhino.DistributedHashTable.Hosting
 				Segment = x.Segment,
 				Key = x.Key,
 				SpecifiedVersion = GetVersion(x.SpecificVersion),
-				TopologyVersion = topologyVersion,
 				IsReplicationRequest = false
 			}).ToArray());
 			var reply = new StorageMessageUnion.Builder
@@ -226,7 +238,7 @@ namespace Rhino.DistributedHashTable.Hosting
 
 		private static ValueVersion GetVersion(Protocol.ValueVersion version)
 		{
-			if (version == null)
+			if (version == Protocol.ValueVersion.DefaultInstance)
 				return null;
 			return new ValueVersion
 			{
