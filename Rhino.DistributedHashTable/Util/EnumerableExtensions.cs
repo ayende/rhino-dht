@@ -60,13 +60,14 @@ namespace Rhino.DistributedHashTable.Util
 		}
 
 
-		public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T item)
+		public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T item) where T : class
 		{
 			foreach (var i in self)
 			{
 				yield return i;
 			}
-			yield return item;
+			if (item != null)
+				yield return item;
 		}
 
 		public static bool Empty(this IEnumerable self)

@@ -110,12 +110,12 @@ namespace Rhino.DistributedHashTable.Tests
 			}
 
 			[Fact]
-			public void AddingNewNodeResultInAllSegmentsHavingTwoBackupCopy()
+			public void AddingNewNodeResultInAllSegmentsHavingAtLeastTwoBackupCopy()
 			{
 				var yetAnotherEndPoint = NodeEndpoint.ForTest(7);
 				var ranges = master.Join(yetAnotherEndPoint);
 				master.CaughtUp(yetAnotherEndPoint, ranges.Select(x => x.Index).ToArray());
-				Assert.True(master.Segments.All(x => x.Backups.Count == 2));
+				Assert.True(master.Segments.All(x => x.Backups.Count >= 2));
 			}
 		}
 	}

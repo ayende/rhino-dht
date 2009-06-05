@@ -6,7 +6,7 @@ namespace Rhino.DistributedHashTable.Commands
 {
 	public class RearrangeBackups
 	{
-		private readonly IEnumerable<NodeEndpoint> endPoints;
+		private readonly HashSet<NodeEndpoint> endPoints;
 		private readonly int fairDistribution;
 		private readonly int numberOfBackCopiesToKeep;
 		private readonly IEnumerable<Segment> ranges;
@@ -14,8 +14,8 @@ namespace Rhino.DistributedHashTable.Commands
 
 		public ICollection<BackUpAdded> Changed = new List<BackUpAdded>();
 
-		public RearrangeBackups(IEnumerable<Internal.Segment> ranges,
-		                        IEnumerable<NodeEndpoint> endPoints,
+		public RearrangeBackups(IEnumerable<Segment> ranges,
+		                        HashSet<NodeEndpoint> endPoints,
 		                        int numberOfBackCopiesToKeep)
 		{
 			this.ranges = ranges;

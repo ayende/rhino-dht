@@ -23,7 +23,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		private readonly HashSet<NodeEndpoint> endpoints = new HashSet<NodeEndpoint>();
 
-		public IEnumerable<Segment> Segments
+		public Segment[] Segments
 		{
 			get { return Topology.Segments; }
 		}
@@ -90,30 +90,32 @@ namespace Rhino.DistributedHashTable.Internal
 			Segment[] matchingSegments = GetMatchingSegments(caughtUpSegments, endPoint);
 
 			var modifiedSegments = from range in Segments
-								 join caughtUpSegment in matchingSegments on range.Version equals caughtUpSegment.Version into maybeMatchingSegment
-			                     select
-			                     	new { range, maybeMatchingSegment };
+								   join caughtUpSegment in matchingSegments on range.Index equals caughtUpSegment.Index into maybeMatchingSegment
+								   select
+									  new { range, maybeMatchingSegment };
 
 			Topology = new Topology((
-			                        	from modifiedSegment in modifiedSegments
-			                        	let x = modifiedSegment.maybeMatchingSegment.FirstOrDefault()
-			                        	select x == null
-			                        	       	? modifiedSegment.range
-			                        	       	: new Segment
-			                        	       	{
-			                        	       		Index = x.Index,
-			                        	       		InProcessOfMovingToEndpoint = null,
-			                        	       		AssignedEndpoint = endPoint,
-													//this is moving the current owner to the backup role
-			                        	       		Backups = x.Backups.Append(x.AssignedEndpoint).ToSet()
-			                        	       	}).ToArray()
+										from modifiedSegment in modifiedSegments
+										let x = modifiedSegment.maybeMatchingSegment.FirstOrDefault()
+										select x == null
+												? modifiedSegment.range
+												: new Segment
+												{
+													Index = x.Index,
+													InProcessOfMovingToEndpoint = null,
+													AssignedEndpoint = endPoint,
+													Backups = x.Backups
+														.Append(x.AssignedEndpoint)
+														.Where(e => e != endPoint)
+														.ToSet()
+												}).ToArray()
 				);
 			RearrangeBackups();
 			TopologyChanged();
 		}
 
 		public void GaveUp(NodeEndpoint endpoint,
-		                   params int[] rangesGivingUpOn)
+						   params int[] rangesGivingUpOn)
 		{
 			var matchingSegments = GetMatchingSegments(rangesGivingUpOn, endpoint);
 			foreach (var range in matchingSegments)
@@ -123,12 +125,10 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		private Segment[] GetMatchingSegments(IEnumerable<int> ranges,
-		                                  NodeEndpoint endPoint)
+										  NodeEndpoint endPoint)
 		{
-			var matchingSegments = Segments
-				.Where(x => ranges.Contains(x.Index))
-				.ToArray();
-		
+			var matchingSegments = ranges.Select(i => Segments[i]).ToArray();
+
 			var rangesNotBeloningToThespecifiedEndpoint = matchingSegments
 				.Where(x => x.InProcessOfMovingToEndpoint != null)
 				.Where(x => endPoint.Equals(x.InProcessOfMovingToEndpoint) == false);
@@ -142,7 +142,7 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			var rearranger = new RearrangeBackups(Segments, endpoints, NumberOfBackCopiesToKeep);
 			var rearranged = rearranger.Rearranging();
-			if(rearranged == false)
+			if (rearranged == false)
 				return;
 			foreach (var backUpAdded in rearranger.Changed)
 			{

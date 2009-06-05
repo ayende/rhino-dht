@@ -24,16 +24,26 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public bool Equals(NodeEndpoint other)
 		{
-			if (ReferenceEquals(null, other))
+			if(other == null)
 				return false;
-			if (ReferenceEquals(this, other))
-				return true;
-			return Equals(other.Sync, Sync) && Equals(other.Async, Async);
+			return Sync == other.Sync && Async == other.Async;
 		}
 
 		public override string ToString()
 		{
 			return string.Format("Sync: {0}, Async: {1}", Sync, Async);
+		}
+
+		public static bool operator ==(NodeEndpoint left,
+		                               NodeEndpoint right)
+		{
+			return Equals(left, right);
+		}
+
+		public static bool operator !=(NodeEndpoint left,
+		                               NodeEndpoint right)
+		{
+			return !Equals(left, right);
 		}
 
 		public override bool Equals(object obj)
@@ -42,15 +52,12 @@ namespace Rhino.DistributedHashTable.Internal
 				return false;
 			if (ReferenceEquals(this, obj))
 				return true;
-			return Equals((NodeEndpoint)obj);
+			return Equals((NodeEndpoint) obj);
 		}
 
 		public override int GetHashCode()
 		{
-			unchecked
-			{
-				return ((Sync != null ? Sync.GetHashCode() : 0) * 397) ^ (Async != null ? Async.GetHashCode() : 0);
-			}
+			return 0;
 		}
 
 		public byte[] ToBytes()

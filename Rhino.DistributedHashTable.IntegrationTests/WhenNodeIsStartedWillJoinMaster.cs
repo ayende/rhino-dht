@@ -7,21 +7,16 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 	public class WhenNodeIsStarted : FullIntegrationTest, IDisposable
 	{
 		private readonly DistributedHashTableMasterHost masterHost;
-		private readonly DistributedHashTableStorageHost storageHost;
 		private readonly Uri masterUri = new Uri("net.tcp://" + Environment.MachineName + ":2200/master");
 
 		public WhenNodeIsStarted()
 		{
 			masterHost = new DistributedHashTableMasterHost();
-			storageHost = new DistributedHashTableStorageHost(
-				masterUri);
-
 			masterHost.Start();
-			storageHost.Start();
 		}
 
 
-		[Fact]
+		[Fact(Skip = "not impl yet")]
 		public void WillJoinMaster()
 		{
 			Assert.True(false);
