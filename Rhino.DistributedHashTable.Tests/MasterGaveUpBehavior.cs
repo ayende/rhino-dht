@@ -15,7 +15,8 @@ namespace Rhino.DistributedHashTable.Tests
 			{
 				master = new DistributedHashTableMaster();
 				master.CaughtUp(NodeEndpoint.ForTest(9),
-				                master.Join(NodeEndpoint.ForTest(9)).Select(x=>x.Index).ToArray());
+								ReplicationType.Ownership, 
+								master.Join(NodeEndpoint.ForTest(9)).Select(x => x.Index).ToArray());
 				endPoint = NodeEndpoint.ForTest(5);
 			}
 
@@ -26,8 +27,8 @@ namespace Rhino.DistributedHashTable.Tests
 
 				var range = ranges.First();
 				Assert.NotNull(range.InProcessOfMovingToEndpoint);
-				
-				master.GaveUp(endPoint, range.Index);
+
+				master.GaveUp(endPoint, ReplicationType.Ownership, range.Index);
 
 				Assert.Null(range.InProcessOfMovingToEndpoint);
 			}

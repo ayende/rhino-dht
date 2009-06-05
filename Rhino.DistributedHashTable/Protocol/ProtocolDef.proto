@@ -34,6 +34,12 @@ enum MasterMessageType
 	GaveUpResponse = 9;
 }
 
+enum ReplicationType
+{
+	Ownership = 1;
+	Backup = 2;
+}
+
 message Value
 {
 	required string Key = 1;
@@ -65,7 +71,7 @@ message Segment
 	required bytes Version = 2;
 	optional NodeEndpoint AssignedEndpoint = 3;
 	optional NodeEndpoint InProcessOfMovingToEndpoint = 4;
-	repeated NodeEndpoint Backups = 5;
+	repeated NodeEndpoint PendingBackups = 5;
 }
 
 message JoinRequestMessage
@@ -89,12 +95,14 @@ message CaughtUpRequestMessage
 {
 	required NodeEndpoint Endpoint = 1;
 	repeated int32 CaughtUpSegments = 2;
+	required ReplicationType Type = 3;
 }
 
 message GaveUpRequestMessage
 {
 	required NodeEndpoint Endpoint = 1;
 	repeated int32 GaveUpSegments = 2;
+	required ReplicationType Type = 3;
 }
 
 message GetRequestMessage

@@ -17,14 +17,7 @@ namespace Rhino.DistributedHashTable.Internal
 		/// <summary>
 		/// Notify the master that the endpoint has caught up on all the specified ranges
 		/// </summary>
-		void CaughtUp(NodeEndpoint endpoint, params int[] caughtUpSegments);
-
-		//void Decommision(NodeEndpoint endpoint);
-
-		///// <summary>
-		///// Sync the master with the list of items maintained by a copy of the master
-		///// </summary>
-		//void SyncUp(Topology topology);
+		void CaughtUp(NodeEndpoint endpoint, ReplicationType type, params int[] caughtUpSegments);
 
 		Topology GetTopology();
 
@@ -32,6 +25,9 @@ namespace Rhino.DistributedHashTable.Internal
 		/// Notify the master that the endpoint will not replicate this range
 		/// </summary>
 		void GaveUp(NodeEndpoint endpoint,
+		            ReplicationType type,
 		            params int[] rangesGivingUpOn);
+
+
 	}
 }

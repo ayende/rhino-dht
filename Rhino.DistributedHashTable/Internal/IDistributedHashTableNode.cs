@@ -17,12 +17,12 @@ namespace Rhino.DistributedHashTable.Internal
 		void SendToAllOtherBackups(int range,
 								   params IExtendedRequest[] requests);
 
-		void DoneReplicatingSegments(params int[] ranges);
+		void DoneReplicatingSegments(ReplicationType type, params int[] ranges);
 
 
 		IDistributedHashTableStorage Storage { get; set; }
 		NodeEndpoint Endpoint { get; }
-		void GivingUpOn(params int[] rangesGivingUpOn);
+		void GivingUpOn(ReplicationType type, params int[] rangesGivingUpOn);
 		void Start();
 	}
 }

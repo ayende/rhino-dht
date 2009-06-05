@@ -1,4 +1,5 @@
 using System.Net;
+using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Remote;
@@ -31,16 +32,15 @@ namespace Rhino.DistributedHashTable.Tests
 			[Fact]
 			public void StateWillBeStarted()
 			{
-				node.DoneReplicatingSegments(new[] { 0 });
+				node.DoneReplicatingSegments(ReplicationType.Ownership, new[] { 0 });
 				Assert.Equal(NodeState.Started, node.State);
 			}
 
 			[Fact]
 			public void WillLetMasterKnowItCaughtUp()
 			{
-				var range = new Segment();
-				node.DoneReplicatingSegments(new[] { 0 });
-				master.AssertWasCalled(x => x.CaughtUp(node.Endpoint, 0));
+				node.DoneReplicatingSegments(ReplicationType.Ownership, new[] { 0 });
+				master.AssertWasCalled(x => x.CaughtUp(node.Endpoint, ReplicationType.Ownership, 0));
 			}
 		}
 
@@ -51,7 +51,7 @@ namespace Rhino.DistributedHashTable.Tests
 			private readonly IExecuter executer;
 			private readonly NodeEndpoint endPoint;
 			private readonly IQueueManager queueManager;
-			private Topology topology;
+			private readonly Topology topology;
 			private static NodeEndpoint backup1;
 			private static NodeEndpoint backup2;
 
@@ -67,7 +67,7 @@ namespace Rhino.DistributedHashTable.Tests
 					{
 						Index = 0,
 						AssignedEndpoint = endPoint,
-						Backups = 
+						PendingBackups = 
 						{
 							backup1,
 							backup2,
@@ -77,7 +77,7 @@ namespace Rhino.DistributedHashTable.Tests
 					{
 						Index = 1,
 						AssignedEndpoint = backup1,
-						Backups = 
+						PendingBackups = 
 						{
 							endPoint,
 							backup2,
@@ -119,6 +119,98 @@ namespace Rhino.DistributedHashTable.Tests
 				node.SendToAllOtherBackups(1, new[] { request });
 				queueManager.Send(endPoint.Async, Arg<MessagePayload>.Is.TypeOf);
 				queueManager.Send(backup2.Async, Arg<MessagePayload>.Is.TypeOf);
+			}
+		}
+
+		public class WhenTopologyIsUpdated
+		{
+			private readonly DistributedHashTableNode node;
+			private readonly IDistributedHashTableMaster master;
+			private readonly IExecuter executer;
+			private readonly NodeEndpoint endPoint;
+
+			public WhenTopologyIsUpdated()
+			{
+				master = MockRepository.GenerateStub<IDistributedHashTableMaster>();
+				executer = MockRepository.GenerateStub<IExecuter>();
+				endPoint = NodeEndpoint.ForTest(1);
+				master.Stub(x => x.Join(Arg.Is(endPoint)))
+					.Return(new Segment[0]);
+				node = new DistributedHashTableNode(master, executer, new BinaryMessageSerializer(), endPoint, MockRepository.GenerateStub<IQueueManager>(),
+					MockRepository.GenerateStub<IDistributedHashTableNodeReplicationFactory>());
+			}
+
+			[Fact]
+			public void TopologyContainsPendingBackupsForCurrentNodeWillStartsBackupReplication()
+			{
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+                        AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				}));
+
+				executer.AssertWasCalled(x=>x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf));
+			}
+
+			[Fact]
+			public void WillNotStartReplicationIfCurrentlyReplicatingBackups()
+			{
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+						AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				}));
+
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+						AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				}));
+
+				executer.AssertWasCalled(
+					x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf),
+					o=>o.Repeat.Once());
+			}
+
+			[Fact]
+			public void AfterBackupsCompleteWillStartReplicationAgain()
+			{
+				OnlineSegmentReplicationCommand command = null;
+				executer.Stub(x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf))
+					.WhenCalled(invocation => command = (OnlineSegmentReplicationCommand) invocation.Arguments[0]);
+
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+						AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				}));
+
+				command.RaiseCompleted();
+
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+						AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				}));
+
+				executer.AssertWasCalled(
+					x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf),
+					o => o.Repeat.Twice());
 			}
 		}
 	}

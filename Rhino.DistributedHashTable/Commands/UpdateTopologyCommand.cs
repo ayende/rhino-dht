@@ -29,7 +29,7 @@ namespace Rhino.DistributedHashTable.Commands
 				return false;
 			try
 			{
-				node.Topology = master.GetTopology();
+				node.SetTopology(master.GetTopology());
 				log.DebugFormat("Updated toplogy to version {0}", node.Topology.Version);
 				return true;
 			}

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Remote;
@@ -17,14 +18,12 @@ namespace Rhino.DistributedHashTable.Internal
 		private readonly IMessageSerializer messageSerializer;
 		private readonly IQueueManager queueManager;
 		private readonly IDistributedHashTableNodeReplicationFactory replicationFactory;
-		private IList<Segment> ranges = new List<Segment>();
-		private IList<Segment> rangesThatWeAreCatchingUpOn = new List<Segment>();
 
 		public DistributedHashTableNode(IDistributedHashTableMaster master,
-		                                IExecuter executer,
-		                                IMessageSerializer messageSerializer,
-		                                NodeEndpoint endpoint,
-		                                IQueueManager queueManager,
+										IExecuter executer,
+										IMessageSerializer messageSerializer,
+										NodeEndpoint endpoint,
+										IQueueManager queueManager,
 										IDistributedHashTableNodeReplicationFactory replicationFactory)
 		{
 			this.master = master;
@@ -38,7 +37,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public NodeState State { get; set; }
 
-		public Topology Topology { get; set; }
+		public Topology Topology { get; private set; }
 
 		public NodeEndpoint Endpoint
 		{
@@ -61,47 +60,45 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		public void SendToOwner(int range,
-		                        IExtendedRequest[] requests)
+								IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(range);
 			if (ownerSegment.AssignedEndpoint == null)
 				return;
 			queueManager.Send(ownerSegment.AssignedEndpoint.Async,
-			                  new MessagePayload
-			                  {
-			                  	Data = messageSerializer.Serialize(requests),
-			                  });
+							  new MessagePayload
+							  {
+								  Data = messageSerializer.Serialize(requests),
+							  });
 		}
 
 		public void SendToAllOtherBackups(int range,
-		                                  IExtendedRequest[] requests)
+										  IExtendedRequest[] requests)
 		{
 			var ownerSegment = Topology.GetSegment(range);
-			foreach (var otherBackup in ownerSegment.Backups
+			foreach (var otherBackup in ownerSegment.PendingBackups
 				.Append(ownerSegment.AssignedEndpoint)
 				.Where(x => x != endpoint))
 			{
-				if(otherBackup == null)
+				if (otherBackup == null)
 					continue;
 				queueManager.Send(otherBackup.Async,
-				                  new MessagePayload
-				                  {
-				                  	Data = messageSerializer.Serialize(requests),
-				                  });
+								  new MessagePayload
+								  {
+									  Data = messageSerializer.Serialize(requests),
+								  });
 			}
 		}
 
-		public void DoneReplicatingSegments(int[] replicatedSegments)
+		public void DoneReplicatingSegments(ReplicationType type, int[] replicatedSegments)
 		{
-			master.CaughtUp(endpoint, replicatedSegments);
-			rangesThatWeAreCatchingUpOn.MoveTo(ranges, x => replicatedSegments.Contains(x.Index));
+			master.CaughtUp(endpoint, type, replicatedSegments);
 			State = NodeState.Started;
 		}
 
-		public void GivingUpOn(params int[] rangesGivingUpOn)
+		public void GivingUpOn(ReplicationType type, params int[] rangesGivingUpOn)
 		{
-			master.GaveUp(endpoint, rangesGivingUpOn);
-			rangesThatWeAreCatchingUpOn.RemoveAll(x => rangesGivingUpOn.Contains(x.Index));
+			master.GaveUp(endpoint, type, rangesGivingUpOn);
 		}
 
 		public IDistributedHashTableStorage Storage { get; set; }
@@ -110,31 +107,68 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			var assignedSegments = master.Join(endpoint);
 			Topology = master.GetTopology();
-			rangesThatWeAreCatchingUpOn = assignedSegments
+			var rangesThatWeAreCatchingUpOnOwnership = assignedSegments
 				.Where(x => x.AssignedEndpoint != endpoint)
-				.ToList();
-			foreach (var rangeToReplicate in rangesThatWeAreCatchingUpOn.GroupBy(x => x.AssignedEndpoint))
+				.ToArray();
+			foreach (var segmentToReplicate in rangesThatWeAreCatchingUpOnOwnership
+				.GroupBy(x => x.AssignedEndpoint))
 			{
 				executer.RegisterForExecution(
 					new OnlineSegmentReplicationCommand(
-						rangeToReplicate.Key,
-						rangeToReplicate.ToArray(), 
+						segmentToReplicate.Key,
+						segmentToReplicate.ToArray(),
+						ReplicationType.Ownership,
 						this,
-						replicationFactory.Create(rangeToReplicate.Key))
+						replicationFactory.Create(segmentToReplicate.Key))
 					);
 			}
-			ranges = assignedSegments.Where(x => x.AssignedEndpoint == endpoint).ToList();
-			State =
-				ranges.Count > 0
-					?
-						NodeState.Started
-					:
-						NodeState.Starting;
+
+			StartPendingBackupsForCurrentNode(Topology);
+
+			var ownsSegments = assignedSegments.Any(x => x.AssignedEndpoint == endpoint);
+			State = ownsSegments ?
+				NodeState.Started :
+				NodeState.Starting;
 		}
+
+		private void StartPendingBackupsForCurrentNode(Topology topology)
+		{
+			if (Topology == null)
+				return;
+			if (Interlocked.CompareExchange(ref currentlyReplicatingBackups, 0, 0) != 0)
+				return;
+
+			foreach (var segmentToReplicate in topology.Segments
+				.Where(x => x.AssignedEndpoint != null)
+				.Where(x => x.PendingBackups.Contains(endpoint))
+				.GroupBy(x => x.AssignedEndpoint))
+			{
+				var command = new OnlineSegmentReplicationCommand(
+					segmentToReplicate.Key,
+					segmentToReplicate.ToArray(),
+					ReplicationType.Backup,
+					this,
+					replicationFactory.Create(segmentToReplicate.Key));
+
+				Interlocked.Increment(ref currentlyReplicatingBackups);
+
+				command.Completed += (() => Interlocked.Decrement(ref currentlyReplicatingBackups));
+
+				executer.RegisterForExecution(command);
+			}
+		}
+
+		protected int currentlyReplicatingBackups;
 
 		public void Dispose()
 		{
 			executer.Dispose();
+		}
+
+		public void SetTopology(Topology topology)
+		{
+			Topology = topology;
+			StartPendingBackupsForCurrentNode(topology);
 		}
 	}
 }

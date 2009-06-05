@@ -43,7 +43,7 @@ namespace Rhino.DistributedHashTable.Util
 												}
 												: null,
 				Index = x.Index,
-				Backups = x.BackupsList.Select(b => new Internal.NodeEndpoint()
+				PendingBackups = x.PendingBackupsList.Select(b => new Internal.NodeEndpoint()
 				{
 					Async = new Uri(b.Async),
 					Sync = new Uri(b.Sync)

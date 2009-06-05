@@ -9,7 +9,7 @@ namespace Rhino.DistributedHashTable.Commands
 		private readonly HashSet<NodeEndpoint> endpoints;
 		private readonly int fairDistribution;
 		private readonly int numberOfBackCopiesToKeep;
-		private readonly IEnumerable<Segment> ranges;
+		private readonly IEnumerable<Segment> segments;
 		private readonly List<BackupCount> currentDistribution;
 
 		public ICollection<BackUpAdded> Changed = new List<BackUpAdded>();
@@ -18,7 +18,7 @@ namespace Rhino.DistributedHashTable.Commands
 		                        HashSet<NodeEndpoint> endpoints,
 		                        int numberOfBackCopiesToKeep)
 		{
-			this.ranges = ranges;
+			this.segments = ranges;
 			this.endpoints = endpoints;
 			this.numberOfBackCopiesToKeep = numberOfBackCopiesToKeep;
 			fairDistribution = (ranges.Count() * numberOfBackCopiesToKeep) / endpoints.Count() + 1;
@@ -27,25 +27,27 @@ namespace Rhino.DistributedHashTable.Commands
 
 		public bool Rearranging()
 		{
-			foreach (var range in ranges.Where(x => x.Backups.Count < numberOfBackCopiesToKeep))
+			foreach (var segmentLoop in segments.Where(x => x.BackupsCount < numberOfBackCopiesToKeep))
 			{
+				var segment = segmentLoop;
 				var endpointsToAddToBackups = currentDistribution
 					.Where(
-					x => range.AssignedEndpoint != x.Endpoint &&
-					     range.InProcessOfMovingToEndpoint != x.Endpoint &&
+					x => segment.AssignedEndpoint != x.Endpoint &&
+					     segment.InProcessOfMovingToEndpoint != x.Endpoint &&
 					     x.Count < fairDistribution &&
-					     range.Backups.Contains(x.Endpoint) == false
+					     segment.PendingBackups.Contains(x.Endpoint) == false && 
+						 segment.Backups.Contains(x.Endpoint) == false
 					)
-					.Take(numberOfBackCopiesToKeep - range.Backups.Count);
+					.Take(numberOfBackCopiesToKeep - segment.PendingBackups.Count);
 
 				foreach (var endpointToAddToBackups in endpointsToAddToBackups)
 				{
 					Changed.Add(new BackUpAdded
 					{
 						Endpoint = endpointToAddToBackups.Endpoint,
-						Segment = range
+						Segment = segment
 					});
-					range.Backups.Add(endpointToAddToBackups.Endpoint);
+					segment.PendingBackups.Add(endpointToAddToBackups.Endpoint);
 					endpointToAddToBackups.Count += 1;
 				}
 			}
@@ -54,22 +56,22 @@ namespace Rhino.DistributedHashTable.Commands
 
 		private List<BackupCount> PrepareDistributions()
 		{
-			var currentDistribution = (
-			                          	from backup in ranges.SelectMany(x => x.Backups)
+			var distribution = (
+			                          	from backup in segments.SelectMany(x => x.PendingBackups)
 			                          	group backup by backup
 			                          	into g
 			                          		select new BackupCount { Endpoint = g.Key, Count = g.Count() }
 			                          ).ToList();
 
-			foreach (var endpointThatHasNoBackups in endpoints.Except(currentDistribution.Select(x => x.Endpoint)))
+			foreach (var endpointThatHasNoBackups in endpoints.Except(distribution.Select(x => x.Endpoint)))
 			{
-				currentDistribution.Add(new BackupCount
+				distribution.Add(new BackupCount
 				{
 					Count = 0,
 					Endpoint = endpointThatHasNoBackups
 				});
 			}
-			return currentDistribution;
+			return distribution;
 		}
 
 		private class BackupCount

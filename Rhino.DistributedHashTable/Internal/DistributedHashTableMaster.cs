@@ -14,30 +14,8 @@ namespace Rhino.DistributedHashTable.Internal
 	/// </summary>
 	public class DistributedHashTableMaster : IDistributedHashTableMaster
 	{
-		public event Action<BackupState, NodeEndpoint, Segment> BackupChanged = delegate { };
-		public event Action TopologyChanged = delegate { };
-
-		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableMaster));
-
-		public Topology Topology { get; set; }
-
 		private readonly HashSet<NodeEndpoint> endpoints = new HashSet<NodeEndpoint>();
-
-		public Segment[] Segments
-		{
-			get { return Topology.Segments; }
-		}
-
-		public int NumberOfBackCopiesToKeep
-		{
-			get;
-			set;
-		}
-
-		public IEnumerable<NodeEndpoint> Endpoints
-		{
-			get { return endpoints; }
-		}
+		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableMaster));
 
 		public DistributedHashTableMaster()
 		{
@@ -45,16 +23,18 @@ namespace Rhino.DistributedHashTable.Internal
 			Topology = new Topology(CreateDefaultSegments().ToArray());
 		}
 
-		private static IEnumerable<Segment> CreateDefaultSegments()
+		public Topology Topology { get; set; }
+
+		public Segment[] Segments
 		{
-			for (int i = 0; i < 8192; i++)
-			{
-				var range = new Segment
-				{
-					Index = i
-				};
-				yield return range;
-			}
+			get { return Topology.Segments; }
+		}
+
+		public int NumberOfBackCopiesToKeep { get; set; }
+
+		public IEnumerable<NodeEndpoint> Endpoints
+		{
+			get { return endpoints; }
 		}
 
 		/// <summary>
@@ -75,34 +55,29 @@ namespace Rhino.DistributedHashTable.Internal
 			return newlyAlocatedSegments;
 		}
 
-		private void LogCurrentSegmentAssignment()
-		{
-			if (log.IsDebugEnabled)
-			{
-				var sb = new StringBuilder("Current segment assignment are: ");
-				foreach (var segment in Segments.GroupBy(x=>x.AssignedEndpoint))
-				{
-					sb.Append("[")
-						.Append(segment.Key == null ? "NULL" : segment.Key.Sync.ToString())
-						.Append(" -> ")
-						.Append(segment.Count())
-						.Append("], ");
-				}
-				log.Debug(sb.ToString());
-			}
-		}
-
 		/// <summary>
 		/// Notify the master that the endpoint has caught up on all the specified ranges
 		/// </summary>
-		public void CaughtUp(NodeEndpoint endpoint, params int[] caughtUpSegments)
+		public void CaughtUp(NodeEndpoint endpoint,
+							 ReplicationType type,
+							 params int[] caughtUpSegments)
 		{
-			Segment[] matchingSegments = GetMatchingSegments(caughtUpSegments, endpoint);
+			if (type == ReplicationType.Ownership)
+				CaughtUpOnOwnership(caughtUpSegments, endpoint);
+			LogCurrentSegmentAssignment();
+			TopologyChanged();
+		}
+
+		private void CaughtUpOnOwnership(int[] caughtUpSegments,
+										 NodeEndpoint endpoint)
+		{
+			var matchingSegments = GetMatchingSegments(caughtUpSegments, endpoint);
 
 			var modifiedSegments = from range in Segments
-								   join caughtUpSegment in matchingSegments on range.Index equals caughtUpSegment.Index into maybeMatchingSegment
+								   join caughtUpSegment in matchingSegments on range.Index equals caughtUpSegment.Index into
+									maybeMatchingSegment
 								   select
-									  new { range, maybeMatchingSegment };
+									new { range, maybeMatchingSegment };
 
 			Topology = new Topology((
 										from modifiedSegment in modifiedSegments
@@ -114,18 +89,17 @@ namespace Rhino.DistributedHashTable.Internal
 													Index = x.Index,
 													InProcessOfMovingToEndpoint = null,
 													AssignedEndpoint = endpoint,
-													Backups = x.Backups
+													PendingBackups = x.PendingBackups
 														.Append(x.AssignedEndpoint)
 														.Where(e => e != endpoint)
 														.ToSet()
 												}).ToArray()
 				);
 			RearrangeBackups();
-			LogCurrentSegmentAssignment();
-			TopologyChanged();
 		}
 
 		public void GaveUp(NodeEndpoint endpoint,
+						   ReplicationType type,
 						   params int[] rangesGivingUpOn)
 		{
 			var matchingSegments = GetMatchingSegments(rangesGivingUpOn, endpoint);
@@ -135,8 +109,92 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
+		public Topology GetTopology()
+		{
+			return Topology;
+		}
+
+		public event Action<BackupState, NodeEndpoint, Segment> BackupChanged = delegate { };
+		public event Action TopologyChanged = delegate { };
+
+		private static IEnumerable<Segment> CreateDefaultSegments()
+		{
+			for (var i = 0; i < 8192; i++)
+			{
+				var range = new Segment
+				{
+					Index = i
+				};
+				yield return range;
+			}
+		}
+
+		private void LogCurrentSegmentAssignment()
+		{
+			if (!log.IsDebugEnabled)
+				return;
+
+			var sb = new StringBuilder("Current segment assignments are: ");
+			var stats = new Dictionary<NodeEndpoint, NodeEndpointStats>();
+
+			var groupByAssignment = Segments.GroupBy(x => x.AssignedEndpoint ?? new NodeEndpoint());
+			var groupByTentative = Segments.GroupBy(x => x.InProcessOfMovingToEndpoint);
+			var groupByTentativeBackups = Segments.SelectMany(x => x.PendingBackups).GroupBy(x => x);
+			var groupByBackups = Segments.SelectMany(x => x.Backups).GroupBy(x => x);
+
+			foreach (var assignment in groupByAssignment)
+			{
+				stats[assignment.Key] = new NodeEndpointStats
+				{
+					AssignmentCount = assignment.Count()
+				};
+			}
+	
+			NodeEndpointStats value;
+
+			foreach (var backup in groupByBackups)
+			{
+				if(backup.Key == null)
+					continue;
+				if (stats.TryGetValue(backup.Key, out value))
+					value.BackupCount = backup.Count();
+			}
+
+			foreach (var tentative in groupByTentative)
+			{
+				if (tentative.Key == null)
+					continue;
+				if (stats.TryGetValue(tentative.Key, out value))
+					value.TentativeCount = tentative.Count();
+			}
+
+			foreach (var backup in groupByTentativeBackups)
+			{
+				if (backup.Key == null)
+					continue;
+				if (stats.TryGetValue(backup.Key, out value))
+					value.TentativeBackupCount = backup.Count();
+			}
+
+			foreach (var segment in stats)
+			{
+				sb.Append("[")
+					.Append(segment.Key.Sync.ToString() ?? "NULL")
+					.Append(", assignments: ")
+					.Append(segment.Value.AssignmentCount)
+					.Append(", backups: ")
+					.Append(segment.Value.BackupCount)
+					.Append(", tentatives: ")
+					.Append(segment.Value.TentativeCount)
+					.Append(", tentative backups: ")
+					.Append(segment.Value.TentativeBackupCount)
+					.Append("], ");
+			}
+			log.Debug(sb.ToString());
+		}
+
 		private Segment[] GetMatchingSegments(IEnumerable<int> ranges,
-										  NodeEndpoint endpoint)
+											  NodeEndpoint endpoint)
 		{
 			var matchingSegments = ranges.Select(i => Segments[i]).ToArray();
 
@@ -189,7 +247,7 @@ namespace Rhino.DistributedHashTable.Internal
 		private Segment[] RestructureSegmentsFairly(NodeEndpoint point)
 		{
 			var newSegments = new List<Segment>();
-			int index = 0;
+			var index = 0;
 			foreach (var range in Segments)
 			{
 				index += 1;
@@ -206,7 +264,7 @@ namespace Rhino.DistributedHashTable.Internal
 						AssignedEndpoint = range.AssignedEndpoint,
 						InProcessOfMovingToEndpoint = point,
 						Index = range.Index,
-						Backups = range.Backups
+						PendingBackups = range.PendingBackups
 					});
 				}
 				else
@@ -236,9 +294,12 @@ namespace Rhino.DistributedHashTable.Internal
 			Topology = topology;
 		}
 
-		public Topology GetTopology()
+		class NodeEndpointStats
 		{
-			return Topology;
+			public int AssignmentCount;
+			public int TentativeCount;
+			public int BackupCount;
+			public int TentativeBackupCount;
 		}
 	}
 }

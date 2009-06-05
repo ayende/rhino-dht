@@ -25,7 +25,7 @@ namespace Rhino.DistributedHashTable.Tests
 
 				bool wasCalled = false;
 				master.TopologyChanged += () =>  wasCalled = true;
-				master.CaughtUp(endPoint, ranges.First().Index);
+				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.First().Index);
 				Assert.True(wasCalled);
 			}
 		}

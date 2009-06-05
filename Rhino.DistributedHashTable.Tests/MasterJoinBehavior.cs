@@ -112,7 +112,7 @@ namespace Rhino.DistributedHashTable.Tests
 			{
 				master.Join(endPoint);
 				var ranges = master.Join(anotherNodeInTheMaster);
-				master.CaughtUp(anotherNodeInTheMaster, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(anotherNodeInTheMaster, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				master.Join(newEndpoint);
 			}
 

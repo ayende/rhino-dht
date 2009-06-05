@@ -10,6 +10,7 @@ using Rhino.DistributedHashTable.Protocol;
 using Rhino.DistributedHashTable.Remote;
 using Rhino.DistributedHashTable.Util;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
+using ReplicationType=Rhino.DistributedHashTable.Protocol.ReplicationType;
 
 namespace Rhino.DistributedHashTable.Hosting
 {
@@ -147,7 +148,9 @@ namespace Rhino.DistributedHashTable.Hosting
 			{
 				Async = new Uri(wrapper.CaughtUp.Endpoint.Async),
 				Sync = new Uri(wrapper.CaughtUp.Endpoint.Sync)
-			}, wrapper.CaughtUp.CaughtUpSegmentsList.ToArray());
+			}, 
+			wrapper.CaughtUp.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership, 
+			wrapper.CaughtUp.CaughtUpSegmentsList.ToArray());
 			writer.Write(new MasterMessageUnion.Builder
 			{
 				Type = MasterMessageType.CaughtUpResponse
@@ -161,7 +164,9 @@ namespace Rhino.DistributedHashTable.Hosting
 			{
 				Async = new Uri(wrapper.GaveUp.Endpoint.Async),
 				Sync = new Uri(wrapper.GaveUp.Endpoint.Sync)
-			}, wrapper.GaveUp.GaveUpSegmentsList.ToArray());
+			},
+			wrapper.GaveUp.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership, 
+			wrapper.GaveUp.GaveUpSegmentsList.ToArray());
 			writer.Write(new MasterMessageUnion.Builder
 			{
 				Type = MasterMessageType.GaveUpResponse

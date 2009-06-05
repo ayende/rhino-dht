@@ -10,6 +10,7 @@ using Rhino.DistributedHashTable.Protocol;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
 using Segment = Rhino.DistributedHashTable.Internal.Segment;
 using Rhino.DistributedHashTable.Util;
+using ReplicationType=Rhino.DistributedHashTable.Internal.ReplicationType;
 
 namespace Rhino.DistributedHashTable.Client
 {
@@ -83,6 +84,7 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public void CaughtUp(NodeEndpoint endpoint,
+			ReplicationType type,
 							 params int[] caughtUpSegments)
 		{
 			Execute((writer,
@@ -94,6 +96,7 @@ namespace Rhino.DistributedHashTable.Client
 					CaughtUp = new CaughtUpRequestMessage.Builder
 					{
 						CaughtUpSegmentsList = { caughtUpSegments },
+                        Type = type == ReplicationType.Backup ? Protocol.ReplicationType.Backup : Protocol.ReplicationType.Ownership,
 						Endpoint = new Protocol.NodeEndpoint.Builder
 						{
 							Async = endpoint.Async.ToString(),
@@ -126,6 +129,7 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public void GaveUp(NodeEndpoint endpoint,
+			ReplicationType type,
 						   params int[] rangesGivingUpOn)
 		{
 			Execute((writer,
@@ -137,6 +141,7 @@ namespace Rhino.DistributedHashTable.Client
 					GaveUp = new GaveUpRequestMessage.Builder
 					{
 						GaveUpSegmentsList = { rangesGivingUpOn },
+						Type = type == ReplicationType.Backup ? Protocol.ReplicationType.Backup : Protocol.ReplicationType.Ownership,
 						Endpoint = new Protocol.NodeEndpoint.Builder
 						{
 							Async = endpoint.Async.ToString(),

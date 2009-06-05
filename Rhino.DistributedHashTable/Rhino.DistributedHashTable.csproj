@@ -76,6 +76,7 @@
     <Compile Include="Internal\DistributedHashTableStorage.cs" />
     <Compile Include="Internal\DistributedHashTableNode.cs" />
     <Compile Include="Internal\DistributedHashTableMaster.cs" />
+    <Compile Include="Internal\ReplicationType.cs" />
     <Compile Include="Internal\ThreadPoolExecuter.cs" />
     <Compile Include="Internal\IDistributedHashTableStorage.cs" />
     <Compile Include="Internal\IDistributedHashTableNode.cs" />

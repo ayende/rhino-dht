@@ -30,6 +30,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 			command = new OnlineSegmentReplicationCommand(
 				endpoint,
 				new[] { new Segment { Index = 0 }, new Segment { Index = 1 }, },
+                ReplicationType.Ownership, 
 				node,
 				replication);
 		}
@@ -67,7 +68,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 			var success = command.Execute();
 			Assert.True(success);
 
-			node.AssertWasCalled(x => x.DoneReplicatingSegments(new int[] { 0 }));
+			node.AssertWasCalled(x => x.DoneReplicatingSegments(ReplicationType.Ownership, new int[] { 0 }));
 		}
 
 		[Fact]
@@ -162,8 +163,8 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 			var success = command.Execute();
 			Assert.False(success);
 
-			node.AssertWasCalled(x=>x.GivingUpOn(0));
-			node.AssertWasCalled(x => x.GivingUpOn(1));
+			node.AssertWasCalled(x => x.GivingUpOn(ReplicationType.Ownership, 0));
+			node.AssertWasCalled(x => x.GivingUpOn(ReplicationType.Ownership, 1));
 		}
 
 		[Fact]
@@ -174,7 +175,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 			var success = command.Execute();
 			Assert.False(success);
 
-			node.AssertWasCalled(x => x.GivingUpOn(0,1));
+			node.AssertWasCalled(x => x.GivingUpOn(ReplicationType.Ownership, 0, 1));
 		}
 
 		[Fact]

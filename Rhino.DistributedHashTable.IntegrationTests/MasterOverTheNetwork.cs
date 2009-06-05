@@ -62,7 +62,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				});
 				var segments = masterProxy.Join(endpoint);
 
-				masterProxy.CaughtUp(endpoint, segments[0].Index, segments[1].Index);
+				masterProxy.CaughtUp(endpoint, ReplicationType.Ownership, segments[0].Index, segments[1].Index);
 				
 				var topology = masterProxy.GetTopology();
 				Assert.Equal(endpoint, topology.Segments[segments[0].Index].AssignedEndpoint);
@@ -90,7 +90,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				
 				var segments = masterProxy.Join(newEndpoint);
 
-				masterProxy.GaveUp(newEndpoint, segments[0].Index, segments[1].Index);
+				masterProxy.GaveUp(newEndpoint, ReplicationType.Ownership, segments[0].Index, segments[1].Index);
 
 				var topology = masterProxy.GetTopology();
 				Assert.Equal(existingEndpoint,topology.Segments[segments[0].Index].AssignedEndpoint);

@@ -23,7 +23,7 @@ namespace Rhino.DistributedHashTable.Tests
 			{
 				master.Join(endPoint);
 
-				Assert.True(master.Segments.All(x => x.Backups.Count == 0));
+				Assert.True(master.Segments.All(x => x.PendingBackups.Count == 0));
 			}
 		}
 
@@ -39,15 +39,15 @@ namespace Rhino.DistributedHashTable.Tests
 
 				var existingEndpoint = NodeEndpoint.ForTest(3);
 				var ranges = master.Join(existingEndpoint);
-				master.CaughtUp(existingEndpoint, ranges.Select(x=>x.Index).ToArray());
+				master.CaughtUp(existingEndpoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 			}
 
 			[Fact]
 			public void AddingNewNodeResultInAllSegmentsHavingSingleBackupCopy()
 			{
 				var ranges = master.Join(endPoint);
-				master.CaughtUp(endPoint, ranges.Select(x => x.Index).ToArray());
-				Assert.True(master.Segments.All(x => x.Backups.Count == 1));
+				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
+				Assert.True(master.Segments.All(x => x.PendingBackups.Count == 1));
 			}
 
 			[Fact]
@@ -56,7 +56,7 @@ namespace Rhino.DistributedHashTable.Tests
 				bool wasChanged = false;
 				master.BackupChanged += (state, point, range) => wasChanged = true;
 				var ranges = master.Join(endPoint);
-				master.CaughtUp(endPoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 
 				Assert.True(wasChanged);
 			}
@@ -74,18 +74,18 @@ namespace Rhino.DistributedHashTable.Tests
 
 				var existingEndpoint = NodeEndpoint.ForTest(3);
 				var ranges = master.Join(existingEndpoint);
-				master.CaughtUp(existingEndpoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(existingEndpoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				var anotherPoint = NodeEndpoint.ForTest(10);
 				ranges = master.Join(anotherPoint);
-				master.CaughtUp(anotherPoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(anotherPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 			}
 
 			[Fact]
 			public void AddingNewNodeResultInAllSegmentsHavingTwoBackupCopy()
 			{
 				var ranges = master.Join(endPoint);
-				master.CaughtUp(endPoint, ranges.Select(x => x.Index).ToArray());
-				Assert.True(master.Segments.All(x => x.Backups.Count == 2));
+				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
+				Assert.True(master.Segments.All(x => x.PendingBackups.Count == 2));
 			}
 		}
 
@@ -101,12 +101,12 @@ namespace Rhino.DistributedHashTable.Tests
 
 				var existingEndpoint = NodeEndpoint.ForTest(3);
 				var ranges = master.Join(existingEndpoint);
-				master.CaughtUp(existingEndpoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(existingEndpoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				var anotherPoint = NodeEndpoint.ForTest(10);
 				ranges = master.Join(anotherPoint);
-				master.CaughtUp(anotherPoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(anotherPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				ranges = master.Join(endPoint);
-				master.CaughtUp(endPoint, ranges.Select(x => x.Index).ToArray());
+				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 			}
 
 			[Fact]
@@ -114,8 +114,8 @@ namespace Rhino.DistributedHashTable.Tests
 			{
 				var yetAnotherEndPoint = NodeEndpoint.ForTest(7);
 				var ranges = master.Join(yetAnotherEndPoint);
-				master.CaughtUp(yetAnotherEndPoint, ranges.Select(x => x.Index).ToArray());
-				Assert.True(master.Segments.All(x => x.Backups.Count >= 2));
+				master.CaughtUp(yetAnotherEndPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
+				Assert.True(master.Segments.All(x => x.PendingBackups.Count >= 2));
 			}
 		}
 	}

@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using log4net;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Remote;
@@ -17,16 +16,21 @@ namespace Rhino.DistributedHashTable.Commands
 		private readonly IDistributedHashTableNodeReplication otherNode;
 		private readonly string endpoint;
 		private readonly Segment[] segments;
+		private readonly ReplicationType type;
 		private bool continueWorking = true;
+
+		public event Action Completed = delegate { };
 
 		public OnlineSegmentReplicationCommand(
 			NodeEndpoint endpoint,
-			Segment[] ranges,
+			Segment[] segments,
+            ReplicationType type,
 			IDistributedHashTableNode node,
 			IDistributedHashTableNodeReplication otherNode)
 		{
 			this.endpoint = endpoint.Sync.ToString();
-			this.segments = ranges;
+			this.segments = segments;
+			this.type = type;
 			this.node = node;
 			this.otherNode = otherNode;
 		}
@@ -69,7 +73,7 @@ namespace Rhino.DistributedHashTable.Commands
 								log.WarnFormat("Giving up replicating the following segments: [{0}]",
 								               string.Join(", ", array.Select(x => x.ToString()).ToArray()));
 							}
-							node.GivingUpOn(array);
+							node.GivingUpOn(type, array);
 						}
 					}
 					catch (Exception e)
@@ -77,6 +81,7 @@ namespace Rhino.DistributedHashTable.Commands
 						log.Error("Could not tell node that we are giving up on values", e);
 					}
 				}
+				Completed();
 			}
 		}
 
@@ -104,7 +109,7 @@ namespace Rhino.DistributedHashTable.Commands
 									   numberOfFailures);
 						break;
 					}
-					node.GivingUpOn(range.Index);
+					node.GivingUpOn(type, range.Index);
 					processedSegments.Add(range.Index);
 					someFailed |= true;
 				}
@@ -136,7 +141,7 @@ namespace Rhino.DistributedHashTable.Commands
 				if (result.Done)
 					break;
 			}
-			node.DoneReplicatingSegments(range.Index);
+			node.DoneReplicatingSegments(type, range.Index);
 		}
 
 		private List<Segment> AssignAllEmptySegmentsFromEndpoint(List<int> processedSegments)
@@ -147,14 +152,21 @@ namespace Rhino.DistributedHashTable.Commands
 				var assignedSegments = otherNode.AssignAllEmptySegments(
 					node.Endpoint, 
 					pagedSegment.Select(x=>x.Index).ToArray());
+				
 				processedSegments.AddRange(assignedSegments);
-				node.DoneReplicatingSegments(assignedSegments);
+				node.DoneReplicatingSegments(type,assignedSegments);
+
 				log.DebugFormat("{0} empty segments assigned from {1}", assignedSegments.Length, endpoint);
 				remainingSegments.AddRange(
 					pagedSegment.Where(x => assignedSegments.Contains(x.Index) == false)
 					);
 			}
 			return remainingSegments;
+		}
+
+		public void RaiseCompleted()
+		{
+			Completed();
 		}
 	}
 }
