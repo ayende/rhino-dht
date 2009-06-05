@@ -104,7 +104,8 @@ namespace Rhino.DistributedHashTable.Internal
 			                        	       		Index = x.Index,
 			                        	       		InProcessOfMovingToEndpoint = null,
 			                        	       		AssignedEndpoint = endPoint,
-			                        	       		Backups = x.Backups
+													//this is moving the current owner to the backup role
+			                        	       		Backups = x.Backups.Append(x.AssignedEndpoint).ToSet()
 			                        	       	}).ToArray()
 				);
 			RearrangeBackups();

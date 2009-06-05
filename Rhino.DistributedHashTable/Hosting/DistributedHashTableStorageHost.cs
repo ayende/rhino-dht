@@ -57,6 +57,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		public void Start()
 		{
 			node.Start();
+			listener.Start();
 			listener.BeginAcceptTcpClient(OnBeginAcceptTcpClient, null);
 		}
 
@@ -108,7 +109,7 @@ namespace Rhino.DistributedHashTable.Hosting
 						writer.Write(new StorageMessageUnion.Builder
 						{
 							Type = StorageMessageType.StorageErrorResult,
-							Exception = new Error.Builder
+							Exception = new ErrorMessage.Builder
 							{
 								Message = e.ToString()
 							}.Build()
@@ -141,7 +142,7 @@ namespace Rhino.DistributedHashTable.Hosting
 				Type = StorageMessageType.RemoveResponses,
 				RemoveResponesList =
 					{
-						removed.Select(x => new RemoveResponse.Builder
+						removed.Select(x => new RemoveResponseMessage.Builder
 						{
 							WasRemoved = x
 						}.Build())
@@ -174,7 +175,7 @@ namespace Rhino.DistributedHashTable.Hosting
 				Type = StorageMessageType.PutResponses,
 				PutResponsesList = 
 					{
-						results.Select(x=> new PutResponse.Builder
+						results.Select(x=> new PutResponseMessage.Builder
 						{
 							Version = GetVersion(x.Version),
 							ConflictExists = x.ConflictExists
@@ -201,11 +202,11 @@ namespace Rhino.DistributedHashTable.Hosting
 				TopologyVersion = wrapper.TopologyVersion,
 				GetResponsesList =
 					{
-						values.Select(x=> new GetResponse.Builder
+						values.Select(x=> new GetResponseMessage.Builder
 						{
 							ValuesList =
 								{
-									x.Select(v=> new Protocol.Value.Builder
+									x.Select(v=> new Value.Builder
 									{
 										Data	= ByteString.CopyFrom(v.Data),
 										ExpiresAtAsDouble = v.ExpiresAt != null ? v.ExpiresAt.Value.ToOADate() : (double?)null,

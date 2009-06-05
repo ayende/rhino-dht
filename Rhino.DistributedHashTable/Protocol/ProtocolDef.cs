@@ -15,173 +15,178 @@ namespace Rhino.DistributedHashTable.Protocol {
     private static readonly pbd::FileDescriptor descriptor = pbd::FileDescriptor.InternalBuildGeneratedFileFrom(
         global::System.Convert.FromBase64String(
         "ChFQcm90b2NvbERlZi5wcm90bxIjUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFi" + 
-        "bGUuUHJvdG9jb2wiKwoMTm9kZUVuZHBvaW50EgwKBFN5bmMYASACKAkSDQoF" + 
-        "QXN5bmMYAiACKAkiYAoSSm9pblJlcXVlc3RNZXNzYWdlEkoKD0VuZHBvaW50" + 
-        "Sm9pbmluZxgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
-        "b3RvY29sLk5vZGVFbmRwb2ludCJVChNKb2luUmVzcG9uc2VNZXNzYWdlEj4K" + 
-        "CFNlZ21lbnRzGAEgAygLMiwuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuU2VnbWVudCKSAgoHU2VnbWVudBINCgVJbmRleBgBIAIoBRIP" + 
-        "CgdWZXJzaW9uGAIgAigMEksKEEFzc2lnbmVkRW5kcG9pbnQYAyACKAsyMS5S" + 
-        "aGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Ob2RlRW5kcG9p" + 
-        "bnQSVgobSW5Qcm9jZXNzT2ZNb3ZpbmdUb0VuZHBvaW50GAQgASgLMjEuUmhp" + 
-        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50" + 
-        "EkIKB0JhY2t1cHMYBSADKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJs" + 
-        "ZS5Qcm90b2NvbC5Ob2RlRW5kcG9pbnQigwEKFVRvcG9sb2d5UmVzdWx0TWVz" + 
-        "c2FnZRIZChFUaW1lc3RhbXBBc0RvdWJsZRgBIAIoARIPCgdWZXJzaW9uGAIg" + 
-        "AigMEj4KCFNlZ21lbnRzGAMgAygLMiwuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuU2VnbWVudCKFAwoSTWFzdGVyTWVzc2FnZVVuaW9u" + 
-        "EkQKBFR5cGUYASACKA4yNi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Q" + 
-        "cm90b2NvbC5NYXN0ZXJNZXNzYWdlVHlwZRJMCgtKb2luUmVxdWVzdBgCIAEo" + 
-        "CzI3LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkpvaW5S" + 
-        "ZXF1ZXN0TWVzc2FnZRJOCgxKb2luUmVzcG9uc2UYAyABKAsyOC5SaGluby5E" + 
-        "aXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Kb2luUmVzcG9uc2VNZXNz" + 
-        "YWdlEkwKCFRvcG9sb2d5GAQgASgLMjouUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuVG9wb2xvZ3lSZXN1bHRNZXNzYWdlEj0KCUV4Y2Vw" + 
-        "dGlvbhgFIAEoCzIqLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
-        "Y29sLkVycm9yInYKCkdldFJlcXVlc3QSCwoDS2V5GAEgAigJEg8KB1NlZ21l" + 
-        "bnQYAiACKAUSSgoPU3BlY2lmaWNWZXJzaW9uGAMgASgLMjEuUmhpbm8uRGlz" + 
-        "dHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uIkkKC0dl" + 
-        "dFJlc3BvbnNlEjoKBlZhbHVlcxgBIAMoCzIqLlJoaW5vLkRpc3RyaWJ1dGVk" + 
-        "SGFzaFRhYmxlLlByb3RvY29sLlZhbHVlIpcBCg1SZW1vdmVSZXF1ZXN0EgsK" + 
-        "A0tleRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEhwKFElzUmVwbGljYXRpb25S" + 
-        "ZXF1ZXN0GAQgAigIEkoKD1NwZWNpZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5v" + 
-        "LkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbiIy" + 
-        "CgxWYWx1ZVZlcnNpb24SDgoGTnVtYmVyGAEgAigFEhIKCkluc3RhbmNlSWQY" + 
-        "AiACKAwi8gIKClB1dFJlcXVlc3QSCwoDS2V5GAEgAigJEg8KB1NlZ21lbnQY" + 
-        "AiACKAUSSQoOUGFyZW50VmVyc2lvbnMYAyADKAsyMS5SaGluby5EaXN0cmli" + 
-        "dXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNpb24SHQoVT3B0aW1p" + 
-        "c3RpY0NvbmN1cnJlbmN5GAQgAigIEhIKCklzUmVhZE9ubHkYBSACKAgSDQoF" + 
-        "Qnl0ZXMYBiACKAwSHAoUSXNSZXBsaWNhdGlvblJlcXVlc3QYCyACKAgSTQoS" + 
-        "UmVwbGljYXRpb25WZXJzaW9uGAcgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
-        "YXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhkKEUV4cGlyZXNBdEFz" + 
-        "RG91YmxlGAggASgBEiQKHFJlcGxpY2F0aW9uVGltZVN0YW1wQXNEb3VibGUY" + 
-        "CSABKAESCwoDVGFnGAogASgFImkKC1B1dFJlc3BvbnNlEkIKB1ZlcnNpb24Y" + 
-        "ASACKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5W" + 
-        "YWx1ZVZlcnNpb24SFgoOQ29uZmxpY3RFeGlzdHMYAiACKAgiJAoOUmVtb3Zl" + 
-        "UmVzcG9uc2USEgoKV2FzUmVtb3ZlZBgBIAIoCCIYCgVFcnJvchIPCgdNZXNz" + 
-        "YWdlGAEgAigJIpoCCgVWYWx1ZRILCgNLZXkYASACKAkSGQoRVGltZVN0YW1w" + 
-        "QXNEb3VibGUYAiACKAESQgoHVmVyc2lvbhgDIAIoCzIxLlJoaW5vLkRpc3Ry" + 
-        "aWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbhIQCghSZWFk" + 
-        "T25seRgFIAIoCBIMCgREYXRhGAYgAigMEhIKClNoYTI1Nkhhc2gYByACKAwS" + 
-        "SQoOUGFyZW50VmVyc2lvbnMYCCADKAsyMS5SaGluby5EaXN0cmlidXRlZEhh" + 
-        "c2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNpb24SGQoRRXhwaXJlc0F0QXNE" + 
-        "b3VibGUYCiABKAESCwoDVGFnGAsgASgFIukEChNTdG9yYWdlTWVzc2FnZVVu" + 
-        "aW9uEkUKBFR5cGUYASACKA4yNy5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJs" + 
-        "ZS5Qcm90b2NvbC5TdG9yYWdlTWVzc2FnZVR5cGUSFwoPVG9wb2xvZ3lWZXJz" + 
-        "aW9uGAIgAigMEkQKC0dldFJlcXVlc3RzGAMgAygLMi8uUmhpbm8uRGlzdHJp" + 
-        "YnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuR2V0UmVxdWVzdBJECgtQdXRSZXF1" + 
-        "ZXN0cxgEIAMoCzIvLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
-        "Y29sLlB1dFJlcXVlc3QSRgoMUHV0UmVzcG9uc2VzGAcgAygLMjAuUmhpbm8u" + 
-        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVzcG9uc2USSgoO" + 
-        "UmVtb3ZlUmVxdWVzdHMYBSADKAsyMi5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
-        "YWJsZS5Qcm90b2NvbC5SZW1vdmVSZXF1ZXN0EksKDlJlbW92ZVJlc3BvbmVz" + 
-        "GAggAygLMjMuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wu" + 
-        "UmVtb3ZlUmVzcG9uc2USRgoMR2V0UmVzcG9uc2VzGAYgAygLMjAuUmhpbm8u" + 
-        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuR2V0UmVzcG9uc2USPQoJ" + 
-        "RXhjZXB0aW9uGAkgASgLMiouUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuRXJyb3IqegoRTWFzdGVyTWVzc2FnZVR5cGUSFgoSR2V0VG9w" + 
-        "b2xvZ3lSZXF1ZXN0EAESFQoRR2V0VG9wb2xvZ3lSZXN1bHQQAhIPCgtKb2lu" + 
-        "UmVxdWVzdBADEg4KCkpvaW5SZXN1bHQQBBIVChFNYXN0ZXJFcnJvclJlc3Vs" + 
-        "dBAFKpsBChJTdG9yYWdlTWVzc2FnZVR5cGUSDwoLR2V0UmVxdWVzdHMQARIP" + 
-        "CgtQdXRSZXF1ZXN0cxACEhIKDlJlbW92ZVJlcXVlc3RzEAMSEAoMR2V0UmVz" + 
-        "cG9uc2VzEAQSEAoMUHV0UmVzcG9uc2VzEAUSEwoPUmVtb3ZlUmVzcG9uc2Vz" + 
-        "EAYSFgoSU3RvcmFnZUVycm9yUmVzdWx0EAdCAkgB"),
+        "bGUuUHJvdG9jb2wimgIKBVZhbHVlEgsKA0tleRgBIAIoCRIZChFUaW1lU3Rh" + 
+        "bXBBc0RvdWJsZRgCIAIoARJCCgdWZXJzaW9uGAMgAigLMjEuUmhpbm8uRGlz" + 
+        "dHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhAKCFJl" + 
+        "YWRPbmx5GAUgAigIEgwKBERhdGEYBiACKAwSEgoKU2hhMjU2SGFzaBgHIAIo" + 
+        "DBJJCg5QYXJlbnRWZXJzaW9ucxgIIAMoCzIxLlJoaW5vLkRpc3RyaWJ1dGVk" + 
+        "SGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbhIZChFFeHBpcmVzQXRB" + 
+        "c0RvdWJsZRgKIAEoARILCgNUYWcYCyABKAUiKwoMTm9kZUVuZHBvaW50EgwK" + 
+        "BFN5bmMYASACKAkSDQoFQXN5bmMYAiACKAkiMgoMVmFsdWVWZXJzaW9uEg4K" + 
+        "Bk51bWJlchgBIAIoBRISCgpJbnN0YW5jZUlkGAIgAigMIpICCgdTZWdtZW50" + 
+        "Eg0KBUluZGV4GAEgAigFEg8KB1ZlcnNpb24YAiACKAwSSwoQQXNzaWduZWRF" + 
+        "bmRwb2ludBgDIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
+        "b3RvY29sLk5vZGVFbmRwb2ludBJWChtJblByb2Nlc3NPZk1vdmluZ1RvRW5k" + 
+        "cG9pbnQYBCABKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90" + 
+        "b2NvbC5Ob2RlRW5kcG9pbnQSQgoHQmFja3VwcxgFIAMoCzIxLlJoaW5vLkRp" + 
+        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5vZGVFbmRwb2ludCJgChJK" + 
+        "b2luUmVxdWVzdE1lc3NhZ2USSgoPRW5kcG9pbnRKb2luaW5nGAEgAigLMjEu" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBv" + 
+        "aW50IlUKE0pvaW5SZXNwb25zZU1lc3NhZ2USPgoIU2VnbWVudHMYASADKAsy" + 
+        "LC5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5TZWdtZW50" + 
+        "IoMBChVUb3BvbG9neVJlc3VsdE1lc3NhZ2USGQoRVGltZXN0YW1wQXNEb3Vi" + 
+        "bGUYASACKAESDwoHVmVyc2lvbhgCIAIoDBI+CghTZWdtZW50cxgDIAMoCzIs" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlNlZ21lbnQi" + 
+        "dwoWQ2F1Z2h0VXBSZXF1ZXN0TWVzc2FnZRJDCghFbmRwb2ludBgBIAIoCzIx" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5vZGVFbmRw" + 
+        "b2ludBIYChBDYXVnaHRVcFNlZ21lbnRzGAIgAygFIn0KEUdldFJlcXVlc3RN" + 
+        "ZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEkoKD1NwZWNp" + 
+        "ZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxl" + 
+        "LlByb3RvY29sLlZhbHVlVmVyc2lvbiJQChJHZXRSZXNwb25zZU1lc3NhZ2US" + 
+        "OgoGVmFsdWVzGAEgAygLMiouUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
+        "UHJvdG9jb2wuVmFsdWUingEKFFJlbW92ZVJlcXVlc3RNZXNzYWdlEgsKA0tl" + 
+        "eRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEhwKFElzUmVwbGljYXRpb25SZXF1" + 
+        "ZXN0GAQgAigIEkoKD1NwZWNpZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5vLkRp" + 
+        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbiL5AgoR" + 
+        "UHV0UmVxdWVzdE1lc3NhZ2USCwoDS2V5GAEgAigJEg8KB1NlZ21lbnQYAiAC" + 
+        "KAUSSQoOUGFyZW50VmVyc2lvbnMYAyADKAsyMS5SaGluby5EaXN0cmlidXRl" + 
+        "ZEhhc2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNpb24SHQoVT3B0aW1pc3Rp" + 
+        "Y0NvbmN1cnJlbmN5GAQgAigIEhIKCklzUmVhZE9ubHkYBSACKAgSDQoFQnl0" + 
+        "ZXMYBiACKAwSHAoUSXNSZXBsaWNhdGlvblJlcXVlc3QYCyACKAgSTQoSUmVw" + 
+        "bGljYXRpb25WZXJzaW9uGAcgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
+        "VGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhkKEUV4cGlyZXNBdEFzRG91" + 
+        "YmxlGAggASgBEiQKHFJlcGxpY2F0aW9uVGltZVN0YW1wQXNEb3VibGUYCSAB" + 
+        "KAESCwoDVGFnGAogASgFInAKElB1dFJlc3BvbnNlTWVzc2FnZRJCCgdWZXJz" + 
+        "aW9uGAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9j" + 
+        "b2wuVmFsdWVWZXJzaW9uEhYKDkNvbmZsaWN0RXhpc3RzGAIgAigIIisKFVJl" + 
+        "bW92ZVJlc3BvbnNlTWVzc2FnZRISCgpXYXNSZW1vdmVkGAEgAigIIh8KDEVy" + 
+        "cm9yTWVzc2FnZRIPCgdNZXNzYWdlGAEgAigJItsDChJNYXN0ZXJNZXNzYWdl" + 
+        "VW5pb24SRAoEVHlwZRgBIAIoDjI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRh" + 
+        "YmxlLlByb3RvY29sLk1hc3Rlck1lc3NhZ2VUeXBlEkwKC0pvaW5SZXF1ZXN0" + 
+        "GAIgASgLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wu" + 
+        "Sm9pblJlcXVlc3RNZXNzYWdlEk4KDEpvaW5SZXNwb25zZRgDIAEoCzI4LlJo" + 
+        "aW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkpvaW5SZXNwb25z" + 
+        "ZU1lc3NhZ2USTAoIVG9wb2xvZ3kYBCABKAsyOi5SaGluby5EaXN0cmlidXRl" + 
+        "ZEhhc2hUYWJsZS5Qcm90b2NvbC5Ub3BvbG9neVJlc3VsdE1lc3NhZ2USRAoJ" + 
+        "RXhjZXB0aW9uGAUgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
+        "UHJvdG9jb2wuRXJyb3JNZXNzYWdlEk0KCENhdWdodFVwGAYgASgLMjsuUmhp" + 
+        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuQ2F1Z2h0VXBSZXF1" + 
+        "ZXN0TWVzc2FnZSKaBQoTU3RvcmFnZU1lc3NhZ2VVbmlvbhJFCgRUeXBlGAEg" + 
+        "AigOMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuU3Rv" + 
+        "cmFnZU1lc3NhZ2VUeXBlEhcKD1RvcG9sb2d5VmVyc2lvbhgCIAIoDBJLCgtH" + 
+        "ZXRSZXF1ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxl" + 
+        "LlByb3RvY29sLkdldFJlcXVlc3RNZXNzYWdlEksKC1B1dFJlcXVlc3RzGAQg" + 
+        "AygLMjYuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0" + 
+        "UmVxdWVzdE1lc3NhZ2USTQoMUHV0UmVzcG9uc2VzGAcgAygLMjcuUmhpbm8u" + 
+        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVzcG9uc2VNZXNz" + 
+        "YWdlElEKDlJlbW92ZVJlcXVlc3RzGAUgAygLMjkuUmhpbm8uRGlzdHJpYnV0" + 
+        "ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVzdE1lc3NhZ2USUgoO" + 
+        "UmVtb3ZlUmVzcG9uZXMYCCADKAsyOi5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
+        "YWJsZS5Qcm90b2NvbC5SZW1vdmVSZXNwb25zZU1lc3NhZ2USTQoMR2V0UmVz" + 
+        "cG9uc2VzGAYgAygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJv" + 
+        "dG9jb2wuR2V0UmVzcG9uc2VNZXNzYWdlEkQKCUV4Y2VwdGlvbhgJIAEoCzIx" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkVycm9yTWVz" + 
+        "c2FnZSqbAQoSU3RvcmFnZU1lc3NhZ2VUeXBlEg8KC0dldFJlcXVlc3RzEAES" + 
+        "DwoLUHV0UmVxdWVzdHMQAhISCg5SZW1vdmVSZXF1ZXN0cxADEhAKDEdldFJl" + 
+        "c3BvbnNlcxAEEhAKDFB1dFJlc3BvbnNlcxAFEhMKD1JlbW92ZVJlc3BvbnNl" + 
+        "cxAGEhYKElN0b3JhZ2VFcnJvclJlc3VsdBAHKqUBChFNYXN0ZXJNZXNzYWdl" + 
+        "VHlwZRIWChJHZXRUb3BvbG9neVJlcXVlc3QQARIVChFHZXRUb3BvbG9neVJl" + 
+        "c3VsdBACEg8KC0pvaW5SZXF1ZXN0EAMSDgoKSm9pblJlc3VsdBAEEhUKEU1h" + 
+        "c3RlckVycm9yUmVzdWx0EAUSEwoPQ2F1Z2h0VXBSZXF1ZXN0EAYSFAoQQ2F1" + 
+        "Z2h0VXBSZXNwb25zZRAHQgJIAQ=="),
         new pbd::FileDescriptor[] {
         });
     #endregion
     
     #region Static variables
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__Descriptor
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_Value__Descriptor
         = Descriptor.MessageTypes[0];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Value, global::Rhino.DistributedHashTable.Protocol.Value.Builder> internal__static_Rhino_DistributedHashTable_Protocol_Value__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Value, global::Rhino.DistributedHashTable.Protocol.Value.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_Value__Descriptor,
+            new string[] { "Key", "TimeStampAsDouble", "Version", "ReadOnly", "Data", "Sha256Hash", "ParentVersions", "ExpiresAtAsDouble", "Tag", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__Descriptor
+        = Descriptor.MessageTypes[1];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder> internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__Descriptor,
             new string[] { "Sync", "Async", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor
-        = Descriptor.MessageTypes[1];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage, global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage, global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor,
-            new string[] { "EndpointJoining", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor
         = Descriptor.MessageTypes[2];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage, global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage, global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor,
-            new string[] { "Segments", });
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ValueVersion, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ValueVersion, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor,
+            new string[] { "Number", "InstanceId", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_Segment__Descriptor
         = Descriptor.MessageTypes[3];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Segment, global::Rhino.DistributedHashTable.Protocol.Segment.Builder> internal__static_Rhino_DistributedHashTable_Protocol_Segment__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Segment, global::Rhino.DistributedHashTable.Protocol.Segment.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_Segment__Descriptor,
             new string[] { "Index", "Version", "AssignedEndpoint", "InProcessOfMovingToEndpoint", "Backups", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__Descriptor
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor
         = Descriptor.MessageTypes[4];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage, global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage, global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor,
+            new string[] { "EndpointJoining", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor
+        = Descriptor.MessageTypes[5];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage, global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage, global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor,
+            new string[] { "Segments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__Descriptor
+        = Descriptor.MessageTypes[6];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage, global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage, global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__Descriptor,
             new string[] { "TimestampAsDouble", "Version", "Segments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__Descriptor
+        = Descriptor.MessageTypes[7];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage, global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__Descriptor,
+            new string[] { "Endpoint", "CaughtUpSegments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor
+        = Descriptor.MessageTypes[8];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor,
+            new string[] { "Key", "Segment", "SpecificVersion", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__Descriptor
+        = Descriptor.MessageTypes[9];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__Descriptor,
+            new string[] { "Values", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__Descriptor
+        = Descriptor.MessageTypes[10];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__Descriptor,
+            new string[] { "Key", "Segment", "IsReplicationRequest", "SpecificVersion", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__Descriptor
+        = Descriptor.MessageTypes[11];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__Descriptor,
+            new string[] { "Key", "Segment", "ParentVersions", "OptimisticConcurrency", "IsReadOnly", "Bytes", "IsReplicationRequest", "ReplicationVersion", "ExpiresAtAsDouble", "ReplicationTimeStampAsDouble", "Tag", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__Descriptor
+        = Descriptor.MessageTypes[12];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__Descriptor,
+            new string[] { "Version", "ConflictExists", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__Descriptor
+        = Descriptor.MessageTypes[13];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__Descriptor,
+            new string[] { "WasRemoved", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor
+        = Descriptor.MessageTypes[14];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor,
+            new string[] { "Message", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor
-        = Descriptor.MessageTypes[5];
+        = Descriptor.MessageTypes[15];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor,
-            new string[] { "Type", "JoinRequest", "JoinResponse", "Topology", "Exception", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetRequest__Descriptor
-        = Descriptor.MessageTypes[6];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequest, global::Rhino.DistributedHashTable.Protocol.GetRequest.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetRequest__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetRequest, global::Rhino.DistributedHashTable.Protocol.GetRequest.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetRequest__Descriptor,
-            new string[] { "Key", "Segment", "SpecificVersion", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_GetResponse__Descriptor
-        = Descriptor.MessageTypes[7];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponse, global::Rhino.DistributedHashTable.Protocol.GetResponse.Builder> internal__static_Rhino_DistributedHashTable_Protocol_GetResponse__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.GetResponse, global::Rhino.DistributedHashTable.Protocol.GetResponse.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_GetResponse__Descriptor,
-            new string[] { "Values", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequest__Descriptor
-        = Descriptor.MessageTypes[8];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequest, global::Rhino.DistributedHashTable.Protocol.RemoveRequest.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequest__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveRequest, global::Rhino.DistributedHashTable.Protocol.RemoveRequest.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequest__Descriptor,
-            new string[] { "Key", "Segment", "IsReplicationRequest", "SpecificVersion", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor
-        = Descriptor.MessageTypes[9];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ValueVersion, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ValueVersion, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor,
-            new string[] { "Number", "InstanceId", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutRequest__Descriptor
-        = Descriptor.MessageTypes[10];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequest, global::Rhino.DistributedHashTable.Protocol.PutRequest.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutRequest__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutRequest, global::Rhino.DistributedHashTable.Protocol.PutRequest.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutRequest__Descriptor,
-            new string[] { "Key", "Segment", "ParentVersions", "OptimisticConcurrency", "IsReadOnly", "Bytes", "IsReplicationRequest", "ReplicationVersion", "ExpiresAtAsDouble", "ReplicationTimeStampAsDouble", "Tag", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_PutResponse__Descriptor
-        = Descriptor.MessageTypes[11];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponse, global::Rhino.DistributedHashTable.Protocol.PutResponse.Builder> internal__static_Rhino_DistributedHashTable_Protocol_PutResponse__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.PutResponse, global::Rhino.DistributedHashTable.Protocol.PutResponse.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_PutResponse__Descriptor,
-            new string[] { "Version", "ConflictExists", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponse__Descriptor
-        = Descriptor.MessageTypes[12];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponse, global::Rhino.DistributedHashTable.Protocol.RemoveResponse.Builder> internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponse__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.RemoveResponse, global::Rhino.DistributedHashTable.Protocol.RemoveResponse.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponse__Descriptor,
-            new string[] { "WasRemoved", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_Error__Descriptor
-        = Descriptor.MessageTypes[13];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Error, global::Rhino.DistributedHashTable.Protocol.Error.Builder> internal__static_Rhino_DistributedHashTable_Protocol_Error__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Error, global::Rhino.DistributedHashTable.Protocol.Error.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_Error__Descriptor,
-            new string[] { "Message", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_Value__Descriptor
-        = Descriptor.MessageTypes[14];
-    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Value, global::Rhino.DistributedHashTable.Protocol.Value.Builder> internal__static_Rhino_DistributedHashTable_Protocol_Value__FieldAccessorTable
-        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Value, global::Rhino.DistributedHashTable.Protocol.Value.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_Value__Descriptor,
-            new string[] { "Key", "TimeStampAsDouble", "Version", "ReadOnly", "Data", "Sha256Hash", "ParentVersions", "ExpiresAtAsDouble", "Tag", });
+            new string[] { "Type", "JoinRequest", "JoinResponse", "Topology", "Exception", "CaughtUp", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor
-        = Descriptor.MessageTypes[15];
+        = Descriptor.MessageTypes[16];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor,
             new string[] { "Type", "TopologyVersion", "GetRequests", "PutRequests", "PutResponses", "RemoveRequests", "RemoveRespones", "GetResponses", "Exception", });
     #endregion
   }
   #region Enums
-  public enum MasterMessageType {
-    GetTopologyRequest = 1,
-    GetTopologyResult = 2,
-    JoinRequest = 3,
-    JoinResult = 4,
-    MasterErrorResult = 5,
-  }
-  
   public enum StorageMessageType {
     GetRequests = 1,
     PutRequests = 2,
@@ -192,4407 +197,19 @@ namespace Rhino.DistributedHashTable.Protocol {
     StorageErrorResult = 7,
   }
   
+  public enum MasterMessageType {
+    GetTopologyRequest = 1,
+    GetTopologyResult = 2,
+    JoinRequest = 3,
+    JoinResult = 4,
+    MasterErrorResult = 5,
+    CaughtUpRequest = 6,
+    CaughtUpResponse = 7,
+  }
+  
   #endregion
   
   #region Messages
-  public sealed partial class NodeEndpoint : pb::GeneratedMessage<NodeEndpoint, NodeEndpoint.Builder> {
-    private static readonly NodeEndpoint defaultInstance = new Builder().BuildPartial();
-    public static NodeEndpoint DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override NodeEndpoint DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override NodeEndpoint ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<NodeEndpoint, NodeEndpoint.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__FieldAccessorTable; }
-    }
-    
-    private bool hasSync;
-    private string sync_ = "";
-    public bool HasSync {
-      get { return hasSync; }
-    }
-    public string Sync {
-      get { return sync_; }
-    }
-    
-    private bool hasAsync;
-    private string async_ = "";
-    public bool HasAsync {
-      get { return hasAsync; }
-    }
-    public string Async {
-      get { return async_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasSync) return false;
-        if (!hasAsync) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasSync) {
-        output.WriteString(1, Sync);
-      }
-      if (HasAsync) {
-        output.WriteString(2, Async);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasSync) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Sync);
-        }
-        if (HasAsync) {
-          size += pb::CodedOutputStream.ComputeStringSize(2, Async);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static NodeEndpoint ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static NodeEndpoint ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(NodeEndpoint prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<NodeEndpoint, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      NodeEndpoint result = new NodeEndpoint();
-      
-      protected override NodeEndpoint MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new NodeEndpoint();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return NodeEndpoint.Descriptor; }
-      }
-      
-      public override NodeEndpoint DefaultInstanceForType {
-        get { return NodeEndpoint.DefaultInstance; }
-      }
-      
-      public override NodeEndpoint BuildPartial() {
-        NodeEndpoint returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is NodeEndpoint) {
-          return MergeFrom((NodeEndpoint) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(NodeEndpoint other) {
-        if (other == NodeEndpoint.DefaultInstance) return this;
-        if (other.HasSync) {
-          Sync = other.Sync;
-        }
-        if (other.HasAsync) {
-          Async = other.Async;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              Sync = input.ReadString();
-              break;
-            }
-            case 18: {
-              Async = input.ReadString();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasSync {
-        get { return result.HasSync; }
-      }
-      public string Sync {
-        get { return result.Sync; }
-        set { SetSync(value); }
-      }
-      public Builder SetSync(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasSync = true;
-        result.sync_ = value;
-        return this;
-      }
-      public Builder ClearSync() {
-        result.hasSync = false;
-        result.sync_ = "";
-        return this;
-      }
-      
-      public bool HasAsync {
-        get { return result.HasAsync; }
-      }
-      public string Async {
-        get { return result.Async; }
-        set { SetAsync(value); }
-      }
-      public Builder SetAsync(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasAsync = true;
-        result.async_ = value;
-        return this;
-      }
-      public Builder ClearAsync() {
-        result.hasAsync = false;
-        result.async_ = "";
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class JoinRequestMessage : pb::GeneratedMessage<JoinRequestMessage, JoinRequestMessage.Builder> {
-    private static readonly JoinRequestMessage defaultInstance = new Builder().BuildPartial();
-    public static JoinRequestMessage DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override JoinRequestMessage DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override JoinRequestMessage ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<JoinRequestMessage, JoinRequestMessage.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__FieldAccessorTable; }
-    }
-    
-    private bool hasEndpointJoining;
-    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-    public bool HasEndpointJoining {
-      get { return hasEndpointJoining; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint EndpointJoining {
-      get { return endpointJoining_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasEndpointJoining) return false;
-        if (!EndpointJoining.IsInitialized) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasEndpointJoining) {
-        output.WriteMessage(1, EndpointJoining);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasEndpointJoining) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, EndpointJoining);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static JoinRequestMessage ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static JoinRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(JoinRequestMessage prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<JoinRequestMessage, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      JoinRequestMessage result = new JoinRequestMessage();
-      
-      protected override JoinRequestMessage MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new JoinRequestMessage();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return JoinRequestMessage.Descriptor; }
-      }
-      
-      public override JoinRequestMessage DefaultInstanceForType {
-        get { return JoinRequestMessage.DefaultInstance; }
-      }
-      
-      public override JoinRequestMessage BuildPartial() {
-        JoinRequestMessage returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is JoinRequestMessage) {
-          return MergeFrom((JoinRequestMessage) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(JoinRequestMessage other) {
-        if (other == JoinRequestMessage.DefaultInstance) return this;
-        if (other.HasEndpointJoining) {
-          MergeEndpointJoining(other.EndpointJoining);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
-              if (HasEndpointJoining) {
-                subBuilder.MergeFrom(EndpointJoining);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              EndpointJoining = subBuilder.BuildPartial();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasEndpointJoining {
-       get { return result.HasEndpointJoining; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint EndpointJoining {
-        get { return result.EndpointJoining; }
-        set { SetEndpointJoining(value); }
-      }
-      public Builder SetEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasEndpointJoining = true;
-        result.endpointJoining_ = value;
-        return this;
-      }
-      public Builder SetEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasEndpointJoining = true;
-        result.endpointJoining_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasEndpointJoining &&
-            result.endpointJoining_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
-            result.endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.endpointJoining_).MergeFrom(value).BuildPartial();
-        } else {
-          result.endpointJoining_ = value;
-        }
-        result.hasEndpointJoining = true;
-        return this;
-      }
-      public Builder ClearEndpointJoining() {
-        result.hasEndpointJoining = false;
-        result.endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class JoinResponseMessage : pb::GeneratedMessage<JoinResponseMessage, JoinResponseMessage.Builder> {
-    private static readonly JoinResponseMessage defaultInstance = new Builder().BuildPartial();
-    public static JoinResponseMessage DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override JoinResponseMessage DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override JoinResponseMessage ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<JoinResponseMessage, JoinResponseMessage.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__FieldAccessorTable; }
-    }
-    
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> segments_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
-      get { return segments_; }
-    }
-    public int SegmentsCount {
-      get { return segments_.Count; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
-      return segments_[index];
-    }
-    
-    public override bool IsInitialized {
-      get {
-        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-          if (!element.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-        output.WriteMessage(1, element);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static JoinResponseMessage ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static JoinResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(JoinResponseMessage prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<JoinResponseMessage, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      JoinResponseMessage result = new JoinResponseMessage();
-      
-      protected override JoinResponseMessage MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new JoinResponseMessage();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return JoinResponseMessage.Descriptor; }
-      }
-      
-      public override JoinResponseMessage DefaultInstanceForType {
-        get { return JoinResponseMessage.DefaultInstance; }
-      }
-      
-      public override JoinResponseMessage BuildPartial() {
-        result.segments_.MakeReadOnly();
-        JoinResponseMessage returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is JoinResponseMessage) {
-          return MergeFrom((JoinResponseMessage) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(JoinResponseMessage other) {
-        if (other == JoinResponseMessage.DefaultInstance) return this;
-        if (other.segments_.Count != 0) {
-          base.AddRange(other.segments_, result.segments_);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              global::Rhino.DistributedHashTable.Protocol.Segment.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Segment.CreateBuilder();
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AddSegments(subBuilder.BuildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
-        get { return result.segments_; }
-      }
-      public int SegmentsCount {
-        get { return result.SegmentsCount; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
-        return result.GetSegments(index);
-      }
-      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.segments_[index] = value;
-        return this;
-      }
-      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.segments_[index] = builderForValue.Build();
-        return this;
-      }
-      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.segments_.Add(value);
-        return this;
-      }
-      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.segments_.Add(builderForValue.Build());
-        return this;
-      }
-      public Builder AddRangeSegments(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Segment> values) {
-        base.AddRange(values, result.segments_);
-        return this;
-      }
-      public Builder ClearSegments() {
-        result.segments_.Clear();
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class Segment : pb::GeneratedMessage<Segment, Segment.Builder> {
-    private static readonly Segment defaultInstance = new Builder().BuildPartial();
-    public static Segment DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override Segment DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override Segment ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Segment__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<Segment, Segment.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Segment__FieldAccessorTable; }
-    }
-    
-    private bool hasIndex;
-    private int index_ = 0;
-    public bool HasIndex {
-      get { return hasIndex; }
-    }
-    public int Index {
-      get { return index_; }
-    }
-    
-    private bool hasVersion;
-    private pb::ByteString version_ = pb::ByteString.Empty;
-    public bool HasVersion {
-      get { return hasVersion; }
-    }
-    public pb::ByteString Version {
-      get { return version_; }
-    }
-    
-    private bool hasAssignedEndpoint;
-    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-    public bool HasAssignedEndpoint {
-      get { return hasAssignedEndpoint; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint AssignedEndpoint {
-      get { return assignedEndpoint_; }
-    }
-    
-    private bool hasInProcessOfMovingToEndpoint;
-    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-    public bool HasInProcessOfMovingToEndpoint {
-      get { return hasInProcessOfMovingToEndpoint; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint InProcessOfMovingToEndpoint {
-      get { return inProcessOfMovingToEndpoint_; }
-    }
-    
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> backups_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> BackupsList {
-      get { return backups_; }
-    }
-    public int BackupsCount {
-      get { return backups_.Count; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint GetBackups(int index) {
-      return backups_[index];
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasIndex) return false;
-        if (!hasVersion) return false;
-        if (!hasAssignedEndpoint) return false;
-        if (!AssignedEndpoint.IsInitialized) return false;
-        if (HasInProcessOfMovingToEndpoint) {
-          if (!InProcessOfMovingToEndpoint.IsInitialized) return false;
-        }
-        foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
-          if (!element.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasIndex) {
-        output.WriteInt32(1, Index);
-      }
-      if (HasVersion) {
-        output.WriteBytes(2, Version);
-      }
-      if (HasAssignedEndpoint) {
-        output.WriteMessage(3, AssignedEndpoint);
-      }
-      if (HasInProcessOfMovingToEndpoint) {
-        output.WriteMessage(4, InProcessOfMovingToEndpoint);
-      }
-      foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
-        output.WriteMessage(5, element);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasIndex) {
-          size += pb::CodedOutputStream.ComputeInt32Size(1, Index);
-        }
-        if (HasVersion) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
-        }
-        if (HasAssignedEndpoint) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, AssignedEndpoint);
-        }
-        if (HasInProcessOfMovingToEndpoint) {
-          size += pb::CodedOutputStream.ComputeMessageSize(4, InProcessOfMovingToEndpoint);
-        }
-        foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(5, element);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static Segment ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static Segment ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static Segment ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static Segment ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static Segment ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static Segment ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Segment ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static Segment ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(Segment prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<Segment, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      Segment result = new Segment();
-      
-      protected override Segment MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new Segment();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return Segment.Descriptor; }
-      }
-      
-      public override Segment DefaultInstanceForType {
-        get { return Segment.DefaultInstance; }
-      }
-      
-      public override Segment BuildPartial() {
-        result.backups_.MakeReadOnly();
-        Segment returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is Segment) {
-          return MergeFrom((Segment) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(Segment other) {
-        if (other == Segment.DefaultInstance) return this;
-        if (other.HasIndex) {
-          Index = other.Index;
-        }
-        if (other.HasVersion) {
-          Version = other.Version;
-        }
-        if (other.HasAssignedEndpoint) {
-          MergeAssignedEndpoint(other.AssignedEndpoint);
-        }
-        if (other.HasInProcessOfMovingToEndpoint) {
-          MergeInProcessOfMovingToEndpoint(other.InProcessOfMovingToEndpoint);
-        }
-        if (other.backups_.Count != 0) {
-          base.AddRange(other.backups_, result.backups_);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 8: {
-              Index = input.ReadInt32();
-              break;
-            }
-            case 18: {
-              Version = input.ReadBytes();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
-              if (HasAssignedEndpoint) {
-                subBuilder.MergeFrom(AssignedEndpoint);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AssignedEndpoint = subBuilder.BuildPartial();
-              break;
-            }
-            case 34: {
-              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
-              if (HasInProcessOfMovingToEndpoint) {
-                subBuilder.MergeFrom(InProcessOfMovingToEndpoint);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              InProcessOfMovingToEndpoint = subBuilder.BuildPartial();
-              break;
-            }
-            case 42: {
-              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AddBackups(subBuilder.BuildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasIndex {
-        get { return result.HasIndex; }
-      }
-      public int Index {
-        get { return result.Index; }
-        set { SetIndex(value); }
-      }
-      public Builder SetIndex(int value) {
-        result.hasIndex = true;
-        result.index_ = value;
-        return this;
-      }
-      public Builder ClearIndex() {
-        result.hasIndex = false;
-        result.index_ = 0;
-        return this;
-      }
-      
-      public bool HasVersion {
-        get { return result.HasVersion; }
-      }
-      public pb::ByteString Version {
-        get { return result.Version; }
-        set { SetVersion(value); }
-      }
-      public Builder SetVersion(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasVersion = true;
-        result.version_ = value;
-        return this;
-      }
-      public Builder ClearVersion() {
-        result.hasVersion = false;
-        result.version_ = pb::ByteString.Empty;
-        return this;
-      }
-      
-      public bool HasAssignedEndpoint {
-       get { return result.HasAssignedEndpoint; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint AssignedEndpoint {
-        get { return result.AssignedEndpoint; }
-        set { SetAssignedEndpoint(value); }
-      }
-      public Builder SetAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasAssignedEndpoint = true;
-        result.assignedEndpoint_ = value;
-        return this;
-      }
-      public Builder SetAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasAssignedEndpoint = true;
-        result.assignedEndpoint_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasAssignedEndpoint &&
-            result.assignedEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
-            result.assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.assignedEndpoint_).MergeFrom(value).BuildPartial();
-        } else {
-          result.assignedEndpoint_ = value;
-        }
-        result.hasAssignedEndpoint = true;
-        return this;
-      }
-      public Builder ClearAssignedEndpoint() {
-        result.hasAssignedEndpoint = false;
-        result.assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasInProcessOfMovingToEndpoint {
-       get { return result.HasInProcessOfMovingToEndpoint; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint InProcessOfMovingToEndpoint {
-        get { return result.InProcessOfMovingToEndpoint; }
-        set { SetInProcessOfMovingToEndpoint(value); }
-      }
-      public Builder SetInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasInProcessOfMovingToEndpoint = true;
-        result.inProcessOfMovingToEndpoint_ = value;
-        return this;
-      }
-      public Builder SetInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasInProcessOfMovingToEndpoint = true;
-        result.inProcessOfMovingToEndpoint_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasInProcessOfMovingToEndpoint &&
-            result.inProcessOfMovingToEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
-            result.inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.inProcessOfMovingToEndpoint_).MergeFrom(value).BuildPartial();
-        } else {
-          result.inProcessOfMovingToEndpoint_ = value;
-        }
-        result.hasInProcessOfMovingToEndpoint = true;
-        return this;
-      }
-      public Builder ClearInProcessOfMovingToEndpoint() {
-        result.hasInProcessOfMovingToEndpoint = false;
-        result.inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
-        return this;
-      }
-      
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> BackupsList {
-        get { return result.backups_; }
-      }
-      public int BackupsCount {
-        get { return result.BackupsCount; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint GetBackups(int index) {
-        return result.GetBackups(index);
-      }
-      public Builder SetBackups(int index, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.backups_[index] = value;
-        return this;
-      }
-      public Builder SetBackups(int index, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.backups_[index] = builderForValue.Build();
-        return this;
-      }
-      public Builder AddBackups(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.backups_.Add(value);
-        return this;
-      }
-      public Builder AddBackups(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.backups_.Add(builderForValue.Build());
-        return this;
-      }
-      public Builder AddRangeBackups(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> values) {
-        base.AddRange(values, result.backups_);
-        return this;
-      }
-      public Builder ClearBackups() {
-        result.backups_.Clear();
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class TopologyResultMessage : pb::GeneratedMessage<TopologyResultMessage, TopologyResultMessage.Builder> {
-    private static readonly TopologyResultMessage defaultInstance = new Builder().BuildPartial();
-    public static TopologyResultMessage DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override TopologyResultMessage DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override TopologyResultMessage ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<TopologyResultMessage, TopologyResultMessage.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__FieldAccessorTable; }
-    }
-    
-    private bool hasTimestampAsDouble;
-    private double timestampAsDouble_ = 0D;
-    public bool HasTimestampAsDouble {
-      get { return hasTimestampAsDouble; }
-    }
-    public double TimestampAsDouble {
-      get { return timestampAsDouble_; }
-    }
-    
-    private bool hasVersion;
-    private pb::ByteString version_ = pb::ByteString.Empty;
-    public bool HasVersion {
-      get { return hasVersion; }
-    }
-    public pb::ByteString Version {
-      get { return version_; }
-    }
-    
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> segments_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
-      get { return segments_; }
-    }
-    public int SegmentsCount {
-      get { return segments_.Count; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
-      return segments_[index];
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasTimestampAsDouble) return false;
-        if (!hasVersion) return false;
-        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-          if (!element.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasTimestampAsDouble) {
-        output.WriteDouble(1, TimestampAsDouble);
-      }
-      if (HasVersion) {
-        output.WriteBytes(2, Version);
-      }
-      foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-        output.WriteMessage(3, element);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasTimestampAsDouble) {
-          size += pb::CodedOutputStream.ComputeDoubleSize(1, TimestampAsDouble);
-        }
-        if (HasVersion) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
-        }
-        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static TopologyResultMessage ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static TopologyResultMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(TopologyResultMessage prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<TopologyResultMessage, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      TopologyResultMessage result = new TopologyResultMessage();
-      
-      protected override TopologyResultMessage MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new TopologyResultMessage();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return TopologyResultMessage.Descriptor; }
-      }
-      
-      public override TopologyResultMessage DefaultInstanceForType {
-        get { return TopologyResultMessage.DefaultInstance; }
-      }
-      
-      public override TopologyResultMessage BuildPartial() {
-        result.segments_.MakeReadOnly();
-        TopologyResultMessage returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is TopologyResultMessage) {
-          return MergeFrom((TopologyResultMessage) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(TopologyResultMessage other) {
-        if (other == TopologyResultMessage.DefaultInstance) return this;
-        if (other.HasTimestampAsDouble) {
-          TimestampAsDouble = other.TimestampAsDouble;
-        }
-        if (other.HasVersion) {
-          Version = other.Version;
-        }
-        if (other.segments_.Count != 0) {
-          base.AddRange(other.segments_, result.segments_);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 9: {
-              TimestampAsDouble = input.ReadDouble();
-              break;
-            }
-            case 18: {
-              Version = input.ReadBytes();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.Segment.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Segment.CreateBuilder();
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AddSegments(subBuilder.BuildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasTimestampAsDouble {
-        get { return result.HasTimestampAsDouble; }
-      }
-      public double TimestampAsDouble {
-        get { return result.TimestampAsDouble; }
-        set { SetTimestampAsDouble(value); }
-      }
-      public Builder SetTimestampAsDouble(double value) {
-        result.hasTimestampAsDouble = true;
-        result.timestampAsDouble_ = value;
-        return this;
-      }
-      public Builder ClearTimestampAsDouble() {
-        result.hasTimestampAsDouble = false;
-        result.timestampAsDouble_ = 0D;
-        return this;
-      }
-      
-      public bool HasVersion {
-        get { return result.HasVersion; }
-      }
-      public pb::ByteString Version {
-        get { return result.Version; }
-        set { SetVersion(value); }
-      }
-      public Builder SetVersion(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasVersion = true;
-        result.version_ = value;
-        return this;
-      }
-      public Builder ClearVersion() {
-        result.hasVersion = false;
-        result.version_ = pb::ByteString.Empty;
-        return this;
-      }
-      
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
-        get { return result.segments_; }
-      }
-      public int SegmentsCount {
-        get { return result.SegmentsCount; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
-        return result.GetSegments(index);
-      }
-      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.segments_[index] = value;
-        return this;
-      }
-      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.segments_[index] = builderForValue.Build();
-        return this;
-      }
-      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.segments_.Add(value);
-        return this;
-      }
-      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.segments_.Add(builderForValue.Build());
-        return this;
-      }
-      public Builder AddRangeSegments(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Segment> values) {
-        base.AddRange(values, result.segments_);
-        return this;
-      }
-      public Builder ClearSegments() {
-        result.segments_.Clear();
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class MasterMessageUnion : pb::GeneratedMessage<MasterMessageUnion, MasterMessageUnion.Builder> {
-    private static readonly MasterMessageUnion defaultInstance = new Builder().BuildPartial();
-    public static MasterMessageUnion DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override MasterMessageUnion DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override MasterMessageUnion ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<MasterMessageUnion, MasterMessageUnion.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__FieldAccessorTable; }
-    }
-    
-    private bool hasType;
-    private global::Rhino.DistributedHashTable.Protocol.MasterMessageType type_ = global::Rhino.DistributedHashTable.Protocol.MasterMessageType.GetTopologyRequest;
-    public bool HasType {
-      get { return hasType; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.MasterMessageType Type {
-      get { return type_; }
-    }
-    
-    private bool hasJoinRequest;
-    private global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance;
-    public bool HasJoinRequest {
-      get { return hasJoinRequest; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage JoinRequest {
-      get { return joinRequest_; }
-    }
-    
-    private bool hasJoinResponse;
-    private global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance;
-    public bool HasJoinResponse {
-      get { return hasJoinResponse; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage JoinResponse {
-      get { return joinResponse_; }
-    }
-    
-    private bool hasTopology;
-    private global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance;
-    public bool HasTopology {
-      get { return hasTopology; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage Topology {
-      get { return topology_; }
-    }
-    
-    private bool hasException;
-    private global::Rhino.DistributedHashTable.Protocol.Error exception_ = global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance;
-    public bool HasException {
-      get { return hasException; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.Error Exception {
-      get { return exception_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasType) return false;
-        if (HasJoinRequest) {
-          if (!JoinRequest.IsInitialized) return false;
-        }
-        if (HasJoinResponse) {
-          if (!JoinResponse.IsInitialized) return false;
-        }
-        if (HasTopology) {
-          if (!Topology.IsInitialized) return false;
-        }
-        if (HasException) {
-          if (!Exception.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasType) {
-        output.WriteEnum(1, (int) Type);
-      }
-      if (HasJoinRequest) {
-        output.WriteMessage(2, JoinRequest);
-      }
-      if (HasJoinResponse) {
-        output.WriteMessage(3, JoinResponse);
-      }
-      if (HasTopology) {
-        output.WriteMessage(4, Topology);
-      }
-      if (HasException) {
-        output.WriteMessage(5, Exception);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasType) {
-          size += pb::CodedOutputStream.ComputeEnumSize(1, (int) Type);
-        }
-        if (HasJoinRequest) {
-          size += pb::CodedOutputStream.ComputeMessageSize(2, JoinRequest);
-        }
-        if (HasJoinResponse) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, JoinResponse);
-        }
-        if (HasTopology) {
-          size += pb::CodedOutputStream.ComputeMessageSize(4, Topology);
-        }
-        if (HasException) {
-          size += pb::CodedOutputStream.ComputeMessageSize(5, Exception);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static MasterMessageUnion ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MasterMessageUnion ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MasterMessageUnion prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<MasterMessageUnion, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      MasterMessageUnion result = new MasterMessageUnion();
-      
-      protected override MasterMessageUnion MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new MasterMessageUnion();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return MasterMessageUnion.Descriptor; }
-      }
-      
-      public override MasterMessageUnion DefaultInstanceForType {
-        get { return MasterMessageUnion.DefaultInstance; }
-      }
-      
-      public override MasterMessageUnion BuildPartial() {
-        MasterMessageUnion returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MasterMessageUnion) {
-          return MergeFrom((MasterMessageUnion) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(MasterMessageUnion other) {
-        if (other == MasterMessageUnion.DefaultInstance) return this;
-        if (other.HasType) {
-          Type = other.Type;
-        }
-        if (other.HasJoinRequest) {
-          MergeJoinRequest(other.JoinRequest);
-        }
-        if (other.HasJoinResponse) {
-          MergeJoinResponse(other.JoinResponse);
-        }
-        if (other.HasTopology) {
-          MergeTopology(other.Topology);
-        }
-        if (other.HasException) {
-          MergeException(other.Exception);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 8: {
-              int rawValue = input.ReadEnum();
-              if (!global::System.Enum.IsDefined(typeof(global::Rhino.DistributedHashTable.Protocol.MasterMessageType), rawValue)) {
-                if (unknownFields == null) {
-                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-                }
-                unknownFields.MergeVarintField(1, (ulong) rawValue);
-              } else {
-                Type = (global::Rhino.DistributedHashTable.Protocol.MasterMessageType) rawValue;
-              }
-              break;
-            }
-            case 18: {
-              global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.CreateBuilder();
-              if (HasJoinRequest) {
-                subBuilder.MergeFrom(JoinRequest);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              JoinRequest = subBuilder.BuildPartial();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.CreateBuilder();
-              if (HasJoinResponse) {
-                subBuilder.MergeFrom(JoinResponse);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              JoinResponse = subBuilder.BuildPartial();
-              break;
-            }
-            case 34: {
-              global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.CreateBuilder();
-              if (HasTopology) {
-                subBuilder.MergeFrom(Topology);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Topology = subBuilder.BuildPartial();
-              break;
-            }
-            case 42: {
-              global::Rhino.DistributedHashTable.Protocol.Error.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Error.CreateBuilder();
-              if (HasException) {
-                subBuilder.MergeFrom(Exception);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Exception = subBuilder.BuildPartial();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasType {
-       get { return result.HasType; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.MasterMessageType Type {
-        get { return result.Type; }
-        set { SetType(value); }
-      }
-      public Builder SetType(global::Rhino.DistributedHashTable.Protocol.MasterMessageType value) {
-        result.hasType = true;
-        result.type_ = value;
-        return this;
-      }
-      public Builder ClearType() {
-        result.hasType = false;
-        result.type_ = global::Rhino.DistributedHashTable.Protocol.MasterMessageType.GetTopologyRequest;
-        return this;
-      }
-      
-      public bool HasJoinRequest {
-       get { return result.HasJoinRequest; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage JoinRequest {
-        get { return result.JoinRequest; }
-        set { SetJoinRequest(value); }
-      }
-      public Builder SetJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasJoinRequest = true;
-        result.joinRequest_ = value;
-        return this;
-      }
-      public Builder SetJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasJoinRequest = true;
-        result.joinRequest_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasJoinRequest &&
-            result.joinRequest_ != global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance) {
-            result.joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.CreateBuilder(result.joinRequest_).MergeFrom(value).BuildPartial();
-        } else {
-          result.joinRequest_ = value;
-        }
-        result.hasJoinRequest = true;
-        return this;
-      }
-      public Builder ClearJoinRequest() {
-        result.hasJoinRequest = false;
-        result.joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasJoinResponse {
-       get { return result.HasJoinResponse; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage JoinResponse {
-        get { return result.JoinResponse; }
-        set { SetJoinResponse(value); }
-      }
-      public Builder SetJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasJoinResponse = true;
-        result.joinResponse_ = value;
-        return this;
-      }
-      public Builder SetJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasJoinResponse = true;
-        result.joinResponse_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasJoinResponse &&
-            result.joinResponse_ != global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance) {
-            result.joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.CreateBuilder(result.joinResponse_).MergeFrom(value).BuildPartial();
-        } else {
-          result.joinResponse_ = value;
-        }
-        result.hasJoinResponse = true;
-        return this;
-      }
-      public Builder ClearJoinResponse() {
-        result.hasJoinResponse = false;
-        result.joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasTopology {
-       get { return result.HasTopology; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage Topology {
-        get { return result.Topology; }
-        set { SetTopology(value); }
-      }
-      public Builder SetTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasTopology = true;
-        result.topology_ = value;
-        return this;
-      }
-      public Builder SetTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasTopology = true;
-        result.topology_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasTopology &&
-            result.topology_ != global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance) {
-            result.topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.CreateBuilder(result.topology_).MergeFrom(value).BuildPartial();
-        } else {
-          result.topology_ = value;
-        }
-        result.hasTopology = true;
-        return this;
-      }
-      public Builder ClearTopology() {
-        result.hasTopology = false;
-        result.topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasException {
-       get { return result.HasException; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.Error Exception {
-        get { return result.Exception; }
-        set { SetException(value); }
-      }
-      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.Error value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasException = true;
-        result.exception_ = value;
-        return this;
-      }
-      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.Error.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasException = true;
-        result.exception_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeException(global::Rhino.DistributedHashTable.Protocol.Error value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasException &&
-            result.exception_ != global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance) {
-            result.exception_ = global::Rhino.DistributedHashTable.Protocol.Error.CreateBuilder(result.exception_).MergeFrom(value).BuildPartial();
-        } else {
-          result.exception_ = value;
-        }
-        result.hasException = true;
-        return this;
-      }
-      public Builder ClearException() {
-        result.hasException = false;
-        result.exception_ = global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class GetRequest : pb::GeneratedMessage<GetRequest, GetRequest.Builder> {
-    private static readonly GetRequest defaultInstance = new Builder().BuildPartial();
-    public static GetRequest DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override GetRequest DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override GetRequest ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetRequest__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<GetRequest, GetRequest.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetRequest__FieldAccessorTable; }
-    }
-    
-    private bool hasKey;
-    private string key_ = "";
-    public bool HasKey {
-      get { return hasKey; }
-    }
-    public string Key {
-      get { return key_; }
-    }
-    
-    private bool hasSegment;
-    private int segment_ = 0;
-    public bool HasSegment {
-      get { return hasSegment; }
-    }
-    public int Segment {
-      get { return segment_; }
-    }
-    
-    private bool hasSpecificVersion;
-    private global::Rhino.DistributedHashTable.Protocol.ValueVersion specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-    public bool HasSpecificVersion {
-      get { return hasSpecificVersion; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
-      get { return specificVersion_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasKey) return false;
-        if (!hasSegment) return false;
-        if (HasSpecificVersion) {
-          if (!SpecificVersion.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasKey) {
-        output.WriteString(1, Key);
-      }
-      if (HasSegment) {
-        output.WriteInt32(2, Segment);
-      }
-      if (HasSpecificVersion) {
-        output.WriteMessage(3, SpecificVersion);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasKey) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
-        }
-        if (HasSegment) {
-          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
-        }
-        if (HasSpecificVersion) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, SpecificVersion);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static GetRequest ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static GetRequest ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(GetRequest prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<GetRequest, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      GetRequest result = new GetRequest();
-      
-      protected override GetRequest MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new GetRequest();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return GetRequest.Descriptor; }
-      }
-      
-      public override GetRequest DefaultInstanceForType {
-        get { return GetRequest.DefaultInstance; }
-      }
-      
-      public override GetRequest BuildPartial() {
-        GetRequest returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is GetRequest) {
-          return MergeFrom((GetRequest) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(GetRequest other) {
-        if (other == GetRequest.DefaultInstance) return this;
-        if (other.HasKey) {
-          Key = other.Key;
-        }
-        if (other.HasSegment) {
-          Segment = other.Segment;
-        }
-        if (other.HasSpecificVersion) {
-          MergeSpecificVersion(other.SpecificVersion);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              Key = input.ReadString();
-              break;
-            }
-            case 16: {
-              Segment = input.ReadInt32();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
-              if (HasSpecificVersion) {
-                subBuilder.MergeFrom(SpecificVersion);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              SpecificVersion = subBuilder.BuildPartial();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasKey {
-        get { return result.HasKey; }
-      }
-      public string Key {
-        get { return result.Key; }
-        set { SetKey(value); }
-      }
-      public Builder SetKey(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasKey = true;
-        result.key_ = value;
-        return this;
-      }
-      public Builder ClearKey() {
-        result.hasKey = false;
-        result.key_ = "";
-        return this;
-      }
-      
-      public bool HasSegment {
-        get { return result.HasSegment; }
-      }
-      public int Segment {
-        get { return result.Segment; }
-        set { SetSegment(value); }
-      }
-      public Builder SetSegment(int value) {
-        result.hasSegment = true;
-        result.segment_ = value;
-        return this;
-      }
-      public Builder ClearSegment() {
-        result.hasSegment = false;
-        result.segment_ = 0;
-        return this;
-      }
-      
-      public bool HasSpecificVersion {
-       get { return result.HasSpecificVersion; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
-        get { return result.SpecificVersion; }
-        set { SetSpecificVersion(value); }
-      }
-      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasSpecificVersion = true;
-        result.specificVersion_ = value;
-        return this;
-      }
-      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasSpecificVersion = true;
-        result.specificVersion_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasSpecificVersion &&
-            result.specificVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
-            result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.specificVersion_).MergeFrom(value).BuildPartial();
-        } else {
-          result.specificVersion_ = value;
-        }
-        result.hasSpecificVersion = true;
-        return this;
-      }
-      public Builder ClearSpecificVersion() {
-        result.hasSpecificVersion = false;
-        result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class GetResponse : pb::GeneratedMessage<GetResponse, GetResponse.Builder> {
-    private static readonly GetResponse defaultInstance = new Builder().BuildPartial();
-    public static GetResponse DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override GetResponse DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override GetResponse ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetResponse__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<GetResponse, GetResponse.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetResponse__FieldAccessorTable; }
-    }
-    
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Value> values_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Value>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Value> ValuesList {
-      get { return values_; }
-    }
-    public int ValuesCount {
-      get { return values_.Count; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.Value GetValues(int index) {
-      return values_[index];
-    }
-    
-    public override bool IsInitialized {
-      get {
-        foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
-          if (!element.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
-        output.WriteMessage(1, element);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static GetResponse ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static GetResponse ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(GetResponse prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<GetResponse, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      GetResponse result = new GetResponse();
-      
-      protected override GetResponse MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new GetResponse();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return GetResponse.Descriptor; }
-      }
-      
-      public override GetResponse DefaultInstanceForType {
-        get { return GetResponse.DefaultInstance; }
-      }
-      
-      public override GetResponse BuildPartial() {
-        result.values_.MakeReadOnly();
-        GetResponse returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is GetResponse) {
-          return MergeFrom((GetResponse) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(GetResponse other) {
-        if (other == GetResponse.DefaultInstance) return this;
-        if (other.values_.Count != 0) {
-          base.AddRange(other.values_, result.values_);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              global::Rhino.DistributedHashTable.Protocol.Value.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Value.CreateBuilder();
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AddValues(subBuilder.BuildPartial());
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Value> ValuesList {
-        get { return result.values_; }
-      }
-      public int ValuesCount {
-        get { return result.ValuesCount; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.Value GetValues(int index) {
-        return result.GetValues(index);
-      }
-      public Builder SetValues(int index, global::Rhino.DistributedHashTable.Protocol.Value value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.values_[index] = value;
-        return this;
-      }
-      public Builder SetValues(int index, global::Rhino.DistributedHashTable.Protocol.Value.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.values_[index] = builderForValue.Build();
-        return this;
-      }
-      public Builder AddValues(global::Rhino.DistributedHashTable.Protocol.Value value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.values_.Add(value);
-        return this;
-      }
-      public Builder AddValues(global::Rhino.DistributedHashTable.Protocol.Value.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.values_.Add(builderForValue.Build());
-        return this;
-      }
-      public Builder AddRangeValues(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Value> values) {
-        base.AddRange(values, result.values_);
-        return this;
-      }
-      public Builder ClearValues() {
-        result.values_.Clear();
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class RemoveRequest : pb::GeneratedMessage<RemoveRequest, RemoveRequest.Builder> {
-    private static readonly RemoveRequest defaultInstance = new Builder().BuildPartial();
-    public static RemoveRequest DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override RemoveRequest DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override RemoveRequest ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequest__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<RemoveRequest, RemoveRequest.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequest__FieldAccessorTable; }
-    }
-    
-    private bool hasKey;
-    private string key_ = "";
-    public bool HasKey {
-      get { return hasKey; }
-    }
-    public string Key {
-      get { return key_; }
-    }
-    
-    private bool hasSegment;
-    private int segment_ = 0;
-    public bool HasSegment {
-      get { return hasSegment; }
-    }
-    public int Segment {
-      get { return segment_; }
-    }
-    
-    private bool hasIsReplicationRequest;
-    private bool isReplicationRequest_ = false;
-    public bool HasIsReplicationRequest {
-      get { return hasIsReplicationRequest; }
-    }
-    public bool IsReplicationRequest {
-      get { return isReplicationRequest_; }
-    }
-    
-    private bool hasSpecificVersion;
-    private global::Rhino.DistributedHashTable.Protocol.ValueVersion specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-    public bool HasSpecificVersion {
-      get { return hasSpecificVersion; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
-      get { return specificVersion_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasKey) return false;
-        if (!hasSegment) return false;
-        if (!hasIsReplicationRequest) return false;
-        if (HasSpecificVersion) {
-          if (!SpecificVersion.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasKey) {
-        output.WriteString(1, Key);
-      }
-      if (HasSegment) {
-        output.WriteInt32(2, Segment);
-      }
-      if (HasSpecificVersion) {
-        output.WriteMessage(3, SpecificVersion);
-      }
-      if (HasIsReplicationRequest) {
-        output.WriteBool(4, IsReplicationRequest);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasKey) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
-        }
-        if (HasSegment) {
-          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
-        }
-        if (HasIsReplicationRequest) {
-          size += pb::CodedOutputStream.ComputeBoolSize(4, IsReplicationRequest);
-        }
-        if (HasSpecificVersion) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, SpecificVersion);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static RemoveRequest ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static RemoveRequest ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(RemoveRequest prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<RemoveRequest, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      RemoveRequest result = new RemoveRequest();
-      
-      protected override RemoveRequest MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new RemoveRequest();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return RemoveRequest.Descriptor; }
-      }
-      
-      public override RemoveRequest DefaultInstanceForType {
-        get { return RemoveRequest.DefaultInstance; }
-      }
-      
-      public override RemoveRequest BuildPartial() {
-        RemoveRequest returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is RemoveRequest) {
-          return MergeFrom((RemoveRequest) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(RemoveRequest other) {
-        if (other == RemoveRequest.DefaultInstance) return this;
-        if (other.HasKey) {
-          Key = other.Key;
-        }
-        if (other.HasSegment) {
-          Segment = other.Segment;
-        }
-        if (other.HasIsReplicationRequest) {
-          IsReplicationRequest = other.IsReplicationRequest;
-        }
-        if (other.HasSpecificVersion) {
-          MergeSpecificVersion(other.SpecificVersion);
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              Key = input.ReadString();
-              break;
-            }
-            case 16: {
-              Segment = input.ReadInt32();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
-              if (HasSpecificVersion) {
-                subBuilder.MergeFrom(SpecificVersion);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              SpecificVersion = subBuilder.BuildPartial();
-              break;
-            }
-            case 32: {
-              IsReplicationRequest = input.ReadBool();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasKey {
-        get { return result.HasKey; }
-      }
-      public string Key {
-        get { return result.Key; }
-        set { SetKey(value); }
-      }
-      public Builder SetKey(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasKey = true;
-        result.key_ = value;
-        return this;
-      }
-      public Builder ClearKey() {
-        result.hasKey = false;
-        result.key_ = "";
-        return this;
-      }
-      
-      public bool HasSegment {
-        get { return result.HasSegment; }
-      }
-      public int Segment {
-        get { return result.Segment; }
-        set { SetSegment(value); }
-      }
-      public Builder SetSegment(int value) {
-        result.hasSegment = true;
-        result.segment_ = value;
-        return this;
-      }
-      public Builder ClearSegment() {
-        result.hasSegment = false;
-        result.segment_ = 0;
-        return this;
-      }
-      
-      public bool HasIsReplicationRequest {
-        get { return result.HasIsReplicationRequest; }
-      }
-      public bool IsReplicationRequest {
-        get { return result.IsReplicationRequest; }
-        set { SetIsReplicationRequest(value); }
-      }
-      public Builder SetIsReplicationRequest(bool value) {
-        result.hasIsReplicationRequest = true;
-        result.isReplicationRequest_ = value;
-        return this;
-      }
-      public Builder ClearIsReplicationRequest() {
-        result.hasIsReplicationRequest = false;
-        result.isReplicationRequest_ = false;
-        return this;
-      }
-      
-      public bool HasSpecificVersion {
-       get { return result.HasSpecificVersion; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
-        get { return result.SpecificVersion; }
-        set { SetSpecificVersion(value); }
-      }
-      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasSpecificVersion = true;
-        result.specificVersion_ = value;
-        return this;
-      }
-      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasSpecificVersion = true;
-        result.specificVersion_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasSpecificVersion &&
-            result.specificVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
-            result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.specificVersion_).MergeFrom(value).BuildPartial();
-        } else {
-          result.specificVersion_ = value;
-        }
-        result.hasSpecificVersion = true;
-        return this;
-      }
-      public Builder ClearSpecificVersion() {
-        result.hasSpecificVersion = false;
-        result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class ValueVersion : pb::GeneratedMessage<ValueVersion, ValueVersion.Builder> {
-    private static readonly ValueVersion defaultInstance = new Builder().BuildPartial();
-    public static ValueVersion DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override ValueVersion DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override ValueVersion ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<ValueVersion, ValueVersion.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__FieldAccessorTable; }
-    }
-    
-    private bool hasNumber;
-    private int number_ = 0;
-    public bool HasNumber {
-      get { return hasNumber; }
-    }
-    public int Number {
-      get { return number_; }
-    }
-    
-    private bool hasInstanceId;
-    private pb::ByteString instanceId_ = pb::ByteString.Empty;
-    public bool HasInstanceId {
-      get { return hasInstanceId; }
-    }
-    public pb::ByteString InstanceId {
-      get { return instanceId_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasNumber) return false;
-        if (!hasInstanceId) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasNumber) {
-        output.WriteInt32(1, Number);
-      }
-      if (HasInstanceId) {
-        output.WriteBytes(2, InstanceId);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasNumber) {
-          size += pb::CodedOutputStream.ComputeInt32Size(1, Number);
-        }
-        if (HasInstanceId) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, InstanceId);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static ValueVersion ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static ValueVersion ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(ValueVersion prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<ValueVersion, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      ValueVersion result = new ValueVersion();
-      
-      protected override ValueVersion MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new ValueVersion();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return ValueVersion.Descriptor; }
-      }
-      
-      public override ValueVersion DefaultInstanceForType {
-        get { return ValueVersion.DefaultInstance; }
-      }
-      
-      public override ValueVersion BuildPartial() {
-        ValueVersion returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is ValueVersion) {
-          return MergeFrom((ValueVersion) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(ValueVersion other) {
-        if (other == ValueVersion.DefaultInstance) return this;
-        if (other.HasNumber) {
-          Number = other.Number;
-        }
-        if (other.HasInstanceId) {
-          InstanceId = other.InstanceId;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 8: {
-              Number = input.ReadInt32();
-              break;
-            }
-            case 18: {
-              InstanceId = input.ReadBytes();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasNumber {
-        get { return result.HasNumber; }
-      }
-      public int Number {
-        get { return result.Number; }
-        set { SetNumber(value); }
-      }
-      public Builder SetNumber(int value) {
-        result.hasNumber = true;
-        result.number_ = value;
-        return this;
-      }
-      public Builder ClearNumber() {
-        result.hasNumber = false;
-        result.number_ = 0;
-        return this;
-      }
-      
-      public bool HasInstanceId {
-        get { return result.HasInstanceId; }
-      }
-      public pb::ByteString InstanceId {
-        get { return result.InstanceId; }
-        set { SetInstanceId(value); }
-      }
-      public Builder SetInstanceId(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasInstanceId = true;
-        result.instanceId_ = value;
-        return this;
-      }
-      public Builder ClearInstanceId() {
-        result.hasInstanceId = false;
-        result.instanceId_ = pb::ByteString.Empty;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class PutRequest : pb::GeneratedMessage<PutRequest, PutRequest.Builder> {
-    private static readonly PutRequest defaultInstance = new Builder().BuildPartial();
-    public static PutRequest DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override PutRequest DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override PutRequest ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutRequest__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<PutRequest, PutRequest.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutRequest__FieldAccessorTable; }
-    }
-    
-    private bool hasKey;
-    private string key_ = "";
-    public bool HasKey {
-      get { return hasKey; }
-    }
-    public string Key {
-      get { return key_; }
-    }
-    
-    private bool hasSegment;
-    private int segment_ = 0;
-    public bool HasSegment {
-      get { return hasSegment; }
-    }
-    public int Segment {
-      get { return segment_; }
-    }
-    
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> parentVersions_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> ParentVersionsList {
-      get { return parentVersions_; }
-    }
-    public int ParentVersionsCount {
-      get { return parentVersions_.Count; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.ValueVersion GetParentVersions(int index) {
-      return parentVersions_[index];
-    }
-    
-    private bool hasOptimisticConcurrency;
-    private bool optimisticConcurrency_ = false;
-    public bool HasOptimisticConcurrency {
-      get { return hasOptimisticConcurrency; }
-    }
-    public bool OptimisticConcurrency {
-      get { return optimisticConcurrency_; }
-    }
-    
-    private bool hasIsReadOnly;
-    private bool isReadOnly_ = false;
-    public bool HasIsReadOnly {
-      get { return hasIsReadOnly; }
-    }
-    public bool IsReadOnly {
-      get { return isReadOnly_; }
-    }
-    
-    private bool hasBytes;
-    private pb::ByteString bytes_ = pb::ByteString.Empty;
-    public bool HasBytes {
-      get { return hasBytes; }
-    }
-    public pb::ByteString Bytes {
-      get { return bytes_; }
-    }
-    
-    private bool hasIsReplicationRequest;
-    private bool isReplicationRequest_ = false;
-    public bool HasIsReplicationRequest {
-      get { return hasIsReplicationRequest; }
-    }
-    public bool IsReplicationRequest {
-      get { return isReplicationRequest_; }
-    }
-    
-    private bool hasReplicationVersion;
-    private global::Rhino.DistributedHashTable.Protocol.ValueVersion replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-    public bool HasReplicationVersion {
-      get { return hasReplicationVersion; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.ValueVersion ReplicationVersion {
-      get { return replicationVersion_; }
-    }
-    
-    private bool hasExpiresAtAsDouble;
-    private double? expiresAtAsDouble_ = 0D;
-    public bool HasExpiresAtAsDouble {
-      get { return hasExpiresAtAsDouble && expiresAtAsDouble_.HasValue; }
-    }
-    public double? ExpiresAtAsDouble {
-      get { return expiresAtAsDouble_; }
-    }
-    
-    private bool hasReplicationTimeStampAsDouble;
-    private double? replicationTimeStampAsDouble_ = 0D;
-    public bool HasReplicationTimeStampAsDouble {
-      get { return hasReplicationTimeStampAsDouble && replicationTimeStampAsDouble_.HasValue; }
-    }
-    public double? ReplicationTimeStampAsDouble {
-      get { return replicationTimeStampAsDouble_; }
-    }
-    
-    private bool hasTag;
-    private int? tag_ = 0;
-    public bool HasTag {
-      get { return hasTag && tag_.HasValue; }
-    }
-    public int? Tag {
-      get { return tag_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasKey) return false;
-        if (!hasSegment) return false;
-        if (!hasOptimisticConcurrency) return false;
-        if (!hasIsReadOnly) return false;
-        if (!hasBytes) return false;
-        if (!hasIsReplicationRequest) return false;
-        foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
-          if (!element.IsInitialized) return false;
-        }
-        if (HasReplicationVersion) {
-          if (!ReplicationVersion.IsInitialized) return false;
-        }
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasKey) {
-        output.WriteString(1, Key);
-      }
-      if (HasSegment) {
-        output.WriteInt32(2, Segment);
-      }
-      foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
-        output.WriteMessage(3, element);
-      }
-      if (HasOptimisticConcurrency) {
-        output.WriteBool(4, OptimisticConcurrency);
-      }
-      if (HasIsReadOnly) {
-        output.WriteBool(5, IsReadOnly);
-      }
-      if (HasBytes) {
-        output.WriteBytes(6, Bytes);
-      }
-      if (HasReplicationVersion) {
-        output.WriteMessage(7, ReplicationVersion);
-      }
-      if (HasExpiresAtAsDouble) {
-        output.WriteDouble(8, ExpiresAtAsDouble.Value);
-      }
-      if (HasReplicationTimeStampAsDouble) {
-        output.WriteDouble(9, ReplicationTimeStampAsDouble.Value);
-      }
-      if (HasTag) {
-        output.WriteInt32(10, Tag.Value);
-      }
-      if (HasIsReplicationRequest) {
-        output.WriteBool(11, IsReplicationRequest);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasKey) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
-        }
-        if (HasSegment) {
-          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
-        }
-        foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
-        }
-        if (HasOptimisticConcurrency) {
-          size += pb::CodedOutputStream.ComputeBoolSize(4, OptimisticConcurrency);
-        }
-        if (HasIsReadOnly) {
-          size += pb::CodedOutputStream.ComputeBoolSize(5, IsReadOnly);
-        }
-        if (HasBytes) {
-          size += pb::CodedOutputStream.ComputeBytesSize(6, Bytes);
-        }
-        if (HasIsReplicationRequest) {
-          size += pb::CodedOutputStream.ComputeBoolSize(11, IsReplicationRequest);
-        }
-        if (HasReplicationVersion) {
-          size += pb::CodedOutputStream.ComputeMessageSize(7, ReplicationVersion);
-        }
-        if (HasExpiresAtAsDouble) {
-          size += pb::CodedOutputStream.ComputeDoubleSize(8, ExpiresAtAsDouble.Value);
-        }
-        if (HasReplicationTimeStampAsDouble) {
-          size += pb::CodedOutputStream.ComputeDoubleSize(9, ReplicationTimeStampAsDouble.Value);
-        }
-        if (HasTag) {
-          size += pb::CodedOutputStream.ComputeInt32Size(10, Tag.Value);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static PutRequest ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PutRequest ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(PutRequest prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<PutRequest, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      PutRequest result = new PutRequest();
-      
-      protected override PutRequest MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new PutRequest();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return PutRequest.Descriptor; }
-      }
-      
-      public override PutRequest DefaultInstanceForType {
-        get { return PutRequest.DefaultInstance; }
-      }
-      
-      public override PutRequest BuildPartial() {
-        result.parentVersions_.MakeReadOnly();
-        PutRequest returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is PutRequest) {
-          return MergeFrom((PutRequest) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(PutRequest other) {
-        if (other == PutRequest.DefaultInstance) return this;
-        if (other.HasKey) {
-          Key = other.Key;
-        }
-        if (other.HasSegment) {
-          Segment = other.Segment;
-        }
-        if (other.parentVersions_.Count != 0) {
-          base.AddRange(other.parentVersions_, result.parentVersions_);
-        }
-        if (other.HasOptimisticConcurrency) {
-          OptimisticConcurrency = other.OptimisticConcurrency;
-        }
-        if (other.HasIsReadOnly) {
-          IsReadOnly = other.IsReadOnly;
-        }
-        if (other.HasBytes) {
-          Bytes = other.Bytes;
-        }
-        if (other.HasIsReplicationRequest) {
-          IsReplicationRequest = other.IsReplicationRequest;
-        }
-        if (other.HasReplicationVersion) {
-          MergeReplicationVersion(other.ReplicationVersion);
-        }
-        if (other.HasExpiresAtAsDouble) {
-          ExpiresAtAsDouble = other.ExpiresAtAsDouble;
-        }
-        if (other.HasReplicationTimeStampAsDouble) {
-          ReplicationTimeStampAsDouble = other.ReplicationTimeStampAsDouble;
-        }
-        if (other.HasTag) {
-          Tag = other.Tag;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              Key = input.ReadString();
-              break;
-            }
-            case 16: {
-              Segment = input.ReadInt32();
-              break;
-            }
-            case 26: {
-              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
-              input.ReadMessage(subBuilder, extensionRegistry);
-              AddParentVersions(subBuilder.BuildPartial());
-              break;
-            }
-            case 32: {
-              OptimisticConcurrency = input.ReadBool();
-              break;
-            }
-            case 40: {
-              IsReadOnly = input.ReadBool();
-              break;
-            }
-            case 50: {
-              Bytes = input.ReadBytes();
-              break;
-            }
-            case 58: {
-              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
-              if (HasReplicationVersion) {
-                subBuilder.MergeFrom(ReplicationVersion);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              ReplicationVersion = subBuilder.BuildPartial();
-              break;
-            }
-            case 65: {
-              ExpiresAtAsDouble = input.ReadDouble();
-              break;
-            }
-            case 73: {
-              ReplicationTimeStampAsDouble = input.ReadDouble();
-              break;
-            }
-            case 80: {
-              Tag = input.ReadInt32();
-              break;
-            }
-            case 88: {
-              IsReplicationRequest = input.ReadBool();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasKey {
-        get { return result.HasKey; }
-      }
-      public string Key {
-        get { return result.Key; }
-        set { SetKey(value); }
-      }
-      public Builder SetKey(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasKey = true;
-        result.key_ = value;
-        return this;
-      }
-      public Builder ClearKey() {
-        result.hasKey = false;
-        result.key_ = "";
-        return this;
-      }
-      
-      public bool HasSegment {
-        get { return result.HasSegment; }
-      }
-      public int Segment {
-        get { return result.Segment; }
-        set { SetSegment(value); }
-      }
-      public Builder SetSegment(int value) {
-        result.hasSegment = true;
-        result.segment_ = value;
-        return this;
-      }
-      public Builder ClearSegment() {
-        result.hasSegment = false;
-        result.segment_ = 0;
-        return this;
-      }
-      
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> ParentVersionsList {
-        get { return result.parentVersions_; }
-      }
-      public int ParentVersionsCount {
-        get { return result.ParentVersionsCount; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.ValueVersion GetParentVersions(int index) {
-        return result.GetParentVersions(index);
-      }
-      public Builder SetParentVersions(int index, global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.parentVersions_[index] = value;
-        return this;
-      }
-      public Builder SetParentVersions(int index, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.parentVersions_[index] = builderForValue.Build();
-        return this;
-      }
-      public Builder AddParentVersions(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.parentVersions_.Add(value);
-        return this;
-      }
-      public Builder AddParentVersions(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.parentVersions_.Add(builderForValue.Build());
-        return this;
-      }
-      public Builder AddRangeParentVersions(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.ValueVersion> values) {
-        base.AddRange(values, result.parentVersions_);
-        return this;
-      }
-      public Builder ClearParentVersions() {
-        result.parentVersions_.Clear();
-        return this;
-      }
-      
-      public bool HasOptimisticConcurrency {
-        get { return result.HasOptimisticConcurrency; }
-      }
-      public bool OptimisticConcurrency {
-        get { return result.OptimisticConcurrency; }
-        set { SetOptimisticConcurrency(value); }
-      }
-      public Builder SetOptimisticConcurrency(bool value) {
-        result.hasOptimisticConcurrency = true;
-        result.optimisticConcurrency_ = value;
-        return this;
-      }
-      public Builder ClearOptimisticConcurrency() {
-        result.hasOptimisticConcurrency = false;
-        result.optimisticConcurrency_ = false;
-        return this;
-      }
-      
-      public bool HasIsReadOnly {
-        get { return result.HasIsReadOnly; }
-      }
-      public bool IsReadOnly {
-        get { return result.IsReadOnly; }
-        set { SetIsReadOnly(value); }
-      }
-      public Builder SetIsReadOnly(bool value) {
-        result.hasIsReadOnly = true;
-        result.isReadOnly_ = value;
-        return this;
-      }
-      public Builder ClearIsReadOnly() {
-        result.hasIsReadOnly = false;
-        result.isReadOnly_ = false;
-        return this;
-      }
-      
-      public bool HasBytes {
-        get { return result.HasBytes; }
-      }
-      public pb::ByteString Bytes {
-        get { return result.Bytes; }
-        set { SetBytes(value); }
-      }
-      public Builder SetBytes(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasBytes = true;
-        result.bytes_ = value;
-        return this;
-      }
-      public Builder ClearBytes() {
-        result.hasBytes = false;
-        result.bytes_ = pb::ByteString.Empty;
-        return this;
-      }
-      
-      public bool HasIsReplicationRequest {
-        get { return result.HasIsReplicationRequest; }
-      }
-      public bool IsReplicationRequest {
-        get { return result.IsReplicationRequest; }
-        set { SetIsReplicationRequest(value); }
-      }
-      public Builder SetIsReplicationRequest(bool value) {
-        result.hasIsReplicationRequest = true;
-        result.isReplicationRequest_ = value;
-        return this;
-      }
-      public Builder ClearIsReplicationRequest() {
-        result.hasIsReplicationRequest = false;
-        result.isReplicationRequest_ = false;
-        return this;
-      }
-      
-      public bool HasReplicationVersion {
-       get { return result.HasReplicationVersion; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.ValueVersion ReplicationVersion {
-        get { return result.ReplicationVersion; }
-        set { SetReplicationVersion(value); }
-      }
-      public Builder SetReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasReplicationVersion = true;
-        result.replicationVersion_ = value;
-        return this;
-      }
-      public Builder SetReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasReplicationVersion = true;
-        result.replicationVersion_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasReplicationVersion &&
-            result.replicationVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
-            result.replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.replicationVersion_).MergeFrom(value).BuildPartial();
-        } else {
-          result.replicationVersion_ = value;
-        }
-        result.hasReplicationVersion = true;
-        return this;
-      }
-      public Builder ClearReplicationVersion() {
-        result.hasReplicationVersion = false;
-        result.replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasExpiresAtAsDouble {
-        get { return result.HasExpiresAtAsDouble; }
-      }
-      public double? ExpiresAtAsDouble {
-        get { return result.ExpiresAtAsDouble; }
-        set { SetExpiresAtAsDouble(value); }
-      }
-      public Builder SetExpiresAtAsDouble(double? value) {
-        result.hasExpiresAtAsDouble = true;
-        result.expiresAtAsDouble_ = value;
-        return this;
-      }
-      public Builder ClearExpiresAtAsDouble() {
-        result.hasExpiresAtAsDouble = false;
-        result.expiresAtAsDouble_ = 0D;
-        return this;
-      }
-      
-      public bool HasReplicationTimeStampAsDouble {
-        get { return result.HasReplicationTimeStampAsDouble; }
-      }
-      public double? ReplicationTimeStampAsDouble {
-        get { return result.ReplicationTimeStampAsDouble; }
-        set { SetReplicationTimeStampAsDouble(value); }
-      }
-      public Builder SetReplicationTimeStampAsDouble(double? value) {
-        result.hasReplicationTimeStampAsDouble = true;
-        result.replicationTimeStampAsDouble_ = value;
-        return this;
-      }
-      public Builder ClearReplicationTimeStampAsDouble() {
-        result.hasReplicationTimeStampAsDouble = false;
-        result.replicationTimeStampAsDouble_ = 0D;
-        return this;
-      }
-      
-      public bool HasTag {
-        get { return result.HasTag; }
-      }
-      public int? Tag {
-        get { return result.Tag; }
-        set { SetTag(value); }
-      }
-      public Builder SetTag(int? value) {
-        result.hasTag = true;
-        result.tag_ = value;
-        return this;
-      }
-      public Builder ClearTag() {
-        result.hasTag = false;
-        result.tag_ = 0;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class PutResponse : pb::GeneratedMessage<PutResponse, PutResponse.Builder> {
-    private static readonly PutResponse defaultInstance = new Builder().BuildPartial();
-    public static PutResponse DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override PutResponse DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override PutResponse ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutResponse__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<PutResponse, PutResponse.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutResponse__FieldAccessorTable; }
-    }
-    
-    private bool hasVersion;
-    private global::Rhino.DistributedHashTable.Protocol.ValueVersion version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-    public bool HasVersion {
-      get { return hasVersion; }
-    }
-    public global::Rhino.DistributedHashTable.Protocol.ValueVersion Version {
-      get { return version_; }
-    }
-    
-    private bool hasConflictExists;
-    private bool conflictExists_ = false;
-    public bool HasConflictExists {
-      get { return hasConflictExists; }
-    }
-    public bool ConflictExists {
-      get { return conflictExists_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasVersion) return false;
-        if (!hasConflictExists) return false;
-        if (!Version.IsInitialized) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasVersion) {
-        output.WriteMessage(1, Version);
-      }
-      if (HasConflictExists) {
-        output.WriteBool(2, ConflictExists);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasVersion) {
-          size += pb::CodedOutputStream.ComputeMessageSize(1, Version);
-        }
-        if (HasConflictExists) {
-          size += pb::CodedOutputStream.ComputeBoolSize(2, ConflictExists);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static PutResponse ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static PutResponse ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(PutResponse prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<PutResponse, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      PutResponse result = new PutResponse();
-      
-      protected override PutResponse MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new PutResponse();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return PutResponse.Descriptor; }
-      }
-      
-      public override PutResponse DefaultInstanceForType {
-        get { return PutResponse.DefaultInstance; }
-      }
-      
-      public override PutResponse BuildPartial() {
-        PutResponse returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is PutResponse) {
-          return MergeFrom((PutResponse) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(PutResponse other) {
-        if (other == PutResponse.DefaultInstance) return this;
-        if (other.HasVersion) {
-          MergeVersion(other.Version);
-        }
-        if (other.HasConflictExists) {
-          ConflictExists = other.ConflictExists;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
-              if (HasVersion) {
-                subBuilder.MergeFrom(Version);
-              }
-              input.ReadMessage(subBuilder, extensionRegistry);
-              Version = subBuilder.BuildPartial();
-              break;
-            }
-            case 16: {
-              ConflictExists = input.ReadBool();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasVersion {
-       get { return result.HasVersion; }
-      }
-      public global::Rhino.DistributedHashTable.Protocol.ValueVersion Version {
-        get { return result.Version; }
-        set { SetVersion(value); }
-      }
-      public Builder SetVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasVersion = true;
-        result.version_ = value;
-        return this;
-      }
-      public Builder SetVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
-        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
-        result.hasVersion = true;
-        result.version_ = builderForValue.Build();
-        return this;
-      }
-      public Builder MergeVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        if (result.HasVersion &&
-            result.version_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
-            result.version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.version_).MergeFrom(value).BuildPartial();
-        } else {
-          result.version_ = value;
-        }
-        result.hasVersion = true;
-        return this;
-      }
-      public Builder ClearVersion() {
-        result.hasVersion = false;
-        result.version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
-        return this;
-      }
-      
-      public bool HasConflictExists {
-        get { return result.HasConflictExists; }
-      }
-      public bool ConflictExists {
-        get { return result.ConflictExists; }
-        set { SetConflictExists(value); }
-      }
-      public Builder SetConflictExists(bool value) {
-        result.hasConflictExists = true;
-        result.conflictExists_ = value;
-        return this;
-      }
-      public Builder ClearConflictExists() {
-        result.hasConflictExists = false;
-        result.conflictExists_ = false;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class RemoveResponse : pb::GeneratedMessage<RemoveResponse, RemoveResponse.Builder> {
-    private static readonly RemoveResponse defaultInstance = new Builder().BuildPartial();
-    public static RemoveResponse DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override RemoveResponse DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override RemoveResponse ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponse__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<RemoveResponse, RemoveResponse.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponse__FieldAccessorTable; }
-    }
-    
-    private bool hasWasRemoved;
-    private bool wasRemoved_ = false;
-    public bool HasWasRemoved {
-      get { return hasWasRemoved; }
-    }
-    public bool WasRemoved {
-      get { return wasRemoved_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasWasRemoved) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasWasRemoved) {
-        output.WriteBool(1, WasRemoved);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasWasRemoved) {
-          size += pb::CodedOutputStream.ComputeBoolSize(1, WasRemoved);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static RemoveResponse ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static RemoveResponse ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(RemoveResponse prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<RemoveResponse, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      RemoveResponse result = new RemoveResponse();
-      
-      protected override RemoveResponse MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new RemoveResponse();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return RemoveResponse.Descriptor; }
-      }
-      
-      public override RemoveResponse DefaultInstanceForType {
-        get { return RemoveResponse.DefaultInstance; }
-      }
-      
-      public override RemoveResponse BuildPartial() {
-        RemoveResponse returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is RemoveResponse) {
-          return MergeFrom((RemoveResponse) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(RemoveResponse other) {
-        if (other == RemoveResponse.DefaultInstance) return this;
-        if (other.HasWasRemoved) {
-          WasRemoved = other.WasRemoved;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 8: {
-              WasRemoved = input.ReadBool();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasWasRemoved {
-        get { return result.HasWasRemoved; }
-      }
-      public bool WasRemoved {
-        get { return result.WasRemoved; }
-        set { SetWasRemoved(value); }
-      }
-      public Builder SetWasRemoved(bool value) {
-        result.hasWasRemoved = true;
-        result.wasRemoved_ = value;
-        return this;
-      }
-      public Builder ClearWasRemoved() {
-        result.hasWasRemoved = false;
-        result.wasRemoved_ = false;
-        return this;
-      }
-    }
-  }
-  
-  public sealed partial class Error : pb::GeneratedMessage<Error, Error.Builder> {
-    private static readonly Error defaultInstance = new Builder().BuildPartial();
-    public static Error DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override Error DefaultInstanceForType {
-      get { return defaultInstance; }
-    }
-    
-    protected override Error ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Error__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<Error, Error.Builder> InternalFieldAccessors {
-      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Error__FieldAccessorTable; }
-    }
-    
-    private bool hasMessage;
-    private string message_ = "";
-    public bool HasMessage {
-      get { return hasMessage; }
-    }
-    public string Message {
-      get { return message_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasMessage) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::CodedOutputStream output) {
-      if (HasMessage) {
-        output.WriteString(1, Message);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (HasMessage) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Message);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static Error ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static Error ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static Error ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static Error ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static Error ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static Error ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Error ParseFrom(pb::CodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static Error ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(Error prototype) {
-      return (Builder) new Builder().MergeFrom(prototype);
-    }
-    
-    public sealed partial class Builder : pb::GeneratedBuilder<Error, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {}
-      
-      Error result = new Error();
-      
-      protected override Error MessageBeingBuilt {
-        get { return result; }
-      }
-      
-      public override Builder Clear() {
-        result = new Error();
-        return this;
-      }
-      
-      public override Builder Clone() {
-        return new Builder().MergeFrom(result);
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return Error.Descriptor; }
-      }
-      
-      public override Error DefaultInstanceForType {
-        get { return Error.DefaultInstance; }
-      }
-      
-      public override Error BuildPartial() {
-        Error returnMe = result;
-        result = null;
-        return returnMe;
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is Error) {
-          return MergeFrom((Error) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(Error other) {
-        if (other == Error.DefaultInstance) return this;
-        if (other.HasMessage) {
-          Message = other.Message;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        while (true) {
-          uint tag = input.ReadTag();
-          switch (tag) {
-            case 0: {
-              if (unknownFields != null) {
-                this.UnknownFields = unknownFields.Build();
-              }
-              return this;
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
-              break;
-            }
-            case 10: {
-              Message = input.ReadString();
-              break;
-            }
-          }
-        }
-      }
-      
-      
-      public bool HasMessage {
-        get { return result.HasMessage; }
-      }
-      public string Message {
-        get { return result.Message; }
-        set { SetMessage(value); }
-      }
-      public Builder SetMessage(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasMessage = true;
-        result.message_ = value;
-        return this;
-      }
-      public Builder ClearMessage() {
-        result.hasMessage = false;
-        result.message_ = "";
-        return this;
-      }
-    }
-  }
-  
   public sealed partial class Value : pb::GeneratedMessage<Value, Value.Builder> {
     private static readonly Value defaultInstance = new Builder().BuildPartial();
     public static Value DefaultInstance {
@@ -5175,6 +792,4755 @@ namespace Rhino.DistributedHashTable.Protocol {
     }
   }
   
+  public sealed partial class NodeEndpoint : pb::GeneratedMessage<NodeEndpoint, NodeEndpoint.Builder> {
+    private static readonly NodeEndpoint defaultInstance = new Builder().BuildPartial();
+    public static NodeEndpoint DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override NodeEndpoint DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override NodeEndpoint ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<NodeEndpoint, NodeEndpoint.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_NodeEndpoint__FieldAccessorTable; }
+    }
+    
+    private bool hasSync;
+    private string sync_ = "";
+    public bool HasSync {
+      get { return hasSync; }
+    }
+    public string Sync {
+      get { return sync_; }
+    }
+    
+    private bool hasAsync;
+    private string async_ = "";
+    public bool HasAsync {
+      get { return hasAsync; }
+    }
+    public string Async {
+      get { return async_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasSync) return false;
+        if (!hasAsync) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasSync) {
+        output.WriteString(1, Sync);
+      }
+      if (HasAsync) {
+        output.WriteString(2, Async);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasSync) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Sync);
+        }
+        if (HasAsync) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, Async);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static NodeEndpoint ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static NodeEndpoint ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(NodeEndpoint prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<NodeEndpoint, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      NodeEndpoint result = new NodeEndpoint();
+      
+      protected override NodeEndpoint MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new NodeEndpoint();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return NodeEndpoint.Descriptor; }
+      }
+      
+      public override NodeEndpoint DefaultInstanceForType {
+        get { return NodeEndpoint.DefaultInstance; }
+      }
+      
+      public override NodeEndpoint BuildPartial() {
+        NodeEndpoint returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is NodeEndpoint) {
+          return MergeFrom((NodeEndpoint) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(NodeEndpoint other) {
+        if (other == NodeEndpoint.DefaultInstance) return this;
+        if (other.HasSync) {
+          Sync = other.Sync;
+        }
+        if (other.HasAsync) {
+          Async = other.Async;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              Sync = input.ReadString();
+              break;
+            }
+            case 18: {
+              Async = input.ReadString();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasSync {
+        get { return result.HasSync; }
+      }
+      public string Sync {
+        get { return result.Sync; }
+        set { SetSync(value); }
+      }
+      public Builder SetSync(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasSync = true;
+        result.sync_ = value;
+        return this;
+      }
+      public Builder ClearSync() {
+        result.hasSync = false;
+        result.sync_ = "";
+        return this;
+      }
+      
+      public bool HasAsync {
+        get { return result.HasAsync; }
+      }
+      public string Async {
+        get { return result.Async; }
+        set { SetAsync(value); }
+      }
+      public Builder SetAsync(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasAsync = true;
+        result.async_ = value;
+        return this;
+      }
+      public Builder ClearAsync() {
+        result.hasAsync = false;
+        result.async_ = "";
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class ValueVersion : pb::GeneratedMessage<ValueVersion, ValueVersion.Builder> {
+    private static readonly ValueVersion defaultInstance = new Builder().BuildPartial();
+    public static ValueVersion DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ValueVersion DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override ValueVersion ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ValueVersion, ValueVersion.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ValueVersion__FieldAccessorTable; }
+    }
+    
+    private bool hasNumber;
+    private int number_ = 0;
+    public bool HasNumber {
+      get { return hasNumber; }
+    }
+    public int Number {
+      get { return number_; }
+    }
+    
+    private bool hasInstanceId;
+    private pb::ByteString instanceId_ = pb::ByteString.Empty;
+    public bool HasInstanceId {
+      get { return hasInstanceId; }
+    }
+    public pb::ByteString InstanceId {
+      get { return instanceId_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasNumber) return false;
+        if (!hasInstanceId) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasNumber) {
+        output.WriteInt32(1, Number);
+      }
+      if (HasInstanceId) {
+        output.WriteBytes(2, InstanceId);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasNumber) {
+          size += pb::CodedOutputStream.ComputeInt32Size(1, Number);
+        }
+        if (HasInstanceId) {
+          size += pb::CodedOutputStream.ComputeBytesSize(2, InstanceId);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ValueVersion ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ValueVersion ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ValueVersion prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<ValueVersion, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      ValueVersion result = new ValueVersion();
+      
+      protected override ValueVersion MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new ValueVersion();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return ValueVersion.Descriptor; }
+      }
+      
+      public override ValueVersion DefaultInstanceForType {
+        get { return ValueVersion.DefaultInstance; }
+      }
+      
+      public override ValueVersion BuildPartial() {
+        ValueVersion returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ValueVersion) {
+          return MergeFrom((ValueVersion) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ValueVersion other) {
+        if (other == ValueVersion.DefaultInstance) return this;
+        if (other.HasNumber) {
+          Number = other.Number;
+        }
+        if (other.HasInstanceId) {
+          InstanceId = other.InstanceId;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 8: {
+              Number = input.ReadInt32();
+              break;
+            }
+            case 18: {
+              InstanceId = input.ReadBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasNumber {
+        get { return result.HasNumber; }
+      }
+      public int Number {
+        get { return result.Number; }
+        set { SetNumber(value); }
+      }
+      public Builder SetNumber(int value) {
+        result.hasNumber = true;
+        result.number_ = value;
+        return this;
+      }
+      public Builder ClearNumber() {
+        result.hasNumber = false;
+        result.number_ = 0;
+        return this;
+      }
+      
+      public bool HasInstanceId {
+        get { return result.HasInstanceId; }
+      }
+      public pb::ByteString InstanceId {
+        get { return result.InstanceId; }
+        set { SetInstanceId(value); }
+      }
+      public Builder SetInstanceId(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasInstanceId = true;
+        result.instanceId_ = value;
+        return this;
+      }
+      public Builder ClearInstanceId() {
+        result.hasInstanceId = false;
+        result.instanceId_ = pb::ByteString.Empty;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class Segment : pb::GeneratedMessage<Segment, Segment.Builder> {
+    private static readonly Segment defaultInstance = new Builder().BuildPartial();
+    public static Segment DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override Segment DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override Segment ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Segment__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<Segment, Segment.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_Segment__FieldAccessorTable; }
+    }
+    
+    private bool hasIndex;
+    private int index_ = 0;
+    public bool HasIndex {
+      get { return hasIndex; }
+    }
+    public int Index {
+      get { return index_; }
+    }
+    
+    private bool hasVersion;
+    private pb::ByteString version_ = pb::ByteString.Empty;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public pb::ByteString Version {
+      get { return version_; }
+    }
+    
+    private bool hasAssignedEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasAssignedEndpoint {
+      get { return hasAssignedEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint AssignedEndpoint {
+      get { return assignedEndpoint_; }
+    }
+    
+    private bool hasInProcessOfMovingToEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasInProcessOfMovingToEndpoint {
+      get { return hasInProcessOfMovingToEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint InProcessOfMovingToEndpoint {
+      get { return inProcessOfMovingToEndpoint_; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> backups_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> BackupsList {
+      get { return backups_; }
+    }
+    public int BackupsCount {
+      get { return backups_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint GetBackups(int index) {
+      return backups_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasIndex) return false;
+        if (!hasVersion) return false;
+        if (HasAssignedEndpoint) {
+          if (!AssignedEndpoint.IsInitialized) return false;
+        }
+        if (HasInProcessOfMovingToEndpoint) {
+          if (!InProcessOfMovingToEndpoint.IsInitialized) return false;
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasIndex) {
+        output.WriteInt32(1, Index);
+      }
+      if (HasVersion) {
+        output.WriteBytes(2, Version);
+      }
+      if (HasAssignedEndpoint) {
+        output.WriteMessage(3, AssignedEndpoint);
+      }
+      if (HasInProcessOfMovingToEndpoint) {
+        output.WriteMessage(4, InProcessOfMovingToEndpoint);
+      }
+      foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
+        output.WriteMessage(5, element);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasIndex) {
+          size += pb::CodedOutputStream.ComputeInt32Size(1, Index);
+        }
+        if (HasVersion) {
+          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
+        }
+        if (HasAssignedEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, AssignedEndpoint);
+        }
+        if (HasInProcessOfMovingToEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(4, InProcessOfMovingToEndpoint);
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(5, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static Segment ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static Segment ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static Segment ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static Segment ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static Segment ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static Segment ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Segment ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static Segment ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(Segment prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<Segment, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      Segment result = new Segment();
+      
+      protected override Segment MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new Segment();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return Segment.Descriptor; }
+      }
+      
+      public override Segment DefaultInstanceForType {
+        get { return Segment.DefaultInstance; }
+      }
+      
+      public override Segment BuildPartial() {
+        result.backups_.MakeReadOnly();
+        Segment returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is Segment) {
+          return MergeFrom((Segment) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(Segment other) {
+        if (other == Segment.DefaultInstance) return this;
+        if (other.HasIndex) {
+          Index = other.Index;
+        }
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        if (other.HasAssignedEndpoint) {
+          MergeAssignedEndpoint(other.AssignedEndpoint);
+        }
+        if (other.HasInProcessOfMovingToEndpoint) {
+          MergeInProcessOfMovingToEndpoint(other.InProcessOfMovingToEndpoint);
+        }
+        if (other.backups_.Count != 0) {
+          base.AddRange(other.backups_, result.backups_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 8: {
+              Index = input.ReadInt32();
+              break;
+            }
+            case 18: {
+              Version = input.ReadBytes();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasAssignedEndpoint) {
+                subBuilder.MergeFrom(AssignedEndpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AssignedEndpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 34: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasInProcessOfMovingToEndpoint) {
+                subBuilder.MergeFrom(InProcessOfMovingToEndpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              InProcessOfMovingToEndpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 42: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddBackups(subBuilder.BuildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasIndex {
+        get { return result.HasIndex; }
+      }
+      public int Index {
+        get { return result.Index; }
+        set { SetIndex(value); }
+      }
+      public Builder SetIndex(int value) {
+        result.hasIndex = true;
+        result.index_ = value;
+        return this;
+      }
+      public Builder ClearIndex() {
+        result.hasIndex = false;
+        result.index_ = 0;
+        return this;
+      }
+      
+      public bool HasVersion {
+        get { return result.HasVersion; }
+      }
+      public pb::ByteString Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        result.hasVersion = false;
+        result.version_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public bool HasAssignedEndpoint {
+       get { return result.HasAssignedEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint AssignedEndpoint {
+        get { return result.AssignedEndpoint; }
+        set { SetAssignedEndpoint(value); }
+      }
+      public Builder SetAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasAssignedEndpoint = true;
+        result.assignedEndpoint_ = value;
+        return this;
+      }
+      public Builder SetAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasAssignedEndpoint = true;
+        result.assignedEndpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAssignedEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasAssignedEndpoint &&
+            result.assignedEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.assignedEndpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.assignedEndpoint_ = value;
+        }
+        result.hasAssignedEndpoint = true;
+        return this;
+      }
+      public Builder ClearAssignedEndpoint() {
+        result.hasAssignedEndpoint = false;
+        result.assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasInProcessOfMovingToEndpoint {
+       get { return result.HasInProcessOfMovingToEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint InProcessOfMovingToEndpoint {
+        get { return result.InProcessOfMovingToEndpoint; }
+        set { SetInProcessOfMovingToEndpoint(value); }
+      }
+      public Builder SetInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasInProcessOfMovingToEndpoint = true;
+        result.inProcessOfMovingToEndpoint_ = value;
+        return this;
+      }
+      public Builder SetInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasInProcessOfMovingToEndpoint = true;
+        result.inProcessOfMovingToEndpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeInProcessOfMovingToEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasInProcessOfMovingToEndpoint &&
+            result.inProcessOfMovingToEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.inProcessOfMovingToEndpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.inProcessOfMovingToEndpoint_ = value;
+        }
+        result.hasInProcessOfMovingToEndpoint = true;
+        return this;
+      }
+      public Builder ClearInProcessOfMovingToEndpoint() {
+        result.hasInProcessOfMovingToEndpoint = false;
+        result.inProcessOfMovingToEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> BackupsList {
+        get { return result.backups_; }
+      }
+      public int BackupsCount {
+        get { return result.BackupsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint GetBackups(int index) {
+        return result.GetBackups(index);
+      }
+      public Builder SetBackups(int index, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.backups_[index] = value;
+        return this;
+      }
+      public Builder SetBackups(int index, global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.backups_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddBackups(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.backups_.Add(value);
+        return this;
+      }
+      public Builder AddBackups(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.backups_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeBackups(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.NodeEndpoint> values) {
+        base.AddRange(values, result.backups_);
+        return this;
+      }
+      public Builder ClearBackups() {
+        result.backups_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class JoinRequestMessage : pb::GeneratedMessage<JoinRequestMessage, JoinRequestMessage.Builder> {
+    private static readonly JoinRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static JoinRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override JoinRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override JoinRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<JoinRequestMessage, JoinRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasEndpointJoining;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasEndpointJoining {
+      get { return hasEndpointJoining; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint EndpointJoining {
+      get { return endpointJoining_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasEndpointJoining) return false;
+        if (!EndpointJoining.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasEndpointJoining) {
+        output.WriteMessage(1, EndpointJoining);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasEndpointJoining) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, EndpointJoining);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static JoinRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static JoinRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(JoinRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<JoinRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      JoinRequestMessage result = new JoinRequestMessage();
+      
+      protected override JoinRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new JoinRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return JoinRequestMessage.Descriptor; }
+      }
+      
+      public override JoinRequestMessage DefaultInstanceForType {
+        get { return JoinRequestMessage.DefaultInstance; }
+      }
+      
+      public override JoinRequestMessage BuildPartial() {
+        JoinRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is JoinRequestMessage) {
+          return MergeFrom((JoinRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(JoinRequestMessage other) {
+        if (other == JoinRequestMessage.DefaultInstance) return this;
+        if (other.HasEndpointJoining) {
+          MergeEndpointJoining(other.EndpointJoining);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasEndpointJoining) {
+                subBuilder.MergeFrom(EndpointJoining);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              EndpointJoining = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasEndpointJoining {
+       get { return result.HasEndpointJoining; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint EndpointJoining {
+        get { return result.EndpointJoining; }
+        set { SetEndpointJoining(value); }
+      }
+      public Builder SetEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasEndpointJoining = true;
+        result.endpointJoining_ = value;
+        return this;
+      }
+      public Builder SetEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasEndpointJoining = true;
+        result.endpointJoining_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeEndpointJoining(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasEndpointJoining &&
+            result.endpointJoining_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.endpointJoining_).MergeFrom(value).BuildPartial();
+        } else {
+          result.endpointJoining_ = value;
+        }
+        result.hasEndpointJoining = true;
+        return this;
+      }
+      public Builder ClearEndpointJoining() {
+        result.hasEndpointJoining = false;
+        result.endpointJoining_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class JoinResponseMessage : pb::GeneratedMessage<JoinResponseMessage, JoinResponseMessage.Builder> {
+    private static readonly JoinResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static JoinResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override JoinResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override JoinResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<JoinResponseMessage, JoinResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_JoinResponseMessage__FieldAccessorTable; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> segments_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
+      get { return segments_; }
+    }
+    public int SegmentsCount {
+      get { return segments_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
+      return segments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+        output.WriteMessage(1, element);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static JoinResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static JoinResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(JoinResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<JoinResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      JoinResponseMessage result = new JoinResponseMessage();
+      
+      protected override JoinResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new JoinResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return JoinResponseMessage.Descriptor; }
+      }
+      
+      public override JoinResponseMessage DefaultInstanceForType {
+        get { return JoinResponseMessage.DefaultInstance; }
+      }
+      
+      public override JoinResponseMessage BuildPartial() {
+        result.segments_.MakeReadOnly();
+        JoinResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is JoinResponseMessage) {
+          return MergeFrom((JoinResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(JoinResponseMessage other) {
+        if (other == JoinResponseMessage.DefaultInstance) return this;
+        if (other.segments_.Count != 0) {
+          base.AddRange(other.segments_, result.segments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.Segment.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Segment.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddSegments(subBuilder.BuildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
+        get { return result.segments_; }
+      }
+      public int SegmentsCount {
+        get { return result.SegmentsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
+        return result.GetSegments(index);
+      }
+      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.segments_[index] = value;
+        return this;
+      }
+      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.segments_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.segments_.Add(value);
+        return this;
+      }
+      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.segments_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeSegments(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Segment> values) {
+        base.AddRange(values, result.segments_);
+        return this;
+      }
+      public Builder ClearSegments() {
+        result.segments_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class TopologyResultMessage : pb::GeneratedMessage<TopologyResultMessage, TopologyResultMessage.Builder> {
+    private static readonly TopologyResultMessage defaultInstance = new Builder().BuildPartial();
+    public static TopologyResultMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override TopologyResultMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override TopologyResultMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<TopologyResultMessage, TopologyResultMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_TopologyResultMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasTimestampAsDouble;
+    private double timestampAsDouble_ = 0D;
+    public bool HasTimestampAsDouble {
+      get { return hasTimestampAsDouble; }
+    }
+    public double TimestampAsDouble {
+      get { return timestampAsDouble_; }
+    }
+    
+    private bool hasVersion;
+    private pb::ByteString version_ = pb::ByteString.Empty;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public pb::ByteString Version {
+      get { return version_; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> segments_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
+      get { return segments_; }
+    }
+    public int SegmentsCount {
+      get { return segments_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
+      return segments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasTimestampAsDouble) return false;
+        if (!hasVersion) return false;
+        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasTimestampAsDouble) {
+        output.WriteDouble(1, TimestampAsDouble);
+      }
+      if (HasVersion) {
+        output.WriteBytes(2, Version);
+      }
+      foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+        output.WriteMessage(3, element);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasTimestampAsDouble) {
+          size += pb::CodedOutputStream.ComputeDoubleSize(1, TimestampAsDouble);
+        }
+        if (HasVersion) {
+          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static TopologyResultMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static TopologyResultMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(TopologyResultMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<TopologyResultMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      TopologyResultMessage result = new TopologyResultMessage();
+      
+      protected override TopologyResultMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new TopologyResultMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return TopologyResultMessage.Descriptor; }
+      }
+      
+      public override TopologyResultMessage DefaultInstanceForType {
+        get { return TopologyResultMessage.DefaultInstance; }
+      }
+      
+      public override TopologyResultMessage BuildPartial() {
+        result.segments_.MakeReadOnly();
+        TopologyResultMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is TopologyResultMessage) {
+          return MergeFrom((TopologyResultMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(TopologyResultMessage other) {
+        if (other == TopologyResultMessage.DefaultInstance) return this;
+        if (other.HasTimestampAsDouble) {
+          TimestampAsDouble = other.TimestampAsDouble;
+        }
+        if (other.HasVersion) {
+          Version = other.Version;
+        }
+        if (other.segments_.Count != 0) {
+          base.AddRange(other.segments_, result.segments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 9: {
+              TimestampAsDouble = input.ReadDouble();
+              break;
+            }
+            case 18: {
+              Version = input.ReadBytes();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.Segment.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Segment.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddSegments(subBuilder.BuildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasTimestampAsDouble {
+        get { return result.HasTimestampAsDouble; }
+      }
+      public double TimestampAsDouble {
+        get { return result.TimestampAsDouble; }
+        set { SetTimestampAsDouble(value); }
+      }
+      public Builder SetTimestampAsDouble(double value) {
+        result.hasTimestampAsDouble = true;
+        result.timestampAsDouble_ = value;
+        return this;
+      }
+      public Builder ClearTimestampAsDouble() {
+        result.hasTimestampAsDouble = false;
+        result.timestampAsDouble_ = 0D;
+        return this;
+      }
+      
+      public bool HasVersion {
+        get { return result.HasVersion; }
+      }
+      public pb::ByteString Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder ClearVersion() {
+        result.hasVersion = false;
+        result.version_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Segment> SegmentsList {
+        get { return result.segments_; }
+      }
+      public int SegmentsCount {
+        get { return result.SegmentsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.Segment GetSegments(int index) {
+        return result.GetSegments(index);
+      }
+      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.segments_[index] = value;
+        return this;
+      }
+      public Builder SetSegments(int index, global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.segments_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.segments_.Add(value);
+        return this;
+      }
+      public Builder AddSegments(global::Rhino.DistributedHashTable.Protocol.Segment.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.segments_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeSegments(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Segment> values) {
+        base.AddRange(values, result.segments_);
+        return this;
+      }
+      public Builder ClearSegments() {
+        result.segments_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class CaughtUpRequestMessage : pb::GeneratedMessage<CaughtUpRequestMessage, CaughtUpRequestMessage.Builder> {
+    private static readonly CaughtUpRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static CaughtUpRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override CaughtUpRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override CaughtUpRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<CaughtUpRequestMessage, CaughtUpRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_CaughtUpRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasEndpoint {
+      get { return hasEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Endpoint {
+      get { return endpoint_; }
+    }
+    
+    private pbc::PopsicleList<int> caughtUpSegments_ = new pbc::PopsicleList<int>();
+    public scg::IList<int> CaughtUpSegmentsList {
+      get { return pbc::Lists.AsReadOnly(caughtUpSegments_); }
+    }
+    public int CaughtUpSegmentsCount {
+      get { return caughtUpSegments_.Count; }
+    }
+    public int GetCaughtUpSegments(int index) {
+      return caughtUpSegments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasEndpoint) return false;
+        if (!Endpoint.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasEndpoint) {
+        output.WriteMessage(1, Endpoint);
+      }
+      if (caughtUpSegments_.Count > 0) {
+        foreach (int element in caughtUpSegments_) {
+          output.WriteInt32(2, element);
+        }
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Endpoint);
+        }
+        {
+          int dataSize = 0;
+          foreach (int element in CaughtUpSegmentsList) {
+            dataSize += pb::CodedOutputStream.ComputeInt32SizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * caughtUpSegments_.Count;
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static CaughtUpRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static CaughtUpRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(CaughtUpRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<CaughtUpRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      CaughtUpRequestMessage result = new CaughtUpRequestMessage();
+      
+      protected override CaughtUpRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new CaughtUpRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return CaughtUpRequestMessage.Descriptor; }
+      }
+      
+      public override CaughtUpRequestMessage DefaultInstanceForType {
+        get { return CaughtUpRequestMessage.DefaultInstance; }
+      }
+      
+      public override CaughtUpRequestMessage BuildPartial() {
+        result.caughtUpSegments_.MakeReadOnly();
+        CaughtUpRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is CaughtUpRequestMessage) {
+          return MergeFrom((CaughtUpRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(CaughtUpRequestMessage other) {
+        if (other == CaughtUpRequestMessage.DefaultInstance) return this;
+        if (other.HasEndpoint) {
+          MergeEndpoint(other.Endpoint);
+        }
+        if (other.caughtUpSegments_.Count != 0) {
+          base.AddRange(other.caughtUpSegments_, result.caughtUpSegments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasEndpoint) {
+                subBuilder.MergeFrom(Endpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Endpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              AddCaughtUpSegments(input.ReadInt32());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasEndpoint {
+       get { return result.HasEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Endpoint {
+        get { return result.Endpoint; }
+        set { SetEndpoint(value); }
+      }
+      public Builder SetEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasEndpoint = true;
+        result.endpoint_ = value;
+        return this;
+      }
+      public Builder SetEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasEndpoint = true;
+        result.endpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasEndpoint &&
+            result.endpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.endpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.endpoint_ = value;
+        }
+        result.hasEndpoint = true;
+        return this;
+      }
+      public Builder ClearEndpoint() {
+        result.hasEndpoint = false;
+        result.endpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<int> CaughtUpSegmentsList {
+        get { return result.caughtUpSegments_; }
+      }
+      public int CaughtUpSegmentsCount {
+        get { return result.CaughtUpSegmentsCount; }
+      }
+      public int GetCaughtUpSegments(int index) {
+        return result.GetCaughtUpSegments(index);
+      }
+      public Builder SetCaughtUpSegments(int index, int value) {
+        result.caughtUpSegments_[index] = value;
+        return this;
+      }
+      public Builder AddCaughtUpSegments(int value) {
+        result.caughtUpSegments_.Add(value);
+        return this;
+      }
+      public Builder AddRangeCaughtUpSegments(scg::IEnumerable<int> values) {
+        base.AddRange(values, result.caughtUpSegments_);
+        return this;
+      }
+      public Builder ClearCaughtUpSegments() {
+        result.caughtUpSegments_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class GetRequestMessage : pb::GeneratedMessage<GetRequestMessage, GetRequestMessage.Builder> {
+    private static readonly GetRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static GetRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override GetRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetRequestMessage, GetRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasKey;
+    private string key_ = "";
+    public bool HasKey {
+      get { return hasKey; }
+    }
+    public string Key {
+      get { return key_; }
+    }
+    
+    private bool hasSegment;
+    private int segment_ = 0;
+    public bool HasSegment {
+      get { return hasSegment; }
+    }
+    public int Segment {
+      get { return segment_; }
+    }
+    
+    private bool hasSpecificVersion;
+    private global::Rhino.DistributedHashTable.Protocol.ValueVersion specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+    public bool HasSpecificVersion {
+      get { return hasSpecificVersion; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
+      get { return specificVersion_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasKey) return false;
+        if (!hasSegment) return false;
+        if (HasSpecificVersion) {
+          if (!SpecificVersion.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasKey) {
+        output.WriteString(1, Key);
+      }
+      if (HasSegment) {
+        output.WriteInt32(2, Segment);
+      }
+      if (HasSpecificVersion) {
+        output.WriteMessage(3, SpecificVersion);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasKey) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
+        }
+        if (HasSegment) {
+          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
+        }
+        if (HasSpecificVersion) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, SpecificVersion);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<GetRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      GetRequestMessage result = new GetRequestMessage();
+      
+      protected override GetRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new GetRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return GetRequestMessage.Descriptor; }
+      }
+      
+      public override GetRequestMessage DefaultInstanceForType {
+        get { return GetRequestMessage.DefaultInstance; }
+      }
+      
+      public override GetRequestMessage BuildPartial() {
+        GetRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetRequestMessage) {
+          return MergeFrom((GetRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetRequestMessage other) {
+        if (other == GetRequestMessage.DefaultInstance) return this;
+        if (other.HasKey) {
+          Key = other.Key;
+        }
+        if (other.HasSegment) {
+          Segment = other.Segment;
+        }
+        if (other.HasSpecificVersion) {
+          MergeSpecificVersion(other.SpecificVersion);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              Key = input.ReadString();
+              break;
+            }
+            case 16: {
+              Segment = input.ReadInt32();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
+              if (HasSpecificVersion) {
+                subBuilder.MergeFrom(SpecificVersion);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              SpecificVersion = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasKey {
+        get { return result.HasKey; }
+      }
+      public string Key {
+        get { return result.Key; }
+        set { SetKey(value); }
+      }
+      public Builder SetKey(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasKey = true;
+        result.key_ = value;
+        return this;
+      }
+      public Builder ClearKey() {
+        result.hasKey = false;
+        result.key_ = "";
+        return this;
+      }
+      
+      public bool HasSegment {
+        get { return result.HasSegment; }
+      }
+      public int Segment {
+        get { return result.Segment; }
+        set { SetSegment(value); }
+      }
+      public Builder SetSegment(int value) {
+        result.hasSegment = true;
+        result.segment_ = value;
+        return this;
+      }
+      public Builder ClearSegment() {
+        result.hasSegment = false;
+        result.segment_ = 0;
+        return this;
+      }
+      
+      public bool HasSpecificVersion {
+       get { return result.HasSpecificVersion; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
+        get { return result.SpecificVersion; }
+        set { SetSpecificVersion(value); }
+      }
+      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasSpecificVersion = true;
+        result.specificVersion_ = value;
+        return this;
+      }
+      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasSpecificVersion = true;
+        result.specificVersion_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasSpecificVersion &&
+            result.specificVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
+            result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.specificVersion_).MergeFrom(value).BuildPartial();
+        } else {
+          result.specificVersion_ = value;
+        }
+        result.hasSpecificVersion = true;
+        return this;
+      }
+      public Builder ClearSpecificVersion() {
+        result.hasSpecificVersion = false;
+        result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class GetResponseMessage : pb::GeneratedMessage<GetResponseMessage, GetResponseMessage.Builder> {
+    private static readonly GetResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static GetResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override GetResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override GetResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<GetResponseMessage, GetResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_GetResponseMessage__FieldAccessorTable; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Value> values_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.Value>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.Value> ValuesList {
+      get { return values_; }
+    }
+    public int ValuesCount {
+      get { return values_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.Value GetValues(int index) {
+      return values_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
+        output.WriteMessage(1, element);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        foreach (global::Rhino.DistributedHashTable.Protocol.Value element in ValuesList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static GetResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static GetResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(GetResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<GetResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      GetResponseMessage result = new GetResponseMessage();
+      
+      protected override GetResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new GetResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return GetResponseMessage.Descriptor; }
+      }
+      
+      public override GetResponseMessage DefaultInstanceForType {
+        get { return GetResponseMessage.DefaultInstance; }
+      }
+      
+      public override GetResponseMessage BuildPartial() {
+        result.values_.MakeReadOnly();
+        GetResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is GetResponseMessage) {
+          return MergeFrom((GetResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(GetResponseMessage other) {
+        if (other == GetResponseMessage.DefaultInstance) return this;
+        if (other.values_.Count != 0) {
+          base.AddRange(other.values_, result.values_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.Value.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Value.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddValues(subBuilder.BuildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.Value> ValuesList {
+        get { return result.values_; }
+      }
+      public int ValuesCount {
+        get { return result.ValuesCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.Value GetValues(int index) {
+        return result.GetValues(index);
+      }
+      public Builder SetValues(int index, global::Rhino.DistributedHashTable.Protocol.Value value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.values_[index] = value;
+        return this;
+      }
+      public Builder SetValues(int index, global::Rhino.DistributedHashTable.Protocol.Value.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.values_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddValues(global::Rhino.DistributedHashTable.Protocol.Value value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.values_.Add(value);
+        return this;
+      }
+      public Builder AddValues(global::Rhino.DistributedHashTable.Protocol.Value.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.values_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeValues(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.Value> values) {
+        base.AddRange(values, result.values_);
+        return this;
+      }
+      public Builder ClearValues() {
+        result.values_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class RemoveRequestMessage : pb::GeneratedMessage<RemoveRequestMessage, RemoveRequestMessage.Builder> {
+    private static readonly RemoveRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static RemoveRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override RemoveRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override RemoveRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<RemoveRequestMessage, RemoveRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasKey;
+    private string key_ = "";
+    public bool HasKey {
+      get { return hasKey; }
+    }
+    public string Key {
+      get { return key_; }
+    }
+    
+    private bool hasSegment;
+    private int segment_ = 0;
+    public bool HasSegment {
+      get { return hasSegment; }
+    }
+    public int Segment {
+      get { return segment_; }
+    }
+    
+    private bool hasIsReplicationRequest;
+    private bool isReplicationRequest_ = false;
+    public bool HasIsReplicationRequest {
+      get { return hasIsReplicationRequest; }
+    }
+    public bool IsReplicationRequest {
+      get { return isReplicationRequest_; }
+    }
+    
+    private bool hasSpecificVersion;
+    private global::Rhino.DistributedHashTable.Protocol.ValueVersion specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+    public bool HasSpecificVersion {
+      get { return hasSpecificVersion; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
+      get { return specificVersion_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasKey) return false;
+        if (!hasSegment) return false;
+        if (!hasIsReplicationRequest) return false;
+        if (HasSpecificVersion) {
+          if (!SpecificVersion.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasKey) {
+        output.WriteString(1, Key);
+      }
+      if (HasSegment) {
+        output.WriteInt32(2, Segment);
+      }
+      if (HasSpecificVersion) {
+        output.WriteMessage(3, SpecificVersion);
+      }
+      if (HasIsReplicationRequest) {
+        output.WriteBool(4, IsReplicationRequest);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasKey) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
+        }
+        if (HasSegment) {
+          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
+        }
+        if (HasIsReplicationRequest) {
+          size += pb::CodedOutputStream.ComputeBoolSize(4, IsReplicationRequest);
+        }
+        if (HasSpecificVersion) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, SpecificVersion);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static RemoveRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RemoveRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(RemoveRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<RemoveRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      RemoveRequestMessage result = new RemoveRequestMessage();
+      
+      protected override RemoveRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new RemoveRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return RemoveRequestMessage.Descriptor; }
+      }
+      
+      public override RemoveRequestMessage DefaultInstanceForType {
+        get { return RemoveRequestMessage.DefaultInstance; }
+      }
+      
+      public override RemoveRequestMessage BuildPartial() {
+        RemoveRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is RemoveRequestMessage) {
+          return MergeFrom((RemoveRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(RemoveRequestMessage other) {
+        if (other == RemoveRequestMessage.DefaultInstance) return this;
+        if (other.HasKey) {
+          Key = other.Key;
+        }
+        if (other.HasSegment) {
+          Segment = other.Segment;
+        }
+        if (other.HasIsReplicationRequest) {
+          IsReplicationRequest = other.IsReplicationRequest;
+        }
+        if (other.HasSpecificVersion) {
+          MergeSpecificVersion(other.SpecificVersion);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              Key = input.ReadString();
+              break;
+            }
+            case 16: {
+              Segment = input.ReadInt32();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
+              if (HasSpecificVersion) {
+                subBuilder.MergeFrom(SpecificVersion);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              SpecificVersion = subBuilder.BuildPartial();
+              break;
+            }
+            case 32: {
+              IsReplicationRequest = input.ReadBool();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasKey {
+        get { return result.HasKey; }
+      }
+      public string Key {
+        get { return result.Key; }
+        set { SetKey(value); }
+      }
+      public Builder SetKey(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasKey = true;
+        result.key_ = value;
+        return this;
+      }
+      public Builder ClearKey() {
+        result.hasKey = false;
+        result.key_ = "";
+        return this;
+      }
+      
+      public bool HasSegment {
+        get { return result.HasSegment; }
+      }
+      public int Segment {
+        get { return result.Segment; }
+        set { SetSegment(value); }
+      }
+      public Builder SetSegment(int value) {
+        result.hasSegment = true;
+        result.segment_ = value;
+        return this;
+      }
+      public Builder ClearSegment() {
+        result.hasSegment = false;
+        result.segment_ = 0;
+        return this;
+      }
+      
+      public bool HasIsReplicationRequest {
+        get { return result.HasIsReplicationRequest; }
+      }
+      public bool IsReplicationRequest {
+        get { return result.IsReplicationRequest; }
+        set { SetIsReplicationRequest(value); }
+      }
+      public Builder SetIsReplicationRequest(bool value) {
+        result.hasIsReplicationRequest = true;
+        result.isReplicationRequest_ = value;
+        return this;
+      }
+      public Builder ClearIsReplicationRequest() {
+        result.hasIsReplicationRequest = false;
+        result.isReplicationRequest_ = false;
+        return this;
+      }
+      
+      public bool HasSpecificVersion {
+       get { return result.HasSpecificVersion; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ValueVersion SpecificVersion {
+        get { return result.SpecificVersion; }
+        set { SetSpecificVersion(value); }
+      }
+      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasSpecificVersion = true;
+        result.specificVersion_ = value;
+        return this;
+      }
+      public Builder SetSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasSpecificVersion = true;
+        result.specificVersion_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeSpecificVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasSpecificVersion &&
+            result.specificVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
+            result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.specificVersion_).MergeFrom(value).BuildPartial();
+        } else {
+          result.specificVersion_ = value;
+        }
+        result.hasSpecificVersion = true;
+        return this;
+      }
+      public Builder ClearSpecificVersion() {
+        result.hasSpecificVersion = false;
+        result.specificVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class PutRequestMessage : pb::GeneratedMessage<PutRequestMessage, PutRequestMessage.Builder> {
+    private static readonly PutRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static PutRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override PutRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override PutRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<PutRequestMessage, PutRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasKey;
+    private string key_ = "";
+    public bool HasKey {
+      get { return hasKey; }
+    }
+    public string Key {
+      get { return key_; }
+    }
+    
+    private bool hasSegment;
+    private int segment_ = 0;
+    public bool HasSegment {
+      get { return hasSegment; }
+    }
+    public int Segment {
+      get { return segment_; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> parentVersions_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> ParentVersionsList {
+      get { return parentVersions_; }
+    }
+    public int ParentVersionsCount {
+      get { return parentVersions_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ValueVersion GetParentVersions(int index) {
+      return parentVersions_[index];
+    }
+    
+    private bool hasOptimisticConcurrency;
+    private bool optimisticConcurrency_ = false;
+    public bool HasOptimisticConcurrency {
+      get { return hasOptimisticConcurrency; }
+    }
+    public bool OptimisticConcurrency {
+      get { return optimisticConcurrency_; }
+    }
+    
+    private bool hasIsReadOnly;
+    private bool isReadOnly_ = false;
+    public bool HasIsReadOnly {
+      get { return hasIsReadOnly; }
+    }
+    public bool IsReadOnly {
+      get { return isReadOnly_; }
+    }
+    
+    private bool hasBytes;
+    private pb::ByteString bytes_ = pb::ByteString.Empty;
+    public bool HasBytes {
+      get { return hasBytes; }
+    }
+    public pb::ByteString Bytes {
+      get { return bytes_; }
+    }
+    
+    private bool hasIsReplicationRequest;
+    private bool isReplicationRequest_ = false;
+    public bool HasIsReplicationRequest {
+      get { return hasIsReplicationRequest; }
+    }
+    public bool IsReplicationRequest {
+      get { return isReplicationRequest_; }
+    }
+    
+    private bool hasReplicationVersion;
+    private global::Rhino.DistributedHashTable.Protocol.ValueVersion replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+    public bool HasReplicationVersion {
+      get { return hasReplicationVersion; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ValueVersion ReplicationVersion {
+      get { return replicationVersion_; }
+    }
+    
+    private bool hasExpiresAtAsDouble;
+    private double? expiresAtAsDouble_ = 0D;
+    public bool HasExpiresAtAsDouble {
+      get { return hasExpiresAtAsDouble && expiresAtAsDouble_.HasValue; }
+    }
+    public double? ExpiresAtAsDouble {
+      get { return expiresAtAsDouble_; }
+    }
+    
+    private bool hasReplicationTimeStampAsDouble;
+    private double? replicationTimeStampAsDouble_ = 0D;
+    public bool HasReplicationTimeStampAsDouble {
+      get { return hasReplicationTimeStampAsDouble && replicationTimeStampAsDouble_.HasValue; }
+    }
+    public double? ReplicationTimeStampAsDouble {
+      get { return replicationTimeStampAsDouble_; }
+    }
+    
+    private bool hasTag;
+    private int? tag_ = 0;
+    public bool HasTag {
+      get { return hasTag && tag_.HasValue; }
+    }
+    public int? Tag {
+      get { return tag_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasKey) return false;
+        if (!hasSegment) return false;
+        if (!hasOptimisticConcurrency) return false;
+        if (!hasIsReadOnly) return false;
+        if (!hasBytes) return false;
+        if (!hasIsReplicationRequest) return false;
+        foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
+          if (!element.IsInitialized) return false;
+        }
+        if (HasReplicationVersion) {
+          if (!ReplicationVersion.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasKey) {
+        output.WriteString(1, Key);
+      }
+      if (HasSegment) {
+        output.WriteInt32(2, Segment);
+      }
+      foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
+        output.WriteMessage(3, element);
+      }
+      if (HasOptimisticConcurrency) {
+        output.WriteBool(4, OptimisticConcurrency);
+      }
+      if (HasIsReadOnly) {
+        output.WriteBool(5, IsReadOnly);
+      }
+      if (HasBytes) {
+        output.WriteBytes(6, Bytes);
+      }
+      if (HasReplicationVersion) {
+        output.WriteMessage(7, ReplicationVersion);
+      }
+      if (HasExpiresAtAsDouble) {
+        output.WriteDouble(8, ExpiresAtAsDouble.Value);
+      }
+      if (HasReplicationTimeStampAsDouble) {
+        output.WriteDouble(9, ReplicationTimeStampAsDouble.Value);
+      }
+      if (HasTag) {
+        output.WriteInt32(10, Tag.Value);
+      }
+      if (HasIsReplicationRequest) {
+        output.WriteBool(11, IsReplicationRequest);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasKey) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Key);
+        }
+        if (HasSegment) {
+          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.ValueVersion element in ParentVersionsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+        }
+        if (HasOptimisticConcurrency) {
+          size += pb::CodedOutputStream.ComputeBoolSize(4, OptimisticConcurrency);
+        }
+        if (HasIsReadOnly) {
+          size += pb::CodedOutputStream.ComputeBoolSize(5, IsReadOnly);
+        }
+        if (HasBytes) {
+          size += pb::CodedOutputStream.ComputeBytesSize(6, Bytes);
+        }
+        if (HasIsReplicationRequest) {
+          size += pb::CodedOutputStream.ComputeBoolSize(11, IsReplicationRequest);
+        }
+        if (HasReplicationVersion) {
+          size += pb::CodedOutputStream.ComputeMessageSize(7, ReplicationVersion);
+        }
+        if (HasExpiresAtAsDouble) {
+          size += pb::CodedOutputStream.ComputeDoubleSize(8, ExpiresAtAsDouble.Value);
+        }
+        if (HasReplicationTimeStampAsDouble) {
+          size += pb::CodedOutputStream.ComputeDoubleSize(9, ReplicationTimeStampAsDouble.Value);
+        }
+        if (HasTag) {
+          size += pb::CodedOutputStream.ComputeInt32Size(10, Tag.Value);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static PutRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PutRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(PutRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<PutRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      PutRequestMessage result = new PutRequestMessage();
+      
+      protected override PutRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new PutRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return PutRequestMessage.Descriptor; }
+      }
+      
+      public override PutRequestMessage DefaultInstanceForType {
+        get { return PutRequestMessage.DefaultInstance; }
+      }
+      
+      public override PutRequestMessage BuildPartial() {
+        result.parentVersions_.MakeReadOnly();
+        PutRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is PutRequestMessage) {
+          return MergeFrom((PutRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(PutRequestMessage other) {
+        if (other == PutRequestMessage.DefaultInstance) return this;
+        if (other.HasKey) {
+          Key = other.Key;
+        }
+        if (other.HasSegment) {
+          Segment = other.Segment;
+        }
+        if (other.parentVersions_.Count != 0) {
+          base.AddRange(other.parentVersions_, result.parentVersions_);
+        }
+        if (other.HasOptimisticConcurrency) {
+          OptimisticConcurrency = other.OptimisticConcurrency;
+        }
+        if (other.HasIsReadOnly) {
+          IsReadOnly = other.IsReadOnly;
+        }
+        if (other.HasBytes) {
+          Bytes = other.Bytes;
+        }
+        if (other.HasIsReplicationRequest) {
+          IsReplicationRequest = other.IsReplicationRequest;
+        }
+        if (other.HasReplicationVersion) {
+          MergeReplicationVersion(other.ReplicationVersion);
+        }
+        if (other.HasExpiresAtAsDouble) {
+          ExpiresAtAsDouble = other.ExpiresAtAsDouble;
+        }
+        if (other.HasReplicationTimeStampAsDouble) {
+          ReplicationTimeStampAsDouble = other.ReplicationTimeStampAsDouble;
+        }
+        if (other.HasTag) {
+          Tag = other.Tag;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              Key = input.ReadString();
+              break;
+            }
+            case 16: {
+              Segment = input.ReadInt32();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddParentVersions(subBuilder.BuildPartial());
+              break;
+            }
+            case 32: {
+              OptimisticConcurrency = input.ReadBool();
+              break;
+            }
+            case 40: {
+              IsReadOnly = input.ReadBool();
+              break;
+            }
+            case 50: {
+              Bytes = input.ReadBytes();
+              break;
+            }
+            case 58: {
+              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
+              if (HasReplicationVersion) {
+                subBuilder.MergeFrom(ReplicationVersion);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplicationVersion = subBuilder.BuildPartial();
+              break;
+            }
+            case 65: {
+              ExpiresAtAsDouble = input.ReadDouble();
+              break;
+            }
+            case 73: {
+              ReplicationTimeStampAsDouble = input.ReadDouble();
+              break;
+            }
+            case 80: {
+              Tag = input.ReadInt32();
+              break;
+            }
+            case 88: {
+              IsReplicationRequest = input.ReadBool();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasKey {
+        get { return result.HasKey; }
+      }
+      public string Key {
+        get { return result.Key; }
+        set { SetKey(value); }
+      }
+      public Builder SetKey(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasKey = true;
+        result.key_ = value;
+        return this;
+      }
+      public Builder ClearKey() {
+        result.hasKey = false;
+        result.key_ = "";
+        return this;
+      }
+      
+      public bool HasSegment {
+        get { return result.HasSegment; }
+      }
+      public int Segment {
+        get { return result.Segment; }
+        set { SetSegment(value); }
+      }
+      public Builder SetSegment(int value) {
+        result.hasSegment = true;
+        result.segment_ = value;
+        return this;
+      }
+      public Builder ClearSegment() {
+        result.hasSegment = false;
+        result.segment_ = 0;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.ValueVersion> ParentVersionsList {
+        get { return result.parentVersions_; }
+      }
+      public int ParentVersionsCount {
+        get { return result.ParentVersionsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ValueVersion GetParentVersions(int index) {
+        return result.GetParentVersions(index);
+      }
+      public Builder SetParentVersions(int index, global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.parentVersions_[index] = value;
+        return this;
+      }
+      public Builder SetParentVersions(int index, global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.parentVersions_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddParentVersions(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.parentVersions_.Add(value);
+        return this;
+      }
+      public Builder AddParentVersions(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.parentVersions_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeParentVersions(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.ValueVersion> values) {
+        base.AddRange(values, result.parentVersions_);
+        return this;
+      }
+      public Builder ClearParentVersions() {
+        result.parentVersions_.Clear();
+        return this;
+      }
+      
+      public bool HasOptimisticConcurrency {
+        get { return result.HasOptimisticConcurrency; }
+      }
+      public bool OptimisticConcurrency {
+        get { return result.OptimisticConcurrency; }
+        set { SetOptimisticConcurrency(value); }
+      }
+      public Builder SetOptimisticConcurrency(bool value) {
+        result.hasOptimisticConcurrency = true;
+        result.optimisticConcurrency_ = value;
+        return this;
+      }
+      public Builder ClearOptimisticConcurrency() {
+        result.hasOptimisticConcurrency = false;
+        result.optimisticConcurrency_ = false;
+        return this;
+      }
+      
+      public bool HasIsReadOnly {
+        get { return result.HasIsReadOnly; }
+      }
+      public bool IsReadOnly {
+        get { return result.IsReadOnly; }
+        set { SetIsReadOnly(value); }
+      }
+      public Builder SetIsReadOnly(bool value) {
+        result.hasIsReadOnly = true;
+        result.isReadOnly_ = value;
+        return this;
+      }
+      public Builder ClearIsReadOnly() {
+        result.hasIsReadOnly = false;
+        result.isReadOnly_ = false;
+        return this;
+      }
+      
+      public bool HasBytes {
+        get { return result.HasBytes; }
+      }
+      public pb::ByteString Bytes {
+        get { return result.Bytes; }
+        set { SetBytes(value); }
+      }
+      public Builder SetBytes(pb::ByteString value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasBytes = true;
+        result.bytes_ = value;
+        return this;
+      }
+      public Builder ClearBytes() {
+        result.hasBytes = false;
+        result.bytes_ = pb::ByteString.Empty;
+        return this;
+      }
+      
+      public bool HasIsReplicationRequest {
+        get { return result.HasIsReplicationRequest; }
+      }
+      public bool IsReplicationRequest {
+        get { return result.IsReplicationRequest; }
+        set { SetIsReplicationRequest(value); }
+      }
+      public Builder SetIsReplicationRequest(bool value) {
+        result.hasIsReplicationRequest = true;
+        result.isReplicationRequest_ = value;
+        return this;
+      }
+      public Builder ClearIsReplicationRequest() {
+        result.hasIsReplicationRequest = false;
+        result.isReplicationRequest_ = false;
+        return this;
+      }
+      
+      public bool HasReplicationVersion {
+       get { return result.HasReplicationVersion; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ValueVersion ReplicationVersion {
+        get { return result.ReplicationVersion; }
+        set { SetReplicationVersion(value); }
+      }
+      public Builder SetReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasReplicationVersion = true;
+        result.replicationVersion_ = value;
+        return this;
+      }
+      public Builder SetReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasReplicationVersion = true;
+        result.replicationVersion_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplicationVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasReplicationVersion &&
+            result.replicationVersion_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
+            result.replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.replicationVersion_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replicationVersion_ = value;
+        }
+        result.hasReplicationVersion = true;
+        return this;
+      }
+      public Builder ClearReplicationVersion() {
+        result.hasReplicationVersion = false;
+        result.replicationVersion_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasExpiresAtAsDouble {
+        get { return result.HasExpiresAtAsDouble; }
+      }
+      public double? ExpiresAtAsDouble {
+        get { return result.ExpiresAtAsDouble; }
+        set { SetExpiresAtAsDouble(value); }
+      }
+      public Builder SetExpiresAtAsDouble(double? value) {
+        result.hasExpiresAtAsDouble = true;
+        result.expiresAtAsDouble_ = value;
+        return this;
+      }
+      public Builder ClearExpiresAtAsDouble() {
+        result.hasExpiresAtAsDouble = false;
+        result.expiresAtAsDouble_ = 0D;
+        return this;
+      }
+      
+      public bool HasReplicationTimeStampAsDouble {
+        get { return result.HasReplicationTimeStampAsDouble; }
+      }
+      public double? ReplicationTimeStampAsDouble {
+        get { return result.ReplicationTimeStampAsDouble; }
+        set { SetReplicationTimeStampAsDouble(value); }
+      }
+      public Builder SetReplicationTimeStampAsDouble(double? value) {
+        result.hasReplicationTimeStampAsDouble = true;
+        result.replicationTimeStampAsDouble_ = value;
+        return this;
+      }
+      public Builder ClearReplicationTimeStampAsDouble() {
+        result.hasReplicationTimeStampAsDouble = false;
+        result.replicationTimeStampAsDouble_ = 0D;
+        return this;
+      }
+      
+      public bool HasTag {
+        get { return result.HasTag; }
+      }
+      public int? Tag {
+        get { return result.Tag; }
+        set { SetTag(value); }
+      }
+      public Builder SetTag(int? value) {
+        result.hasTag = true;
+        result.tag_ = value;
+        return this;
+      }
+      public Builder ClearTag() {
+        result.hasTag = false;
+        result.tag_ = 0;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class PutResponseMessage : pb::GeneratedMessage<PutResponseMessage, PutResponseMessage.Builder> {
+    private static readonly PutResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static PutResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override PutResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override PutResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<PutResponseMessage, PutResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_PutResponseMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasVersion;
+    private global::Rhino.DistributedHashTable.Protocol.ValueVersion version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+    public bool HasVersion {
+      get { return hasVersion; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ValueVersion Version {
+      get { return version_; }
+    }
+    
+    private bool hasConflictExists;
+    private bool conflictExists_ = false;
+    public bool HasConflictExists {
+      get { return hasConflictExists; }
+    }
+    public bool ConflictExists {
+      get { return conflictExists_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasVersion) return false;
+        if (!hasConflictExists) return false;
+        if (!Version.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasVersion) {
+        output.WriteMessage(1, Version);
+      }
+      if (HasConflictExists) {
+        output.WriteBool(2, ConflictExists);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasVersion) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Version);
+        }
+        if (HasConflictExists) {
+          size += pb::CodedOutputStream.ComputeBoolSize(2, ConflictExists);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static PutResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static PutResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(PutResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<PutResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      PutResponseMessage result = new PutResponseMessage();
+      
+      protected override PutResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new PutResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return PutResponseMessage.Descriptor; }
+      }
+      
+      public override PutResponseMessage DefaultInstanceForType {
+        get { return PutResponseMessage.DefaultInstance; }
+      }
+      
+      public override PutResponseMessage BuildPartial() {
+        PutResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is PutResponseMessage) {
+          return MergeFrom((PutResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(PutResponseMessage other) {
+        if (other == PutResponseMessage.DefaultInstance) return this;
+        if (other.HasVersion) {
+          MergeVersion(other.Version);
+        }
+        if (other.HasConflictExists) {
+          ConflictExists = other.ConflictExists;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder();
+              if (HasVersion) {
+                subBuilder.MergeFrom(Version);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Version = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              ConflictExists = input.ReadBool();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasVersion {
+       get { return result.HasVersion; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ValueVersion Version {
+        get { return result.Version; }
+        set { SetVersion(value); }
+      }
+      public Builder SetVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasVersion = true;
+        result.version_ = value;
+        return this;
+      }
+      public Builder SetVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasVersion = true;
+        result.version_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeVersion(global::Rhino.DistributedHashTable.Protocol.ValueVersion value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasVersion &&
+            result.version_ != global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance) {
+            result.version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.CreateBuilder(result.version_).MergeFrom(value).BuildPartial();
+        } else {
+          result.version_ = value;
+        }
+        result.hasVersion = true;
+        return this;
+      }
+      public Builder ClearVersion() {
+        result.hasVersion = false;
+        result.version_ = global::Rhino.DistributedHashTable.Protocol.ValueVersion.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasConflictExists {
+        get { return result.HasConflictExists; }
+      }
+      public bool ConflictExists {
+        get { return result.ConflictExists; }
+        set { SetConflictExists(value); }
+      }
+      public Builder SetConflictExists(bool value) {
+        result.hasConflictExists = true;
+        result.conflictExists_ = value;
+        return this;
+      }
+      public Builder ClearConflictExists() {
+        result.hasConflictExists = false;
+        result.conflictExists_ = false;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class RemoveResponseMessage : pb::GeneratedMessage<RemoveResponseMessage, RemoveResponseMessage.Builder> {
+    private static readonly RemoveResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static RemoveResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override RemoveResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override RemoveResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<RemoveResponseMessage, RemoveResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_RemoveResponseMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasWasRemoved;
+    private bool wasRemoved_ = false;
+    public bool HasWasRemoved {
+      get { return hasWasRemoved; }
+    }
+    public bool WasRemoved {
+      get { return wasRemoved_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasWasRemoved) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasWasRemoved) {
+        output.WriteBool(1, WasRemoved);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasWasRemoved) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, WasRemoved);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static RemoveResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static RemoveResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(RemoveResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<RemoveResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      RemoveResponseMessage result = new RemoveResponseMessage();
+      
+      protected override RemoveResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new RemoveResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return RemoveResponseMessage.Descriptor; }
+      }
+      
+      public override RemoveResponseMessage DefaultInstanceForType {
+        get { return RemoveResponseMessage.DefaultInstance; }
+      }
+      
+      public override RemoveResponseMessage BuildPartial() {
+        RemoveResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is RemoveResponseMessage) {
+          return MergeFrom((RemoveResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(RemoveResponseMessage other) {
+        if (other == RemoveResponseMessage.DefaultInstance) return this;
+        if (other.HasWasRemoved) {
+          WasRemoved = other.WasRemoved;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 8: {
+              WasRemoved = input.ReadBool();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasWasRemoved {
+        get { return result.HasWasRemoved; }
+      }
+      public bool WasRemoved {
+        get { return result.WasRemoved; }
+        set { SetWasRemoved(value); }
+      }
+      public Builder SetWasRemoved(bool value) {
+        result.hasWasRemoved = true;
+        result.wasRemoved_ = value;
+        return this;
+      }
+      public Builder ClearWasRemoved() {
+        result.hasWasRemoved = false;
+        result.wasRemoved_ = false;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class ErrorMessage : pb::GeneratedMessage<ErrorMessage, ErrorMessage.Builder> {
+    private static readonly ErrorMessage defaultInstance = new Builder().BuildPartial();
+    public static ErrorMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ErrorMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override ErrorMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ErrorMessage, ErrorMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasMessage;
+    private string message_ = "";
+    public bool HasMessage {
+      get { return hasMessage; }
+    }
+    public string Message {
+      get { return message_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasMessage) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasMessage) {
+        output.WriteString(1, Message);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasMessage) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Message);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ErrorMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ErrorMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ErrorMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<ErrorMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      ErrorMessage result = new ErrorMessage();
+      
+      protected override ErrorMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new ErrorMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return ErrorMessage.Descriptor; }
+      }
+      
+      public override ErrorMessage DefaultInstanceForType {
+        get { return ErrorMessage.DefaultInstance; }
+      }
+      
+      public override ErrorMessage BuildPartial() {
+        ErrorMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ErrorMessage) {
+          return MergeFrom((ErrorMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ErrorMessage other) {
+        if (other == ErrorMessage.DefaultInstance) return this;
+        if (other.HasMessage) {
+          Message = other.Message;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              Message = input.ReadString();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasMessage {
+        get { return result.HasMessage; }
+      }
+      public string Message {
+        get { return result.Message; }
+        set { SetMessage(value); }
+      }
+      public Builder SetMessage(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasMessage = true;
+        result.message_ = value;
+        return this;
+      }
+      public Builder ClearMessage() {
+        result.hasMessage = false;
+        result.message_ = "";
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class MasterMessageUnion : pb::GeneratedMessage<MasterMessageUnion, MasterMessageUnion.Builder> {
+    private static readonly MasterMessageUnion defaultInstance = new Builder().BuildPartial();
+    public static MasterMessageUnion DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override MasterMessageUnion DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override MasterMessageUnion ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<MasterMessageUnion, MasterMessageUnion.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__FieldAccessorTable; }
+    }
+    
+    private bool hasType;
+    private global::Rhino.DistributedHashTable.Protocol.MasterMessageType type_ = global::Rhino.DistributedHashTable.Protocol.MasterMessageType.GetTopologyRequest;
+    public bool HasType {
+      get { return hasType; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.MasterMessageType Type {
+      get { return type_; }
+    }
+    
+    private bool hasJoinRequest;
+    private global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance;
+    public bool HasJoinRequest {
+      get { return hasJoinRequest; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage JoinRequest {
+      get { return joinRequest_; }
+    }
+    
+    private bool hasJoinResponse;
+    private global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance;
+    public bool HasJoinResponse {
+      get { return hasJoinResponse; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage JoinResponse {
+      get { return joinResponse_; }
+    }
+    
+    private bool hasTopology;
+    private global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance;
+    public bool HasTopology {
+      get { return hasTopology; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage Topology {
+      get { return topology_; }
+    }
+    
+    private bool hasException;
+    private global::Rhino.DistributedHashTable.Protocol.ErrorMessage exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance;
+    public bool HasException {
+      get { return hasException; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ErrorMessage Exception {
+      get { return exception_; }
+    }
+    
+    private bool hasCaughtUp;
+    private global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage caughtUp_ = global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.DefaultInstance;
+    public bool HasCaughtUp {
+      get { return hasCaughtUp; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage CaughtUp {
+      get { return caughtUp_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasType) return false;
+        if (HasJoinRequest) {
+          if (!JoinRequest.IsInitialized) return false;
+        }
+        if (HasJoinResponse) {
+          if (!JoinResponse.IsInitialized) return false;
+        }
+        if (HasTopology) {
+          if (!Topology.IsInitialized) return false;
+        }
+        if (HasException) {
+          if (!Exception.IsInitialized) return false;
+        }
+        if (HasCaughtUp) {
+          if (!CaughtUp.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasType) {
+        output.WriteEnum(1, (int) Type);
+      }
+      if (HasJoinRequest) {
+        output.WriteMessage(2, JoinRequest);
+      }
+      if (HasJoinResponse) {
+        output.WriteMessage(3, JoinResponse);
+      }
+      if (HasTopology) {
+        output.WriteMessage(4, Topology);
+      }
+      if (HasException) {
+        output.WriteMessage(5, Exception);
+      }
+      if (HasCaughtUp) {
+        output.WriteMessage(6, CaughtUp);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasType) {
+          size += pb::CodedOutputStream.ComputeEnumSize(1, (int) Type);
+        }
+        if (HasJoinRequest) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, JoinRequest);
+        }
+        if (HasJoinResponse) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, JoinResponse);
+        }
+        if (HasTopology) {
+          size += pb::CodedOutputStream.ComputeMessageSize(4, Topology);
+        }
+        if (HasException) {
+          size += pb::CodedOutputStream.ComputeMessageSize(5, Exception);
+        }
+        if (HasCaughtUp) {
+          size += pb::CodedOutputStream.ComputeMessageSize(6, CaughtUp);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static MasterMessageUnion ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MasterMessageUnion ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(MasterMessageUnion prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<MasterMessageUnion, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      MasterMessageUnion result = new MasterMessageUnion();
+      
+      protected override MasterMessageUnion MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new MasterMessageUnion();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return MasterMessageUnion.Descriptor; }
+      }
+      
+      public override MasterMessageUnion DefaultInstanceForType {
+        get { return MasterMessageUnion.DefaultInstance; }
+      }
+      
+      public override MasterMessageUnion BuildPartial() {
+        MasterMessageUnion returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is MasterMessageUnion) {
+          return MergeFrom((MasterMessageUnion) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(MasterMessageUnion other) {
+        if (other == MasterMessageUnion.DefaultInstance) return this;
+        if (other.HasType) {
+          Type = other.Type;
+        }
+        if (other.HasJoinRequest) {
+          MergeJoinRequest(other.JoinRequest);
+        }
+        if (other.HasJoinResponse) {
+          MergeJoinResponse(other.JoinResponse);
+        }
+        if (other.HasTopology) {
+          MergeTopology(other.Topology);
+        }
+        if (other.HasException) {
+          MergeException(other.Exception);
+        }
+        if (other.HasCaughtUp) {
+          MergeCaughtUp(other.CaughtUp);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 8: {
+              int rawValue = input.ReadEnum();
+              if (!global::System.Enum.IsDefined(typeof(global::Rhino.DistributedHashTable.Protocol.MasterMessageType), rawValue)) {
+                if (unknownFields == null) {
+                  unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+                }
+                unknownFields.MergeVarintField(1, (ulong) rawValue);
+              } else {
+                Type = (global::Rhino.DistributedHashTable.Protocol.MasterMessageType) rawValue;
+              }
+              break;
+            }
+            case 18: {
+              global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.CreateBuilder();
+              if (HasJoinRequest) {
+                subBuilder.MergeFrom(JoinRequest);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              JoinRequest = subBuilder.BuildPartial();
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.CreateBuilder();
+              if (HasJoinResponse) {
+                subBuilder.MergeFrom(JoinResponse);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              JoinResponse = subBuilder.BuildPartial();
+              break;
+            }
+            case 34: {
+              global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.CreateBuilder();
+              if (HasTopology) {
+                subBuilder.MergeFrom(Topology);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Topology = subBuilder.BuildPartial();
+              break;
+            }
+            case 42: {
+              global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.CreateBuilder();
+              if (HasException) {
+                subBuilder.MergeFrom(Exception);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Exception = subBuilder.BuildPartial();
+              break;
+            }
+            case 50: {
+              global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.CreateBuilder();
+              if (HasCaughtUp) {
+                subBuilder.MergeFrom(CaughtUp);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              CaughtUp = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasType {
+       get { return result.HasType; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.MasterMessageType Type {
+        get { return result.Type; }
+        set { SetType(value); }
+      }
+      public Builder SetType(global::Rhino.DistributedHashTable.Protocol.MasterMessageType value) {
+        result.hasType = true;
+        result.type_ = value;
+        return this;
+      }
+      public Builder ClearType() {
+        result.hasType = false;
+        result.type_ = global::Rhino.DistributedHashTable.Protocol.MasterMessageType.GetTopologyRequest;
+        return this;
+      }
+      
+      public bool HasJoinRequest {
+       get { return result.HasJoinRequest; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage JoinRequest {
+        get { return result.JoinRequest; }
+        set { SetJoinRequest(value); }
+      }
+      public Builder SetJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasJoinRequest = true;
+        result.joinRequest_ = value;
+        return this;
+      }
+      public Builder SetJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasJoinRequest = true;
+        result.joinRequest_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeJoinRequest(global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasJoinRequest &&
+            result.joinRequest_ != global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance) {
+            result.joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.CreateBuilder(result.joinRequest_).MergeFrom(value).BuildPartial();
+        } else {
+          result.joinRequest_ = value;
+        }
+        result.hasJoinRequest = true;
+        return this;
+      }
+      public Builder ClearJoinRequest() {
+        result.hasJoinRequest = false;
+        result.joinRequest_ = global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasJoinResponse {
+       get { return result.HasJoinResponse; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage JoinResponse {
+        get { return result.JoinResponse; }
+        set { SetJoinResponse(value); }
+      }
+      public Builder SetJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasJoinResponse = true;
+        result.joinResponse_ = value;
+        return this;
+      }
+      public Builder SetJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasJoinResponse = true;
+        result.joinResponse_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeJoinResponse(global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasJoinResponse &&
+            result.joinResponse_ != global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance) {
+            result.joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.CreateBuilder(result.joinResponse_).MergeFrom(value).BuildPartial();
+        } else {
+          result.joinResponse_ = value;
+        }
+        result.hasJoinResponse = true;
+        return this;
+      }
+      public Builder ClearJoinResponse() {
+        result.hasJoinResponse = false;
+        result.joinResponse_ = global::Rhino.DistributedHashTable.Protocol.JoinResponseMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasTopology {
+       get { return result.HasTopology; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage Topology {
+        get { return result.Topology; }
+        set { SetTopology(value); }
+      }
+      public Builder SetTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasTopology = true;
+        result.topology_ = value;
+        return this;
+      }
+      public Builder SetTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasTopology = true;
+        result.topology_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeTopology(global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasTopology &&
+            result.topology_ != global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance) {
+            result.topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.CreateBuilder(result.topology_).MergeFrom(value).BuildPartial();
+        } else {
+          result.topology_ = value;
+        }
+        result.hasTopology = true;
+        return this;
+      }
+      public Builder ClearTopology() {
+        result.hasTopology = false;
+        result.topology_ = global::Rhino.DistributedHashTable.Protocol.TopologyResultMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasException {
+       get { return result.HasException; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ErrorMessage Exception {
+        get { return result.Exception; }
+        set { SetException(value); }
+      }
+      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasException = true;
+        result.exception_ = value;
+        return this;
+      }
+      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasException = true;
+        result.exception_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasException &&
+            result.exception_ != global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance) {
+            result.exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.CreateBuilder(result.exception_).MergeFrom(value).BuildPartial();
+        } else {
+          result.exception_ = value;
+        }
+        result.hasException = true;
+        return this;
+      }
+      public Builder ClearException() {
+        result.hasException = false;
+        result.exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasCaughtUp {
+       get { return result.HasCaughtUp; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage CaughtUp {
+        get { return result.CaughtUp; }
+        set { SetCaughtUp(value); }
+      }
+      public Builder SetCaughtUp(global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasCaughtUp = true;
+        result.caughtUp_ = value;
+        return this;
+      }
+      public Builder SetCaughtUp(global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasCaughtUp = true;
+        result.caughtUp_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeCaughtUp(global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasCaughtUp &&
+            result.caughtUp_ != global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.DefaultInstance) {
+            result.caughtUp_ = global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.CreateBuilder(result.caughtUp_).MergeFrom(value).BuildPartial();
+        } else {
+          result.caughtUp_ = value;
+        }
+        result.hasCaughtUp = true;
+        return this;
+      }
+      public Builder ClearCaughtUp() {
+        result.hasCaughtUp = false;
+        result.caughtUp_ = global::Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage.DefaultInstance;
+        return this;
+      }
+    }
+  }
+  
   public sealed partial class StorageMessageUnion : pb::GeneratedMessage<StorageMessageUnion, StorageMessageUnion.Builder> {
     private static readonly StorageMessageUnion defaultInstance = new Builder().BuildPartial();
     public static StorageMessageUnion DefaultInstance {
@@ -5215,78 +5581,78 @@ namespace Rhino.DistributedHashTable.Protocol {
       get { return topologyVersion_; }
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequest> getRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequest>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.GetRequest> GetRequestsList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage> getRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage> GetRequestsList {
       get { return getRequests_; }
     }
     public int GetRequestsCount {
       get { return getRequests_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.GetRequest GetGetRequests(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.GetRequestMessage GetGetRequests(int index) {
       return getRequests_[index];
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequest> putRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequest>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.PutRequest> PutRequestsList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> putRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> PutRequestsList {
       get { return putRequests_; }
     }
     public int PutRequestsCount {
       get { return putRequests_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.PutRequest GetPutRequests(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.PutRequestMessage GetPutRequests(int index) {
       return putRequests_[index];
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponse> putResponses_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponse>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.PutResponse> PutResponsesList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage> putResponses_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage> PutResponsesList {
       get { return putResponses_; }
     }
     public int PutResponsesCount {
       get { return putResponses_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.PutResponse GetPutResponses(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.PutResponseMessage GetPutResponses(int index) {
       return putResponses_[index];
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequest> removeRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequest>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.RemoveRequest> RemoveRequestsList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> removeRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> RemoveRequestsList {
       get { return removeRequests_; }
     }
     public int RemoveRequestsCount {
       get { return removeRequests_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.RemoveRequest GetRemoveRequests(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage GetRemoveRequests(int index) {
       return removeRequests_[index];
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponse> removeRespones_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponse>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.RemoveResponse> RemoveResponesList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage> removeRespones_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage> RemoveResponesList {
       get { return removeRespones_; }
     }
     public int RemoveResponesCount {
       get { return removeRespones_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.RemoveResponse GetRemoveRespones(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage GetRemoveRespones(int index) {
       return removeRespones_[index];
     }
     
-    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponse> getResponses_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponse>();
-    public scg::IList<global::Rhino.DistributedHashTable.Protocol.GetResponse> GetResponsesList {
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage> getResponses_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage> GetResponsesList {
       get { return getResponses_; }
     }
     public int GetResponsesCount {
       get { return getResponses_.Count; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.GetResponse GetGetResponses(int index) {
+    public global::Rhino.DistributedHashTable.Protocol.GetResponseMessage GetGetResponses(int index) {
       return getResponses_[index];
     }
     
     private bool hasException;
-    private global::Rhino.DistributedHashTable.Protocol.Error exception_ = global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance;
+    private global::Rhino.DistributedHashTable.Protocol.ErrorMessage exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance;
     public bool HasException {
       get { return hasException; }
     }
-    public global::Rhino.DistributedHashTable.Protocol.Error Exception {
+    public global::Rhino.DistributedHashTable.Protocol.ErrorMessage Exception {
       get { return exception_; }
     }
     
@@ -5294,22 +5660,22 @@ namespace Rhino.DistributedHashTable.Protocol {
       get {
         if (!hasType) return false;
         if (!hasTopologyVersion) return false;
-        foreach (global::Rhino.DistributedHashTable.Protocol.GetRequest element in GetRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
           if (!element.IsInitialized) return false;
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequest element in PutRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
           if (!element.IsInitialized) return false;
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.PutResponse element in PutResponsesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutResponseMessage element in PutResponsesList) {
           if (!element.IsInitialized) return false;
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequest element in RemoveRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
           if (!element.IsInitialized) return false;
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponse element in RemoveResponesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage element in RemoveResponesList) {
           if (!element.IsInitialized) return false;
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.GetResponse element in GetResponsesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.GetResponseMessage element in GetResponsesList) {
           if (!element.IsInitialized) return false;
         }
         if (HasException) {
@@ -5326,22 +5692,22 @@ namespace Rhino.DistributedHashTable.Protocol {
       if (HasTopologyVersion) {
         output.WriteBytes(2, TopologyVersion);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.GetRequest element in GetRequestsList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
         output.WriteMessage(3, element);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.PutRequest element in PutRequestsList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
         output.WriteMessage(4, element);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequest element in RemoveRequestsList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
         output.WriteMessage(5, element);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.GetResponse element in GetResponsesList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.GetResponseMessage element in GetResponsesList) {
         output.WriteMessage(6, element);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.PutResponse element in PutResponsesList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.PutResponseMessage element in PutResponsesList) {
         output.WriteMessage(7, element);
       }
-      foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponse element in RemoveResponesList) {
+      foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage element in RemoveResponesList) {
         output.WriteMessage(8, element);
       }
       if (HasException) {
@@ -5363,22 +5729,22 @@ namespace Rhino.DistributedHashTable.Protocol {
         if (HasTopologyVersion) {
           size += pb::CodedOutputStream.ComputeBytesSize(2, TopologyVersion);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.GetRequest element in GetRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, element);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequest element in PutRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(4, element);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.PutResponse element in PutResponsesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutResponseMessage element in PutResponsesList) {
           size += pb::CodedOutputStream.ComputeMessageSize(7, element);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequest element in RemoveRequestsList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(5, element);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponse element in RemoveResponesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage element in RemoveResponesList) {
           size += pb::CodedOutputStream.ComputeMessageSize(8, element);
         }
-        foreach (global::Rhino.DistributedHashTable.Protocol.GetResponse element in GetResponsesList) {
+        foreach (global::Rhino.DistributedHashTable.Protocol.GetResponseMessage element in GetResponsesList) {
           size += pb::CodedOutputStream.ComputeMessageSize(6, element);
         }
         if (HasException) {
@@ -5549,43 +5915,43 @@ namespace Rhino.DistributedHashTable.Protocol {
               break;
             }
             case 26: {
-              global::Rhino.DistributedHashTable.Protocol.GetRequest.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.GetRequest.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddGetRequests(subBuilder.BuildPartial());
               break;
             }
             case 34: {
-              global::Rhino.DistributedHashTable.Protocol.PutRequest.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.PutRequest.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddPutRequests(subBuilder.BuildPartial());
               break;
             }
             case 42: {
-              global::Rhino.DistributedHashTable.Protocol.RemoveRequest.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.RemoveRequest.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddRemoveRequests(subBuilder.BuildPartial());
               break;
             }
             case 50: {
-              global::Rhino.DistributedHashTable.Protocol.GetResponse.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.GetResponse.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddGetResponses(subBuilder.BuildPartial());
               break;
             }
             case 58: {
-              global::Rhino.DistributedHashTable.Protocol.PutResponse.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.PutResponse.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddPutResponses(subBuilder.BuildPartial());
               break;
             }
             case 66: {
-              global::Rhino.DistributedHashTable.Protocol.RemoveResponse.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.RemoveResponse.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddRemoveRespones(subBuilder.BuildPartial());
               break;
             }
             case 74: {
-              global::Rhino.DistributedHashTable.Protocol.Error.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.Error.CreateBuilder();
+              global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.CreateBuilder();
               if (HasException) {
                 subBuilder.MergeFrom(Exception);
               }
@@ -5635,36 +6001,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequest> GetRequestsList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage> GetRequestsList {
         get { return result.getRequests_; }
       }
       public int GetRequestsCount {
         get { return result.GetRequestsCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.GetRequest GetGetRequests(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.GetRequestMessage GetGetRequests(int index) {
         return result.GetGetRequests(index);
       }
-      public Builder SetGetRequests(int index, global::Rhino.DistributedHashTable.Protocol.GetRequest value) {
+      public Builder SetGetRequests(int index, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.getRequests_[index] = value;
         return this;
       }
-      public Builder SetGetRequests(int index, global::Rhino.DistributedHashTable.Protocol.GetRequest.Builder builderForValue) {
+      public Builder SetGetRequests(int index, global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.getRequests_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddGetRequests(global::Rhino.DistributedHashTable.Protocol.GetRequest value) {
+      public Builder AddGetRequests(global::Rhino.DistributedHashTable.Protocol.GetRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.getRequests_.Add(value);
         return this;
       }
-      public Builder AddGetRequests(global::Rhino.DistributedHashTable.Protocol.GetRequest.Builder builderForValue) {
+      public Builder AddGetRequests(global::Rhino.DistributedHashTable.Protocol.GetRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.getRequests_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeGetRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.GetRequest> values) {
+      public Builder AddRangeGetRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.GetRequestMessage> values) {
         base.AddRange(values, result.getRequests_);
         return this;
       }
@@ -5673,36 +6039,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequest> PutRequestsList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> PutRequestsList {
         get { return result.putRequests_; }
       }
       public int PutRequestsCount {
         get { return result.PutRequestsCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.PutRequest GetPutRequests(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.PutRequestMessage GetPutRequests(int index) {
         return result.GetPutRequests(index);
       }
-      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequest value) {
+      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.putRequests_[index] = value;
         return this;
       }
-      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequest.Builder builderForValue) {
+      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.putRequests_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequest value) {
+      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.putRequests_.Add(value);
         return this;
       }
-      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequest.Builder builderForValue) {
+      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.putRequests_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangePutRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.PutRequest> values) {
+      public Builder AddRangePutRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> values) {
         base.AddRange(values, result.putRequests_);
         return this;
       }
@@ -5711,36 +6077,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponse> PutResponsesList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage> PutResponsesList {
         get { return result.putResponses_; }
       }
       public int PutResponsesCount {
         get { return result.PutResponsesCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.PutResponse GetPutResponses(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.PutResponseMessage GetPutResponses(int index) {
         return result.GetPutResponses(index);
       }
-      public Builder SetPutResponses(int index, global::Rhino.DistributedHashTable.Protocol.PutResponse value) {
+      public Builder SetPutResponses(int index, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.putResponses_[index] = value;
         return this;
       }
-      public Builder SetPutResponses(int index, global::Rhino.DistributedHashTable.Protocol.PutResponse.Builder builderForValue) {
+      public Builder SetPutResponses(int index, global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.putResponses_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddPutResponses(global::Rhino.DistributedHashTable.Protocol.PutResponse value) {
+      public Builder AddPutResponses(global::Rhino.DistributedHashTable.Protocol.PutResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.putResponses_.Add(value);
         return this;
       }
-      public Builder AddPutResponses(global::Rhino.DistributedHashTable.Protocol.PutResponse.Builder builderForValue) {
+      public Builder AddPutResponses(global::Rhino.DistributedHashTable.Protocol.PutResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.putResponses_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangePutResponses(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.PutResponse> values) {
+      public Builder AddRangePutResponses(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.PutResponseMessage> values) {
         base.AddRange(values, result.putResponses_);
         return this;
       }
@@ -5749,36 +6115,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequest> RemoveRequestsList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> RemoveRequestsList {
         get { return result.removeRequests_; }
       }
       public int RemoveRequestsCount {
         get { return result.RemoveRequestsCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.RemoveRequest GetRemoveRequests(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage GetRemoveRequests(int index) {
         return result.GetRemoveRequests(index);
       }
-      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequest value) {
+      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.removeRequests_[index] = value;
         return this;
       }
-      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequest.Builder builderForValue) {
+      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.removeRequests_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequest value) {
+      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.removeRequests_.Add(value);
         return this;
       }
-      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequest.Builder builderForValue) {
+      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.removeRequests_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeRemoveRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.RemoveRequest> values) {
+      public Builder AddRangeRemoveRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> values) {
         base.AddRange(values, result.removeRequests_);
         return this;
       }
@@ -5787,36 +6153,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponse> RemoveResponesList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage> RemoveResponesList {
         get { return result.removeRespones_; }
       }
       public int RemoveResponesCount {
         get { return result.RemoveResponesCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.RemoveResponse GetRemoveRespones(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage GetRemoveRespones(int index) {
         return result.GetRemoveRespones(index);
       }
-      public Builder SetRemoveRespones(int index, global::Rhino.DistributedHashTable.Protocol.RemoveResponse value) {
+      public Builder SetRemoveRespones(int index, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.removeRespones_[index] = value;
         return this;
       }
-      public Builder SetRemoveRespones(int index, global::Rhino.DistributedHashTable.Protocol.RemoveResponse.Builder builderForValue) {
+      public Builder SetRemoveRespones(int index, global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.removeRespones_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddRemoveRespones(global::Rhino.DistributedHashTable.Protocol.RemoveResponse value) {
+      public Builder AddRemoveRespones(global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.removeRespones_.Add(value);
         return this;
       }
-      public Builder AddRemoveRespones(global::Rhino.DistributedHashTable.Protocol.RemoveResponse.Builder builderForValue) {
+      public Builder AddRemoveRespones(global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.removeRespones_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeRemoveRespones(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.RemoveResponse> values) {
+      public Builder AddRangeRemoveRespones(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.RemoveResponseMessage> values) {
         base.AddRange(values, result.removeRespones_);
         return this;
       }
@@ -5825,36 +6191,36 @@ namespace Rhino.DistributedHashTable.Protocol {
         return this;
       }
       
-      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponse> GetResponsesList {
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage> GetResponsesList {
         get { return result.getResponses_; }
       }
       public int GetResponsesCount {
         get { return result.GetResponsesCount; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.GetResponse GetGetResponses(int index) {
+      public global::Rhino.DistributedHashTable.Protocol.GetResponseMessage GetGetResponses(int index) {
         return result.GetGetResponses(index);
       }
-      public Builder SetGetResponses(int index, global::Rhino.DistributedHashTable.Protocol.GetResponse value) {
+      public Builder SetGetResponses(int index, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.getResponses_[index] = value;
         return this;
       }
-      public Builder SetGetResponses(int index, global::Rhino.DistributedHashTable.Protocol.GetResponse.Builder builderForValue) {
+      public Builder SetGetResponses(int index, global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.getResponses_[index] = builderForValue.Build();
         return this;
       }
-      public Builder AddGetResponses(global::Rhino.DistributedHashTable.Protocol.GetResponse value) {
+      public Builder AddGetResponses(global::Rhino.DistributedHashTable.Protocol.GetResponseMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.getResponses_.Add(value);
         return this;
       }
-      public Builder AddGetResponses(global::Rhino.DistributedHashTable.Protocol.GetResponse.Builder builderForValue) {
+      public Builder AddGetResponses(global::Rhino.DistributedHashTable.Protocol.GetResponseMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.getResponses_.Add(builderForValue.Build());
         return this;
       }
-      public Builder AddRangeGetResponses(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.GetResponse> values) {
+      public Builder AddRangeGetResponses(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.GetResponseMessage> values) {
         base.AddRange(values, result.getResponses_);
         return this;
       }
@@ -5866,27 +6232,27 @@ namespace Rhino.DistributedHashTable.Protocol {
       public bool HasException {
        get { return result.HasException; }
       }
-      public global::Rhino.DistributedHashTable.Protocol.Error Exception {
+      public global::Rhino.DistributedHashTable.Protocol.ErrorMessage Exception {
         get { return result.Exception; }
         set { SetException(value); }
       }
-      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.Error value) {
+      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         result.hasException = true;
         result.exception_ = value;
         return this;
       }
-      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.Error.Builder builderForValue) {
+      public Builder SetException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder builderForValue) {
         pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
         result.hasException = true;
         result.exception_ = builderForValue.Build();
         return this;
       }
-      public Builder MergeException(global::Rhino.DistributedHashTable.Protocol.Error value) {
+      public Builder MergeException(global::Rhino.DistributedHashTable.Protocol.ErrorMessage value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         if (result.HasException &&
-            result.exception_ != global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance) {
-            result.exception_ = global::Rhino.DistributedHashTable.Protocol.Error.CreateBuilder(result.exception_).MergeFrom(value).BuildPartial();
+            result.exception_ != global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance) {
+            result.exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.CreateBuilder(result.exception_).MergeFrom(value).BuildPartial();
         } else {
           result.exception_ = value;
         }
@@ -5895,7 +6261,7 @@ namespace Rhino.DistributedHashTable.Protocol {
       }
       public Builder ClearException() {
         result.hasException = false;
-        result.exception_ = global::Rhino.DistributedHashTable.Protocol.Error.DefaultInstance;
+        result.exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance;
         return this;
       }
     }

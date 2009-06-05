@@ -1,8 +1,5 @@
 using System;
-using System.Linq;
-using System.ServiceModel;
 using Rhino.DistributedHashTable.Hosting;
-using Rhino.DistributedHashTable.Internal;
 using Xunit;
 
 namespace Rhino.DistributedHashTable.IntegrationTests

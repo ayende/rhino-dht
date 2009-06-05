@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 {
-	public class OnlineSegmentReplicationCommandTest
+	public class OnlineSegmentReplicationCommandTest : EsentTestBase
 	{
 		private readonly OnlineSegmentReplicationCommand command;
 		private readonly IDistributedHashTableNode node;

@@ -16,6 +16,12 @@ namespace Rhino.DistributedHashTable.Util
 			}
 		}
 
+		public static HashSet<T> ToSet<T>(this IEnumerable<T> self)
+		{
+			return new HashSet<T>(self);
+		}
+
+
 		public static void MoveTo<T>(this ICollection<T> self, ICollection<T> other, Func<T, bool> predicate)
 		{
 			var array = self.Where(predicate).ToArray();

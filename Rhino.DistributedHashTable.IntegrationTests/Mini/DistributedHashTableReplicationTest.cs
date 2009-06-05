@@ -91,7 +91,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests.Mini
 			private readonly IDistributedHashTableNode node;
 			private readonly Guid guid;
 			private readonly IDistributedHashTableNodeReplication replication;
-			private PutResult putResult;
+			private readonly PutResult putResult;
 
 			public WhenThereAreKeysInTable()
 			{

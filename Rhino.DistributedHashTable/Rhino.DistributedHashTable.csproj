@@ -57,10 +57,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\DistributedHashTableMasterClient.cs" />
     <Compile Include="Commands\ICommand.cs" />
     <Compile Include="Commands\RearrangeBackups.cs" />
+    <Compile Include="Exceptions\RemoteNodeException.cs" />
     <Compile Include="Exceptions\SeeOtherException.cs" />
     <Compile Include="Exceptions\TopologyVersionDoesNotMatchException.cs" />
+    <Compile Include="Exceptions\UnexpectedReplyException.cs" />
     <Compile Include="Hosting\DistributedHashTableMasterHost.cs" />
     <Compile Include="Hosting\DistributedHashTableStorageHost.cs" />
     <Compile Include="Internal\BackupState.cs" />

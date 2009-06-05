@@ -57,6 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FullIntegrationTest.cs" />
+    <Compile Include="MasterOverTheNetwork.cs" />
     <Compile Include="Mini\DistributedHashTableReplicationTest.cs" />
     <Compile Include="Mini\DistributedHashTableStorageTest.cs" />
     <Compile Include="Mini\EsentTestBase.cs" />

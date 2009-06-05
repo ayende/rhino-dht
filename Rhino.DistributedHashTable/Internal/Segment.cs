@@ -16,7 +16,7 @@ namespace Rhino.DistributedHashTable.Internal
 		public int Index { get; set; }
 		public NodeEndpoint AssignedEndpoint { get; set; }
 		public NodeEndpoint InProcessOfMovingToEndpoint { get; set; }
-		public ICollection<NodeEndpoint> Backups { get; set; }
+		public HashSet<NodeEndpoint> Backups { get; set; }
 
 		public Segment()
 		{

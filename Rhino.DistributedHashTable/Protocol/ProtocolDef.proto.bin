@@ -1,47 +1,54 @@
 
-™
-ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"+
+ö
+ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
+Value
+Key (	
+TimeStampAsDouble (B
+Version (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ReadOnly (
+Data (
+
+Sha256Hash (I
+ParentVersions (21.Rhino.DistributedHashTable.Protocol.ValueVersion
+ExpiresAtAsDouble
+ (
+Tag ("+
 NodeEndpoint
 Sync (	
-Async (	"`
-JoinRequestMessageJ
-EndpointJoining (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"U
-JoinResponseMessage>
-Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"’
-Segment
-Index (
-Version (K
-AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
-InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
-Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"ƒ
-TopologyResultMessage
-TimestampAsDouble (
-Version (>
-Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"…
-MasterMessageUnionD
-Type (26.Rhino.DistributedHashTable.Protocol.MasterMessageTypeL
-JoinRequest (27.Rhino.DistributedHashTable.Protocol.JoinRequestMessageN
-JoinResponse (28.Rhino.DistributedHashTable.Protocol.JoinResponseMessageL
-Topology (2:.Rhino.DistributedHashTable.Protocol.TopologyResultMessage=
-	Exception (2*.Rhino.DistributedHashTable.Protocol.Error"v
-
-GetRequest
-Key (	
-Segment (J
-SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"I
-GetResponse:
-Values (2*.Rhino.DistributedHashTable.Protocol.Value"—
-RemoveRequest
-Key (	
-Segment (
-IsReplicationRequest (J
-SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"2
+Async (	"2
 ValueVersion
 Number (
 
-InstanceId ("ò
-
-PutRequest
+InstanceId ("’
+Segment
+Index (
+Version (K
+AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
+InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
+Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"`
+JoinRequestMessageJ
+EndpointJoining (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"U
+JoinResponseMessage>
+Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"ƒ
+TopologyResultMessage
+TimestampAsDouble (
+Version (>
+Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"w
+CaughtUpRequestMessageC
+Endpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
+CaughtUpSegments ("}
+GetRequestMessage
+Key (	
+Segment (J
+SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"P
+GetResponseMessage:
+Values (2*.Rhino.DistributedHashTable.Protocol.Value"ž
+RemoveRequestMessage
+Key (	
+Segment (
+IsReplicationRequest (J
+SpecificVersion (21.Rhino.DistributedHashTable.Protocol.ValueVersion"ù
+PutRequestMessage
 Key (	
 Segment (I
 ParentVersions (21.Rhino.DistributedHashTable.Protocol.ValueVersion
@@ -54,44 +61,32 @@ IsReadOnly (
 ExpiresAtAsDouble ($
 ReplicationTimeStampAsDouble	 (
 Tag
- ("i
-PutResponseB
+ ("p
+PutResponseMessageB
 Version (21.Rhino.DistributedHashTable.Protocol.ValueVersion
-ConflictExists ("$
-RemoveResponse
+ConflictExists ("+
+RemoveResponseMessage
 
-WasRemoved ("
-Error
-Message (	"š
-Value
-Key (	
-TimeStampAsDouble (B
-Version (21.Rhino.DistributedHashTable.Protocol.ValueVersion
-ReadOnly (
-Data (
-
-Sha256Hash (I
-ParentVersions (21.Rhino.DistributedHashTable.Protocol.ValueVersion
-ExpiresAtAsDouble
- (
-Tag ("é
+WasRemoved ("
+ErrorMessage
+Message (	"Û
+MasterMessageUnionD
+Type (26.Rhino.DistributedHashTable.Protocol.MasterMessageTypeL
+JoinRequest (27.Rhino.DistributedHashTable.Protocol.JoinRequestMessageN
+JoinResponse (28.Rhino.DistributedHashTable.Protocol.JoinResponseMessageL
+Topology (2:.Rhino.DistributedHashTable.Protocol.TopologyResultMessageD
+	Exception (21.Rhino.DistributedHashTable.Protocol.ErrorMessageM
+CaughtUp (2;.Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessage"š
 StorageMessageUnionE
 Type (27.Rhino.DistributedHashTable.Protocol.StorageMessageType
-TopologyVersion (D
-GetRequests (2/.Rhino.DistributedHashTable.Protocol.GetRequestD
-PutRequests (2/.Rhino.DistributedHashTable.Protocol.PutRequestF
-PutResponses (20.Rhino.DistributedHashTable.Protocol.PutResponseJ
-RemoveRequests (22.Rhino.DistributedHashTable.Protocol.RemoveRequestK
-RemoveRespones (23.Rhino.DistributedHashTable.Protocol.RemoveResponseF
-GetResponses (20.Rhino.DistributedHashTable.Protocol.GetResponse=
-	Exception	 (2*.Rhino.DistributedHashTable.Protocol.Error*z
-MasterMessageType
-GetTopologyRequest
-GetTopologyResult
-JoinRequest
-
-JoinResult
-MasterErrorResult*›
+TopologyVersion (K
+GetRequests (26.Rhino.DistributedHashTable.Protocol.GetRequestMessageK
+PutRequests (26.Rhino.DistributedHashTable.Protocol.PutRequestMessageM
+PutResponses (27.Rhino.DistributedHashTable.Protocol.PutResponseMessageQ
+RemoveRequests (29.Rhino.DistributedHashTable.Protocol.RemoveRequestMessageR
+RemoveRespones (2:.Rhino.DistributedHashTable.Protocol.RemoveResponseMessageM
+GetResponses (27.Rhino.DistributedHashTable.Protocol.GetResponseMessageD
+	Exception	 (21.Rhino.DistributedHashTable.Protocol.ErrorMessage*›
 StorageMessageType
 GetRequests
 PutRequests
@@ -99,4 +94,13 @@ JoinResult
 GetResponses
 PutResponses
 RemoveResponses
-StorageErrorResultBH
+StorageErrorResult*¥
+MasterMessageType
+GetTopologyRequest
+GetTopologyResult
+JoinRequest
+
+JoinResult
+MasterErrorResult
+CaughtUpRequest
+CaughtUpResponseBH

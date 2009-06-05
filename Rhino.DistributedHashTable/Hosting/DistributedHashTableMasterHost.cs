@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Net.Sockets;
 using Google.ProtocolBuffers;
 using log4net;
@@ -18,13 +19,13 @@ namespace Rhino.DistributedHashTable.Hosting
 		private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
 
 		public DistributedHashTableMasterHost()
-			: this("master", 2200)
+			: this(2200)
 		{
 		}
 
-		public DistributedHashTableMasterHost(string name,
-											  int port)
+		public DistributedHashTableMasterHost(int port)
 		{
+			listener = new TcpListener(IPAddress.Any, port);
 		}
 
 		public void Dispose()
@@ -60,14 +61,14 @@ namespace Rhino.DistributedHashTable.Hosting
 				using (client)
 				using (var stream = client.GetStream())
 				{
-						var writer = new MessageStreamWriter<MasterMessageUnion>(stream);
-					try
+					var writer = new MessageStreamWriter<MasterMessageUnion>(stream);
+					foreach (var wrapper in MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => stream))
 					{
-						foreach (var wrapper in MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => stream))
+						try
 						{
 							log.DebugFormat("Accepting message from {0} - {1}",
-							                client.Client.RemoteEndPoint,
-							                wrapper.Type);
+										client.Client.RemoteEndPoint,
+										wrapper.Type);
 							switch (wrapper.Type)
 							{
 								case MasterMessageType.GetTopologyRequest:
@@ -76,35 +77,61 @@ namespace Rhino.DistributedHashTable.Hosting
 								case MasterMessageType.JoinRequest:
 									HandleJoin(wrapper, writer);
 									break;
+								case MasterMessageType.CaughtUpRequest:
+									HandleCatchUp(wrapper, writer);
+									break;
 								default:
 									throw new ArgumentOutOfRangeException();
 							}
+							writer.Flush();
+							stream.Flush();
 						}
-						writer.Flush();
-						stream.Flush();
-					}
-					catch (Exception e)
-					{
-						log.Warn("Error performing request",e );
-						writer.Write(new MasterMessageUnion.Builder
+						catch (Exception e)
 						{
-							Type = MasterMessageType.MasterErrorResult,
-                            Exception = new Error.Builder
-                            {
-                            	Message = e.ToString()
-                            }.Build()
-						}.Build());
+							log.Warn("Error performing request", e);
+							writer.Write(new MasterMessageUnion.Builder
+							{
+								Type = MasterMessageType.MasterErrorResult,
+								Exception = new ErrorMessage.Builder
+								{
+									Message = e.ToString()
+								}.Build()
+							}.Build());
+							writer.Flush();
+							stream.Flush();
+						}
 					}
 				}
 			}
 			catch (Exception e)
 			{
-				log.Warn("Error when processing request to master, error reporting failed as well!", e);
+				log.Warn("Error when dealing with a request (or could not send error details)", e);
 			}
 			finally
 			{
-				listener.BeginAcceptTcpClient(OnAcceptTcpClient, null);
+				try
+				{
+					listener.BeginAcceptTcpClient(OnAcceptTcpClient, null);
+				}
+				catch (InvalidOperationException)
+				{
+					//the listener was closed
+				}
 			}
+		}
+
+		private void HandleCatchUp(MasterMessageUnion wrapper,
+		                           MessageStreamWriter<MasterMessageUnion> writer)
+		{
+			master.CaughtUp(new NodeEndpoint
+			{
+				Async = new Uri(wrapper.CaughtUp.Endpoint.Async),
+				Sync = new Uri(wrapper.CaughtUp.Endpoint.Sync)
+			}, wrapper.CaughtUp.CaughtUpSegmentsList.ToArray());
+			writer.Write(new MasterMessageUnion.Builder
+			{
+				Type = MasterMessageType.CaughtUpResponse
+			}.Build());
 		}
 
 		private void HandleJoin(MasterMessageUnion wrapper,
@@ -118,7 +145,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			});
 			var joinResponse = new JoinResponseMessage.Builder
 			{
-				SegmentsList = {segments.Select(x => ConvertToProtocolSegment(x))}
+				SegmentsList = { segments.Select(x => ConvertToProtocolSegment(x)) }
 			};
 			writer.Write(new MasterMessageUnion.Builder
 			{
@@ -145,25 +172,28 @@ namespace Rhino.DistributedHashTable.Hosting
 
 		private static Segment ConvertToProtocolSegment(Internal.Segment segment)
 		{
-			return new Segment.Builder
+			var builder = new Segment.Builder
 			{
 				Index = segment.Index,
-				AssignedEndpoint = new Protocol.NodeEndpoint.Builder
+				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
+			};
+			if (segment.AssignedEndpoint != null)
+			{
+				builder.AssignedEndpoint = new Protocol.NodeEndpoint.Builder
 				{
 					Async = segment.AssignedEndpoint.Async.ToString(),
 					Sync = segment.AssignedEndpoint.Sync.ToString()
-				}.Build(),
-				InProcessOfMovingToEndpoint = segment.InProcessOfMovingToEndpoint == null
-												?
-													Protocol.NodeEndpoint.DefaultInstance
-												:
-													new Protocol.NodeEndpoint.Builder
-													{
-														Async = segment.InProcessOfMovingToEndpoint.Async.ToString(),
-														Sync = segment.InProcessOfMovingToEndpoint.Sync.ToString(),
-													}.Build(),
-				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
-			}.Build();
+				}.Build();
+			}
+			if (segment.InProcessOfMovingToEndpoint != null)
+			{
+				builder.InProcessOfMovingToEndpoint = new Protocol.NodeEndpoint.Builder
+				{
+					Async = segment.InProcessOfMovingToEndpoint.Async.ToString(),
+					Sync = segment.InProcessOfMovingToEndpoint.Sync.ToString(),
+				}.Build();
+			}
+			return builder.Build();
 		}
 	}
 }
