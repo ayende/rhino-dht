@@ -4,6 +4,7 @@ using System.Net;
 using System.Net.Sockets;
 using Google.ProtocolBuffers;
 using log4net;
+using Rhino.DistributedHashTable.Client;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Protocol;
@@ -19,7 +20,6 @@ namespace Rhino.DistributedHashTable.Hosting
 		private readonly TcpListener listener;
 		private readonly IDistributedHashTableNode node;
 		private readonly QueueManager queueManager;
-		private readonly IDistributedHashTableMaster masterChannel;
 		private readonly IDistributedHashTableStorage storage;
 
 		public DistributedHashTableStorageHost(Uri master)
@@ -40,7 +40,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			queueManager = new QueueManager(new IPEndPoint(IPAddress.Any, port + 1), name + ".queue.esent");
 
 			node = new DistributedHashTableNode(
-				masterChannel,
+				new DistributedHashTableMasterClient(master),
 				new ThreadPoolExecuter(),
 				new BinaryMessageSerializer(),
 				Endpoint,
