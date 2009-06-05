@@ -34,6 +34,11 @@ namespace Rhino.DistributedHashTable.Internal
 			set;
 		}
 
+		public IEnumerable<NodeEndpoint> Endpoints
+		{
+			get { return endpoints; }
+		}
+
 		public DistributedHashTableMaster()
 		{
 			NumberOfBackCopiesToKeep = 2;
@@ -66,20 +71,25 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			var newlyAlocatedSegments = JoinInternal(endpoint);
 			RearrangeBackups();
+			LogCurrentSegmentAssignment();
+			return newlyAlocatedSegments;
+		}
+
+		private void LogCurrentSegmentAssignment()
+		{
 			if (log.IsDebugEnabled)
 			{
-				var sb = new StringBuilder()
-					.Append("After join of ")
-					.Append(endpoint)
-					.Append(" range allocation is:")
-					.AppendLine();
-				foreach (var range in Segments)
+				var sb = new StringBuilder("Current segment assignment are: ");
+				foreach (var segment in Segments.GroupBy(x=>x.AssignedEndpoint))
 				{
-					sb.Append("\t").Append(range).AppendLine();
+					sb.Append("[")
+						.Append(segment.Key == null ? "NULL" : segment.Key.Sync.ToString())
+						.Append(" -> ")
+						.Append(segment.Count())
+						.Append("], ");
 				}
 				log.Debug(sb.ToString());
 			}
-			return newlyAlocatedSegments;
 		}
 
 		/// <summary>
@@ -111,6 +121,7 @@ namespace Rhino.DistributedHashTable.Internal
 												}).ToArray()
 				);
 			RearrangeBackups();
+			LogCurrentSegmentAssignment();
 			TopologyChanged();
 		}
 
@@ -152,11 +163,11 @@ namespace Rhino.DistributedHashTable.Internal
 
 		private Segment[] JoinInternal(NodeEndpoint endpoint)
 		{
-			log.DebugFormat("Endpoint {0} joining", endpoint);
+			log.DebugFormat("Endpoint {0} joining", endpoint.Sync);
 			endpoints.Add(endpoint);
 			if (Segments.Any(x => x.BelongsTo(endpoint)))
 			{
-				log.DebugFormat("Endpoint {0} is already registered, probably an end point restart, ignoring", endpoint);
+				log.DebugFormat("Endpoint {0} is already registered, probably an end point restart, ignoring", endpoint.Sync);
 				return Segments.Where(x => x.BelongsTo(endpoint)).ToArray();
 			}
 
@@ -166,11 +177,11 @@ namespace Rhino.DistributedHashTable.Internal
 				.ToArray();
 			if (rangesThatHadNoOwner.Length > 0)
 			{
-				log.DebugFormat("Endpoint {0} was assigned all ranges without owners", endpoint);
+				log.DebugFormat("Endpoint {0} was assigned all ranges without owners", endpoint.Sync);
 				return rangesThatHadNoOwner;
 			}
 
-			log.DebugFormat("New endpoint {0}, allocating ranges for it", endpoint);
+			log.DebugFormat("New endpoint {0}, allocating ranges for it", endpoint.Sync);
 
 			return RestructureSegmentsFairly(endpoint);
 		}

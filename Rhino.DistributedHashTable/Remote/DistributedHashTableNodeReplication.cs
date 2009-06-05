@@ -16,7 +16,7 @@ namespace Rhino.DistributedHashTable.Remote
 			this.hashTable = hashTable;
 		}
 
-		public ReplicationResult ReplicateNextPage(NodeEndpoint endpoint,
+		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
 												   int range)
 		{
 			var putRequests = new List<ExtendedPutRequest>();
@@ -28,7 +28,7 @@ namespace Rhino.DistributedHashTable.Remote
 				{
 					var alreadyReplicated = actions.HasReplicationInfo(getRequest.Key,
 														  getRequest.SpecifiedVersion,
-														  endpoint.GetHash());
+														  replicationEndpoint.GetHash());
 					if (alreadyReplicated)
 						continue;
 
@@ -53,13 +53,13 @@ namespace Rhino.DistributedHashTable.Remote
 
 					actions.AddReplicationInfo(getRequest.Key,
 											   getRequest.SpecifiedVersion,
-											   endpoint.GetHash());
+											   replicationEndpoint.GetHash());
 
 					if (putRequests.Count >= 100)
 						break;
 				}
 
-				foreach (var request in actions.ConsumeRemovalReplicationInfo(endpoint.GetHash()))
+				foreach (var request in actions.ConsumeRemovalReplicationInfo(replicationEndpoint.GetHash()))
 				{
 					removalRequests.Add(new ExtendedRemoveRequest
 					{
@@ -73,7 +73,7 @@ namespace Rhino.DistributedHashTable.Remote
 				done = putRequests.Count == 0 && removalRequests.Count == 0;
 				if (done)
 				{
-					MarkSegmentAsAssignedToEndpoint(actions, endpoint, range);
+					MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, range);
 				}
 
 				actions.Commit();
@@ -87,7 +87,7 @@ namespace Rhino.DistributedHashTable.Remote
 			};
 		}
 
-		public int[] AssignAllEmptySegments(NodeEndpoint endpoint,
+		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
 										   int[] ranges)
 		{
 			var reservedSegments = new List<int>();
@@ -98,7 +98,7 @@ namespace Rhino.DistributedHashTable.Remote
 				{
 					if (actions.HasTag((int)range))
 						continue;
-					if (MarkSegmentAsAssignedToEndpoint(actions, endpoint, range) == false)
+					if (MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, range) == false)
 						continue;
 					reservedSegments.Add(range);
 				}

@@ -11,7 +11,6 @@ using Rhino.PersistentHashTable;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
 using Value = Rhino.PersistentHashTable.Value;
 using System.Linq;
-using ValueVersion=Rhino.DistributedHashTable.Protocol.ValueVersion;
 
 namespace Rhino.DistributedHashTable.Client
 {
@@ -20,7 +19,10 @@ namespace Rhino.DistributedHashTable.Client
 	/// Exception Safety - After an exception is thrown, it should be disposed and not used afterward
 	/// Connection Pooling - It is expected that this will be part of a connection pool
 	/// </summary>
-	public class DistributedHashTableStorageClient : IDistributedHashTableStorage
+	public class DistributedHashTableStorageClient : 
+		IDistributedHashTableStorage, 
+		IDistributedHashTableNodeReplication,
+		IDistributedHashTableRemoteNode
 	{
 		private readonly NodeEndpoint endpoint;
 		private readonly TcpClient client;
@@ -55,7 +57,7 @@ namespace Rhino.DistributedHashTable.Client
 				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				PutRequestsList =
                 	{
-                		valuesToAdd.Select(x => CreatePutRequest(x))
+                		valuesToAdd.Select(x => x.GetPutRequest())
                 	}
 			}.Build());
 			writer.Flush();
@@ -78,39 +80,21 @@ namespace Rhino.DistributedHashTable.Client
 			var iterator = MessageStreamIterator<StorageMessageUnion>.FromStreamProvider(() => new UndisposableStream(stream));
 			var union = iterator.First();
 
+			if(union.Type==StorageMessageType.TopologyChangedError)
+				throw new TopologyVersionDoesNotMatchException();
+			if(union.Type==StorageMessageType.SeeOtherError)
+			{
+				throw new SeeOtherException
+				{
+					Endpoint = union.SeeOtherError.Other.GetNodeEndpoint()
+				};
+			}
 			if (union.Type == StorageMessageType.StorageErrorResult)
 				throw new RemoteNodeException(union.Exception.Message);
 			if (union.Type != responses)
 				throw new UnexpectedReplyException("Got reply " + union.Type + " but expected " + responses);
 
 			return union;
-		}
-
-		private static PutRequestMessage CreatePutRequest(ExtendedPutRequest x)
-		{
-			var builder = new PutRequestMessage.Builder
-			{
-				Bytes = ByteString.CopyFrom(x.Bytes),
-                IsReadOnly = x.IsReadOnly,
-                IsReplicationRequest = x.IsReplicationRequest,
-                Key = x.Key,
-                OptimisticConcurrency = x.OptimisticConcurrency,
-                Segment = x.Segment,
-                Tag = x.Tag,
-			};
-			if (x.ExpiresAt != null)
-				builder.ExpiresAtAsDouble = x.ExpiresAt.Value.ToOADate();
-			if (x.ReplicationTimeStamp != null)
-				builder.ReplicationTimeStampAsDouble = x.ReplicationTimeStamp.Value.ToOADate();
-			if (x.ReplicationVersion != null)
-			{
-				builder.ReplicationVersion = new ValueVersion.Builder
-				{
-                    InstanceId = ByteString.CopyFrom(x.ReplicationVersion.InstanceId.ToByteArray()),
-                    Number = x.ReplicationVersion.Number
-				}.Build();
-			}
-			return builder.Build();
 		}
 
 		public bool[] Remove(Guid topologyVersion,
@@ -122,17 +106,7 @@ namespace Rhino.DistributedHashTable.Client
 				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				RemoveRequestsList = 
                 	{
-                		valuesToRemove.Select(x => new RemoveRequestMessage.Builder
-                		{
-                			IsReplicationRequest = x.IsReplicationRequest,
-                            Key = x.Key,
-                            Segment = x.Segment,
-                            SpecificVersion = new ValueVersion.Builder
-                            {
-                            	InstanceId = ByteString.CopyFrom(x.SpecificVersion.InstanceId.ToByteArray()),
-                                Number = x.SpecificVersion.Number
-                            }.Build()
-                		}.Build())
+                		valuesToRemove.Select(x=>x.GetRemoveRequest())
                 	}
 			}.Build());
 			writer.Flush();
@@ -193,7 +167,77 @@ namespace Rhino.DistributedHashTable.Client
 
 		public IDistributedHashTableNodeReplication Replication
 		{
-			get { throw new NotImplementedException(); }
+			get { return this; }
+		}
+
+		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
+		                                           int range)
+		{
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.ReplicateNextPageRequest,
+				ReplicateNextPageRequest = new ReplicateNextPageRequestMessage.Builder
+				{
+					ReplicationEndpoint = new Protocol.NodeEndpoint.Builder
+					{
+						Async = replicationEndpoint.Async.ToString(),
+						Sync = replicationEndpoint.Sync.ToString()
+					}.Build(),
+					Segment = range
+				}.Build()
+			}.Build());
+			writer.Flush();
+			stream.Flush();
+
+			var union = ReadReply(StorageMessageType.ReplicateNextPageResponse);
+
+			return new ReplicationResult
+			{
+				Done = union.ReplicateNextPageResponse.Done,
+				PutRequests = union.ReplicateNextPageResponse.PutRequestsList.Select(
+					x => x.GetPutRequest()
+					).ToArray(),
+                RemoveRequests = union.ReplicateNextPageResponse.RemoveRequestsList.Select(
+					x => x.GetRemoveRequest()
+					).ToArray()
+			};
+		}
+
+		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
+		                                    int[] ranges)
+		{
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.AssignAllEmptySegmentsRequest,
+				AssignAllEmptySegmentsRequest = new AssignAllEmptySegmentsRequestMessage.Builder
+				{
+					ReplicationEndpoint = new Protocol.NodeEndpoint.Builder
+					{
+						Async = replicationEndpoint.Async.ToString(),
+                        Sync = replicationEndpoint.Sync.ToString()
+					}.Build(),
+                    SegmentsList = { ranges }
+				}.Build()
+			}.Build());
+			writer.Flush();
+			stream.Flush();
+
+			var union = ReadReply(StorageMessageType.AssignAllEmptySegmentsResponse);
+
+			return union.AssignAllEmptySegmentsResponse.AssignedSegmentsList.ToArray();
+		}
+
+		public void UpdateTopology()
+		{
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.UpdateTopology,
+			}.Build());
+
+			writer.Flush();
+			stream.Flush();
+
+			ReadReply(StorageMessageType.TopologyUpdated);
 		}
 	}
 }

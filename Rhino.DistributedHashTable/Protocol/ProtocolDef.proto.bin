@@ -1,5 +1,5 @@
 
-Ý
+Á(
 ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
 Value
 Key (	
@@ -72,7 +72,21 @@ IsReadOnly (
 
 WasRemoved ("
 ErrorMessage
-Message (	"¦
+Message (	"ˆ
+$AssignAllEmptySegmentsRequestMessageN
+ReplicationEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
+Segments ("A
+%AssignAllEmptySegmentsResponseMessage
+AssignedSegments ("‚
+ReplicateNextPageRequestMessageN
+ReplicationEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
+Segment ("Ð
+ ReplicateNextPageResponseMessage
+Done (Q
+RemoveRequests (29.Rhino.DistributedHashTable.Protocol.RemoveRequestMessageK
+PutRequests (26.Rhino.DistributedHashTable.Protocol.PutRequestMessage"X
+SeeOtherErrorMessage@
+Other (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"¦
 MasterMessageUnionD
 Type (26.Rhino.DistributedHashTable.Protocol.MasterMessageTypeL
 JoinRequest (27.Rhino.DistributedHashTable.Protocol.JoinRequestMessageN
@@ -80,17 +94,23 @@ WasRemoved ("
 Topology (2:.Rhino.DistributedHashTable.Protocol.TopologyResultMessageD
 	Exception (21.Rhino.DistributedHashTable.Protocol.ErrorMessageM
 CaughtUp (2;.Rhino.DistributedHashTable.Protocol.CaughtUpRequestMessageI
-GaveUp (29.Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage"š
+GaveUp (29.Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage"¤	
 StorageMessageUnionE
 Type (27.Rhino.DistributedHashTable.Protocol.StorageMessageType
-TopologyVersion (K
+TopologyVersion (K
 GetRequests (26.Rhino.DistributedHashTable.Protocol.GetRequestMessageK
 PutRequests (26.Rhino.DistributedHashTable.Protocol.PutRequestMessageM
 PutResponses (27.Rhino.DistributedHashTable.Protocol.PutResponseMessageQ
 RemoveRequests (29.Rhino.DistributedHashTable.Protocol.RemoveRequestMessageR
 RemoveRespones (2:.Rhino.DistributedHashTable.Protocol.RemoveResponseMessageM
 GetResponses (27.Rhino.DistributedHashTable.Protocol.GetResponseMessageD
-	Exception	 (21.Rhino.DistributedHashTable.Protocol.ErrorMessage*›
+	Exception	 (21.Rhino.DistributedHashTable.Protocol.ErrorMessagep
+AssignAllEmptySegmentsRequest
+ (2I.Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessager
+AssignAllEmptySegmentsResponse (2J.Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessagef
+ReplicateNextPageRequest (2D.Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessageh
+ReplicateNextPageResponse (2E.Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessageP
+SeeOtherError (29.Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage*õ
 StorageMessageType
 GetRequests
 PutRequests
@@ -98,7 +118,16 @@ WasRemoved ("
 GetResponses
 PutResponses
 RemoveResponses
-StorageErrorResult*Ì
+StorageErrorResult!
+AssignAllEmptySegmentsRequest"
+AssignAllEmptySegmentsResponse	
+ReplicateNextPageRequest
+
+ReplicateNextPageResponse
+SeeOtherError
+TopologyChangedError
+UpdateTopology
+TopologyUpdated*Ì
 MasterMessageType
 GetTopologyRequest
 GetTopologyResult

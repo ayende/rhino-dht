@@ -1,3 +1,0 @@
-*	Replication & failures
-	======================
-	How do we handle online replication errors	

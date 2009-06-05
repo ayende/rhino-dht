@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Transactions;
+using log4net;
 using Rhino.DistributedHashTable.Exceptions;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Remote;
@@ -10,6 +11,8 @@ namespace Rhino.DistributedHashTable.Internal
 {
 	public class DistributedHashTableStorage : IDistributedHashTableStorage
 	{
+		private ILog log = LogManager.GetLogger(typeof(DistributedHashTableStorage));
+
 		public Guid TopologyVersion
 		{
 			get
@@ -124,7 +127,12 @@ namespace Rhino.DistributedHashTable.Internal
 		private void AssertMatchingTopologyVersion(Guid topologyVersion)
 		{
 			if(TopologyVersion != topologyVersion)
+			{
+				log.InfoFormat("Got request for topology {0} but current local version is {1}",
+				               TopologyVersion,
+				               topologyVersion);
 				throw new TopologyVersionDoesNotMatchException("Topology Version doesn't match, you need to refresh the topology from the master");
+			}
 		}
 
 		public bool[] Remove(Guid topologyVersion, params ExtendedRemoveRequest[] valuesToRemove)

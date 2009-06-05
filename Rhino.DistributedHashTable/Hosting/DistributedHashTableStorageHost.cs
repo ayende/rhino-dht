@@ -5,12 +5,13 @@ using System.Net.Sockets;
 using Google.ProtocolBuffers;
 using log4net;
 using Rhino.DistributedHashTable.Client;
+using Rhino.DistributedHashTable.Exceptions;
 using Rhino.DistributedHashTable.Internal;
-using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Protocol;
+using Rhino.DistributedHashTable.Remote;
+using Rhino.DistributedHashTable.Util;
 using Rhino.Queues;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
-using ValueVersion = Rhino.PersistentHashTable.ValueVersion;
 
 namespace Rhino.DistributedHashTable.Hosting
 {
@@ -45,11 +46,13 @@ namespace Rhino.DistributedHashTable.Hosting
 				new BinaryMessageSerializer(),
 				Endpoint,
 				queueManager,
-				null
+				new NonPooledDistributedHashTableNodeFactory()
 				);
 			storage = new DistributedHashTableStorage(name + ".data.esent", node);
-
-			listener = new TcpListener(IPAddress.Any, port);
+			
+			listener = new TcpListener(
+				Socket.OSSupportsIPv6 ? IPAddress.IPv6Any : IPAddress.Any, 
+				port);
 		}
 
 		public NodeEndpoint Endpoint { get; private set; }
@@ -73,7 +76,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			{
 				return;
 			}
-			catch(InvalidOperationException)
+			catch (InvalidOperationException)
 			{
 				return;
 			}
@@ -85,30 +88,60 @@ namespace Rhino.DistributedHashTable.Hosting
 					var writer = new MessageStreamWriter<StorageMessageUnion>(stream);
 					try
 					{
-						foreach (var wrapper in MessageStreamIterator<StorageMessageUnion>.FromStreamProvider(() => stream))
+						foreach (var wrapper in MessageStreamIterator<StorageMessageUnion>.FromStreamProvider(() => new UndisposableStream(stream)))
 						{
-							var topologyVersion = new Guid(wrapper.TopologyVersion.ToByteArray());
+							log.DebugFormat("Got message {0}", wrapper.Type);
 							switch (wrapper.Type)
 							{
 								case StorageMessageType.GetRequests:
-									HandleGet(wrapper, topologyVersion, writer);
+									HandleGet(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
 									break;
 								case StorageMessageType.PutRequests:
-									HandlePut(wrapper, topologyVersion, writer);
+									HandlePut(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
 									break;
 								case StorageMessageType.RemoveRequests:
-									HandleRemove(wrapper, topologyVersion, writer);
+									HandleRemove(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
+									break;
+								case StorageMessageType.AssignAllEmptySegmentsRequest:
+									HandleAssignEmpty(wrapper, writer);
+									break;
+								case StorageMessageType.ReplicateNextPageRequest:
+									HandleReplicateNextPage(wrapper, writer);
+									break;
+								case StorageMessageType.UpdateTopology:
+									HandleTopologyUpdate(writer);
 									break;
 								default:
-									throw new ArgumentOutOfRangeException();
+									throw new InvalidOperationException("Message type was not understood: " + wrapper.Type);
 							}
 							writer.Flush();
 							stream.Flush();
 						}
 					}
+					catch (SeeOtherException e)
+					{
+						writer.Write(new StorageMessageUnion.Builder
+						{
+							Type = StorageMessageType.SeeOtherError,
+							SeeOtherError = new SeeOtherErrorMessage.Builder
+							{
+								Other = e.Endpoint.GetNodeEndpoint()
+							}.Build()
+						}.Build());
+						writer.Flush();
+						stream.Flush();
+					}
+					catch (TopologyVersionDoesNotMatchException)
+					{
+						writer.Write(new StorageMessageUnion.Builder
+						{
+							Type = StorageMessageType.TopologyChangedError,
+						}.Build());
+						writer.Flush();
+						stream.Flush();
+					}
 					catch (Exception e)
 					{
-
 						log.Warn("Error performing request", e);
 						writer.Write(new StorageMessageUnion.Builder
 						{
@@ -118,6 +151,8 @@ namespace Rhino.DistributedHashTable.Hosting
 								Message = e.ToString()
 							}.Build()
 						}.Build());
+						writer.Flush();
+						stream.Flush();
 					}
 				}
 			}
@@ -127,18 +162,62 @@ namespace Rhino.DistributedHashTable.Hosting
 			}
 		}
 
-		private void HandleRemove(StorageMessageUnion wrapper,
-		                          Guid topologyVersion,
-		                          MessageStreamWriter<StorageMessageUnion> writer)
+		private void HandleTopologyUpdate(MessageStreamWriter<StorageMessageUnion> writer)
 		{
-			var requests = wrapper.RemoveRequestsList.Select(x =>
-			                                                 new ExtendedRemoveRequest
-			                                                 {
-			                                                 	Segment = x.Segment,
-			                                                 	Key = x.Key,
-			                                                 	SpecificVersion = GetVersion(x.SpecificVersion),
-			                                                 	IsReplicationRequest = x.IsReplicationRequest
-			                                                 }).ToArray();
+			node.UpdateTopology();
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.TopologyUpdated
+			}.Build());
+		}
+
+		private void HandleReplicateNextPage(StorageMessageUnion wrapper,
+											 MessageStreamWriter<StorageMessageUnion> writer)
+		{
+			var replicationResult = storage.Replication.ReplicateNextPage(
+				wrapper.ReplicateNextPageRequest.ReplicationEndpoint.GetNodeEndpoint(),
+				wrapper.ReplicateNextPageRequest.Segment
+				);
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.ReplicateNextPageResponse,
+				ReplicateNextPageResponse = new ReplicateNextPageResponseMessage.Builder()
+				{
+					Done = replicationResult.Done,
+					RemoveRequestsList =
+						{
+							replicationResult.RemoveRequests.Select(x=>x.GetRemoveRequest()),
+						},
+					PutRequestsList =
+						{
+							replicationResult.PutRequests.Select(x=>x.GetPutRequest())
+						}
+				}.Build()
+			}.Build());
+		}
+
+		private void HandleAssignEmpty(StorageMessageUnion wrapper,
+									   MessageStreamWriter<StorageMessageUnion> writer)
+		{
+			var segments = storage.Replication.AssignAllEmptySegments(
+				wrapper.AssignAllEmptySegmentsRequest.ReplicationEndpoint.GetNodeEndpoint(),
+				wrapper.AssignAllEmptySegmentsRequest.SegmentsList.ToArray()
+				);
+			writer.Write(new StorageMessageUnion.Builder
+			{
+				Type = StorageMessageType.AssignAllEmptySegmentsResponse,
+				AssignAllEmptySegmentsResponse = new AssignAllEmptySegmentsResponseMessage.Builder
+				{
+					AssignedSegmentsList = { segments }
+				}.Build()
+			}.Build());
+		}
+
+		private void HandleRemove(StorageMessageUnion wrapper,
+								  Guid topologyVersion,
+								  MessageStreamWriter<StorageMessageUnion> writer)
+		{
+			var requests = wrapper.RemoveRequestsList.Select(x => x.GetRemoveRequest()).ToArray();
 			var removed = storage.Remove(topologyVersion, requests);
 			writer.Write(new StorageMessageUnion.Builder
 			{
@@ -158,41 +237,15 @@ namespace Rhino.DistributedHashTable.Hosting
 							   Guid topologyVersion,
 							   MessageStreamWriter<StorageMessageUnion> writer)
 		{
-			var puts = wrapper.PutRequestsList.Select(x => new ExtendedPutRequest
-			{
-				Bytes = x.Bytes.ToByteArray(),
-				ExpiresAt = x.HasExpiresAtAsDouble ? 
-					DateTime.FromOADate(x.ExpiresAtAsDouble.Value) : 
-					(DateTime?)null,
-				IsReadOnly = x.IsReadOnly,
-				IsReplicationRequest = x.IsReplicationRequest,
-				Key = x.Key,
-				OptimisticConcurrency = x.OptimisticConcurrency,
-				ParentVersions = x.ParentVersionsList.Select(y => GetVersion(y)).ToArray(),
-				ReplicationTimeStamp = x.HasReplicationTimeStampAsDouble ? 
-					DateTime.FromOADate(x.ReplicationTimeStampAsDouble.Value) : 
-					(DateTime?)null,
-				ReplicationVersion = GetVersion(x.ReplicationVersion),
-				Segment = x.Segment,
-				Tag = x.Tag
-			}).ToArray();
+			var puts = wrapper.PutRequestsList.Select(x => x.GetPutRequest()).ToArray();
 			var results = storage.Put(topologyVersion, puts);
-			var xx = storage.Get(topologyVersion, new ExtendedGetRequest
-			{
-				Key = puts[0].Key,
-				Segment = 1,
-			});
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.PutResponses,
-                TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
 				PutResponsesList = 
 					{
-						results.Select(x=> new PutResponseMessage.Builder
-						{
-							Version = GetVersion(x.Version),
-							ConflictExists = x.ConflictExists
-						}.Build())
+						results.Select(x=>x.GetPutResponse())
 					}
 			}.Build());
 		}
@@ -201,66 +254,27 @@ namespace Rhino.DistributedHashTable.Hosting
 							   Guid topologyVersion,
 			MessageStreamWriter<StorageMessageUnion> writer)
 		{
-			var values = storage.Get(topologyVersion, wrapper.GetRequestsList.Select(x => new ExtendedGetRequest
-			{
-				Segment = x.Segment,
-				Key = x.Key,
-				SpecifiedVersion = GetVersion(x.SpecificVersion),
-				IsReplicationRequest = false
-			}).ToArray());
+			var values = storage.Get(topologyVersion,
+				wrapper.GetRequestsList.Select(x => x.GetGetRequest()).ToArray()
+				);
 			var reply = new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.GetResponses,
 				TopologyVersion = wrapper.TopologyVersion,
 				GetResponsesList =
 					{
-						values.Select(x=> new GetResponseMessage.Builder
-						{
-							ValuesList =
-								{
-									x.Select(v=> new Value.Builder
-									{
-										Data	= ByteString.CopyFrom(v.Data),
-										ExpiresAtAsDouble = v.ExpiresAt != null ? v.ExpiresAt.Value.ToOADate() : (double?)null,
-										Key = v.Key,
-										ReadOnly = v.ReadOnly,
-										Sha256Hash = ByteString.CopyFrom(v.Sha256Hash),
-										Version = GetVersion(v.Version),
-										Tag = v.Tag,
-										TimeStampAsDouble = v.Timestamp.ToOADate(),
-									}.Build())
-								}
-						}.Build())
+						values.Select(x=> x.GetGetResponse())
 					}
 			};
 			writer.Write(reply.Build());
 		}
 
-		private static ValueVersion GetVersion(Protocol.ValueVersion version)
-		{
-			if (version == Protocol.ValueVersion.DefaultInstance)
-				return null;
-			return new ValueVersion
-			{
-				InstanceId = new Guid(version.InstanceId.ToByteArray()),
-				Number = version.Number
-			};
-		}
 
-		private static Protocol.ValueVersion GetVersion(ValueVersion version)
-		{
-			if (version == null)
-				return Protocol.ValueVersion.DefaultInstance;
-			return new Protocol.ValueVersion.Builder
-			{
-				InstanceId = ByteString.CopyFrom(version.InstanceId.ToByteArray()),
-				Number = version.Number
-			}.Build();
-		}
 
 		public void Dispose()
 		{
 			listener.Stop();
+			node.Dispose();
 			storage.Dispose();
 			queueManager.Dispose();
 		}

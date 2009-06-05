@@ -65,11 +65,11 @@ namespace Rhino.DistributedHashTable.Client
 
 				var response = union.JoinResponse;
 
-				return response.SegmentsList.Select(x => ConvertSegment(x)).ToArray();
+				return response.SegmentsList.Select(x => x.GetSegment()).ToArray();
 			});
 		}
 
-		private MasterMessageUnion ReadReply(MasterMessageType responses, Stream stream)
+		private static MasterMessageUnion ReadReply(MasterMessageType responses, Stream stream)
 		{
 			var iterator = MessageStreamIterator<MasterMessageUnion>.FromStreamProvider(() => new UndisposableStream(stream));
 			var union = iterator.First();
@@ -121,41 +121,8 @@ namespace Rhino.DistributedHashTable.Client
 
 				var union = ReadReply(MasterMessageType.GetTopologyResult, stream);
 
-				var topology = union.Topology;
-				var segments = topology.SegmentsList.Select(x => ConvertSegment(x));
-				return new Topology(segments.ToArray(), new Guid(topology.Version.ToByteArray()))
-				{
-					Timestamp = DateTime.FromOADate(topology.TimestampAsDouble)
-				};
+				return union.Topology.GetTopology();
 			});
-		}
-
-		private static Segment ConvertSegment(Protocol.Segment x)
-		{
-			return new Segment
-			{
-				Version = new Guid(x.Version.ToByteArray()),
-				AssignedEndpoint = x.AssignedEndpoint != Protocol.NodeEndpoint.DefaultInstance
-									? new NodeEndpoint
-									{
-										Async = new Uri(x.AssignedEndpoint.Async),
-										Sync = new Uri(x.AssignedEndpoint.Sync)
-									}
-									: null,
-				InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint != Protocol.NodeEndpoint.DefaultInstance
-												? new NodeEndpoint
-												{
-													Async = new Uri(x.InProcessOfMovingToEndpoint.Async),
-													Sync = new Uri(x.InProcessOfMovingToEndpoint.Sync)
-												}
-												: null,
-				Index = x.Index,
-				Backups = x.BackupsList.Select(b => new NodeEndpoint
-				{
-					Async = new Uri(b.Async),
-					Sync = new Uri(b.Sync)
-				}).ToSet(),
-			};
 		}
 
 		public void GaveUp(NodeEndpoint endpoint,

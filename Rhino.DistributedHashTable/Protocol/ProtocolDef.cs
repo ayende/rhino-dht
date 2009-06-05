@@ -63,42 +63,73 @@ namespace Rhino.DistributedHashTable.Protocol {
         "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhYK" + 
         "DkNvbmZsaWN0RXhpc3RzGAIgAigIIisKFVJlbW92ZVJlc3BvbnNlTWVzc2Fn" + 
         "ZRISCgpXYXNSZW1vdmVkGAEgAigIIh8KDEVycm9yTWVzc2FnZRIPCgdNZXNz" + 
-        "YWdlGAEgAigJIqYEChJNYXN0ZXJNZXNzYWdlVW5pb24SRAoEVHlwZRgBIAIo" + 
-        "DjI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk1hc3Rl" + 
-        "ck1lc3NhZ2VUeXBlEkwKC0pvaW5SZXF1ZXN0GAIgASgLMjcuUmhpbm8uRGlz" + 
-        "dHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuSm9pblJlcXVlc3RNZXNzYWdl" + 
-        "Ek4KDEpvaW5SZXNwb25zZRgDIAEoCzI4LlJoaW5vLkRpc3RyaWJ1dGVkSGFz" + 
-        "aFRhYmxlLlByb3RvY29sLkpvaW5SZXNwb25zZU1lc3NhZ2USTAoIVG9wb2xv" + 
-        "Z3kYBCABKAsyOi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
-        "bC5Ub3BvbG9neVJlc3VsdE1lc3NhZ2USRAoJRXhjZXB0aW9uGAUgASgLMjEu" + 
-        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuRXJyb3JNZXNz" + 
-        "YWdlEk0KCENhdWdodFVwGAYgASgLMjsuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuQ2F1Z2h0VXBSZXF1ZXN0TWVzc2FnZRJJCgZHYXZl" + 
-        "VXAYByABKAsyOS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
-        "bC5HYXZlVXBSZXF1ZXN0TWVzc2FnZSKaBQoTU3RvcmFnZU1lc3NhZ2VVbmlv" + 
-        "bhJFCgRUeXBlGAEgAigOMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuU3RvcmFnZU1lc3NhZ2VUeXBlEhcKD1RvcG9sb2d5VmVyc2lv" + 
-        "bhgCIAIoDBJLCgtHZXRSZXF1ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1" + 
-        "dGVkSGFzaFRhYmxlLlByb3RvY29sLkdldFJlcXVlc3RNZXNzYWdlEksKC1B1" + 
-        "dFJlcXVlc3RzGAQgAygLMjYuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuUHV0UmVxdWVzdE1lc3NhZ2USTQoMUHV0UmVzcG9uc2VzGAcg" + 
-        "AygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0" + 
-        "UmVzcG9uc2VNZXNzYWdlElEKDlJlbW92ZVJlcXVlc3RzGAUgAygLMjkuUmhp" + 
-        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVz" + 
-        "dE1lc3NhZ2USUgoOUmVtb3ZlUmVzcG9uZXMYCCADKAsyOi5SaGluby5EaXN0" + 
-        "cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZW1vdmVSZXNwb25zZU1lc3Nh" + 
-        "Z2USTQoMR2V0UmVzcG9uc2VzGAYgAygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
-        "YXNoVGFibGUuUHJvdG9jb2wuR2V0UmVzcG9uc2VNZXNzYWdlEkQKCUV4Y2Vw" + 
-        "dGlvbhgJIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
-        "Y29sLkVycm9yTWVzc2FnZSqbAQoSU3RvcmFnZU1lc3NhZ2VUeXBlEg8KC0dl" + 
-        "dFJlcXVlc3RzEAESDwoLUHV0UmVxdWVzdHMQAhISCg5SZW1vdmVSZXF1ZXN0" + 
-        "cxADEhAKDEdldFJlc3BvbnNlcxAEEhAKDFB1dFJlc3BvbnNlcxAFEhMKD1Jl" + 
-        "bW92ZVJlc3BvbnNlcxAGEhYKElN0b3JhZ2VFcnJvclJlc3VsdBAHKswBChFN" + 
-        "YXN0ZXJNZXNzYWdlVHlwZRIWChJHZXRUb3BvbG9neVJlcXVlc3QQARIVChFH" + 
-        "ZXRUb3BvbG9neVJlc3VsdBACEg8KC0pvaW5SZXF1ZXN0EAMSDgoKSm9pblJl" + 
-        "c3VsdBAEEhUKEU1hc3RlckVycm9yUmVzdWx0EAUSEwoPQ2F1Z2h0VXBSZXF1" + 
-        "ZXN0EAYSFAoQQ2F1Z2h0VXBSZXNwb25zZRAHEhEKDUdhdmVVcFJlcXVlc3QQ" + 
-        "CBISCg5HYXZlVXBSZXNwb25zZRAJQgJIAQ=="),
+        "YWdlGAEgAigJIogBCiRBc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVxdWVzdE1l" + 
+        "c3NhZ2USTgoTUmVwbGljYXRpb25FbmRwb2ludBgBIAIoCzIxLlJoaW5vLkRp" + 
+        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5vZGVFbmRwb2ludBIQCghT" + 
+        "ZWdtZW50cxgCIAMoBSJBCiVBc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVzcG9u" + 
+        "c2VNZXNzYWdlEhgKEEFzc2lnbmVkU2VnbWVudHMYAiADKAUiggEKH1JlcGxp" + 
+        "Y2F0ZU5leHRQYWdlUmVxdWVzdE1lc3NhZ2USTgoTUmVwbGljYXRpb25FbmRw" + 
+        "b2ludBgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
+        "Y29sLk5vZGVFbmRwb2ludBIPCgdTZWdtZW50GAIgAigFItABCiBSZXBsaWNh" + 
+        "dGVOZXh0UGFnZVJlc3BvbnNlTWVzc2FnZRIMCgREb25lGAEgAigIElEKDlJl" + 
+        "bW92ZVJlcXVlc3RzGAIgAygLMjkuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFi" + 
+        "bGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVzdE1lc3NhZ2USSwoLUHV0UmVxdWVz" + 
+        "dHMYAyADKAsyNi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2Nv" + 
+        "bC5QdXRSZXF1ZXN0TWVzc2FnZSJYChRTZWVPdGhlckVycm9yTWVzc2FnZRJA" + 
+        "CgVPdGhlchgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
+        "b3RvY29sLk5vZGVFbmRwb2ludCKmBAoSTWFzdGVyTWVzc2FnZVVuaW9uEkQK" + 
+        "BFR5cGUYASACKA4yNi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90" + 
+        "b2NvbC5NYXN0ZXJNZXNzYWdlVHlwZRJMCgtKb2luUmVxdWVzdBgCIAEoCzI3" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkpvaW5SZXF1" + 
+        "ZXN0TWVzc2FnZRJOCgxKb2luUmVzcG9uc2UYAyABKAsyOC5SaGluby5EaXN0" + 
+        "cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Kb2luUmVzcG9uc2VNZXNzYWdl" + 
+        "EkwKCFRvcG9sb2d5GAQgASgLMjouUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFi" + 
+        "bGUuUHJvdG9jb2wuVG9wb2xvZ3lSZXN1bHRNZXNzYWdlEkQKCUV4Y2VwdGlv" + 
+        "bhgFIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
+        "LkVycm9yTWVzc2FnZRJNCghDYXVnaHRVcBgGIAEoCzI7LlJoaW5vLkRpc3Ry" + 
+        "aWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkNhdWdodFVwUmVxdWVzdE1lc3Nh" + 
+        "Z2USSQoGR2F2ZVVwGAcgASgLMjkuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFi" + 
+        "bGUuUHJvdG9jb2wuR2F2ZVVwUmVxdWVzdE1lc3NhZ2UipAkKE1N0b3JhZ2VN" + 
+        "ZXNzYWdlVW5pb24SRQoEVHlwZRgBIAIoDjI3LlJoaW5vLkRpc3RyaWJ1dGVk" + 
+        "SGFzaFRhYmxlLlByb3RvY29sLlN0b3JhZ2VNZXNzYWdlVHlwZRIXCg9Ub3Bv" + 
+        "bG9neVZlcnNpb24YAiABKAwSSwoLR2V0UmVxdWVzdHMYAyADKAsyNi5SaGlu" + 
+        "by5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5HZXRSZXF1ZXN0TWVz" + 
+        "c2FnZRJLCgtQdXRSZXF1ZXN0cxgEIAMoCzI2LlJoaW5vLkRpc3RyaWJ1dGVk" + 
+        "SGFzaFRhYmxlLlByb3RvY29sLlB1dFJlcXVlc3RNZXNzYWdlEk0KDFB1dFJl" + 
+        "c3BvbnNlcxgHIAMoCzI3LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
+        "b3RvY29sLlB1dFJlc3BvbnNlTWVzc2FnZRJRCg5SZW1vdmVSZXF1ZXN0cxgF" + 
+        "IAMoCzI5LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlJl" + 
+        "bW92ZVJlcXVlc3RNZXNzYWdlElIKDlJlbW92ZVJlc3BvbmVzGAggAygLMjou" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVz" + 
+        "cG9uc2VNZXNzYWdlEk0KDEdldFJlc3BvbnNlcxgGIAMoCzI3LlJoaW5vLkRp" + 
+        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkdldFJlc3BvbnNlTWVzc2Fn" + 
+        "ZRJECglFeGNlcHRpb24YCSABKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
+        "YWJsZS5Qcm90b2NvbC5FcnJvck1lc3NhZ2UScAodQXNzaWduQWxsRW1wdHlT" + 
+        "ZWdtZW50c1JlcXVlc3QYCiABKAsySS5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
+        "YWJsZS5Qcm90b2NvbC5Bc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVxdWVzdE1l" + 
+        "c3NhZ2UScgoeQXNzaWduQWxsRW1wdHlTZWdtZW50c1Jlc3BvbnNlGAsgASgL" + 
+        "MkouUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuQXNzaWdu" + 
+        "QWxsRW1wdHlTZWdtZW50c1Jlc3BvbnNlTWVzc2FnZRJmChhSZXBsaWNhdGVO" + 
+        "ZXh0UGFnZVJlcXVlc3QYDCABKAsyRC5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
+        "YWJsZS5Qcm90b2NvbC5SZXBsaWNhdGVOZXh0UGFnZVJlcXVlc3RNZXNzYWdl" + 
+        "EmgKGVJlcGxpY2F0ZU5leHRQYWdlUmVzcG9uc2UYDSABKAsyRS5SaGluby5E" + 
+        "aXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZXBsaWNhdGVOZXh0UGFn" + 
+        "ZVJlc3BvbnNlTWVzc2FnZRJQCg1TZWVPdGhlckVycm9yGA4gASgLMjkuUmhp" + 
+        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuU2VlT3RoZXJFcnJv" + 
+        "ck1lc3NhZ2Uq9QIKElN0b3JhZ2VNZXNzYWdlVHlwZRIPCgtHZXRSZXF1ZXN0" + 
+        "cxABEg8KC1B1dFJlcXVlc3RzEAISEgoOUmVtb3ZlUmVxdWVzdHMQAxIQCgxH" + 
+        "ZXRSZXNwb25zZXMQBBIQCgxQdXRSZXNwb25zZXMQBRITCg9SZW1vdmVSZXNw" + 
+        "b25zZXMQBhIWChJTdG9yYWdlRXJyb3JSZXN1bHQQBxIhCh1Bc3NpZ25BbGxF" + 
+        "bXB0eVNlZ21lbnRzUmVxdWVzdBAIEiIKHkFzc2lnbkFsbEVtcHR5U2VnbWVu" + 
+        "dHNSZXNwb25zZRAJEhwKGFJlcGxpY2F0ZU5leHRQYWdlUmVxdWVzdBAKEh0K" + 
+        "GVJlcGxpY2F0ZU5leHRQYWdlUmVzcG9uc2UQCxIRCg1TZWVPdGhlckVycm9y" + 
+        "EAwSGAoUVG9wb2xvZ3lDaGFuZ2VkRXJyb3IQDRISCg5VcGRhdGVUb3BvbG9n" + 
+        "eRAOEhMKD1RvcG9sb2d5VXBkYXRlZBAPKswBChFNYXN0ZXJNZXNzYWdlVHlw" + 
+        "ZRIWChJHZXRUb3BvbG9neVJlcXVlc3QQARIVChFHZXRUb3BvbG9neVJlc3Vs" + 
+        "dBACEg8KC0pvaW5SZXF1ZXN0EAMSDgoKSm9pblJlc3VsdBAEEhUKEU1hc3Rl" + 
+        "ckVycm9yUmVzdWx0EAUSEwoPQ2F1Z2h0VXBSZXF1ZXN0EAYSFAoQQ2F1Z2h0" + 
+        "VXBSZXNwb25zZRAHEhEKDUdhdmVVcFJlcXVlc3QQCBISCg5HYXZlVXBSZXNw" + 
+        "b25zZRAJQgJIAQ=="),
         new pbd::FileDescriptor[] {
         });
     #endregion
@@ -184,16 +215,41 @@ namespace Rhino.DistributedHashTable.Protocol {
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ErrorMessage, global::Rhino.DistributedHashTable.Protocol.ErrorMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ErrorMessage__Descriptor,
             new string[] { "Message", });
-    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsRequestMessage__Descriptor
         = Descriptor.MessageTypes[16];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage, global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage, global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsRequestMessage__Descriptor,
+            new string[] { "ReplicationEndpoint", "Segments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsResponseMessage__Descriptor
+        = Descriptor.MessageTypes[17];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage, global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage, global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsResponseMessage__Descriptor,
+            new string[] { "AssignedSegments", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageRequestMessage__Descriptor
+        = Descriptor.MessageTypes[18];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage, global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageRequestMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage, global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageRequestMessage__Descriptor,
+            new string[] { "ReplicationEndpoint", "Segment", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageResponseMessage__Descriptor
+        = Descriptor.MessageTypes[19];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage, global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageResponseMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage, global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageResponseMessage__Descriptor,
+            new string[] { "Done", "RemoveRequests", "PutRequests", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_SeeOtherErrorMessage__Descriptor
+        = Descriptor.MessageTypes[20];
+    internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage, global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_SeeOtherErrorMessage__FieldAccessorTable
+        = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage, global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_SeeOtherErrorMessage__Descriptor,
+            new string[] { "Other", });
+    internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor
+        = Descriptor.MessageTypes[21];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion, global::Rhino.DistributedHashTable.Protocol.MasterMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_MasterMessageUnion__Descriptor,
             new string[] { "Type", "JoinRequest", "JoinResponse", "Topology", "Exception", "CaughtUp", "GaveUp", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor
-        = Descriptor.MessageTypes[17];
+        = Descriptor.MessageTypes[22];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder> internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion, global::Rhino.DistributedHashTable.Protocol.StorageMessageUnion.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_StorageMessageUnion__Descriptor,
-            new string[] { "Type", "TopologyVersion", "GetRequests", "PutRequests", "PutResponses", "RemoveRequests", "RemoveRespones", "GetResponses", "Exception", });
+            new string[] { "Type", "TopologyVersion", "GetRequests", "PutRequests", "PutResponses", "RemoveRequests", "RemoveRespones", "GetResponses", "Exception", "AssignAllEmptySegmentsRequest", "AssignAllEmptySegmentsResponse", "ReplicateNextPageRequest", "ReplicateNextPageResponse", "SeeOtherError", });
     #endregion
   }
   #region Enums
@@ -205,6 +261,14 @@ namespace Rhino.DistributedHashTable.Protocol {
     PutResponses = 5,
     RemoveResponses = 6,
     StorageErrorResult = 7,
+    AssignAllEmptySegmentsRequest = 8,
+    AssignAllEmptySegmentsResponse = 9,
+    ReplicateNextPageRequest = 10,
+    ReplicateNextPageResponse = 11,
+    SeeOtherError = 12,
+    TopologyChangedError = 13,
+    UpdateTopology = 14,
+    TopologyUpdated = 15,
   }
   
   public enum MasterMessageType {
@@ -5297,6 +5361,1340 @@ namespace Rhino.DistributedHashTable.Protocol {
     }
   }
   
+  public sealed partial class AssignAllEmptySegmentsRequestMessage : pb::GeneratedMessage<AssignAllEmptySegmentsRequestMessage, AssignAllEmptySegmentsRequestMessage.Builder> {
+    private static readonly AssignAllEmptySegmentsRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static AssignAllEmptySegmentsRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override AssignAllEmptySegmentsRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override AssignAllEmptySegmentsRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<AssignAllEmptySegmentsRequestMessage, AssignAllEmptySegmentsRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasReplicationEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasReplicationEndpoint {
+      get { return hasReplicationEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint ReplicationEndpoint {
+      get { return replicationEndpoint_; }
+    }
+    
+    private pbc::PopsicleList<int> segments_ = new pbc::PopsicleList<int>();
+    public scg::IList<int> SegmentsList {
+      get { return pbc::Lists.AsReadOnly(segments_); }
+    }
+    public int SegmentsCount {
+      get { return segments_.Count; }
+    }
+    public int GetSegments(int index) {
+      return segments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasReplicationEndpoint) return false;
+        if (!ReplicationEndpoint.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasReplicationEndpoint) {
+        output.WriteMessage(1, ReplicationEndpoint);
+      }
+      if (segments_.Count > 0) {
+        foreach (int element in segments_) {
+          output.WriteInt32(2, element);
+        }
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasReplicationEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, ReplicationEndpoint);
+        }
+        {
+          int dataSize = 0;
+          foreach (int element in SegmentsList) {
+            dataSize += pb::CodedOutputStream.ComputeInt32SizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * segments_.Count;
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(AssignAllEmptySegmentsRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<AssignAllEmptySegmentsRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      AssignAllEmptySegmentsRequestMessage result = new AssignAllEmptySegmentsRequestMessage();
+      
+      protected override AssignAllEmptySegmentsRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new AssignAllEmptySegmentsRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return AssignAllEmptySegmentsRequestMessage.Descriptor; }
+      }
+      
+      public override AssignAllEmptySegmentsRequestMessage DefaultInstanceForType {
+        get { return AssignAllEmptySegmentsRequestMessage.DefaultInstance; }
+      }
+      
+      public override AssignAllEmptySegmentsRequestMessage BuildPartial() {
+        result.segments_.MakeReadOnly();
+        AssignAllEmptySegmentsRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is AssignAllEmptySegmentsRequestMessage) {
+          return MergeFrom((AssignAllEmptySegmentsRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(AssignAllEmptySegmentsRequestMessage other) {
+        if (other == AssignAllEmptySegmentsRequestMessage.DefaultInstance) return this;
+        if (other.HasReplicationEndpoint) {
+          MergeReplicationEndpoint(other.ReplicationEndpoint);
+        }
+        if (other.segments_.Count != 0) {
+          base.AddRange(other.segments_, result.segments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasReplicationEndpoint) {
+                subBuilder.MergeFrom(ReplicationEndpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplicationEndpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              AddSegments(input.ReadInt32());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasReplicationEndpoint {
+       get { return result.HasReplicationEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint ReplicationEndpoint {
+        get { return result.ReplicationEndpoint; }
+        set { SetReplicationEndpoint(value); }
+      }
+      public Builder SetReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasReplicationEndpoint = true;
+        result.replicationEndpoint_ = value;
+        return this;
+      }
+      public Builder SetReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasReplicationEndpoint = true;
+        result.replicationEndpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasReplicationEndpoint &&
+            result.replicationEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.replicationEndpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replicationEndpoint_ = value;
+        }
+        result.hasReplicationEndpoint = true;
+        return this;
+      }
+      public Builder ClearReplicationEndpoint() {
+        result.hasReplicationEndpoint = false;
+        result.replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<int> SegmentsList {
+        get { return result.segments_; }
+      }
+      public int SegmentsCount {
+        get { return result.SegmentsCount; }
+      }
+      public int GetSegments(int index) {
+        return result.GetSegments(index);
+      }
+      public Builder SetSegments(int index, int value) {
+        result.segments_[index] = value;
+        return this;
+      }
+      public Builder AddSegments(int value) {
+        result.segments_.Add(value);
+        return this;
+      }
+      public Builder AddRangeSegments(scg::IEnumerable<int> values) {
+        base.AddRange(values, result.segments_);
+        return this;
+      }
+      public Builder ClearSegments() {
+        result.segments_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class AssignAllEmptySegmentsResponseMessage : pb::GeneratedMessage<AssignAllEmptySegmentsResponseMessage, AssignAllEmptySegmentsResponseMessage.Builder> {
+    private static readonly AssignAllEmptySegmentsResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static AssignAllEmptySegmentsResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override AssignAllEmptySegmentsResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override AssignAllEmptySegmentsResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<AssignAllEmptySegmentsResponseMessage, AssignAllEmptySegmentsResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_AssignAllEmptySegmentsResponseMessage__FieldAccessorTable; }
+    }
+    
+    private pbc::PopsicleList<int> assignedSegments_ = new pbc::PopsicleList<int>();
+    public scg::IList<int> AssignedSegmentsList {
+      get { return pbc::Lists.AsReadOnly(assignedSegments_); }
+    }
+    public int AssignedSegmentsCount {
+      get { return assignedSegments_.Count; }
+    }
+    public int GetAssignedSegments(int index) {
+      return assignedSegments_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (assignedSegments_.Count > 0) {
+        foreach (int element in assignedSegments_) {
+          output.WriteInt32(2, element);
+        }
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        {
+          int dataSize = 0;
+          foreach (int element in AssignedSegmentsList) {
+            dataSize += pb::CodedOutputStream.ComputeInt32SizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * assignedSegments_.Count;
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static AssignAllEmptySegmentsResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(AssignAllEmptySegmentsResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<AssignAllEmptySegmentsResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      AssignAllEmptySegmentsResponseMessage result = new AssignAllEmptySegmentsResponseMessage();
+      
+      protected override AssignAllEmptySegmentsResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new AssignAllEmptySegmentsResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return AssignAllEmptySegmentsResponseMessage.Descriptor; }
+      }
+      
+      public override AssignAllEmptySegmentsResponseMessage DefaultInstanceForType {
+        get { return AssignAllEmptySegmentsResponseMessage.DefaultInstance; }
+      }
+      
+      public override AssignAllEmptySegmentsResponseMessage BuildPartial() {
+        result.assignedSegments_.MakeReadOnly();
+        AssignAllEmptySegmentsResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is AssignAllEmptySegmentsResponseMessage) {
+          return MergeFrom((AssignAllEmptySegmentsResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(AssignAllEmptySegmentsResponseMessage other) {
+        if (other == AssignAllEmptySegmentsResponseMessage.DefaultInstance) return this;
+        if (other.assignedSegments_.Count != 0) {
+          base.AddRange(other.assignedSegments_, result.assignedSegments_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 16: {
+              AddAssignedSegments(input.ReadInt32());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public pbc::IPopsicleList<int> AssignedSegmentsList {
+        get { return result.assignedSegments_; }
+      }
+      public int AssignedSegmentsCount {
+        get { return result.AssignedSegmentsCount; }
+      }
+      public int GetAssignedSegments(int index) {
+        return result.GetAssignedSegments(index);
+      }
+      public Builder SetAssignedSegments(int index, int value) {
+        result.assignedSegments_[index] = value;
+        return this;
+      }
+      public Builder AddAssignedSegments(int value) {
+        result.assignedSegments_.Add(value);
+        return this;
+      }
+      public Builder AddRangeAssignedSegments(scg::IEnumerable<int> values) {
+        base.AddRange(values, result.assignedSegments_);
+        return this;
+      }
+      public Builder ClearAssignedSegments() {
+        result.assignedSegments_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class ReplicateNextPageRequestMessage : pb::GeneratedMessage<ReplicateNextPageRequestMessage, ReplicateNextPageRequestMessage.Builder> {
+    private static readonly ReplicateNextPageRequestMessage defaultInstance = new Builder().BuildPartial();
+    public static ReplicateNextPageRequestMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ReplicateNextPageRequestMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override ReplicateNextPageRequestMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageRequestMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ReplicateNextPageRequestMessage, ReplicateNextPageRequestMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageRequestMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasReplicationEndpoint;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasReplicationEndpoint {
+      get { return hasReplicationEndpoint; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint ReplicationEndpoint {
+      get { return replicationEndpoint_; }
+    }
+    
+    private bool hasSegment;
+    private int segment_ = 0;
+    public bool HasSegment {
+      get { return hasSegment; }
+    }
+    public int Segment {
+      get { return segment_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasReplicationEndpoint) return false;
+        if (!hasSegment) return false;
+        if (!ReplicationEndpoint.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasReplicationEndpoint) {
+        output.WriteMessage(1, ReplicationEndpoint);
+      }
+      if (HasSegment) {
+        output.WriteInt32(2, Segment);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasReplicationEndpoint) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, ReplicationEndpoint);
+        }
+        if (HasSegment) {
+          size += pb::CodedOutputStream.ComputeInt32Size(2, Segment);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ReplicateNextPageRequestMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ReplicateNextPageRequestMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ReplicateNextPageRequestMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<ReplicateNextPageRequestMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      ReplicateNextPageRequestMessage result = new ReplicateNextPageRequestMessage();
+      
+      protected override ReplicateNextPageRequestMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new ReplicateNextPageRequestMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return ReplicateNextPageRequestMessage.Descriptor; }
+      }
+      
+      public override ReplicateNextPageRequestMessage DefaultInstanceForType {
+        get { return ReplicateNextPageRequestMessage.DefaultInstance; }
+      }
+      
+      public override ReplicateNextPageRequestMessage BuildPartial() {
+        ReplicateNextPageRequestMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ReplicateNextPageRequestMessage) {
+          return MergeFrom((ReplicateNextPageRequestMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ReplicateNextPageRequestMessage other) {
+        if (other == ReplicateNextPageRequestMessage.DefaultInstance) return this;
+        if (other.HasReplicationEndpoint) {
+          MergeReplicationEndpoint(other.ReplicationEndpoint);
+        }
+        if (other.HasSegment) {
+          Segment = other.Segment;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasReplicationEndpoint) {
+                subBuilder.MergeFrom(ReplicationEndpoint);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplicationEndpoint = subBuilder.BuildPartial();
+              break;
+            }
+            case 16: {
+              Segment = input.ReadInt32();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasReplicationEndpoint {
+       get { return result.HasReplicationEndpoint; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint ReplicationEndpoint {
+        get { return result.ReplicationEndpoint; }
+        set { SetReplicationEndpoint(value); }
+      }
+      public Builder SetReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasReplicationEndpoint = true;
+        result.replicationEndpoint_ = value;
+        return this;
+      }
+      public Builder SetReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasReplicationEndpoint = true;
+        result.replicationEndpoint_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplicationEndpoint(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasReplicationEndpoint &&
+            result.replicationEndpoint_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.replicationEndpoint_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replicationEndpoint_ = value;
+        }
+        result.hasReplicationEndpoint = true;
+        return this;
+      }
+      public Builder ClearReplicationEndpoint() {
+        result.hasReplicationEndpoint = false;
+        result.replicationEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasSegment {
+        get { return result.HasSegment; }
+      }
+      public int Segment {
+        get { return result.Segment; }
+        set { SetSegment(value); }
+      }
+      public Builder SetSegment(int value) {
+        result.hasSegment = true;
+        result.segment_ = value;
+        return this;
+      }
+      public Builder ClearSegment() {
+        result.hasSegment = false;
+        result.segment_ = 0;
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class ReplicateNextPageResponseMessage : pb::GeneratedMessage<ReplicateNextPageResponseMessage, ReplicateNextPageResponseMessage.Builder> {
+    private static readonly ReplicateNextPageResponseMessage defaultInstance = new Builder().BuildPartial();
+    public static ReplicateNextPageResponseMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override ReplicateNextPageResponseMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override ReplicateNextPageResponseMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageResponseMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<ReplicateNextPageResponseMessage, ReplicateNextPageResponseMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_ReplicateNextPageResponseMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasDone;
+    private bool done_ = false;
+    public bool HasDone {
+      get { return hasDone; }
+    }
+    public bool Done {
+      get { return done_; }
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> removeRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> RemoveRequestsList {
+      get { return removeRequests_; }
+    }
+    public int RemoveRequestsCount {
+      get { return removeRequests_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage GetRemoveRequests(int index) {
+      return removeRequests_[index];
+    }
+    
+    private pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> putRequests_ = new pbc::PopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage>();
+    public scg::IList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> PutRequestsList {
+      get { return putRequests_; }
+    }
+    public int PutRequestsCount {
+      get { return putRequests_.Count; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.PutRequestMessage GetPutRequests(int index) {
+      return putRequests_[index];
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasDone) return false;
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
+          if (!element.IsInitialized) return false;
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
+          if (!element.IsInitialized) return false;
+        }
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasDone) {
+        output.WriteBool(1, Done);
+      }
+      foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
+        output.WriteMessage(2, element);
+      }
+      foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
+        output.WriteMessage(3, element);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasDone) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, Done);
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage element in RemoveRequestsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(2, element);
+        }
+        foreach (global::Rhino.DistributedHashTable.Protocol.PutRequestMessage element in PutRequestsList) {
+          size += pb::CodedOutputStream.ComputeMessageSize(3, element);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static ReplicateNextPageResponseMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static ReplicateNextPageResponseMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(ReplicateNextPageResponseMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<ReplicateNextPageResponseMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      ReplicateNextPageResponseMessage result = new ReplicateNextPageResponseMessage();
+      
+      protected override ReplicateNextPageResponseMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new ReplicateNextPageResponseMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return ReplicateNextPageResponseMessage.Descriptor; }
+      }
+      
+      public override ReplicateNextPageResponseMessage DefaultInstanceForType {
+        get { return ReplicateNextPageResponseMessage.DefaultInstance; }
+      }
+      
+      public override ReplicateNextPageResponseMessage BuildPartial() {
+        result.removeRequests_.MakeReadOnly();
+        result.putRequests_.MakeReadOnly();
+        ReplicateNextPageResponseMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is ReplicateNextPageResponseMessage) {
+          return MergeFrom((ReplicateNextPageResponseMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(ReplicateNextPageResponseMessage other) {
+        if (other == ReplicateNextPageResponseMessage.DefaultInstance) return this;
+        if (other.HasDone) {
+          Done = other.Done;
+        }
+        if (other.removeRequests_.Count != 0) {
+          base.AddRange(other.removeRequests_, result.removeRequests_);
+        }
+        if (other.putRequests_.Count != 0) {
+          base.AddRange(other.putRequests_, result.putRequests_);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 8: {
+              Done = input.ReadBool();
+              break;
+            }
+            case 18: {
+              global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddRemoveRequests(subBuilder.BuildPartial());
+              break;
+            }
+            case 26: {
+              global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.CreateBuilder();
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AddPutRequests(subBuilder.BuildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasDone {
+        get { return result.HasDone; }
+      }
+      public bool Done {
+        get { return result.Done; }
+        set { SetDone(value); }
+      }
+      public Builder SetDone(bool value) {
+        result.hasDone = true;
+        result.done_ = value;
+        return this;
+      }
+      public Builder ClearDone() {
+        result.hasDone = false;
+        result.done_ = false;
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> RemoveRequestsList {
+        get { return result.removeRequests_; }
+      }
+      public int RemoveRequestsCount {
+        get { return result.RemoveRequestsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage GetRemoveRequests(int index) {
+        return result.GetRemoveRequests(index);
+      }
+      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.removeRequests_[index] = value;
+        return this;
+      }
+      public Builder SetRemoveRequests(int index, global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.removeRequests_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.removeRequests_.Add(value);
+        return this;
+      }
+      public Builder AddRemoveRequests(global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.removeRequests_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangeRemoveRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.RemoveRequestMessage> values) {
+        base.AddRange(values, result.removeRequests_);
+        return this;
+      }
+      public Builder ClearRemoveRequests() {
+        result.removeRequests_.Clear();
+        return this;
+      }
+      
+      public pbc::IPopsicleList<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> PutRequestsList {
+        get { return result.putRequests_; }
+      }
+      public int PutRequestsCount {
+        get { return result.PutRequestsCount; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.PutRequestMessage GetPutRequests(int index) {
+        return result.GetPutRequests(index);
+      }
+      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.putRequests_[index] = value;
+        return this;
+      }
+      public Builder SetPutRequests(int index, global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.putRequests_[index] = builderForValue.Build();
+        return this;
+      }
+      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.putRequests_.Add(value);
+        return this;
+      }
+      public Builder AddPutRequests(global::Rhino.DistributedHashTable.Protocol.PutRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.putRequests_.Add(builderForValue.Build());
+        return this;
+      }
+      public Builder AddRangePutRequests(scg::IEnumerable<global::Rhino.DistributedHashTable.Protocol.PutRequestMessage> values) {
+        base.AddRange(values, result.putRequests_);
+        return this;
+      }
+      public Builder ClearPutRequests() {
+        result.putRequests_.Clear();
+        return this;
+      }
+    }
+  }
+  
+  public sealed partial class SeeOtherErrorMessage : pb::GeneratedMessage<SeeOtherErrorMessage, SeeOtherErrorMessage.Builder> {
+    private static readonly SeeOtherErrorMessage defaultInstance = new Builder().BuildPartial();
+    public static SeeOtherErrorMessage DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override SeeOtherErrorMessage DefaultInstanceForType {
+      get { return defaultInstance; }
+    }
+    
+    protected override SeeOtherErrorMessage ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_SeeOtherErrorMessage__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<SeeOtherErrorMessage, SeeOtherErrorMessage.Builder> InternalFieldAccessors {
+      get { return global::Rhino.DistributedHashTable.Protocol.ProtocolDef.internal__static_Rhino_DistributedHashTable_Protocol_SeeOtherErrorMessage__FieldAccessorTable; }
+    }
+    
+    private bool hasOther;
+    private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint other_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+    public bool HasOther {
+      get { return hasOther; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Other {
+      get { return other_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasOther) return false;
+        if (!Other.IsInitialized) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::CodedOutputStream output) {
+      if (HasOther) {
+        output.WriteMessage(1, Other);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (HasOther) {
+          size += pb::CodedOutputStream.ComputeMessageSize(1, Other);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static SeeOtherErrorMessage ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(pb::CodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static SeeOtherErrorMessage ParseFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(SeeOtherErrorMessage prototype) {
+      return (Builder) new Builder().MergeFrom(prototype);
+    }
+    
+    public sealed partial class Builder : pb::GeneratedBuilder<SeeOtherErrorMessage, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {}
+      
+      SeeOtherErrorMessage result = new SeeOtherErrorMessage();
+      
+      protected override SeeOtherErrorMessage MessageBeingBuilt {
+        get { return result; }
+      }
+      
+      public override Builder Clear() {
+        result = new SeeOtherErrorMessage();
+        return this;
+      }
+      
+      public override Builder Clone() {
+        return new Builder().MergeFrom(result);
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return SeeOtherErrorMessage.Descriptor; }
+      }
+      
+      public override SeeOtherErrorMessage DefaultInstanceForType {
+        get { return SeeOtherErrorMessage.DefaultInstance; }
+      }
+      
+      public override SeeOtherErrorMessage BuildPartial() {
+        SeeOtherErrorMessage returnMe = result;
+        result = null;
+        return returnMe;
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is SeeOtherErrorMessage) {
+          return MergeFrom((SeeOtherErrorMessage) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(SeeOtherErrorMessage other) {
+        if (other == SeeOtherErrorMessage.DefaultInstance) return this;
+        if (other.HasOther) {
+          MergeOther(other.Other);
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::CodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        while (true) {
+          uint tag = input.ReadTag();
+          switch (tag) {
+            case 0: {
+              if (unknownFields != null) {
+                this.UnknownFields = unknownFields.Build();
+              }
+              return this;
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag);
+              break;
+            }
+            case 10: {
+              global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
+              if (HasOther) {
+                subBuilder.MergeFrom(Other);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              Other = subBuilder.BuildPartial();
+              break;
+            }
+          }
+        }
+      }
+      
+      
+      public bool HasOther {
+       get { return result.HasOther; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.NodeEndpoint Other {
+        get { return result.Other; }
+        set { SetOther(value); }
+      }
+      public Builder SetOther(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasOther = true;
+        result.other_ = value;
+        return this;
+      }
+      public Builder SetOther(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasOther = true;
+        result.other_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeOther(global::Rhino.DistributedHashTable.Protocol.NodeEndpoint value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasOther &&
+            result.other_ != global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance) {
+            result.other_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder(result.other_).MergeFrom(value).BuildPartial();
+        } else {
+          result.other_ = value;
+        }
+        result.hasOther = true;
+        return this;
+      }
+      public Builder ClearOther() {
+        result.hasOther = false;
+        result.other_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
+        return this;
+      }
+    }
+  }
+  
   public sealed partial class MasterMessageUnion : pb::GeneratedMessage<MasterMessageUnion, MasterMessageUnion.Builder> {
     private static readonly MasterMessageUnion defaultInstance = new Builder().BuildPartial();
     public static MasterMessageUnion DefaultInstance {
@@ -6018,10 +7416,54 @@ namespace Rhino.DistributedHashTable.Protocol {
       get { return exception_; }
     }
     
+    private bool hasAssignAllEmptySegmentsRequest;
+    private global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage assignAllEmptySegmentsRequest_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.DefaultInstance;
+    public bool HasAssignAllEmptySegmentsRequest {
+      get { return hasAssignAllEmptySegmentsRequest; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage AssignAllEmptySegmentsRequest {
+      get { return assignAllEmptySegmentsRequest_; }
+    }
+    
+    private bool hasAssignAllEmptySegmentsResponse;
+    private global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage assignAllEmptySegmentsResponse_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.DefaultInstance;
+    public bool HasAssignAllEmptySegmentsResponse {
+      get { return hasAssignAllEmptySegmentsResponse; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage AssignAllEmptySegmentsResponse {
+      get { return assignAllEmptySegmentsResponse_; }
+    }
+    
+    private bool hasReplicateNextPageRequest;
+    private global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage replicateNextPageRequest_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.DefaultInstance;
+    public bool HasReplicateNextPageRequest {
+      get { return hasReplicateNextPageRequest; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage ReplicateNextPageRequest {
+      get { return replicateNextPageRequest_; }
+    }
+    
+    private bool hasReplicateNextPageResponse;
+    private global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage replicateNextPageResponse_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.DefaultInstance;
+    public bool HasReplicateNextPageResponse {
+      get { return hasReplicateNextPageResponse; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage ReplicateNextPageResponse {
+      get { return replicateNextPageResponse_; }
+    }
+    
+    private bool hasSeeOtherError;
+    private global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage seeOtherError_ = global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.DefaultInstance;
+    public bool HasSeeOtherError {
+      get { return hasSeeOtherError; }
+    }
+    public global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage SeeOtherError {
+      get { return seeOtherError_; }
+    }
+    
     public override bool IsInitialized {
       get {
         if (!hasType) return false;
-        if (!hasTopologyVersion) return false;
         foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
           if (!element.IsInitialized) return false;
         }
@@ -6042,6 +7484,18 @@ namespace Rhino.DistributedHashTable.Protocol {
         }
         if (HasException) {
           if (!Exception.IsInitialized) return false;
+        }
+        if (HasAssignAllEmptySegmentsRequest) {
+          if (!AssignAllEmptySegmentsRequest.IsInitialized) return false;
+        }
+        if (HasReplicateNextPageRequest) {
+          if (!ReplicateNextPageRequest.IsInitialized) return false;
+        }
+        if (HasReplicateNextPageResponse) {
+          if (!ReplicateNextPageResponse.IsInitialized) return false;
+        }
+        if (HasSeeOtherError) {
+          if (!SeeOtherError.IsInitialized) return false;
         }
         return true;
       }
@@ -6074,6 +7528,21 @@ namespace Rhino.DistributedHashTable.Protocol {
       }
       if (HasException) {
         output.WriteMessage(9, Exception);
+      }
+      if (HasAssignAllEmptySegmentsRequest) {
+        output.WriteMessage(10, AssignAllEmptySegmentsRequest);
+      }
+      if (HasAssignAllEmptySegmentsResponse) {
+        output.WriteMessage(11, AssignAllEmptySegmentsResponse);
+      }
+      if (HasReplicateNextPageRequest) {
+        output.WriteMessage(12, ReplicateNextPageRequest);
+      }
+      if (HasReplicateNextPageResponse) {
+        output.WriteMessage(13, ReplicateNextPageResponse);
+      }
+      if (HasSeeOtherError) {
+        output.WriteMessage(14, SeeOtherError);
       }
       UnknownFields.WriteTo(output);
     }
@@ -6111,6 +7580,21 @@ namespace Rhino.DistributedHashTable.Protocol {
         }
         if (HasException) {
           size += pb::CodedOutputStream.ComputeMessageSize(9, Exception);
+        }
+        if (HasAssignAllEmptySegmentsRequest) {
+          size += pb::CodedOutputStream.ComputeMessageSize(10, AssignAllEmptySegmentsRequest);
+        }
+        if (HasAssignAllEmptySegmentsResponse) {
+          size += pb::CodedOutputStream.ComputeMessageSize(11, AssignAllEmptySegmentsResponse);
+        }
+        if (HasReplicateNextPageRequest) {
+          size += pb::CodedOutputStream.ComputeMessageSize(12, ReplicateNextPageRequest);
+        }
+        if (HasReplicateNextPageResponse) {
+          size += pb::CodedOutputStream.ComputeMessageSize(13, ReplicateNextPageResponse);
+        }
+        if (HasSeeOtherError) {
+          size += pb::CodedOutputStream.ComputeMessageSize(14, SeeOtherError);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -6228,6 +7712,21 @@ namespace Rhino.DistributedHashTable.Protocol {
         if (other.HasException) {
           MergeException(other.Exception);
         }
+        if (other.HasAssignAllEmptySegmentsRequest) {
+          MergeAssignAllEmptySegmentsRequest(other.AssignAllEmptySegmentsRequest);
+        }
+        if (other.HasAssignAllEmptySegmentsResponse) {
+          MergeAssignAllEmptySegmentsResponse(other.AssignAllEmptySegmentsResponse);
+        }
+        if (other.HasReplicateNextPageRequest) {
+          MergeReplicateNextPageRequest(other.ReplicateNextPageRequest);
+        }
+        if (other.HasReplicateNextPageResponse) {
+          MergeReplicateNextPageResponse(other.ReplicateNextPageResponse);
+        }
+        if (other.HasSeeOtherError) {
+          MergeSeeOtherError(other.SeeOtherError);
+        }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
       }
@@ -6319,6 +7818,51 @@ namespace Rhino.DistributedHashTable.Protocol {
               }
               input.ReadMessage(subBuilder, extensionRegistry);
               Exception = subBuilder.BuildPartial();
+              break;
+            }
+            case 82: {
+              global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.CreateBuilder();
+              if (HasAssignAllEmptySegmentsRequest) {
+                subBuilder.MergeFrom(AssignAllEmptySegmentsRequest);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AssignAllEmptySegmentsRequest = subBuilder.BuildPartial();
+              break;
+            }
+            case 90: {
+              global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.CreateBuilder();
+              if (HasAssignAllEmptySegmentsResponse) {
+                subBuilder.MergeFrom(AssignAllEmptySegmentsResponse);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              AssignAllEmptySegmentsResponse = subBuilder.BuildPartial();
+              break;
+            }
+            case 98: {
+              global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.CreateBuilder();
+              if (HasReplicateNextPageRequest) {
+                subBuilder.MergeFrom(ReplicateNextPageRequest);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplicateNextPageRequest = subBuilder.BuildPartial();
+              break;
+            }
+            case 106: {
+              global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.CreateBuilder();
+              if (HasReplicateNextPageResponse) {
+                subBuilder.MergeFrom(ReplicateNextPageResponse);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              ReplicateNextPageResponse = subBuilder.BuildPartial();
+              break;
+            }
+            case 114: {
+              global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.CreateBuilder();
+              if (HasSeeOtherError) {
+                subBuilder.MergeFrom(SeeOtherError);
+              }
+              input.ReadMessage(subBuilder, extensionRegistry);
+              SeeOtherError = subBuilder.BuildPartial();
               break;
             }
           }
@@ -6624,6 +8168,186 @@ namespace Rhino.DistributedHashTable.Protocol {
       public Builder ClearException() {
         result.hasException = false;
         result.exception_ = global::Rhino.DistributedHashTable.Protocol.ErrorMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasAssignAllEmptySegmentsRequest {
+       get { return result.HasAssignAllEmptySegmentsRequest; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage AssignAllEmptySegmentsRequest {
+        get { return result.AssignAllEmptySegmentsRequest; }
+        set { SetAssignAllEmptySegmentsRequest(value); }
+      }
+      public Builder SetAssignAllEmptySegmentsRequest(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasAssignAllEmptySegmentsRequest = true;
+        result.assignAllEmptySegmentsRequest_ = value;
+        return this;
+      }
+      public Builder SetAssignAllEmptySegmentsRequest(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasAssignAllEmptySegmentsRequest = true;
+        result.assignAllEmptySegmentsRequest_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAssignAllEmptySegmentsRequest(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasAssignAllEmptySegmentsRequest &&
+            result.assignAllEmptySegmentsRequest_ != global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.DefaultInstance) {
+            result.assignAllEmptySegmentsRequest_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.CreateBuilder(result.assignAllEmptySegmentsRequest_).MergeFrom(value).BuildPartial();
+        } else {
+          result.assignAllEmptySegmentsRequest_ = value;
+        }
+        result.hasAssignAllEmptySegmentsRequest = true;
+        return this;
+      }
+      public Builder ClearAssignAllEmptySegmentsRequest() {
+        result.hasAssignAllEmptySegmentsRequest = false;
+        result.assignAllEmptySegmentsRequest_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsRequestMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasAssignAllEmptySegmentsResponse {
+       get { return result.HasAssignAllEmptySegmentsResponse; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage AssignAllEmptySegmentsResponse {
+        get { return result.AssignAllEmptySegmentsResponse; }
+        set { SetAssignAllEmptySegmentsResponse(value); }
+      }
+      public Builder SetAssignAllEmptySegmentsResponse(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasAssignAllEmptySegmentsResponse = true;
+        result.assignAllEmptySegmentsResponse_ = value;
+        return this;
+      }
+      public Builder SetAssignAllEmptySegmentsResponse(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasAssignAllEmptySegmentsResponse = true;
+        result.assignAllEmptySegmentsResponse_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeAssignAllEmptySegmentsResponse(global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasAssignAllEmptySegmentsResponse &&
+            result.assignAllEmptySegmentsResponse_ != global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.DefaultInstance) {
+            result.assignAllEmptySegmentsResponse_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.CreateBuilder(result.assignAllEmptySegmentsResponse_).MergeFrom(value).BuildPartial();
+        } else {
+          result.assignAllEmptySegmentsResponse_ = value;
+        }
+        result.hasAssignAllEmptySegmentsResponse = true;
+        return this;
+      }
+      public Builder ClearAssignAllEmptySegmentsResponse() {
+        result.hasAssignAllEmptySegmentsResponse = false;
+        result.assignAllEmptySegmentsResponse_ = global::Rhino.DistributedHashTable.Protocol.AssignAllEmptySegmentsResponseMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasReplicateNextPageRequest {
+       get { return result.HasReplicateNextPageRequest; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage ReplicateNextPageRequest {
+        get { return result.ReplicateNextPageRequest; }
+        set { SetReplicateNextPageRequest(value); }
+      }
+      public Builder SetReplicateNextPageRequest(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasReplicateNextPageRequest = true;
+        result.replicateNextPageRequest_ = value;
+        return this;
+      }
+      public Builder SetReplicateNextPageRequest(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasReplicateNextPageRequest = true;
+        result.replicateNextPageRequest_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplicateNextPageRequest(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasReplicateNextPageRequest &&
+            result.replicateNextPageRequest_ != global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.DefaultInstance) {
+            result.replicateNextPageRequest_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.CreateBuilder(result.replicateNextPageRequest_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replicateNextPageRequest_ = value;
+        }
+        result.hasReplicateNextPageRequest = true;
+        return this;
+      }
+      public Builder ClearReplicateNextPageRequest() {
+        result.hasReplicateNextPageRequest = false;
+        result.replicateNextPageRequest_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageRequestMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasReplicateNextPageResponse {
+       get { return result.HasReplicateNextPageResponse; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage ReplicateNextPageResponse {
+        get { return result.ReplicateNextPageResponse; }
+        set { SetReplicateNextPageResponse(value); }
+      }
+      public Builder SetReplicateNextPageResponse(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasReplicateNextPageResponse = true;
+        result.replicateNextPageResponse_ = value;
+        return this;
+      }
+      public Builder SetReplicateNextPageResponse(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasReplicateNextPageResponse = true;
+        result.replicateNextPageResponse_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeReplicateNextPageResponse(global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasReplicateNextPageResponse &&
+            result.replicateNextPageResponse_ != global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.DefaultInstance) {
+            result.replicateNextPageResponse_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.CreateBuilder(result.replicateNextPageResponse_).MergeFrom(value).BuildPartial();
+        } else {
+          result.replicateNextPageResponse_ = value;
+        }
+        result.hasReplicateNextPageResponse = true;
+        return this;
+      }
+      public Builder ClearReplicateNextPageResponse() {
+        result.hasReplicateNextPageResponse = false;
+        result.replicateNextPageResponse_ = global::Rhino.DistributedHashTable.Protocol.ReplicateNextPageResponseMessage.DefaultInstance;
+        return this;
+      }
+      
+      public bool HasSeeOtherError {
+       get { return result.HasSeeOtherError; }
+      }
+      public global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage SeeOtherError {
+        get { return result.SeeOtherError; }
+        set { SetSeeOtherError(value); }
+      }
+      public Builder SetSeeOtherError(global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        result.hasSeeOtherError = true;
+        result.seeOtherError_ = value;
+        return this;
+      }
+      public Builder SetSeeOtherError(global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.Builder builderForValue) {
+        pb::ThrowHelper.ThrowIfNull(builderForValue, "builderForValue");
+        result.hasSeeOtherError = true;
+        result.seeOtherError_ = builderForValue.Build();
+        return this;
+      }
+      public Builder MergeSeeOtherError(global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        if (result.HasSeeOtherError &&
+            result.seeOtherError_ != global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.DefaultInstance) {
+            result.seeOtherError_ = global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.CreateBuilder(result.seeOtherError_).MergeFrom(value).BuildPartial();
+        } else {
+          result.seeOtherError_ = value;
+        }
+        result.hasSeeOtherError = true;
+        return this;
+      }
+      public Builder ClearSeeOtherError() {
+        result.hasSeeOtherError = false;
+        result.seeOtherError_ = global::Rhino.DistributedHashTable.Protocol.SeeOtherErrorMessage.DefaultInstance;
         return this;
       }
     }

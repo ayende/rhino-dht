@@ -11,7 +11,7 @@ namespace Rhino.DistributedHashTable.Remote
 		/// whatever values has been changed (changing the value remove the replication version)
 		/// If there are no more results, the range is assigned to the endpoint
 		/// </summary>
-		ReplicationResult ReplicateNextPage(NodeEndpoint endpoint, int range);
+		ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint, int range);
 
 
 		/// <summary>
@@ -23,6 +23,6 @@ namespace Rhino.DistributedHashTable.Remote
 		/// After this methods return, any call to a node with a range that was 
 		/// returned from this method will raise a <seealso cref="SeeOtherException"/>
 		/// </summary>
-		int[] AssignAllEmptySegments(NodeEndpoint endpoint, int[] ranges);
+		int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint, int[] ranges);
 	}
 }

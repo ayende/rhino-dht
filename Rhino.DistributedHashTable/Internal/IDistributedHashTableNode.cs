@@ -3,8 +3,10 @@ using Rhino.DistributedHashTable.Parameters;
 
 namespace Rhino.DistributedHashTable.Internal
 {
-	public interface IDistributedHashTableNode
+	public interface IDistributedHashTableNode : IDisposable
 	{
+		void UpdateTopology();
+
 		Guid GetTopologyVersion();
 
 		bool IsSegmentOwned(int range);

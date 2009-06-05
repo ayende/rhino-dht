@@ -1,10 +1,15 @@
+* background replication!
+* Backup handoff strategy
+* master replication
+* update topology every 30 minutes
+
 * Fairness monitor:
 	* distribute the backup responsability to all nodes
 	* distribute ranges fairly across all nodes
 	
 * Is Alive monitor
 	* Clear assignments to take over a range
+	* Detect if node is down for extended period of time
 	
-* Handling fail over of range replication
 * When topology change see if replication failure for assigning range will remove the SeeOther restriction
-* Handling removal of values during replication
+* MasterSelectionStrategy (low priority)

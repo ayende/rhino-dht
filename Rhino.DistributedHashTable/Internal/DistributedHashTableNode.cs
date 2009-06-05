@@ -45,6 +45,11 @@ namespace Rhino.DistributedHashTable.Internal
 			get { return endpoint; }
 		}
 
+		public void UpdateTopology()
+		{
+			executer.RegisterForExecution(new UpdateTopologyCommand(master, this));
+		}
+
 		public Guid GetTopologyVersion()
 		{
 			return Topology.Version;
@@ -115,7 +120,7 @@ namespace Rhino.DistributedHashTable.Internal
 						rangeToReplicate.Key,
 						rangeToReplicate.ToArray(), 
 						this,
-						replicationFactory.Create(endpoint))
+						replicationFactory.Create(rangeToReplicate.Key))
 					);
 			}
 			ranges = assignedSegments.Where(x => x.AssignedEndpoint == endpoint).ToList();
@@ -125,6 +130,11 @@ namespace Rhino.DistributedHashTable.Internal
 						NodeState.Started
 					:
 						NodeState.Starting;
+		}
+
+		public void Dispose()
+		{
+			executer.Dispose();
 		}
 	}
 }

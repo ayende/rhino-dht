@@ -4,39 +4,56 @@ using System.Net;
 using System.Net.Sockets;
 using Google.ProtocolBuffers;
 using log4net;
+using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Protocol;
+using Rhino.DistributedHashTable.Remote;
+using Rhino.DistributedHashTable.Util;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
-using Segment = Rhino.DistributedHashTable.Protocol.Segment;
 
 namespace Rhino.DistributedHashTable.Hosting
 {
 	public class DistributedHashTableMasterHost : IDisposable
 	{
+		private readonly IExecuter executer;
 		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableMasterHost));
 
 		private readonly TcpListener listener;
-		private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
+		private readonly DistributedHashTableMaster master;
 
 		public DistributedHashTableMasterHost()
-			: this(2200)
+			: this(new ThreadPoolExecuter(), 2200)
 		{
 		}
 
-		public DistributedHashTableMasterHost(int port)
+		public DistributedHashTableMasterHost(IExecuter executer, int port)
 		{
+			this.executer = executer;
+			master = new DistributedHashTableMaster();
+			master.TopologyChanged += OnTopologyChanged;
 			listener = new TcpListener(IPAddress.Any, port);
+		}
+
+		private void OnTopologyChanged()
+		{
+			log.DebugFormat("Topology updated to {0}", master.Topology.Version);
+			executer.RegisterForExecution(new NotifyEndpointsAboutTopologyChange(
+				master.Endpoints.ToArray(),
+				new NonPooledDistributedHashTableNodeFactory()
+				));
 		}
 
 		public void Dispose()
 		{
 			listener.Stop();
+			executer.Dispose();
 		}
 
 		public void Start()
 		{
 			listener.Start();
 			listener.BeginAcceptTcpClient(OnAcceptTcpClient, null);
+			OnTopologyChanged();
 		}
 
 		private void OnAcceptTcpClient(IAsyncResult result)
@@ -80,7 +97,7 @@ namespace Rhino.DistributedHashTable.Hosting
 								case MasterMessageType.CaughtUpRequest:
 									HandleCatchUp(wrapper, writer);
 									break;
-                                case MasterMessageType.GaveUpRequest:
+								case MasterMessageType.GaveUpRequest:
 									HandleGaveUp(wrapper, writer);
 									break;
 								default:
@@ -124,7 +141,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		}
 
 		private void HandleCatchUp(MasterMessageUnion wrapper,
-		                           MessageStreamWriter<MasterMessageUnion> writer)
+								   MessageStreamWriter<MasterMessageUnion> writer)
 		{
 			master.CaughtUp(new NodeEndpoint
 			{
@@ -162,7 +179,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			});
 			var joinResponse = new JoinResponseMessage.Builder
 			{
-				SegmentsList = { segments.Select(x => ConvertToProtocolSegment(x)) }
+				SegmentsList = { segments.Select(x => x.GetSegment()) }
 			};
 			writer.Write(new MasterMessageUnion.Builder
 			{
@@ -174,43 +191,11 @@ namespace Rhino.DistributedHashTable.Hosting
 		private void HandleGetToplogy(MessageStreamWriter<MasterMessageUnion> writer)
 		{
 			var topology = master.GetTopology();
-			var topologyResultMessage = new TopologyResultMessage.Builder
-			{
-				Version = ByteString.CopyFrom(topology.Version.ToByteArray()),
-				TimestampAsDouble = topology.Timestamp.ToOADate(),
-				SegmentsList = { topology.Segments.Select(x => ConvertToProtocolSegment(x)) }
-			};
 			writer.Write(new MasterMessageUnion.Builder
 			{
 				Type = MasterMessageType.GetTopologyResult,
-				Topology = topologyResultMessage.Build()
+				Topology = topology.GetTopology()
 			}.Build());
-		}
-
-		private static Segment ConvertToProtocolSegment(Internal.Segment segment)
-		{
-			var builder = new Segment.Builder
-			{
-				Index = segment.Index,
-				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
-			};
-			if (segment.AssignedEndpoint != null)
-			{
-				builder.AssignedEndpoint = new Protocol.NodeEndpoint.Builder
-				{
-					Async = segment.AssignedEndpoint.Async.ToString(),
-					Sync = segment.AssignedEndpoint.Sync.ToString()
-				}.Build();
-			}
-			if (segment.InProcessOfMovingToEndpoint != null)
-			{
-				builder.InProcessOfMovingToEndpoint = new Protocol.NodeEndpoint.Builder
-				{
-					Async = segment.InProcessOfMovingToEndpoint.Async.ToString(),
-					Sync = segment.InProcessOfMovingToEndpoint.Sync.ToString(),
-				}.Build();
-			}
-			return builder.Build();
 		}
 	}
 }

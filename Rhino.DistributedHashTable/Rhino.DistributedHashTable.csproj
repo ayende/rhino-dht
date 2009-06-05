@@ -60,7 +60,9 @@
     <Compile Include="Client\DistributedHashTableMasterClient.cs" />
     <Compile Include="Client\DistributedHashTableStorageClient.cs" />
     <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Commands\NotifyEndpointsAboutTopologyChange.cs" />
     <Compile Include="Commands\RearrangeBackups.cs" />
+    <Compile Include="Commands\UpdateTopologyCommand.cs" />
     <Compile Include="Exceptions\RemoteNodeException.cs" />
     <Compile Include="Exceptions\SeeOtherException.cs" />
     <Compile Include="Exceptions\TopologyVersionDoesNotMatchException.cs" />
@@ -85,10 +87,14 @@
     <Compile Include="Internal\IMessageSerializer.cs" />
     <Compile Include="Internal\NodeEndpoint.cs" />
     <Compile Include="Remote\IDistributedHashTableNodeReplicationFactory.cs" />
+    <Compile Include="Remote\IDistributedHashTableRemoteNode.cs" />
+    <Compile Include="Remote\IDistributedHashTableRemoteNodeFactory.cs" />
+    <Compile Include="Remote\NonPooledDistributedHashTableNodeFactory.cs" />
     <Compile Include="Remote\ReplicationResult.cs" />
     <Compile Include="Parameters\ExtendedPutRequest.cs" />
     <Compile Include="Parameters\ExtendedRemoveRequest.cs" />
     <Compile Include="Parameters\IExtendedRequest.cs" />
+    <Compile Include="Util\PrtoBufConverter.cs" />
     <Compile Include="Util\EnumerableExtensions.cs" />
     <Compile Include="IDistributedHashTable.cs" />
     <Compile Include="Internal\IDistributedHashTableMaster.cs" />
@@ -99,7 +105,6 @@
     <Compile Include="Util\UndisposableStream.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assumptions.txt" />
     <Content Include="Todo.txt" />
   </ItemGroup>
   <ItemGroup>
