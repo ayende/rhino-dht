@@ -68,11 +68,10 @@ message ValueVersion
 message Segment
 {
 	required int32 Index = 1;
-	required bytes Version = 2;
-	optional NodeEndpoint AssignedEndpoint = 3;
-	optional NodeEndpoint InProcessOfMovingToEndpoint = 4;
-	repeated NodeEndpoint PendingBackups = 5;
-	repeated NodeEndpoint Backups = 6;
+	optional NodeEndpoint AssignedEndpoint = 2;
+	optional NodeEndpoint InProcessOfMovingToEndpoint = 3;
+	repeated NodeEndpoint PendingBackups = 4;
+	repeated NodeEndpoint Backups = 5;
 }
 
 message JoinRequestMessage
@@ -88,7 +87,7 @@ message JoinResponseMessage
 message TopologyResultMessage
 {
 	required double TimestampAsDouble = 1;
-	required bytes Version = 2;
+	required int32 Version = 2;
 	repeated Segment Segments = 3;
 }
 
@@ -202,7 +201,7 @@ message MasterMessageUnion
 message StorageMessageUnion
 {
 	required StorageMessageType Type = 1;
-	optional bytes TopologyVersion = 2;
+	optional int32 TopologyVersion = 2;
 	repeated GetRequestMessage GetRequests = 3;
 	repeated PutRequestMessage PutRequests = 4;
 	repeated PutResponseMessage PutResponses = 7;

@@ -16,7 +16,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		private readonly IDistributedHashTableNodeReplication replication;
 		private readonly NodeEndpoint endpoint;
 		private readonly IDistributedHashTableStorage storage;
-		private readonly Guid guid = Guid.NewGuid();
+		private readonly int topologyVersion = 4;
 
 		public OnlineSegmentReplicationCommandTest()
 		{
@@ -26,7 +26,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			node.Stub(x => x.Endpoint).Return(NodeEndpoint.ForTest(2));
 			storage = MockRepository.GenerateStub<IDistributedHashTableStorage>();
 			node.Storage = storage;
-			node.Stub(x => x.GetTopologyVersion()).Return(guid);
+			node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 			command = new OnlineSegmentReplicationCommand(
 				endpoint,
 				new[] { new Segment { Index = 0 }, new Segment { Index = 1 }, },
@@ -127,7 +127,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			storage.AssertWasCalled(x => x.Put(guid, request));
+			storage.AssertWasCalled(x => x.Put(topologyVersion, request));
 		}
 
 		[Fact]
@@ -149,7 +149,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			storage.AssertWasCalled(x => x.Remove(guid, request));
+			storage.AssertWasCalled(x => x.Remove(topologyVersion, request));
 		}
 
 		[Fact]
@@ -210,7 +210,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			storage.AssertWasCalled(x => x.Put(guid, request), o => o.Repeat.Times(6));
+			storage.AssertWasCalled(x => x.Put(topologyVersion, request), o => o.Repeat.Times(6));
 		}
 	}
 }

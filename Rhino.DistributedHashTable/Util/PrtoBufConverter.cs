@@ -17,7 +17,7 @@ namespace Rhino.DistributedHashTable.Util
 		public static Topology GetTopology(this TopologyResultMessage topology)
 		{
 			var segments = topology.SegmentsList.Select(x => GetSegment(x));
-			return new Topology(segments.ToArray(), new Guid(topology.Version.ToByteArray()))
+			return new Topology(segments.ToArray(), topology.Version)
 			{
 				Timestamp = DateTime.FromOADate(topology.TimestampAsDouble)
 			};
@@ -27,7 +27,6 @@ namespace Rhino.DistributedHashTable.Util
 		{
 			return new Segment
 			{
-				Version = new Guid(x.Version.ToByteArray()),
 				AssignedEndpoint = x.AssignedEndpoint.GetNodeEndpoint(),
 				InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint.GetNodeEndpoint(),
 				Index = x.Index,
@@ -196,7 +195,7 @@ namespace Rhino.DistributedHashTable.Util
 		{
 			return new TopologyResultMessage.Builder
 			{
-				Version = ByteString.CopyFrom(topology.Version.ToByteArray()),
+				Version = topology.Version,
 				TimestampAsDouble = topology.Timestamp.ToOADate(),
 				SegmentsList = { topology.Segments.Select(x => x.GetSegment()) }
 			}.Build();
@@ -207,7 +206,6 @@ namespace Rhino.DistributedHashTable.Util
 			var builder = new Protocol.Segment.Builder
 			{
 				Index = segment.Index,
-				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
 				BackupsList = { segment.Backups.Select(x => x.GetNodeEndpoint()) },
 				PendingBackupsList = { segment.PendingBackups.Select(x => x.GetNodeEndpoint()) }
 			};

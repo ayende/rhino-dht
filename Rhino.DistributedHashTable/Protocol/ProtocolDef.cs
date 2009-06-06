@@ -23,121 +23,121 @@ namespace Rhino.DistributedHashTable.Protocol {
         "SGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbhIZChFFeHBpcmVzQXRB" + 
         "c0RvdWJsZRgKIAEoARILCgNUYWcYCyABKAUiKwoMTm9kZUVuZHBvaW50EgwK" + 
         "BFN5bmMYASACKAkSDQoFQXN5bmMYAiACKAkiMgoMVmFsdWVWZXJzaW9uEg4K" + 
-        "Bk51bWJlchgBIAIoBRISCgpJbnN0YW5jZUlkGAIgAigMIt0CCgdTZWdtZW50" + 
-        "Eg0KBUluZGV4GAEgAigFEg8KB1ZlcnNpb24YAiACKAwSSwoQQXNzaWduZWRF" + 
-        "bmRwb2ludBgDIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
-        "b3RvY29sLk5vZGVFbmRwb2ludBJWChtJblByb2Nlc3NPZk1vdmluZ1RvRW5k" + 
-        "cG9pbnQYBCABKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90" + 
-        "b2NvbC5Ob2RlRW5kcG9pbnQSSQoOUGVuZGluZ0JhY2t1cHMYBSADKAsyMS5S" + 
+        "Bk51bWJlchgBIAIoBRISCgpJbnN0YW5jZUlkGAIgAigMIswCCgdTZWdtZW50" + 
+        "Eg0KBUluZGV4GAEgAigFEksKEEFzc2lnbmVkRW5kcG9pbnQYAiABKAsyMS5S" + 
         "aGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Ob2RlRW5kcG9p" + 
-        "bnQSQgoHQmFja3VwcxgGIAMoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRh" + 
-        "YmxlLlByb3RvY29sLk5vZGVFbmRwb2ludCJgChJKb2luUmVxdWVzdE1lc3Nh" + 
-        "Z2USSgoPRW5kcG9pbnRKb2luaW5nGAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0" + 
-        "ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50IlUKE0pvaW5SZXNw" + 
-        "b25zZU1lc3NhZ2USPgoIU2VnbWVudHMYASADKAsyLC5SaGluby5EaXN0cmli" + 
-        "dXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5TZWdtZW50IoMBChVUb3BvbG9neVJl" + 
-        "c3VsdE1lc3NhZ2USGQoRVGltZXN0YW1wQXNEb3VibGUYASACKAESDwoHVmVy" + 
-        "c2lvbhgCIAIoDBI+CghTZWdtZW50cxgDIAMoCzIsLlJoaW5vLkRpc3RyaWJ1" + 
-        "dGVkSGFzaFRhYmxlLlByb3RvY29sLlNlZ21lbnQiuwEKFkNhdWdodFVwUmVx" + 
-        "dWVzdE1lc3NhZ2USQwoIRW5kcG9pbnQYASACKAsyMS5SaGluby5EaXN0cmli" + 
-        "dXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Ob2RlRW5kcG9pbnQSGAoQQ2F1Z2h0" + 
-        "VXBTZWdtZW50cxgCIAMoBRJCCgRUeXBlGAMgAigOMjQuUmhpbm8uRGlzdHJp" + 
-        "YnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVwbGljYXRpb25UeXBlIrcBChRH" + 
-        "YXZlVXBSZXF1ZXN0TWVzc2FnZRJDCghFbmRwb2ludBgBIAIoCzIxLlJoaW5v" + 
-        "LkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5vZGVFbmRwb2ludBIW" + 
-        "Cg5HYXZlVXBTZWdtZW50cxgCIAMoBRJCCgRUeXBlGAMgAigOMjQuUmhpbm8u" + 
-        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUmVwbGljYXRpb25UeXBl" + 
-        "In0KEUdldFJlcXVlc3RNZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50" + 
-        "GAIgAigFEkoKD1NwZWNpZmljVmVyc2lvbhgDIAEoCzIxLlJoaW5vLkRpc3Ry" + 
-        "aWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbiJQChJHZXRS" + 
-        "ZXNwb25zZU1lc3NhZ2USOgoGVmFsdWVzGAEgAygLMiouUmhpbm8uRGlzdHJp" + 
-        "YnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWUingEKFFJlbW92ZVJlcXVl" + 
-        "c3RNZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50GAIgAigFEhwKFElz" + 
-        "UmVwbGljYXRpb25SZXF1ZXN0GAQgAigIEkoKD1NwZWNpZmljVmVyc2lvbhgD" + 
-        "IAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlZh" + 
-        "bHVlVmVyc2lvbiL5AgoRUHV0UmVxdWVzdE1lc3NhZ2USCwoDS2V5GAEgAigJ" + 
-        "Eg8KB1NlZ21lbnQYAiACKAUSSQoOUGFyZW50VmVyc2lvbnMYAyADKAsyMS5S" + 
-        "aGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNp" + 
-        "b24SHQoVT3B0aW1pc3RpY0NvbmN1cnJlbmN5GAQgAigIEhIKCklzUmVhZE9u" + 
-        "bHkYBSACKAgSDQoFQnl0ZXMYBiACKAwSHAoUSXNSZXBsaWNhdGlvblJlcXVl" + 
-        "c3QYCyACKAgSTQoSUmVwbGljYXRpb25WZXJzaW9uGAcgASgLMjEuUmhpbm8u" + 
-        "RGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhkK" + 
-        "EUV4cGlyZXNBdEFzRG91YmxlGAggASgBEiQKHFJlcGxpY2F0aW9uVGltZVN0" + 
-        "YW1wQXNEb3VibGUYCSABKAESCwoDVGFnGAogASgFInAKElB1dFJlc3BvbnNl" + 
-        "TWVzc2FnZRJCCgdWZXJzaW9uGAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
-        "YXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEhYKDkNvbmZsaWN0RXhp" + 
-        "c3RzGAIgAigIIisKFVJlbW92ZVJlc3BvbnNlTWVzc2FnZRISCgpXYXNSZW1v" + 
-        "dmVkGAEgAigIIh8KDEVycm9yTWVzc2FnZRIPCgdNZXNzYWdlGAEgAigJIswB" + 
-        "CiRBc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVxdWVzdE1lc3NhZ2USTgoTUmVw" + 
-        "bGljYXRpb25FbmRwb2ludBgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFz" + 
-        "aFRhYmxlLlByb3RvY29sLk5vZGVFbmRwb2ludBIQCghTZWdtZW50cxgCIAMo" + 
-        "BRJCCgRUeXBlGAMgAigOMjQuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
-        "UHJvdG9jb2wuUmVwbGljYXRpb25UeXBlIkEKJUFzc2lnbkFsbEVtcHR5U2Vn" + 
-        "bWVudHNSZXNwb25zZU1lc3NhZ2USGAoQQXNzaWduZWRTZWdtZW50cxgCIAMo" + 
-        "BSLGAQofUmVwbGljYXRlTmV4dFBhZ2VSZXF1ZXN0TWVzc2FnZRJOChNSZXBs" + 
-        "aWNhdGlvbkVuZHBvaW50GAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50Eg8KB1NlZ21lbnQYAiACKAUS" + 
-        "QgoEVHlwZRgDIAIoDjI0LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
-        "b3RvY29sLlJlcGxpY2F0aW9uVHlwZSLQAQogUmVwbGljYXRlTmV4dFBhZ2VS" + 
-        "ZXNwb25zZU1lc3NhZ2USDAoERG9uZRgBIAIoCBJRCg5SZW1vdmVSZXF1ZXN0" + 
-        "cxgCIAMoCzI5LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
-        "LlJlbW92ZVJlcXVlc3RNZXNzYWdlEksKC1B1dFJlcXVlc3RzGAMgAygLMjYu" + 
-        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVxdWVz" + 
-        "dE1lc3NhZ2UiWAoUU2VlT3RoZXJFcnJvck1lc3NhZ2USQAoFT3RoZXIYASAC" + 
+        "bnQSVgobSW5Qcm9jZXNzT2ZNb3ZpbmdUb0VuZHBvaW50GAMgASgLMjEuUmhp" + 
+        "bm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50" + 
+        "EkkKDlBlbmRpbmdCYWNrdXBzGAQgAygLMjEuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
+        "YXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50EkIKB0JhY2t1cHMYBSAD" + 
         "KAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Ob2Rl" + 
-        "RW5kcG9pbnQipgQKEk1hc3Rlck1lc3NhZ2VVbmlvbhJECgRUeXBlGAEgAigO" + 
-        "MjYuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuTWFzdGVy" + 
-        "TWVzc2FnZVR5cGUSTAoLSm9pblJlcXVlc3QYAiABKAsyNy5SaGluby5EaXN0" + 
-        "cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Kb2luUmVxdWVzdE1lc3NhZ2US" + 
-        "TgoMSm9pblJlc3BvbnNlGAMgASgLMjguUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
-        "VGFibGUuUHJvdG9jb2wuSm9pblJlc3BvbnNlTWVzc2FnZRJMCghUb3BvbG9n" + 
-        "eRgEIAEoCzI6LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
-        "LlRvcG9sb2d5UmVzdWx0TWVzc2FnZRJECglFeGNlcHRpb24YBSABKAsyMS5S" + 
-        "aGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5FcnJvck1lc3Nh" + 
-        "Z2USTQoIQ2F1Z2h0VXAYBiABKAsyOy5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
-        "YWJsZS5Qcm90b2NvbC5DYXVnaHRVcFJlcXVlc3RNZXNzYWdlEkkKBkdhdmVV" + 
-        "cBgHIAEoCzI5LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
-        "LkdhdmVVcFJlcXVlc3RNZXNzYWdlIqQJChNTdG9yYWdlTWVzc2FnZVVuaW9u" + 
-        "EkUKBFR5cGUYASACKA4yNy5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Q" + 
-        "cm90b2NvbC5TdG9yYWdlTWVzc2FnZVR5cGUSFwoPVG9wb2xvZ3lWZXJzaW9u" + 
-        "GAIgASgMEksKC0dldFJlcXVlc3RzGAMgAygLMjYuUmhpbm8uRGlzdHJpYnV0" + 
-        "ZWRIYXNoVGFibGUuUHJvdG9jb2wuR2V0UmVxdWVzdE1lc3NhZ2USSwoLUHV0" + 
-        "UmVxdWVzdHMYBCADKAsyNi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Q" + 
-        "cm90b2NvbC5QdXRSZXF1ZXN0TWVzc2FnZRJNCgxQdXRSZXNwb25zZXMYByAD" + 
-        "KAsyNy5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5QdXRS" + 
-        "ZXNwb25zZU1lc3NhZ2USUQoOUmVtb3ZlUmVxdWVzdHMYBSADKAsyOS5SaGlu" + 
-        "by5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZW1vdmVSZXF1ZXN0" + 
-        "TWVzc2FnZRJSCg5SZW1vdmVSZXNwb25lcxgIIAMoCzI6LlJoaW5vLkRpc3Ry" + 
-        "aWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlJlbW92ZVJlc3BvbnNlTWVzc2Fn" + 
-        "ZRJNCgxHZXRSZXNwb25zZXMYBiADKAsyNy5SaGluby5EaXN0cmlidXRlZEhh" + 
-        "c2hUYWJsZS5Qcm90b2NvbC5HZXRSZXNwb25zZU1lc3NhZ2USRAoJRXhjZXB0" + 
-        "aW9uGAkgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9j" + 
-        "b2wuRXJyb3JNZXNzYWdlEnAKHUFzc2lnbkFsbEVtcHR5U2VnbWVudHNSZXF1" + 
-        "ZXN0GAogASgLMkkuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9j" + 
-        "b2wuQXNzaWduQWxsRW1wdHlTZWdtZW50c1JlcXVlc3RNZXNzYWdlEnIKHkFz" + 
-        "c2lnbkFsbEVtcHR5U2VnbWVudHNSZXNwb25zZRgLIAEoCzJKLlJoaW5vLkRp" + 
-        "c3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkFzc2lnbkFsbEVtcHR5U2Vn" + 
-        "bWVudHNSZXNwb25zZU1lc3NhZ2USZgoYUmVwbGljYXRlTmV4dFBhZ2VSZXF1" + 
-        "ZXN0GAwgASgLMkQuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9j" + 
-        "b2wuUmVwbGljYXRlTmV4dFBhZ2VSZXF1ZXN0TWVzc2FnZRJoChlSZXBsaWNh" + 
-        "dGVOZXh0UGFnZVJlc3BvbnNlGA0gASgLMkUuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
-        "YXNoVGFibGUuUHJvdG9jb2wuUmVwbGljYXRlTmV4dFBhZ2VSZXNwb25zZU1l" + 
-        "c3NhZ2USUAoNU2VlT3RoZXJFcnJvchgOIAEoCzI5LlJoaW5vLkRpc3RyaWJ1" + 
-        "dGVkSGFzaFRhYmxlLlByb3RvY29sLlNlZU90aGVyRXJyb3JNZXNzYWdlKvUC" + 
-        "ChJTdG9yYWdlTWVzc2FnZVR5cGUSDwoLR2V0UmVxdWVzdHMQARIPCgtQdXRS" + 
-        "ZXF1ZXN0cxACEhIKDlJlbW92ZVJlcXVlc3RzEAMSEAoMR2V0UmVzcG9uc2Vz" + 
-        "EAQSEAoMUHV0UmVzcG9uc2VzEAUSEwoPUmVtb3ZlUmVzcG9uc2VzEAYSFgoS" + 
-        "U3RvcmFnZUVycm9yUmVzdWx0EAcSIQodQXNzaWduQWxsRW1wdHlTZWdtZW50" + 
-        "c1JlcXVlc3QQCBIiCh5Bc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVzcG9uc2UQ" + 
-        "CRIcChhSZXBsaWNhdGVOZXh0UGFnZVJlcXVlc3QQChIdChlSZXBsaWNhdGVO" + 
-        "ZXh0UGFnZVJlc3BvbnNlEAsSEQoNU2VlT3RoZXJFcnJvchAMEhgKFFRvcG9s" + 
-        "b2d5Q2hhbmdlZEVycm9yEA0SEgoOVXBkYXRlVG9wb2xvZ3kQDhITCg9Ub3Bv" + 
-        "bG9neVVwZGF0ZWQQDyrMAQoRTWFzdGVyTWVzc2FnZVR5cGUSFgoSR2V0VG9w" + 
-        "b2xvZ3lSZXF1ZXN0EAESFQoRR2V0VG9wb2xvZ3lSZXN1bHQQAhIPCgtKb2lu" + 
-        "UmVxdWVzdBADEg4KCkpvaW5SZXN1bHQQBBIVChFNYXN0ZXJFcnJvclJlc3Vs" + 
-        "dBAFEhMKD0NhdWdodFVwUmVxdWVzdBAGEhQKEENhdWdodFVwUmVzcG9uc2UQ" + 
-        "BxIRCg1HYXZlVXBSZXF1ZXN0EAgSEgoOR2F2ZVVwUmVzcG9uc2UQCSosCg9S" + 
-        "ZXBsaWNhdGlvblR5cGUSDQoJT3duZXJzaGlwEAESCgoGQmFja3VwEAJCAkgB"),
+        "RW5kcG9pbnQiYAoSSm9pblJlcXVlc3RNZXNzYWdlEkoKD0VuZHBvaW50Sm9p" + 
+        "bmluZxgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
+        "Y29sLk5vZGVFbmRwb2ludCJVChNKb2luUmVzcG9uc2VNZXNzYWdlEj4KCFNl" + 
+        "Z21lbnRzGAEgAygLMiwuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJv" + 
+        "dG9jb2wuU2VnbWVudCKDAQoVVG9wb2xvZ3lSZXN1bHRNZXNzYWdlEhkKEVRp" + 
+        "bWVzdGFtcEFzRG91YmxlGAEgAigBEg8KB1ZlcnNpb24YAiACKAUSPgoIU2Vn" + 
+        "bWVudHMYAyADKAsyLC5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90" + 
+        "b2NvbC5TZWdtZW50IrsBChZDYXVnaHRVcFJlcXVlc3RNZXNzYWdlEkMKCEVu" + 
+        "ZHBvaW50GAEgAigLMjEuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJv" + 
+        "dG9jb2wuTm9kZUVuZHBvaW50EhgKEENhdWdodFVwU2VnbWVudHMYAiADKAUS" + 
+        "QgoEVHlwZRgDIAIoDjI0LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
+        "b3RvY29sLlJlcGxpY2F0aW9uVHlwZSK3AQoUR2F2ZVVwUmVxdWVzdE1lc3Nh" + 
+        "Z2USQwoIRW5kcG9pbnQYASACKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hU" + 
+        "YWJsZS5Qcm90b2NvbC5Ob2RlRW5kcG9pbnQSFgoOR2F2ZVVwU2VnbWVudHMY" + 
+        "AiADKAUSQgoEVHlwZRgDIAIoDjI0LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRh" + 
+        "YmxlLlByb3RvY29sLlJlcGxpY2F0aW9uVHlwZSJ9ChFHZXRSZXF1ZXN0TWVz" + 
+        "c2FnZRILCgNLZXkYASACKAkSDwoHU2VnbWVudBgCIAIoBRJKCg9TcGVjaWZp" + 
+        "Y1ZlcnNpb24YAyABKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Q" + 
+        "cm90b2NvbC5WYWx1ZVZlcnNpb24iUAoSR2V0UmVzcG9uc2VNZXNzYWdlEjoK" + 
+        "BlZhbHVlcxgBIAMoCzIqLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlBy" + 
+        "b3RvY29sLlZhbHVlIp4BChRSZW1vdmVSZXF1ZXN0TWVzc2FnZRILCgNLZXkY" + 
+        "ASACKAkSDwoHU2VnbWVudBgCIAIoBRIcChRJc1JlcGxpY2F0aW9uUmVxdWVz" + 
+        "dBgEIAIoCBJKCg9TcGVjaWZpY1ZlcnNpb24YAyABKAsyMS5SaGluby5EaXN0" + 
+        "cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5WYWx1ZVZlcnNpb24i+QIKEVB1" + 
+        "dFJlcXVlc3RNZXNzYWdlEgsKA0tleRgBIAIoCRIPCgdTZWdtZW50GAIgAigF" + 
+        "EkkKDlBhcmVudFZlcnNpb25zGAMgAygLMjEuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
+        "YXNoVGFibGUuUHJvdG9jb2wuVmFsdWVWZXJzaW9uEh0KFU9wdGltaXN0aWND" + 
+        "b25jdXJyZW5jeRgEIAIoCBISCgpJc1JlYWRPbmx5GAUgAigIEg0KBUJ5dGVz" + 
+        "GAYgAigMEhwKFElzUmVwbGljYXRpb25SZXF1ZXN0GAsgAigIEk0KElJlcGxp" + 
+        "Y2F0aW9uVmVyc2lvbhgHIAEoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRh" + 
+        "YmxlLlByb3RvY29sLlZhbHVlVmVyc2lvbhIZChFFeHBpcmVzQXRBc0RvdWJs" + 
+        "ZRgIIAEoARIkChxSZXBsaWNhdGlvblRpbWVTdGFtcEFzRG91YmxlGAkgASgB" + 
+        "EgsKA1RhZxgKIAEoBSJwChJQdXRSZXNwb25zZU1lc3NhZ2USQgoHVmVyc2lv" + 
+        "bhgBIAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
+        "LlZhbHVlVmVyc2lvbhIWCg5Db25mbGljdEV4aXN0cxgCIAIoCCIrChVSZW1v" + 
+        "dmVSZXNwb25zZU1lc3NhZ2USEgoKV2FzUmVtb3ZlZBgBIAIoCCIfCgxFcnJv" + 
+        "ck1lc3NhZ2USDwoHTWVzc2FnZRgBIAIoCSLMAQokQXNzaWduQWxsRW1wdHlT" + 
+        "ZWdtZW50c1JlcXVlc3RNZXNzYWdlEk4KE1JlcGxpY2F0aW9uRW5kcG9pbnQY" + 
+        "ASACKAsyMS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5O" + 
+        "b2RlRW5kcG9pbnQSEAoIU2VnbWVudHMYAiADKAUSQgoEVHlwZRgDIAIoDjI0" + 
+        "LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlJlcGxpY2F0" + 
+        "aW9uVHlwZSJBCiVBc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVzcG9uc2VNZXNz" + 
+        "YWdlEhgKEEFzc2lnbmVkU2VnbWVudHMYAiADKAUixgEKH1JlcGxpY2F0ZU5l" + 
+        "eHRQYWdlUmVxdWVzdE1lc3NhZ2USTgoTUmVwbGljYXRpb25FbmRwb2ludBgB" + 
+        "IAIoCzIxLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLk5v" + 
+        "ZGVFbmRwb2ludBIPCgdTZWdtZW50GAIgAigFEkIKBFR5cGUYAyACKA4yNC5S" + 
+        "aGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZXBsaWNhdGlv" + 
+        "blR5cGUi0AEKIFJlcGxpY2F0ZU5leHRQYWdlUmVzcG9uc2VNZXNzYWdlEgwK" + 
+        "BERvbmUYASACKAgSUQoOUmVtb3ZlUmVxdWVzdHMYAiADKAsyOS5SaGluby5E" + 
+        "aXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5SZW1vdmVSZXF1ZXN0TWVz" + 
+        "c2FnZRJLCgtQdXRSZXF1ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1dGVk" + 
+        "SGFzaFRhYmxlLlByb3RvY29sLlB1dFJlcXVlc3RNZXNzYWdlIlgKFFNlZU90" + 
+        "aGVyRXJyb3JNZXNzYWdlEkAKBU90aGVyGAEgAigLMjEuUmhpbm8uRGlzdHJp" + 
+        "YnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuTm9kZUVuZHBvaW50IqYEChJNYXN0" + 
+        "ZXJNZXNzYWdlVW5pb24SRAoEVHlwZRgBIAIoDjI2LlJoaW5vLkRpc3RyaWJ1" + 
+        "dGVkSGFzaFRhYmxlLlByb3RvY29sLk1hc3Rlck1lc3NhZ2VUeXBlEkwKC0pv" + 
+        "aW5SZXF1ZXN0GAIgASgLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUu" + 
+        "UHJvdG9jb2wuSm9pblJlcXVlc3RNZXNzYWdlEk4KDEpvaW5SZXNwb25zZRgD" + 
+        "IAEoCzI4LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkpv" + 
+        "aW5SZXNwb25zZU1lc3NhZ2USTAoIVG9wb2xvZ3kYBCABKAsyOi5SaGluby5E" + 
+        "aXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5Ub3BvbG9neVJlc3VsdE1l" + 
+        "c3NhZ2USRAoJRXhjZXB0aW9uGAUgASgLMjEuUmhpbm8uRGlzdHJpYnV0ZWRI" + 
+        "YXNoVGFibGUuUHJvdG9jb2wuRXJyb3JNZXNzYWdlEk0KCENhdWdodFVwGAYg" + 
+        "ASgLMjsuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuQ2F1" + 
+        "Z2h0VXBSZXF1ZXN0TWVzc2FnZRJJCgZHYXZlVXAYByABKAsyOS5SaGluby5E" + 
+        "aXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90b2NvbC5HYXZlVXBSZXF1ZXN0TWVz" + 
+        "c2FnZSKkCQoTU3RvcmFnZU1lc3NhZ2VVbmlvbhJFCgRUeXBlGAEgAigOMjcu" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuU3RvcmFnZU1l" + 
+        "c3NhZ2VUeXBlEhcKD1RvcG9sb2d5VmVyc2lvbhgCIAEoBRJLCgtHZXRSZXF1" + 
+        "ZXN0cxgDIAMoCzI2LlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3Rv" + 
+        "Y29sLkdldFJlcXVlc3RNZXNzYWdlEksKC1B1dFJlcXVlc3RzGAQgAygLMjYu" + 
+        "Umhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVxdWVz" + 
+        "dE1lc3NhZ2USTQoMUHV0UmVzcG9uc2VzGAcgAygLMjcuUmhpbm8uRGlzdHJp" + 
+        "YnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wuUHV0UmVzcG9uc2VNZXNzYWdlElEK" + 
+        "DlJlbW92ZVJlcXVlc3RzGAUgAygLMjkuUmhpbm8uRGlzdHJpYnV0ZWRIYXNo" + 
+        "VGFibGUuUHJvdG9jb2wuUmVtb3ZlUmVxdWVzdE1lc3NhZ2USUgoOUmVtb3Zl" + 
+        "UmVzcG9uZXMYCCADKAsyOi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Q" + 
+        "cm90b2NvbC5SZW1vdmVSZXNwb25zZU1lc3NhZ2USTQoMR2V0UmVzcG9uc2Vz" + 
+        "GAYgAygLMjcuUmhpbm8uRGlzdHJpYnV0ZWRIYXNoVGFibGUuUHJvdG9jb2wu" + 
+        "R2V0UmVzcG9uc2VNZXNzYWdlEkQKCUV4Y2VwdGlvbhgJIAEoCzIxLlJoaW5v" + 
+        "LkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkVycm9yTWVzc2FnZRJw" + 
+        "Ch1Bc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVxdWVzdBgKIAEoCzJJLlJoaW5v" + 
+        "LkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLkFzc2lnbkFsbEVtcHR5" + 
+        "U2VnbWVudHNSZXF1ZXN0TWVzc2FnZRJyCh5Bc3NpZ25BbGxFbXB0eVNlZ21l" + 
+        "bnRzUmVzcG9uc2UYCyABKAsySi5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJs" + 
+        "ZS5Qcm90b2NvbC5Bc3NpZ25BbGxFbXB0eVNlZ21lbnRzUmVzcG9uc2VNZXNz" + 
+        "YWdlEmYKGFJlcGxpY2F0ZU5leHRQYWdlUmVxdWVzdBgMIAEoCzJELlJoaW5v" + 
+        "LkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29sLlJlcGxpY2F0ZU5leHRQ" + 
+        "YWdlUmVxdWVzdE1lc3NhZ2USaAoZUmVwbGljYXRlTmV4dFBhZ2VSZXNwb25z" + 
+        "ZRgNIAEoCzJFLlJoaW5vLkRpc3RyaWJ1dGVkSGFzaFRhYmxlLlByb3RvY29s" + 
+        "LlJlcGxpY2F0ZU5leHRQYWdlUmVzcG9uc2VNZXNzYWdlElAKDVNlZU90aGVy" + 
+        "RXJyb3IYDiABKAsyOS5SaGluby5EaXN0cmlidXRlZEhhc2hUYWJsZS5Qcm90" + 
+        "b2NvbC5TZWVPdGhlckVycm9yTWVzc2FnZSr1AgoSU3RvcmFnZU1lc3NhZ2VU" + 
+        "eXBlEg8KC0dldFJlcXVlc3RzEAESDwoLUHV0UmVxdWVzdHMQAhISCg5SZW1v" + 
+        "dmVSZXF1ZXN0cxADEhAKDEdldFJlc3BvbnNlcxAEEhAKDFB1dFJlc3BvbnNl" + 
+        "cxAFEhMKD1JlbW92ZVJlc3BvbnNlcxAGEhYKElN0b3JhZ2VFcnJvclJlc3Vs" + 
+        "dBAHEiEKHUFzc2lnbkFsbEVtcHR5U2VnbWVudHNSZXF1ZXN0EAgSIgoeQXNz" + 
+        "aWduQWxsRW1wdHlTZWdtZW50c1Jlc3BvbnNlEAkSHAoYUmVwbGljYXRlTmV4" + 
+        "dFBhZ2VSZXF1ZXN0EAoSHQoZUmVwbGljYXRlTmV4dFBhZ2VSZXNwb25zZRAL" + 
+        "EhEKDVNlZU90aGVyRXJyb3IQDBIYChRUb3BvbG9neUNoYW5nZWRFcnJvchAN" + 
+        "EhIKDlVwZGF0ZVRvcG9sb2d5EA4SEwoPVG9wb2xvZ3lVcGRhdGVkEA8qzAEK" + 
+        "EU1hc3Rlck1lc3NhZ2VUeXBlEhYKEkdldFRvcG9sb2d5UmVxdWVzdBABEhUK" + 
+        "EUdldFRvcG9sb2d5UmVzdWx0EAISDwoLSm9pblJlcXVlc3QQAxIOCgpKb2lu" + 
+        "UmVzdWx0EAQSFQoRTWFzdGVyRXJyb3JSZXN1bHQQBRITCg9DYXVnaHRVcFJl" + 
+        "cXVlc3QQBhIUChBDYXVnaHRVcFJlc3BvbnNlEAcSEQoNR2F2ZVVwUmVxdWVz" + 
+        "dBAIEhIKDkdhdmVVcFJlc3BvbnNlEAkqLAoPUmVwbGljYXRpb25UeXBlEg0K" + 
+        "CU93bmVyc2hpcBABEgoKBkJhY2t1cBACQgJIAQ=="),
         new pbd::FileDescriptor[] {
         });
     #endregion
@@ -162,7 +162,7 @@ namespace Rhino.DistributedHashTable.Protocol {
         = Descriptor.MessageTypes[3];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Segment, global::Rhino.DistributedHashTable.Protocol.Segment.Builder> internal__static_Rhino_DistributedHashTable_Protocol_Segment__FieldAccessorTable
         = new pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.Segment, global::Rhino.DistributedHashTable.Protocol.Segment.Builder>(internal__static_Rhino_DistributedHashTable_Protocol_Segment__Descriptor,
-            new string[] { "Index", "Version", "AssignedEndpoint", "InProcessOfMovingToEndpoint", "PendingBackups", "Backups", });
+            new string[] { "Index", "AssignedEndpoint", "InProcessOfMovingToEndpoint", "PendingBackups", "Backups", });
     internal static readonly pbd::MessageDescriptor internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__Descriptor
         = Descriptor.MessageTypes[4];
     internal static pb::FieldAccess.FieldAccessorTable<global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage, global::Rhino.DistributedHashTable.Protocol.JoinRequestMessage.Builder> internal__static_Rhino_DistributedHashTable_Protocol_JoinRequestMessage__FieldAccessorTable
@@ -1401,15 +1401,6 @@ namespace Rhino.DistributedHashTable.Protocol {
       get { return index_; }
     }
     
-    private bool hasVersion;
-    private pb::ByteString version_ = pb::ByteString.Empty;
-    public bool HasVersion {
-      get { return hasVersion; }
-    }
-    public pb::ByteString Version {
-      get { return version_; }
-    }
-    
     private bool hasAssignedEndpoint;
     private global::Rhino.DistributedHashTable.Protocol.NodeEndpoint assignedEndpoint_ = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.DefaultInstance;
     public bool HasAssignedEndpoint {
@@ -1453,7 +1444,6 @@ namespace Rhino.DistributedHashTable.Protocol {
     public override bool IsInitialized {
       get {
         if (!hasIndex) return false;
-        if (!hasVersion) return false;
         if (HasAssignedEndpoint) {
           if (!AssignedEndpoint.IsInitialized) return false;
         }
@@ -1474,20 +1464,17 @@ namespace Rhino.DistributedHashTable.Protocol {
       if (HasIndex) {
         output.WriteInt32(1, Index);
       }
-      if (HasVersion) {
-        output.WriteBytes(2, Version);
-      }
       if (HasAssignedEndpoint) {
-        output.WriteMessage(3, AssignedEndpoint);
+        output.WriteMessage(2, AssignedEndpoint);
       }
       if (HasInProcessOfMovingToEndpoint) {
-        output.WriteMessage(4, InProcessOfMovingToEndpoint);
+        output.WriteMessage(3, InProcessOfMovingToEndpoint);
       }
       foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in PendingBackupsList) {
-        output.WriteMessage(5, element);
+        output.WriteMessage(4, element);
       }
       foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
-        output.WriteMessage(6, element);
+        output.WriteMessage(5, element);
       }
       UnknownFields.WriteTo(output);
     }
@@ -1502,20 +1489,17 @@ namespace Rhino.DistributedHashTable.Protocol {
         if (HasIndex) {
           size += pb::CodedOutputStream.ComputeInt32Size(1, Index);
         }
-        if (HasVersion) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
-        }
         if (HasAssignedEndpoint) {
-          size += pb::CodedOutputStream.ComputeMessageSize(3, AssignedEndpoint);
+          size += pb::CodedOutputStream.ComputeMessageSize(2, AssignedEndpoint);
         }
         if (HasInProcessOfMovingToEndpoint) {
-          size += pb::CodedOutputStream.ComputeMessageSize(4, InProcessOfMovingToEndpoint);
+          size += pb::CodedOutputStream.ComputeMessageSize(3, InProcessOfMovingToEndpoint);
         }
         foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in PendingBackupsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(5, element);
+          size += pb::CodedOutputStream.ComputeMessageSize(4, element);
         }
         foreach (global::Rhino.DistributedHashTable.Protocol.NodeEndpoint element in BackupsList) {
-          size += pb::CodedOutputStream.ComputeMessageSize(6, element);
+          size += pb::CodedOutputStream.ComputeMessageSize(5, element);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -1605,9 +1589,6 @@ namespace Rhino.DistributedHashTable.Protocol {
         if (other.HasIndex) {
           Index = other.Index;
         }
-        if (other.HasVersion) {
-          Version = other.Version;
-        }
         if (other.HasAssignedEndpoint) {
           MergeAssignedEndpoint(other.AssignedEndpoint);
         }
@@ -1657,10 +1638,6 @@ namespace Rhino.DistributedHashTable.Protocol {
               break;
             }
             case 18: {
-              Version = input.ReadBytes();
-              break;
-            }
-            case 26: {
               global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
               if (HasAssignedEndpoint) {
                 subBuilder.MergeFrom(AssignedEndpoint);
@@ -1669,7 +1646,7 @@ namespace Rhino.DistributedHashTable.Protocol {
               AssignedEndpoint = subBuilder.BuildPartial();
               break;
             }
-            case 34: {
+            case 26: {
               global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
               if (HasInProcessOfMovingToEndpoint) {
                 subBuilder.MergeFrom(InProcessOfMovingToEndpoint);
@@ -1678,13 +1655,13 @@ namespace Rhino.DistributedHashTable.Protocol {
               InProcessOfMovingToEndpoint = subBuilder.BuildPartial();
               break;
             }
-            case 42: {
+            case 34: {
               global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddPendingBackups(subBuilder.BuildPartial());
               break;
             }
-            case 50: {
+            case 42: {
               global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.Builder subBuilder = global::Rhino.DistributedHashTable.Protocol.NodeEndpoint.CreateBuilder();
               input.ReadMessage(subBuilder, extensionRegistry);
               AddBackups(subBuilder.BuildPartial());
@@ -1710,25 +1687,6 @@ namespace Rhino.DistributedHashTable.Protocol {
       public Builder ClearIndex() {
         result.hasIndex = false;
         result.index_ = 0;
-        return this;
-      }
-      
-      public bool HasVersion {
-        get { return result.HasVersion; }
-      }
-      public pb::ByteString Version {
-        get { return result.Version; }
-        set { SetVersion(value); }
-      }
-      public Builder SetVersion(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        result.hasVersion = true;
-        result.version_ = value;
-        return this;
-      }
-      public Builder ClearVersion() {
-        result.hasVersion = false;
-        result.version_ = pb::ByteString.Empty;
         return this;
       }
       
@@ -2369,11 +2327,11 @@ namespace Rhino.DistributedHashTable.Protocol {
     }
     
     private bool hasVersion;
-    private pb::ByteString version_ = pb::ByteString.Empty;
+    private int version_ = 0;
     public bool HasVersion {
       get { return hasVersion; }
     }
-    public pb::ByteString Version {
+    public int Version {
       get { return version_; }
     }
     
@@ -2404,7 +2362,7 @@ namespace Rhino.DistributedHashTable.Protocol {
         output.WriteDouble(1, TimestampAsDouble);
       }
       if (HasVersion) {
-        output.WriteBytes(2, Version);
+        output.WriteInt32(2, Version);
       }
       foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
         output.WriteMessage(3, element);
@@ -2423,7 +2381,7 @@ namespace Rhino.DistributedHashTable.Protocol {
           size += pb::CodedOutputStream.ComputeDoubleSize(1, TimestampAsDouble);
         }
         if (HasVersion) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, Version);
+          size += pb::CodedOutputStream.ComputeInt32Size(2, Version);
         }
         foreach (global::Rhino.DistributedHashTable.Protocol.Segment element in SegmentsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, element);
@@ -2557,8 +2515,8 @@ namespace Rhino.DistributedHashTable.Protocol {
               TimestampAsDouble = input.ReadDouble();
               break;
             }
-            case 18: {
-              Version = input.ReadBytes();
+            case 16: {
+              Version = input.ReadInt32();
               break;
             }
             case 26: {
@@ -2593,19 +2551,18 @@ namespace Rhino.DistributedHashTable.Protocol {
       public bool HasVersion {
         get { return result.HasVersion; }
       }
-      public pb::ByteString Version {
+      public int Version {
         get { return result.Version; }
         set { SetVersion(value); }
       }
-      public Builder SetVersion(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
+      public Builder SetVersion(int value) {
         result.hasVersion = true;
         result.version_ = value;
         return this;
       }
       public Builder ClearVersion() {
         result.hasVersion = false;
-        result.version_ = pb::ByteString.Empty;
+        result.version_ = 0;
         return this;
       }
       
@@ -7610,11 +7567,11 @@ namespace Rhino.DistributedHashTable.Protocol {
     }
     
     private bool hasTopologyVersion;
-    private pb::ByteString topologyVersion_ = pb::ByteString.Empty;
+    private int? topologyVersion_ = 0;
     public bool HasTopologyVersion {
-      get { return hasTopologyVersion; }
+      get { return hasTopologyVersion && topologyVersion_.HasValue; }
     }
-    public pb::ByteString TopologyVersion {
+    public int? TopologyVersion {
       get { return topologyVersion_; }
     }
     
@@ -7783,7 +7740,7 @@ namespace Rhino.DistributedHashTable.Protocol {
         output.WriteEnum(1, (int) Type);
       }
       if (HasTopologyVersion) {
-        output.WriteBytes(2, TopologyVersion);
+        output.WriteInt32(2, TopologyVersion.Value);
       }
       foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
         output.WriteMessage(3, element);
@@ -7835,7 +7792,7 @@ namespace Rhino.DistributedHashTable.Protocol {
           size += pb::CodedOutputStream.ComputeEnumSize(1, (int) Type);
         }
         if (HasTopologyVersion) {
-          size += pb::CodedOutputStream.ComputeBytesSize(2, TopologyVersion);
+          size += pb::CodedOutputStream.ComputeInt32Size(2, TopologyVersion.Value);
         }
         foreach (global::Rhino.DistributedHashTable.Protocol.GetRequestMessage element in GetRequestsList) {
           size += pb::CodedOutputStream.ComputeMessageSize(3, element);
@@ -8048,8 +8005,8 @@ namespace Rhino.DistributedHashTable.Protocol {
               }
               break;
             }
-            case 18: {
-              TopologyVersion = input.ReadBytes();
+            case 16: {
+              TopologyVersion = input.ReadInt32();
               break;
             }
             case 26: {
@@ -8168,19 +8125,18 @@ namespace Rhino.DistributedHashTable.Protocol {
       public bool HasTopologyVersion {
         get { return result.HasTopologyVersion; }
       }
-      public pb::ByteString TopologyVersion {
+      public int? TopologyVersion {
         get { return result.TopologyVersion; }
         set { SetTopologyVersion(value); }
       }
-      public Builder SetTopologyVersion(pb::ByteString value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
+      public Builder SetTopologyVersion(int? value) {
         result.hasTopologyVersion = true;
         result.topologyVersion_ = value;
         return this;
       }
       public Builder ClearTopologyVersion() {
         result.hasTopologyVersion = false;
-        result.topologyVersion_ = pb::ByteString.Empty;
+        result.topologyVersion_ = 0;
         return this;
       }
       

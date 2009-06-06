@@ -28,7 +28,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 			{
 				var topology = masterProxy.GetTopology();
 				Assert.NotNull(topology);
-				Assert.NotEqual(Guid.Empty, topology.Version);
+				Assert.NotEqual(0, topology.Version);
 				Assert.NotEqual(DateTime.MinValue, topology.Timestamp);
 				Assert.Equal(8192, topology.Segments.Length);
 				Assert.True(topology.Segments.All(x => x.AssignedEndpoint == null));

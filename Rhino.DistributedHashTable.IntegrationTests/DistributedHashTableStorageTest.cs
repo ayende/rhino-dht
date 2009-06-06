@@ -13,17 +13,17 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		{
 			private readonly DistributedHashTableStorage distributedHashTableStorage;
 			private readonly IDistributedHashTableNode node;
-			private readonly Guid guid;
+			private readonly int topologyVersion;
 
 			public ReadingValues()
 			{
 				node = MockRepository.GenerateStub<IDistributedHashTableNode>();
-				guid = Guid.NewGuid();
-				node.Stub(x => x.GetTopologyVersion()).Return(guid);
+				topologyVersion = 1;
+				node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 				distributedHashTableStorage = new DistributedHashTableStorage("test.esent",
 				                                                              node);
 
-				distributedHashTableStorage.Put(guid, new ExtendedPutRequest
+				distributedHashTableStorage.Put(topologyVersion, new ExtendedPutRequest
 				{
 					Key = "test",
 					Bytes = new byte[]{1,2,4},
@@ -34,7 +34,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillReturnNullForMissingValue()
 			{
-				var values = distributedHashTableStorage.Get(guid, new ExtendedGetRequest
+				var values = distributedHashTableStorage.Get(topologyVersion, new ExtendedGetRequest
 				{
 					Key = "missing-value",
 					Segment = 0
@@ -45,7 +45,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillReturnValueForExistingValue()
 			{
-				var values = distributedHashTableStorage.Get(guid, new ExtendedGetRequest
+				var values = distributedHashTableStorage.Get(topologyVersion, new ExtendedGetRequest
 				{
 					Key = "test",
 					Segment = 0
@@ -63,13 +63,13 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		{
 			private readonly DistributedHashTableStorage distributedHashTableStorage;
 			private readonly IDistributedHashTableNode node;
-			private readonly Guid guid;
+			private readonly int topologyVersion;
 
 			public WritingValues()
 			{
 				node = MockRepository.GenerateStub<IDistributedHashTableNode>();
-				guid = Guid.NewGuid();
-				node.Stub(x => x.GetTopologyVersion()).Return(guid);
+				topologyVersion = 2;
+				node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 				distributedHashTableStorage = new DistributedHashTableStorage("test.esent",
 				                                                              node);
 			}
@@ -77,7 +77,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillGetVersionNumberFromPut()
 			{
-				var results = distributedHashTableStorage.Put(guid, new ExtendedPutRequest
+				var results = distributedHashTableStorage.Put(topologyVersion, new ExtendedPutRequest
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
@@ -96,7 +96,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					Bytes = new byte[] { 1, 2, 4 },
 					Segment = 0,
 				};
-				distributedHashTableStorage.Put(guid, request);
+				distributedHashTableStorage.Put(topologyVersion, request);
 				node.AssertWasCalled(x=>x.SendToAllOtherBackups(0, request));
 			}
 
@@ -110,7 +110,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					Bytes = new byte[] { 1, 2, 4 },
 					Segment = 0,
 				};
-				distributedHashTableStorage.Put(guid, request);
+				distributedHashTableStorage.Put(topologyVersion, request);
 				node.AssertWasCalled(x => x.SendToOwner(0, request));
 			}
 
@@ -124,7 +124,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					Bytes = new byte[] { 1, 2, 4 },
 					Segment = 0,
 				};
-				distributedHashTableStorage.Put(guid, request);
+				distributedHashTableStorage.Put(topologyVersion, request);
 				node.AssertWasCalled(x => x.SendToAllOtherBackups(0, request));
 			}
 
@@ -138,18 +138,18 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		{
 			private readonly DistributedHashTableStorage distributedHashTableStorage;
 			private readonly IDistributedHashTableNode node;
-			private readonly Guid guid;
+			private readonly int topologyVersion;
 			private ValueVersion version;
 
 			public RemovingValues()
 			{
 				node = MockRepository.GenerateStub<IDistributedHashTableNode>();
-				guid = Guid.NewGuid();
-				node.Stub(x => x.GetTopologyVersion()).Return(guid);
+				topologyVersion = 1;
+				node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 				distributedHashTableStorage = new DistributedHashTableStorage("test.esent",
 				                                                              node);
 
-				var results = distributedHashTableStorage.Put(guid, new ExtendedPutRequest
+				var results = distributedHashTableStorage.Put(topologyVersion, new ExtendedPutRequest
 				{
 					Key = "test",
 					Bytes = new byte[] { 1, 2, 4 },
@@ -161,7 +161,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillConfirmRemovalOfExistingValue()
 			{
-				var results = distributedHashTableStorage.Remove(guid, new ExtendedRemoveRequest
+				var results = distributedHashTableStorage.Remove(topologyVersion, new ExtendedRemoveRequest
 				{
 					Key = "test",
 					SpecificVersion = version, 
@@ -173,7 +173,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillNotConfirmRemovalOfNonExistingValue()
 			{
-				var results = distributedHashTableStorage.Remove(guid, new ExtendedRemoveRequest
+				var results = distributedHashTableStorage.Remove(topologyVersion, new ExtendedRemoveRequest
 				{
 					Key = "test2",
 					SpecificVersion = version, 
@@ -192,7 +192,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					SpecificVersion = version, 
 					Segment = 0,
 				};
-				distributedHashTableStorage.Remove(guid, request);
+				distributedHashTableStorage.Remove(topologyVersion, request);
 				node.AssertWasCalled(x => x.SendToAllOtherBackups(0, request));
 			}
 
@@ -206,7 +206,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					SpecificVersion = version, 
 					Segment = 0,
 				};
-				distributedHashTableStorage.Remove(guid, request);
+				distributedHashTableStorage.Remove(topologyVersion, request);
 				node.AssertWasCalled(x => x.SendToOwner(0, request));
 			}
 
@@ -220,7 +220,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					SpecificVersion = version, 
 					Segment = 0,
 				};
-				distributedHashTableStorage.Remove(guid, request);
+				distributedHashTableStorage.Remove(topologyVersion, request);
 				node.AssertWasCalled(x => x.SendToAllOtherBackups(0, request));
 			}
 

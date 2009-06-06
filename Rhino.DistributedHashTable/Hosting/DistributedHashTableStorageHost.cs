@@ -96,13 +96,13 @@ namespace Rhino.DistributedHashTable.Hosting
 							switch (wrapper.Type)
 							{
 								case StorageMessageType.GetRequests:
-									HandleGet(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
+									HandleGet(wrapper, wrapper.TopologyVersion.Value, writer);
 									break;
 								case StorageMessageType.PutRequests:
-									HandlePut(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
+									HandlePut(wrapper, wrapper.TopologyVersion.Value, writer);
 									break;
 								case StorageMessageType.RemoveRequests:
-									HandleRemove(wrapper, new Guid(wrapper.TopologyVersion.ToByteArray()), writer);
+									HandleRemove(wrapper, wrapper.TopologyVersion.Value, writer);
 									break;
 								case StorageMessageType.AssignAllEmptySegmentsRequest:
 									HandleAssignEmpty(wrapper, writer);
@@ -222,7 +222,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		}
 
 		private void HandleRemove(StorageMessageUnion wrapper,
-								  Guid topologyVersion,
+								  int topologyVersion,
 								  MessageStreamWriter<StorageMessageUnion> writer)
 		{
 			var requests = wrapper.RemoveRequestsList.Select(x => x.GetRemoveRequest()).ToArray();
@@ -230,7 +230,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.RemoveResponses,
-				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = topologyVersion,
 				RemoveResponesList =
 					{
 						removed.Select(x => new RemoveResponseMessage.Builder
@@ -242,7 +242,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		}
 
 		private void HandlePut(StorageMessageUnion wrapper,
-							   Guid topologyVersion,
+							   int topologyVersion,
 							   MessageStreamWriter<StorageMessageUnion> writer)
 		{
 			var puts = wrapper.PutRequestsList.Select(x => x.GetPutRequest()).ToArray();
@@ -250,7 +250,7 @@ namespace Rhino.DistributedHashTable.Hosting
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.PutResponses,
-				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = topologyVersion,
 				PutResponsesList = 
 					{
 						results.Select(x=>x.GetPutResponse())
@@ -259,7 +259,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		}
 
 		private void HandleGet(StorageMessageUnion wrapper,
-							   Guid topologyVersion,
+							   int topologyVersion,
 			MessageStreamWriter<StorageMessageUnion> writer)
 		{
 			var values = storage.Get(topologyVersion,

@@ -7,7 +7,7 @@ namespace Rhino.DistributedHashTable.Internal
 	{
 		void UpdateTopology();
 
-		Guid GetTopologyVersion();
+		int GetTopologyVersion();
 
 		bool IsSegmentOwned(int segment);
 

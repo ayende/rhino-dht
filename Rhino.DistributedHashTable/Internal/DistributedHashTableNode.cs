@@ -72,7 +72,7 @@ namespace Rhino.DistributedHashTable.Internal
 							Storage.Put(GetTopologyVersion(), puts);
 						if (removes.Length > 0)
 							Storage.Remove(GetTopologyVersion(), removes);
-						
+
 						tx.Complete();
 					}
 					errors.Remove(id);
@@ -105,7 +105,7 @@ namespace Rhino.DistributedHashTable.Internal
 			executer.RegisterForExecution(new UpdateTopologyCommand(master, this));
 		}
 
-		public Guid GetTopologyVersion()
+		public int GetTopologyVersion()
 		{
 			return Topology.Version;
 		}
@@ -144,8 +144,8 @@ namespace Rhino.DistributedHashTable.Internal
 				if (otherBackup == null)
 					continue;
 				log.DebugFormat("Sending {0} requests to backup {1}",
-				                requests.Length,
-				                ownerSegment.AssignedEndpoint.Async);
+								requests.Length,
+								ownerSegment.AssignedEndpoint.Async);
 				queueManager.Send(otherBackup.Async,
 								  new MessagePayload
 								  {
@@ -236,8 +236,40 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public void SetTopology(Topology topology)
 		{
+			RemoveMoveMarkerForSegmentsThatWeAReNoLongerResponsibleFor(topology);
 			Topology = topology;
 			StartPendingBackupsForCurrentNode(topology);
+		}
+
+		private void RemoveMoveMarkerForSegmentsThatWeAReNoLongerResponsibleFor(Topology topology)
+		{
+			if (Topology == null || topology == null)
+				return;
+
+			var segmentsThatWereMovedFromNode =
+				from prev in Topology.Segments
+				join current in topology.Segments on prev.Index equals current.Index
+				where prev.AssignedEndpoint == endpoint && current.AssignedEndpoint != endpoint
+				select new ExtendedGetRequest
+				{
+					Key = Constants.MovedSegment + prev.Index,
+					Segment = prev.Index,
+					IsLocal = true
+				};
+			var movedMarkers = Storage.Get(GetTopologyVersion(),
+			                               segmentsThatWereMovedFromNode.ToArray());
+			var requests = movedMarkers
+				.Where(x => x.Length == 1)
+				.Select(values => values[0])
+				.Select(value => new ExtendedRemoveRequest
+				{
+					Key = value.Key,
+					SpecificVersion = value.Version,
+					IsLocal = true
+				}).ToArray();
+			if (requests.Length == 0)
+				return;
+			Storage.Remove(GetTopologyVersion(), requests);
 		}
 	}
 }

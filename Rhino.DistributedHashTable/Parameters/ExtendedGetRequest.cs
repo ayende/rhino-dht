@@ -11,5 +11,6 @@ namespace Rhino.DistributedHashTable.Parameters
 		}
 		public int Segment { get; set; }
 		public bool IsReplicationRequest { get; set; }
+		public bool IsLocal { get; set; }
 	}
 }

@@ -86,6 +86,68 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				}
 			}
 
+			[Fact]
+			public void CanReadValueFromBackupNodeThatUsedToBeTheSegmentOwner()
+			{
+				storageHostB.Start();
+
+				var masterProxy = new DistributedHashTableMasterClient(masterUri);
+
+				Topology topology;
+				for (var i = 0; i < 50; i++)
+				{
+					topology = masterProxy.GetTopology();
+					var count = topology.Segments
+						.Where(x => x.AssignedEndpoint == storageHostA.Endpoint)
+						.Count();
+
+					if (count == 4096)
+						break;
+					Thread.Sleep(500);
+				}
+
+				topology = masterProxy.GetTopology();
+				var segment = topology.Segments.First(x => x.AssignedEndpoint == storageHostA.Endpoint).Index;
+				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
+				{
+					nodeA.Put(topology.Version, new ExtendedPutRequest
+					{
+						Bytes = new byte[] { 2, 2, 0, 0 },
+						Key = "abc",
+						Segment = segment
+					});
+				}
+
+				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
+				{
+					topology = masterProxy.GetTopology();
+					Value[][] values = null;
+					for (var i = 0; i < 100; i++)
+					{
+						values = nodeB.Get(topology.Version, new ExtendedGetRequest
+						{
+							Key = "abc",
+							Segment = segment
+						});
+						if (values[0].Length != 0)
+							break;
+						Thread.Sleep(250);
+					}
+					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+				}
+
+				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
+				{
+					topology = masterProxy.GetTopology();
+					var values = nodeA.Get(topology.Version, new ExtendedGetRequest
+					{
+						Key = "abc",
+						Segment = segment
+					});
+					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+				}
+			}
+
 
 			[Fact]
 			public void TwoNodesCanJoinToTheCluster()

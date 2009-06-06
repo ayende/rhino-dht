@@ -1,9 +1,9 @@
-using System.Net;
 using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Remote;
 using Rhino.Mocks;
+using Rhino.PersistentHashTable;
 using Rhino.Queues;
 using Xunit;
 
@@ -83,7 +83,7 @@ namespace Rhino.DistributedHashTable.Tests
 							backup2,
 						}
 					},
-				});
+				},1);
 				master.Stub(x => x.GetTopology()).Return(topology);
 				executer = MockRepository.GenerateStub<IExecuter>();
 				master.Stub(x => x.Join(Arg.Is(endPoint)))
@@ -137,7 +137,10 @@ namespace Rhino.DistributedHashTable.Tests
 				master.Stub(x => x.Join(Arg.Is(endPoint)))
 					.Return(new Segment[0]);
 				node = new DistributedHashTableNode(master, executer, new BinaryMessageSerializer(), endPoint, MockRepository.GenerateStub<IQueueManager>(),
-					MockRepository.GenerateStub<IDistributedHashTableNodeReplicationFactory>());
+					MockRepository.GenerateStub<IDistributedHashTableNodeReplicationFactory>())
+				{
+					Storage = MockRepository.GenerateStub<IDistributedHashTableStorage>()
+				};
 			}
 
 			[Fact]
@@ -150,7 +153,7 @@ namespace Rhino.DistributedHashTable.Tests
                         AssignedEndpoint = NodeEndpoint.ForTest(91),
 						PendingBackups = {endPoint}
 					},
-				}));
+				},1));
 
 				executer.AssertWasCalled(x=>x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf));
 			}
@@ -158,14 +161,7 @@ namespace Rhino.DistributedHashTable.Tests
 			[Fact]
 			public void WillNotStartReplicationIfCurrentlyReplicatingBackups()
 			{
-				node.SetTopology(new Topology(new[]
-				{
-					new Segment
-					{
-						AssignedEndpoint = NodeEndpoint.ForTest(91),
-						PendingBackups = {endPoint}
-					},
-				}));
+				node.Storage.Stub(x => x.Get(0)).IgnoreArguments().Return(new Value[0][]);
 
 				node.SetTopology(new Topology(new[]
 				{
@@ -174,7 +170,16 @@ namespace Rhino.DistributedHashTable.Tests
 						AssignedEndpoint = NodeEndpoint.ForTest(91),
 						PendingBackups = {endPoint}
 					},
-				}));
+				},1));
+
+				node.SetTopology(new Topology(new[]
+				{
+					new Segment
+					{
+						AssignedEndpoint = NodeEndpoint.ForTest(91),
+						PendingBackups = {endPoint}
+					},
+				},2));
 
 				executer.AssertWasCalled(
 					x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf),
@@ -184,6 +189,8 @@ namespace Rhino.DistributedHashTable.Tests
 			[Fact]
 			public void AfterBackupsCompleteWillStartReplicationAgain()
 			{
+				node.Storage.Stub(x => x.Get(0)).IgnoreArguments().Return(new Value[0][]);
+
 				OnlineSegmentReplicationCommand command = null;
 				executer.Stub(x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf))
 					.WhenCalled(invocation => command = (OnlineSegmentReplicationCommand) invocation.Arguments[0]);
@@ -195,7 +202,7 @@ namespace Rhino.DistributedHashTable.Tests
 						AssignedEndpoint = NodeEndpoint.ForTest(91),
 						PendingBackups = {endPoint}
 					},
-				}));
+				},1));
 
 				command.RaiseCompleted();
 
@@ -206,7 +213,7 @@ namespace Rhino.DistributedHashTable.Tests
 						AssignedEndpoint = NodeEndpoint.ForTest(91),
 						PendingBackups = {endPoint}
 					},
-				}));
+				},2));
 
 				executer.AssertWasCalled(
 					x => x.RegisterForExecution(Arg<OnlineSegmentReplicationCommand>.Is.TypeOf),

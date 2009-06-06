@@ -11,9 +11,9 @@ namespace Rhino.DistributedHashTable.Internal
 {
 	public class DistributedHashTableStorage : IDistributedHashTableStorage
 	{
-		private ILog log = LogManager.GetLogger(typeof(DistributedHashTableStorage));
+		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableStorage));
 
-		public Guid TopologyVersion
+		public int TopologyVersion
 		{
 			get
 			{
@@ -70,7 +70,7 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
-		public PutResult[] Put(Guid topologyVersion, params ExtendedPutRequest[] valuesToAdd)
+		public PutResult[] Put(int topologyVersion, params ExtendedPutRequest[] valuesToAdd)
 		{
 			AssertMatchingTopologyVersion(topologyVersion);
 			var results = new List<PutResult>();
@@ -80,14 +80,14 @@ namespace Rhino.DistributedHashTable.Internal
 				{
 					foreach (var request in valuesToAdd)
 					{
-						if (request.IsReplicationRequest == false)
+						if (request.IsReplicationRequest == false && request.IsLocal == false)
 							AssertSegmentNotMoved(actions, request.Segment);
 
 						request.Tag = request.Segment;
 
 						if (request.ParentVersions == null)
 							throw new ArgumentException("Could not accept request with no ParentVersions");
-						if (request.Key.StartsWith(Constants.RhinoDhtStartToken))
+						if (request.Key.StartsWith(Constants.RhinoDhtStartToken) && request.IsLocal == false)
 							throw new ArgumentException(Constants.RhinoDhtStartToken + " is a reserved key prefix");
 						var put = actions.Put(request);
 						//prepare the value for replication
@@ -125,7 +125,7 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
-		private void AssertMatchingTopologyVersion(Guid topologyVersion)
+		private void AssertMatchingTopologyVersion(int topologyVersion)
 		{
 			if(TopologyVersion != topologyVersion)
 			{
@@ -136,7 +136,7 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
-		public bool[] Remove(Guid topologyVersion, params ExtendedRemoveRequest[] valuesToRemove)
+		public bool[] Remove(int topologyVersion, params ExtendedRemoveRequest[] valuesToRemove)
 		{
 			AssertMatchingTopologyVersion(topologyVersion);
 			var results = new List<bool>();
@@ -146,13 +146,13 @@ namespace Rhino.DistributedHashTable.Internal
 				{
 					foreach (var request in valuesToRemove)
 					{
-						if (request.IsReplicationRequest == false) 
+						if (request.IsReplicationRequest == false && request.IsLocal == false) 
 							AssertSegmentNotMoved(actions, request.Segment);
 
 						if (request.SpecificVersion == null)
 							throw new ArgumentException("Could not accept request with no SpecificVersion");
 
-						if (request.Key.StartsWith(Constants.RhinoDhtStartToken))
+						if (request.Key.StartsWith(Constants.RhinoDhtStartToken) && request.IsLocal == false)
 							throw new ArgumentException(Constants.RhinoDhtStartToken + " is a reserved key prefix");
 
 						foreach (var hash in actions.GetReplicationHashes(request.Key, request.SpecificVersion))
@@ -184,7 +184,7 @@ namespace Rhino.DistributedHashTable.Internal
 			// if this is the replication request, this is a replicated value,
 			// and we don't need to do anything with replication, we only need
 			// to check the first value, because all requests have the same purpose
-			if (valuesToSend[0].IsReplicationRequest) 
+			if (valuesToSend[0].IsReplicationRequest || valuesToSend[0].IsLocal) 
 				return;
 
 			if (distributedHashTableNode.IsSegmentOwned(valuesToSend[0].Segment) == false)
@@ -196,7 +196,7 @@ namespace Rhino.DistributedHashTable.Internal
 			distributedHashTableNode.SendToAllOtherBackups(valuesToSend[0].Segment, valuesToSend);
 		}
 
-		public Value[][] Get(Guid topologyVersion,params ExtendedGetRequest[] valuesToGet)
+		public Value[][] Get(int topologyVersion, params ExtendedGetRequest[] valuesToGet)
 		{
 			AssertMatchingTopologyVersion(topologyVersion);
 
@@ -205,7 +205,7 @@ namespace Rhino.DistributedHashTable.Internal
 			{
 				foreach (var request in valuesToGet)
 				{
-					if (request.IsReplicationRequest == false) 
+					if (request.IsReplicationRequest == false && request.IsLocal == false) 
 						AssertSegmentNotMoved(actions, request.Segment);
 					var values = actions.Get(request);
 					results.Add(values);

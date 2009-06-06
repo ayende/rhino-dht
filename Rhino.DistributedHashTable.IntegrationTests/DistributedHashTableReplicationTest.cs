@@ -16,14 +16,14 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		{
 			private readonly DistributedHashTableStorage distributedHashTableStorage;
 			private readonly IDistributedHashTableNode node;
-			private readonly Guid guid;
+			private readonly int topologyVersion;
 			private readonly IDistributedHashTableNodeReplication replication;
 
 			public WhenThereAreNoKeysInTable()
 			{
 				node = MockRepository.GenerateStub<IDistributedHashTableNode>();
-				guid = Guid.NewGuid();
-				node.Stub(x => x.GetTopologyVersion()).Return(guid);
+				topologyVersion = 7;
+				node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 				distributedHashTableStorage = new DistributedHashTableStorage("test.esent",
 				                                                              node);
 				replication = distributedHashTableStorage.Replication;
@@ -43,7 +43,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
 				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
-				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Put(guid, new ExtendedPutRequest()
+				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Put(topologyVersion, new ExtendedPutRequest()
 				{
 					Key = "test",
 					Segment = 0,
@@ -57,7 +57,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
 				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
-				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Get(guid, new ExtendedGetRequest()
+				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Get(topologyVersion, new ExtendedGetRequest()
 				{
 					Key = "test",
 					Segment = 0,
@@ -71,7 +71,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
 				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
-				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(guid, new ExtendedRemoveRequest
+				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(topologyVersion, new ExtendedRemoveRequest
 				{
 					Key = "test",
 					Segment = 0,
@@ -89,19 +89,19 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		{
 			private readonly DistributedHashTableStorage distributedHashTableStorage;
 			private readonly IDistributedHashTableNode node;
-			private readonly Guid guid;
+			private readonly int topologyVersion;
 			private readonly IDistributedHashTableNodeReplication replication;
 			private readonly PutResult putResult;
 
 			public WhenThereAreKeysInTable()
 			{
 				node = MockRepository.GenerateStub<IDistributedHashTableNode>();
-				guid = Guid.NewGuid();
-				node.Stub(x => x.GetTopologyVersion()).Return(guid);
+				topologyVersion = 9;
+				node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
 				distributedHashTableStorage = new DistributedHashTableStorage("test.esent",
 				                                                              node);
 				replication = distributedHashTableStorage.Replication;
-				putResult = distributedHashTableStorage.Put(guid, new ExtendedPutRequest
+				putResult = distributedHashTableStorage.Put(topologyVersion, new ExtendedPutRequest
 				{
 					Tag = 0,
 					Bytes = new byte[] {1},
@@ -161,7 +161,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(0, result.PutRequests.Length);
 
-				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(guid, new ExtendedRemoveRequest
+				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(topologyVersion, new ExtendedRemoveRequest
 				{
 					Key = "test",
 					Segment = 0,

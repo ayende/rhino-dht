@@ -7,12 +7,6 @@ namespace Rhino.DistributedHashTable.Internal
 {
 	public class Segment
 	{
-		/// <summary>
-		/// This is used to ensure that we can merge appropriately
-		/// between the masters
-		/// </summary>
-		public Guid Version { get; set; }
-
 		public int Index { get; set; }
 		public NodeEndpoint AssignedEndpoint { get; set; }
 		public NodeEndpoint InProcessOfMovingToEndpoint { get; set; }
@@ -31,7 +25,6 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			PendingBackups = new HashSet<NodeEndpoint>();
 			Backups = new HashSet<NodeEndpoint>();
-			Version = Guid.NewGuid();
 		}
 
 		public override string ToString()
@@ -54,7 +47,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public bool Match(Segment other)
 		{
-			return other.Version == Version;
+			return other.Index == Index;
 		}
 	}
 }

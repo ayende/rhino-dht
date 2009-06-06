@@ -1,5 +1,5 @@
 
-Ì+
+»+
 ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
 Value
 Key (	
@@ -19,21 +19,20 @@ Sha256Hash (I
 ValueVersion
 Number (
 
-InstanceId ("Ý
+InstanceId ("Ì
 Segment
-Index (
-Version (K
-AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
-InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointI
-PendingBackups (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
-Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"`
+Index (K
+AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
+InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointI
+PendingBackups (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
+Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"`
 JoinRequestMessageJ
 EndpointJoining (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"U
 JoinResponseMessage>
 Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"ƒ
 TopologyResultMessage
 TimestampAsDouble (
-Version (>
+Version (>
 Segments (2,.Rhino.DistributedHashTable.Protocol.Segment"»
 CaughtUpRequestMessageC
 Endpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
@@ -102,7 +101,7 @@ $AssignAllEmptySegmentsRequestMessageN
 GaveUp (29.Rhino.DistributedHashTable.Protocol.GaveUpRequestMessage"¤	
 StorageMessageUnionE
 Type (27.Rhino.DistributedHashTable.Protocol.StorageMessageType
-TopologyVersion (K
+TopologyVersion (K
 GetRequests (26.Rhino.DistributedHashTable.Protocol.GetRequestMessageK
 PutRequests (26.Rhino.DistributedHashTable.Protocol.PutRequestMessageM
 PutResponses (27.Rhino.DistributedHashTable.Protocol.PutResponseMessageQ

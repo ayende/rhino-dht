@@ -49,13 +49,13 @@ namespace Rhino.DistributedHashTable.Client
 			client.Close();
 		}
 
-		public PutResult[] Put(Guid topologyVersion,
+		public PutResult[] Put(int topologyVersion,
 							   params ExtendedPutRequest[] valuesToAdd)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.PutRequests,
-				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = topologyVersion,
 				PutRequestsList =
                 	{
                 		valuesToAdd.Select(x => x.GetPutRequest())
@@ -98,13 +98,13 @@ namespace Rhino.DistributedHashTable.Client
 			return union;
 		}
 
-		public bool[] Remove(Guid topologyVersion,
+		public bool[] Remove(int topologyVersion,
 							 params ExtendedRemoveRequest[] valuesToRemove)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.RemoveRequests,
-				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = topologyVersion,
 				RemoveRequestsList = 
                 	{
                 		valuesToRemove.Select(x=>x.GetRemoveRequest())
@@ -117,13 +117,13 @@ namespace Rhino.DistributedHashTable.Client
 			return union.RemoveResponesList.Select(x => x.WasRemoved).ToArray();
 		}
 
-		public Value[][] Get(Guid topologyVersion,
+		public Value[][] Get(int topologyVersion,
 							 params ExtendedGetRequest[] valuesToGet)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.GetRequests,
-				TopologyVersion = ByteString.CopyFrom(topologyVersion.ToByteArray()),
+				TopologyVersion = topologyVersion,
 				GetRequestsList = 
                 	{
                 		valuesToGet.Select(x => CreateGetRequest(x))

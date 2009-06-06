@@ -20,7 +20,7 @@ namespace Rhino.DistributedHashTable.Internal
 		public DistributedHashTableMaster()
 		{
 			NumberOfBackCopiesToKeep = 2;
-			Topology = new Topology(CreateDefaultSegments().ToArray());
+			Topology = new Topology(CreateDefaultSegments().ToArray(), 1);
 		}
 
 		public Topology Topology { get; set; }
@@ -68,14 +68,14 @@ namespace Rhino.DistributedHashTable.Internal
 								   join caughtUpSegment in matchingSegments on segment.Index equals caughtUpSegment.Index into
 									maybeMatchingSegment
 								   select
-									new MatchSegment{ Segment = segment, Matching = maybeMatchingSegment }; 
-			
+									new MatchSegment { Segment = segment, Matching = maybeMatchingSegment };
+
 			switch (type)
 			{
 				case ReplicationType.Ownership:
 					CaughtUpOnOwnership(modifiedSegments, endpoint);
 					break;
-                case ReplicationType.Backup:
+				case ReplicationType.Backup:
 					CaughtUpOnBackups(modifiedSegments, endpoint);
 					break;
 				default:
@@ -92,25 +92,26 @@ namespace Rhino.DistributedHashTable.Internal
 		}
 
 		private void CaughtUpOnBackups(IEnumerable<MatchSegment> modifiedSegments,
-		                               NodeEndpoint endpoint)
+									   NodeEndpoint endpoint)
 		{
 			Topology = new Topology((
-			                        	from modifiedSegment in modifiedSegments
-			                        	let x = modifiedSegment.Matching.FirstOrDefault()
-			                        	select x == null
-			                        	       	? modifiedSegment.Segment
-			                        	       	: new Segment
-			                        	       	{
-			                        	       		Index = x.Index,
-			                        	       		InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint,
-			                        	       		AssignedEndpoint = x.AssignedEndpoint,
-			                        	       		PendingBackups = x.PendingBackups
-			                        	       			.Where(e => e != endpoint)
-			                        	       			.ToSet(),
-			                        	       		Backups = x.Backups
-			                        	       			.Append(endpoint)
-			                        	       			.ToSet()
-			                        	       	}).ToArray()
+										from modifiedSegment in modifiedSegments
+										let x = modifiedSegment.Matching.FirstOrDefault()
+										select x == null
+												? modifiedSegment.Segment
+												: new Segment
+												{
+													Index = x.Index,
+													InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint,
+													AssignedEndpoint = x.AssignedEndpoint,
+													PendingBackups = x.PendingBackups
+														.Where(e => e != endpoint)
+														.ToSet(),
+													Backups = x.Backups
+														.Append(endpoint)
+														.ToSet()
+												}).ToArray(),
+												Topology.Version + 1
 				);
 
 		}
@@ -132,7 +133,8 @@ namespace Rhino.DistributedHashTable.Internal
 														.Append(x.AssignedEndpoint)
 														.Where(e => e != endpoint)
 														.ToSet()
-												}).ToArray()
+												}).ToArray(),
+												Topology.Version +1
 				);
 			RearsegmentBackups();
 		}
@@ -191,12 +193,12 @@ namespace Rhino.DistributedHashTable.Internal
 					AssignmentCount = assignment.Count()
 				};
 			}
-	
+
 			NodeEndpointStats value;
 
 			foreach (var backup in groupByBackups)
 			{
-				if(backup.Key == null)
+				if (backup.Key == null)
 					continue;
 				if (stats.TryGetValue(backup.Key, out value))
 					value.BackupCount = backup.Count();
@@ -243,7 +245,7 @@ namespace Rhino.DistributedHashTable.Internal
 			var segmentsNotBeloningToThespecifiedEndpoint = matchingSegments
 				.Where(x => x.InProcessOfMovingToEndpoint != null)
 				.Where(x => endpoint.Equals(x.InProcessOfMovingToEndpoint) == false &&
-				            x.PendingBackups.Contains(endpoint) == false);
+							x.PendingBackups.Contains(endpoint) == false);
 
 			if (segmentsNotBeloningToThespecifiedEndpoint.Count() != 0)
 				throw new InvalidOperationException("Could not catch up or give up on segments that belong to another endpoint");
