@@ -80,7 +80,8 @@ namespace Rhino.DistributedHashTable.Internal
 				{
 					foreach (var request in valuesToAdd)
 					{
-						AssertSegmentNotMoved(actions, request.Segment);
+						if (request.IsReplicationRequest == false)
+							AssertSegmentNotMoved(actions, request.Segment);
 
 						request.Tag = request.Segment;
 
@@ -145,7 +146,8 @@ namespace Rhino.DistributedHashTable.Internal
 				{
 					foreach (var request in valuesToRemove)
 					{
-						AssertSegmentNotMoved(actions, request.Segment);
+						if (request.IsReplicationRequest == false) 
+							AssertSegmentNotMoved(actions, request.Segment);
 
 						if (request.SpecificVersion == null)
 							throw new ArgumentException("Could not accept request with no SpecificVersion");
@@ -203,7 +205,8 @@ namespace Rhino.DistributedHashTable.Internal
 			{
 				foreach (var request in valuesToGet)
 				{
-					AssertSegmentNotMoved(actions, request.Segment);
+					if (request.IsReplicationRequest == false) 
+						AssertSegmentNotMoved(actions, request.Segment);
 					var values = actions.Get(request);
 					results.Add(values);
 				}
