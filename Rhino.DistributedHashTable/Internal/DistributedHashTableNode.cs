@@ -79,7 +79,8 @@ namespace Rhino.DistributedHashTable.Internal
 				}
 				catch (ObjectDisposedException)
 				{
-
+					log.Info("Queue manager was disposed, quiting background replication");
+					return;
 				}
 				catch (Exception e)
 				{

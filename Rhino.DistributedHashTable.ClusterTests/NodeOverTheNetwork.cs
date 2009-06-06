@@ -37,7 +37,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 			{
 				var segments = new[]{1,2,3};
 
-				var assignedSegments = storageProxy.AssignAllEmptySegments(NodeEndpoint.ForTest(13), segments);
+				var assignedSegments = storageProxy.AssignAllEmptySegments(NodeEndpoint.ForTest(13), ReplicationType.Ownership, segments);
 
 				Assert.Equal(segments, assignedSegments);
 			}
@@ -58,7 +58,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 
 				var segments = new[] { 1, 2, 3 };
 
-				var assignedSegments = storageProxy.AssignAllEmptySegments(NodeEndpoint.ForTest(13), segments);
+				var assignedSegments = storageProxy.AssignAllEmptySegments(NodeEndpoint.ForTest(13), ReplicationType.Ownership, segments);
 
 				Assert.Equal(new[]{2,3}, assignedSegments);
 			}
@@ -77,7 +77,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Segment = 1,
 				});
 
-				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 
 				Assert.False(result.Done);
 				Assert.Equal("test", result.PutRequests[0].Key);
@@ -97,7 +97,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Segment = 1,
 				});
 
-				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.Equal("test", result.PutRequests[0].Key);
 
 				storageProxy.Put(topology.Version, new ExtendedPutRequest
@@ -107,7 +107,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Segment = 1,
 				});
 
-				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.Equal("test2", result.PutRequests[0].Key);
 			}
 		}
@@ -125,7 +125,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Segment = 1,
 				});
 
-				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.Equal("test", result.PutRequests[0].Key);
 
 				storageProxy.Remove(topology.Version, new ExtendedRemoveRequest()
@@ -135,7 +135,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					SpecificVersion = result.PutRequests[0].ReplicationVersion
 				});
 
-				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.Equal("test", result.RemoveRequests[0].Key);
 			}
 		}
@@ -153,10 +153,10 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Segment = 1,
 				});
 
-				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				var result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.Equal("test", result.PutRequests[0].Key);
 
-				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), 1);
+				result = storageProxy.ReplicateNextPage(NodeEndpoint.ForTest(13), ReplicationType.Ownership, 1);
 				Assert.True(result.Done);
 			}
 		}

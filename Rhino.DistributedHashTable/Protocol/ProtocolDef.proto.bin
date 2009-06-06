@@ -1,5 +1,5 @@
 
-Ä*
+Ì+
 ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
 Value
 Key (	
@@ -75,15 +75,17 @@ IsReadOnly (
 
 WasRemoved ("
 ErrorMessage
-Message (	"ˆ
+Message (	"Ì
 $AssignAllEmptySegmentsRequestMessageN
 ReplicationEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
-Segments ("A
+Segments (B
+Type (24.Rhino.DistributedHashTable.Protocol.ReplicationType"A
 %AssignAllEmptySegmentsResponseMessage
-AssignedSegments ("‚
+AssignedSegments ("Æ
 ReplicateNextPageRequestMessageN
 ReplicationEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint
-Segment ("Ð
+Segment (B
+Type (24.Rhino.DistributedHashTable.Protocol.ReplicationType"Ð
  ReplicateNextPageResponseMessage
 Done (Q
 RemoveRequests (29.Rhino.DistributedHashTable.Protocol.RemoveRequestMessageK

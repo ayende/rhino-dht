@@ -42,7 +42,7 @@ namespace Rhino.DistributedHashTable.Commands
 
 		public bool Execute()
 		{
-			log.DebugFormat("Replication from {0} of {1} segments", endpoint, segments.Length);
+			log.DebugFormat("Replication from {0} of {1} segments for {2}", endpoint, segments.Length, type);
 			var processedSegments = new List<int>();
 
 			if (continueWorking == false)
@@ -125,7 +125,7 @@ namespace Rhino.DistributedHashTable.Commands
 								segment,
 								endpoint);
 
-				var result = otherNode.ReplicateNextPage(node.Endpoint, segment.Index);
+				var result = otherNode.ReplicateNextPage(node.Endpoint, type, segment.Index);
 				log.DebugFormat("Replication of segment [{0}] from {1} got {2} puts & {3} removals",
 								segment,
 								endpoint,
@@ -149,6 +149,7 @@ namespace Rhino.DistributedHashTable.Commands
 			var remainingSegments = new List<Segment>();
 			var assignedSegments = otherNode.AssignAllEmptySegments(
 				node.Endpoint,
+                type, 
 				segments.Select(x => x.Index).ToArray());
 
 			processedSegments.AddRange(assignedSegments);

@@ -11,7 +11,9 @@ namespace Rhino.DistributedHashTable.Remote
 		/// whatever values has been changed (changing the value remove the replication version)
 		/// If there are no more results, the segment is assigned to the endpoint
 		/// </summary>
-		ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint, int segment);
+		ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
+		                                    ReplicationType type,
+		                                    int segment);
 
 
 		/// <summary>
@@ -23,6 +25,8 @@ namespace Rhino.DistributedHashTable.Remote
 		/// After this methods return, any call to a node with a segment that was 
 		/// returned from this method will raise a <seealso cref="SeeOtherException"/>
 		/// </summary>
-		int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint, int[] segments);
+		int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
+		                             ReplicationType type,
+		                             int[] segments);
 	}
 }

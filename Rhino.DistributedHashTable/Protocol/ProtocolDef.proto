@@ -161,6 +161,7 @@ message AssignAllEmptySegmentsRequestMessage
 {
 	required NodeEndpoint ReplicationEndpoint = 1;
 	repeated int32 Segments = 2;
+	required ReplicationType Type = 3;
 }
 
 message AssignAllEmptySegmentsResponseMessage
@@ -172,6 +173,7 @@ message ReplicateNextPageRequestMessage
 {
 	required NodeEndpoint ReplicationEndpoint = 1;
 	required int32 Segment = 2;
+	required ReplicationType Type = 3;
 }
 
 message ReplicateNextPageResponseMessage

@@ -11,6 +11,7 @@ using Rhino.PersistentHashTable;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
 using Value = Rhino.PersistentHashTable.Value;
 using System.Linq;
+using ReplicationType=Rhino.DistributedHashTable.Internal.ReplicationType;
 
 namespace Rhino.DistributedHashTable.Client
 {
@@ -171,6 +172,7 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
+			ReplicationType type,
 		                                           int segment)
 		{
 			writer.Write(new StorageMessageUnion.Builder
@@ -178,12 +180,9 @@ namespace Rhino.DistributedHashTable.Client
 				Type = StorageMessageType.ReplicateNextPageRequest,
 				ReplicateNextPageRequest = new ReplicateNextPageRequestMessage.Builder
 				{
-					ReplicationEndpoint = new Protocol.NodeEndpoint.Builder
-					{
-						Async = replicationEndpoint.Async.ToString(),
-						Sync = replicationEndpoint.Sync.ToString()
-					}.Build(),
-					Segment = segment
+					ReplicationEndpoint = replicationEndpoint.GetNodeEndpoint(),
+					Segment = segment,
+                    Type = type == ReplicationType.Backup? Protocol.ReplicationType.Backup : Protocol.ReplicationType.Ownership
 				}.Build()
 			}.Build());
 			writer.Flush();
@@ -204,18 +203,15 @@ namespace Rhino.DistributedHashTable.Client
 		}
 
 		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
-		                                    int[] segments)
+		                                  ReplicationType type,   int[] segments)
 		{
 			writer.Write(new StorageMessageUnion.Builder
 			{
 				Type = StorageMessageType.AssignAllEmptySegmentsRequest,
 				AssignAllEmptySegmentsRequest = new AssignAllEmptySegmentsRequestMessage.Builder
 				{
-					ReplicationEndpoint = new Protocol.NodeEndpoint.Builder
-					{
-						Async = replicationEndpoint.Async.ToString(),
-                        Sync = replicationEndpoint.Sync.ToString()
-					}.Build(),
+					ReplicationEndpoint = replicationEndpoint.GetNodeEndpoint(),
+                    Type = type == ReplicationType.Backup? Protocol.ReplicationType.Backup : Protocol.ReplicationType.Ownership,
                     SegmentsList = { segments }
 				}.Build()
 			}.Build());

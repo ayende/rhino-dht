@@ -38,9 +38,9 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WillAskForAllEmptySegments()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new int[0]);
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new ExtendedPutRequest[0],
@@ -50,15 +50,15 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			replication.AssertWasCalled(x => x.AssignAllEmptySegments(node.Endpoint, new int[] { 0, 1 }));
+			replication.AssertWasCalled(x => x.AssignAllEmptySegments(node.Endpoint, ReplicationType.Ownership, new [] { 0, 1 }));
 		}
 
 		[Fact]
 		public void WillLetNodeKnowAboutAnyEmptySegmentsAssignedToIt()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new []{0});
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new ExtendedPutRequest[0],
@@ -74,9 +74,9 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WillNotTryToReplicaterangesThatWereEmptyAndAssigned()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new[] { 0 });
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new ExtendedPutRequest[0],
@@ -86,15 +86,15 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			replication.AssertWasNotCalled(x => x.ReplicateNextPage(node.Endpoint,  0));
+			replication.AssertWasNotCalled(x => x.ReplicateNextPage(node.Endpoint, ReplicationType.Ownership, 0));
 		}
 
 		[Fact]
 		public void WillTryToReplicaterangesThatWereNotEmpty()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new[] { 0 });
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new ExtendedPutRequest[0],
@@ -104,20 +104,20 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			var success = command.Execute();
 			Assert.True(success);
 
-			replication.AssertWasCalled(x => x.ReplicateNextPage(node.Endpoint, 1));
+			replication.AssertWasCalled(x => x.ReplicateNextPage(node.Endpoint, ReplicationType.Ownership, 1));
 		}
 
 		[Fact]
 		public void WillPutReturnedItemsIntoStorage()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new[] { 0 });
 			var request = new ExtendedPutRequest
 			{
 				Bytes = new byte[]{1},
 				Key = "a",
 			};
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new[]{ request, },
@@ -133,13 +133,13 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WillRemoveReturnedRemovalFromStorage()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new[] { 0 });
 			var request = new ExtendedRemoveRequest
 			{
 				Key = "a",
 			};
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Return(new ReplicationResult
 				{
 					PutRequests = new ExtendedPutRequest[0],
@@ -155,10 +155,10 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WhenSegmentReplicationFailsWillGiveUpTheSegment()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new int [0]);
-			
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Throw(new IOException());
 			var success = command.Execute();
 			Assert.False(success);
@@ -170,7 +170,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WhenEmptySegmentReplicationFailsWillGiveEverythingUp()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Throw(new IOException());
 			var success = command.Execute();
 			Assert.False(success);
@@ -181,7 +181,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 		[Fact]
 		public void WillRepeatReplicationUntilGetDone()
 		{
-			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg<int[]>.Is.Anything))
+			replication.Stub(x => x.AssignAllEmptySegments(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int[]>.Is.Anything))
 				.Return(new[] { 0 });
 			var request = new ExtendedPutRequest
 			{
@@ -190,7 +190,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			};
 			for (int i = 0; i < 5; i++)
 			{
-				replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+				replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 					.Repeat.Once()
 					.Return(new ReplicationResult
 					{
@@ -199,7 +199,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 						Done = false
 					});
 			}
-			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg<int>.Is.Anything))
+			replication.Stub(x => x.ReplicateNextPage(Arg<NodeEndpoint>.Is.Anything, Arg.Is(ReplicationType.Ownership), Arg<int>.Is.Anything))
 				.Repeat.Once()
 				.Return(new ReplicationResult
 				{

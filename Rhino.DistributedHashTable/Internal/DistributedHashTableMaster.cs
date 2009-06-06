@@ -102,8 +102,8 @@ namespace Rhino.DistributedHashTable.Internal
 			                        	       	: new Segment
 			                        	       	{
 			                        	       		Index = x.Index,
-			                        	       		InProcessOfMovingToEndpoint = null,
-			                        	       		AssignedEndpoint = endpoint,
+			                        	       		InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint,
+			                        	       		AssignedEndpoint = x.AssignedEndpoint,
 			                        	       		PendingBackups = x.PendingBackups
 			                        	       			.Where(e => e != endpoint)
 			                        	       			.ToSet(),

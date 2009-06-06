@@ -13,6 +13,7 @@ using Rhino.DistributedHashTable.Remote;
 using Rhino.DistributedHashTable.Util;
 using Rhino.Queues;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
+using ReplicationType=Rhino.DistributedHashTable.Protocol.ReplicationType;
 
 namespace Rhino.DistributedHashTable.Hosting
 {
@@ -181,6 +182,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		{
 			var replicationResult = storage.Replication.ReplicateNextPage(
 				wrapper.ReplicateNextPageRequest.ReplicationEndpoint.GetNodeEndpoint(),
+                wrapper.ReplicateNextPageRequest.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership,
 				wrapper.ReplicateNextPageRequest.Segment
 				);
 			writer.Write(new StorageMessageUnion.Builder
@@ -206,6 +208,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		{
 			var segments = storage.Replication.AssignAllEmptySegments(
 				wrapper.AssignAllEmptySegmentsRequest.ReplicationEndpoint.GetNodeEndpoint(),
+				wrapper.AssignAllEmptySegmentsRequest.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership,
 				wrapper.AssignAllEmptySegmentsRequest.SegmentsList.ToArray()
 				);
 			writer.Write(new StorageMessageUnion.Builder

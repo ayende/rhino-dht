@@ -42,9 +42,10 @@ namespace Rhino.DistributedHashTable.ClusterTests
 
 				var masterProxy = new DistributedHashTableMasterClient(masterUri);
 
+				Topology topology;
 				for (var i = 0; i < 50; i++)
 				{
-					var topology = masterProxy.GetTopology();
+					topology = masterProxy.GetTopology();
 					var count = topology.Segments
 						.Where(x => x.AssignedEndpoint == storageHostA.Endpoint)
 						.Count();
@@ -54,27 +55,28 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Thread.Sleep(500);
 				}
 
+				topology = masterProxy.GetTopology();
+				var segment = topology.Segments.First(x => x.AssignedEndpoint == storageHostA.Endpoint).Index;
 				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
 				{
-					var topology = masterProxy.GetTopology();
 					nodeA.Put(topology.Version, new ExtendedPutRequest
 					{
 						Bytes = new byte[] { 2, 2, 0, 0 },
 						Key = "abc",
-						Segment = 0
+						Segment = segment
 					});
 				}
 
 				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
 				{
-					var topology = masterProxy.GetTopology();
+					topology = masterProxy.GetTopology();
 					Value[][] values = null;
 					for (var i = 0; i < 100; i++)
 					{
 						values = nodeB.Get(topology.Version, new ExtendedGetRequest
 						{
 							Key = "abc",
-							Segment = 0
+							Segment = segment
 						});
 						if (values[0].Length != 0)
 							break;
@@ -124,11 +126,9 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				for (var i = 0; i < 50; i++)
 				{
 					topology = masterProxy.GetTopology();
-					var count = topology.Segments
-						.Where(x => x.AssignedEndpoint == storageHostA.Endpoint)
-						.Count();
+					var allSegmentsHaveBackups = topology.Segments.All(x => x.Backups.Count > 0);
 
-					if (count == 4096)
+					if (allSegmentsHaveBackups)
 						break;
 					Thread.Sleep(500);
 				}

@@ -33,7 +33,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			public void WillAssignAllSegmentsWeAskForImmediately()
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
-				var assignedSegments = replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ranges);
+				var assignedSegments = replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
 				Assert.Equal(ranges, assignedSegments);
 			}
 
@@ -42,7 +42,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			public void PuttingKeyInSegmentAsisgnedElsewhereShouldThrow()
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
-				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ranges);
+				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
 				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Put(guid, new ExtendedPutRequest()
 				{
 					Key = "test",
@@ -56,7 +56,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			public void GettingKeyInSegmentAsisgnedElsewhereShouldThrow()
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
-				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ranges);
+				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
 				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Get(guid, new ExtendedGetRequest()
 				{
 					Key = "test",
@@ -70,7 +70,7 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			public void RemovingKeyInSegmentAsisgnedElsewhereShouldThrow()
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
-				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ranges);
+				replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
 				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(guid, new ExtendedRemoveRequest
 				{
 					Key = "test",
@@ -114,14 +114,14 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			public void WillSkipSegmentsThatHasItemsInThem()
 			{
 				var ranges = Enumerable.Range(0, 500).ToArray();
-				var assignedSegments = replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ranges);
+				var assignedSegments = replication.AssignAllEmptySegments(NodeEndpoint.ForTest(1), ReplicationType.Ownership, ranges);
 				Assert.Equal(ranges.Skip(1).ToArray(), assignedSegments);
 			}
 			
 			[Fact]
 			public void WillGiveExistingKeysFromSegment()
 			{
-				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(1, result.PutRequests.Length);
 				Assert.Equal(new byte[]{1}, result.PutRequests[0].Bytes);
 			}
@@ -129,17 +129,17 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			[Fact]
 			public void WillRememberKeysSentDuringPreviousReplication()
 			{
-				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(1, result.PutRequests.Length);
 
-				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(0, result.PutRequests.Length);
 			}
 
 			[Fact]
 			public void WhenItemIsRemovedWillResultInRemovalRequestOnNextReplicationPage()
 			{
-				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(1, result.PutRequests.Length);
 				node.Storage.Remove(node.GetTopologyVersion(), new ExtendedRemoveRequest
 				{
@@ -148,17 +148,17 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 					Segment = 0,
 				});
 
-				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(1, result.RemoveRequests.Length);
 			}
 
 			[Fact]
 			public void WhenDoneGettingAllKeysWillAssignSegmentToEndpoint()
 			{
-				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				var result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(1, result.PutRequests.Length);
 
-				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), 0);
+				result = replication.ReplicateNextPage(NodeEndpoint.ForTest(1), ReplicationType.Ownership, 0);
 				Assert.Equal(0, result.PutRequests.Length);
 
 				var exception = Assert.Throws<SeeOtherException>(() => node.Storage.Remove(guid, new ExtendedRemoveRequest

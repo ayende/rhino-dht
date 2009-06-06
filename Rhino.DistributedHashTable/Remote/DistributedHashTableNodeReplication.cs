@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Text;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.PersistentHashTable;
@@ -17,18 +15,19 @@ namespace Rhino.DistributedHashTable.Remote
 		}
 
 		public ReplicationResult ReplicateNextPage(NodeEndpoint replicationEndpoint,
-												   int segment)
+		                                           ReplicationType type,
+		                                           int segment)
 		{
 			var putRequests = new List<ExtendedPutRequest>();
 			var removalRequests = new List<ExtendedRemoveRequest>();
-			bool done = false;
+			var done = false;
 			hashTable.Batch(actions =>
 			{
 				foreach (var getRequest in actions.GetKeysForTag(segment))
 				{
 					var alreadyReplicated = actions.HasReplicationInfo(getRequest.Key,
-														  getRequest.SpecifiedVersion,
-														  replicationEndpoint.GetHash());
+					                                                   getRequest.SpecifiedVersion,
+					                                                   replicationEndpoint.GetHash());
 					if (alreadyReplicated)
 						continue;
 
@@ -52,8 +51,8 @@ namespace Rhino.DistributedHashTable.Remote
 					});
 
 					actions.AddReplicationInfo(getRequest.Key,
-											   getRequest.SpecifiedVersion,
-											   replicationEndpoint.GetHash());
+					                           getRequest.SpecifiedVersion,
+					                           replicationEndpoint.GetHash());
 
 					if (putRequests.Count >= 100)
 						break;
@@ -64,14 +63,14 @@ namespace Rhino.DistributedHashTable.Remote
 					removalRequests.Add(new ExtendedRemoveRequest
 					{
 						Key = request.Key,
-                        SpecificVersion = request.SpecificVersion
+						SpecificVersion = request.SpecificVersion
 					});
 					if (removalRequests.Count >= 100)
 						break;
 				}
 
 				done = putRequests.Count == 0 && removalRequests.Count == 0;
-				if (done)
+				if (done && type == ReplicationType.Ownership)
 				{
 					MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment);
 				}
@@ -88,7 +87,8 @@ namespace Rhino.DistributedHashTable.Remote
 		}
 
 		public int[] AssignAllEmptySegments(NodeEndpoint replicationEndpoint,
-										   int[] segments)
+		                                    ReplicationType type,
+		                                    int[] segments)
 		{
 			var reservedSegments = new List<int>();
 
@@ -98,7 +98,8 @@ namespace Rhino.DistributedHashTable.Remote
 				{
 					if (actions.HasTag(segment))
 						continue;
-					if (MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment) == false)
+					if (type == ReplicationType.Ownership &&
+						MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment) == false)
 						continue;
 					reservedSegments.Add(segment);
 				}
@@ -109,8 +110,8 @@ namespace Rhino.DistributedHashTable.Remote
 		}
 
 		private static bool MarkSegmentAsAssignedToEndpoint(PersistentHashTableActions actions,
-												   NodeEndpoint endpoint,
-												   int segment)
+		                                                    NodeEndpoint endpoint,
+		                                                    int segment)
 		{
 			var result = actions.Put(new PutRequest
 			{
