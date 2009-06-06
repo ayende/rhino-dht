@@ -39,7 +39,7 @@ namespace Rhino.DistributedHashTable.Hosting
 				Async = new Uri("rhino.queues://" + Environment.MachineName + ":" + (port + 1) + "/replication")
 			};
 			queueManager = new QueueManager(new IPEndPoint(IPAddress.Any, port + 1), name + ".queue.esent");
-
+			queueManager.CreateQueues("replication");
 			node = new DistributedHashTableNode(
 				new DistributedHashTableMasterClient(master),
 				new ThreadPoolExecuter(),

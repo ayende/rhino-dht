@@ -182,6 +182,8 @@ namespace Rhino.DistributedHashTable.Internal
 			StartPendingBackupsForCurrentNode(Topology);
 
 			var ownsSegments = assignedSegments.Any(x => x.AssignedEndpoint == endpoint);
+
+			backgroundReplication.Start();
 			State = ownsSegments ?
 				NodeState.Started :
 				NodeState.Starting;

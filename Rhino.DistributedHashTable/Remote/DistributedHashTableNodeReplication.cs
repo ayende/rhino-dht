@@ -96,7 +96,7 @@ namespace Rhino.DistributedHashTable.Remote
 			{
 				foreach (var segment in segments)
 				{
-					if (actions.HasTag((int)segment))
+					if (actions.HasTag(segment))
 						continue;
 					if (MarkSegmentAsAssignedToEndpoint(actions, replicationEndpoint, segment) == false)
 						continue;
