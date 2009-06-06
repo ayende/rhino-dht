@@ -3,7 +3,9 @@ using System.Linq;
 using System.Threading;
 using Rhino.DistributedHashTable.Client;
 using Rhino.DistributedHashTable.Hosting;
+using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
+using Rhino.PersistentHashTable;
 using Xunit;
 
 namespace Rhino.DistributedHashTable.ClusterTests
@@ -34,6 +36,56 @@ namespace Rhino.DistributedHashTable.ClusterTests
 			}
 
 			[Fact]
+			public void AfterBothNodesJoinedWillAutomaticallyReplicateToBackupNode()
+			{
+				storageHostB.Start();
+
+				var masterProxy = new DistributedHashTableMasterClient(masterUri);
+
+				for (var i = 0; i < 50; i++)
+				{
+					var topology = masterProxy.GetTopology();
+					var count = topology.Segments
+						.Where(x => x.AssignedEndpoint == storageHostA.Endpoint)
+						.Count();
+
+					if (count == 4096)
+						break;
+					Thread.Sleep(500);
+				}
+
+				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
+				{
+					var topology = masterProxy.GetTopology();
+					nodeA.Put(topology.Version, new ExtendedPutRequest
+					{
+						Bytes = new byte[] { 2, 2, 0, 0 },
+						Key = "abc",
+						Segment = 0
+					});
+				}
+
+				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
+				{
+					var topology = masterProxy.GetTopology();
+					Value[][] values = null;
+					for (var i = 0; i < 100; i++)
+					{
+						values = nodeB.Get(topology.Version, new ExtendedGetRequest
+						{
+							Key = "abc",
+							Segment = 0
+						});
+						if (values[0].Length != 0)
+							break;
+						Thread.Sleep(250);
+					}
+					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+				}
+			}
+
+
+			[Fact]
 			public void TwoNodesCanJoinToTheCluster()
 			{
 				storageHostB.Start();
@@ -52,13 +104,38 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					results.TryGetValue(storageHostA.Endpoint, out countOfSegmentsInA);
 					results.TryGetValue(storageHostB.Endpoint, out countOfSegmentsInB);
 					if (countOfSegmentsInA == countOfSegmentsInB &&
-					    countOfSegmentsInB == 4096)
+						countOfSegmentsInB == 4096)
 						return;
 					Thread.Sleep(500);
 				}
 				Assert.True(false,
-				            "Should have found two nodes sharing responsability for the geometry: " + countOfSegmentsInA + " - " +
-				            countOfSegmentsInB);
+							"Should have found two nodes sharing responsability for the geometry: " + countOfSegmentsInA + " - " +
+							countOfSegmentsInB);
+			}
+
+			[Fact]
+			public void AfterTwoNodesJoinTheClusterEachSegmentHasBackup()
+			{
+				storageHostB.Start();
+
+				var masterProxy = new DistributedHashTableMasterClient(masterUri);
+
+				Topology topology;
+				for (var i = 0; i < 50; i++)
+				{
+					topology = masterProxy.GetTopology();
+					var count = topology.Segments
+						.Where(x => x.AssignedEndpoint == storageHostA.Endpoint)
+						.Count();
+
+					if (count == 4096)
+						break;
+					Thread.Sleep(500);
+				}
+				topology = masterProxy.GetTopology();
+				Assert.True(
+					topology.Segments.All(x => x.Backups.Count > 0)
+					);
 			}
 
 			[Fact]
@@ -70,7 +147,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					var topology = masterProxy.GetTopology();
 					nodeA.Put(topology.Version, new ExtendedPutRequest
 					{
-						Bytes = new byte[] {2, 2, 0, 0},
+						Bytes = new byte[] { 2, 2, 0, 0 },
 						Key = "abc",
 						Segment = 1
 					});
@@ -81,7 +158,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				for (var i = 0; i < 500; i++)
 				{
 					var topology = masterProxy.GetTopology();
-					if(topology.Segments[1].AssignedEndpoint == 
+					if (topology.Segments[1].AssignedEndpoint ==
 					   storageHostB.Endpoint)
 						break;
 					Thread.Sleep(500);
@@ -94,7 +171,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 						Key = "abc",
 						Segment = 1
 					});
-					Assert.Equal(new byte[] {2, 2, 0, 0}, values[0][0].Data);
+					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
 				}
 			}
 		}

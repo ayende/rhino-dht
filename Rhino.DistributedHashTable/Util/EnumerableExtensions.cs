@@ -41,25 +41,6 @@ namespace Rhino.DistributedHashTable.Util
 			}
 		}
 
-		public static IEnumerable<T[]> Page<T>(this IEnumerable<T> self, int pageSize)
-		{
-			int pageNum = 0;
-			while (true)
-			{
-				var page = self
-					.Skip(pageNum * pageSize)
-					.Take(pageSize)
-					.ToArray();
-
-				if (page.Length == 0)
-					yield break;
-
-				yield return page;
-				pageNum += 1;
-			}
-		}
-
-
 		public static IEnumerable<T> Append<T>(this IEnumerable<T> self, T item) where T : class
 		{
 			foreach (var i in self)

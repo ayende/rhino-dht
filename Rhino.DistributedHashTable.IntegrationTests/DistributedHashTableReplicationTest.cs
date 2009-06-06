@@ -8,7 +8,7 @@ using Rhino.Mocks;
 using Rhino.PersistentHashTable;
 using Xunit;
 
-namespace Rhino.DistributedHashTable.IntegrationTests.Mini
+namespace Rhino.DistributedHashTable.IntegrationTests
 {
 	public class DistributedHashTableReplicationTest
 	{

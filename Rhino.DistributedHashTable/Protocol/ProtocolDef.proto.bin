@@ -1,5 +1,5 @@
 
-€*
+Ä*
 ProtocolDef.proto#Rhino.DistributedHashTable.Protocol"š
 Value
 Key (	
@@ -19,13 +19,14 @@ Sha256Hash (I
 ValueVersion
 Number (
 
-InstanceId ("™
+InstanceId ("Ý
 Segment
 Index (
 Version (K
 AssignedEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointV
 InProcessOfMovingToEndpoint (21.Rhino.DistributedHashTable.Protocol.NodeEndpointI
-PendingBackups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"`
+PendingBackups (21.Rhino.DistributedHashTable.Protocol.NodeEndpointB
+Backups (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"`
 JoinRequestMessageJ
 EndpointJoining (21.Rhino.DistributedHashTable.Protocol.NodeEndpoint"U
 JoinResponseMessage>

@@ -5,10 +5,10 @@ using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
 using Rhino.DistributedHashTable.Protocol;
 using Rhino.PersistentHashTable;
-using NodeEndpoint=Rhino.DistributedHashTable.Protocol.NodeEndpoint;
-using Segment=Rhino.DistributedHashTable.Internal.Segment;
-using Value=Rhino.PersistentHashTable.Value;
-using ValueVersion=Rhino.PersistentHashTable.ValueVersion;
+using NodeEndpoint = Rhino.DistributedHashTable.Protocol.NodeEndpoint;
+using Segment = Rhino.DistributedHashTable.Internal.Segment;
+using Value = Rhino.PersistentHashTable.Value;
+using ValueVersion = Rhino.PersistentHashTable.ValueVersion;
 
 namespace Rhino.DistributedHashTable.Util
 {
@@ -28,29 +28,14 @@ namespace Rhino.DistributedHashTable.Util
 			return new Segment
 			{
 				Version = new Guid(x.Version.ToByteArray()),
-				AssignedEndpoint = x.AssignedEndpoint != NodeEndpoint.DefaultInstance
-									? new Internal.NodeEndpoint()
-									{
-										Async = new Uri(x.AssignedEndpoint.Async),
-										Sync = new Uri(x.AssignedEndpoint.Sync)
-									}
-									: null,
-				InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint != NodeEndpoint.DefaultInstance
-												? new Internal.NodeEndpoint()
-												{
-													Async = new Uri(x.InProcessOfMovingToEndpoint.Async),
-													Sync = new Uri(x.InProcessOfMovingToEndpoint.Sync)
-												}
-												: null,
+				AssignedEndpoint = x.AssignedEndpoint.GetNodeEndpoint(),
+				InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint.GetNodeEndpoint(),
 				Index = x.Index,
-				PendingBackups = x.PendingBackupsList.Select(b => new Internal.NodeEndpoint()
-				{
-					Async = new Uri(b.Async),
-					Sync = new Uri(b.Sync)
-				}).ToSet(),
+				PendingBackups = x.PendingBackupsList.Select(b => b.GetNodeEndpoint()).ToSet(),
+				Backups = x.BackupsList.Select(b => b.GetNodeEndpoint()).ToSet()
 			};
 		}
-		
+
 		public static ExtendedGetRequest GetGetRequest(this GetRequestMessage x)
 		{
 			return new ExtendedGetRequest
@@ -97,20 +82,20 @@ namespace Rhino.DistributedHashTable.Util
 			{
 				Bytes = x.Bytes.ToByteArray(),
 				ExpiresAt = x.HasExpiresAtAsDouble
-				            	?
-				            		DateTime.FromOADate(x.ExpiresAtAsDouble.Value)
-				            	:
-				            		(DateTime?) null,
+								?
+									DateTime.FromOADate(x.ExpiresAtAsDouble.Value)
+								:
+									(DateTime?)null,
 				IsReadOnly = x.IsReadOnly,
 				IsReplicationRequest = x.IsReplicationRequest,
 				Key = x.Key,
 				OptimisticConcurrency = x.OptimisticConcurrency,
 				ParentVersions = x.ParentVersionsList.Select(y => GetVersion(y)).ToArray(),
 				ReplicationTimeStamp = x.HasReplicationTimeStampAsDouble
-				                       	?
-				                       		DateTime.FromOADate(x.ReplicationTimeStampAsDouble.Value)
-				                       	:
-				                       		(DateTime?) null,
+										?
+											DateTime.FromOADate(x.ReplicationTimeStampAsDouble.Value)
+										:
+											(DateTime?)null,
 				ReplicationVersion = GetVersion(x.ReplicationVersion),
 				Segment = x.Segment,
 				Tag = x.Tag
@@ -166,10 +151,12 @@ namespace Rhino.DistributedHashTable.Util
 
 		public static Internal.NodeEndpoint GetNodeEndpoint(this NodeEndpoint endpoint)
 		{
+			if (endpoint == null || endpoint == NodeEndpoint.DefaultInstance)
+				return null;
 			return new Internal.NodeEndpoint()
 			{
 				Async = new Uri(endpoint.Async),
-                Sync = new Uri(endpoint.Sync)
+				Sync = new Uri(endpoint.Sync)
 			};
 		}
 
@@ -221,6 +208,8 @@ namespace Rhino.DistributedHashTable.Util
 			{
 				Index = segment.Index,
 				Version = ByteString.CopyFrom(segment.Version.ToByteArray()),
+				BackupsList = { segment.Backups.Select(x => x.GetNodeEndpoint()) },
+				PendingBackupsList = { segment.PendingBackups.Select(x => x.GetNodeEndpoint()) }
 			};
 			if (segment.AssignedEndpoint != null)
 			{

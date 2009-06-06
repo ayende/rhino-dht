@@ -1,6 +1,6 @@
 using System.IO;
 
-namespace Rhino.DistributedHashTable.IntegrationTests.Mini
+namespace Rhino.DistributedHashTable.IntegrationTests
 {
 	public class EsentTestBase
 	{

@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -117,6 +118,10 @@ namespace Rhino.DistributedHashTable.Hosting
 							writer.Flush();
 							stream.Flush();
 						}
+					}
+					catch(IOException)
+					{
+						// disconnected, so nothing else to do
 					}
 					catch (SeeOtherException e)
 					{

@@ -36,14 +36,20 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public override string ToString()
 		{
-			return string.Format("Index: {0,10}, AssignedEndpoint: {1}, InProcessOfMovingToEndpoint: {2}", 
-				Index, AssignedEndpoint, InProcessOfMovingToEndpoint);
+			Uri assigned = null;
+			Uri inProcess = null;
+			if(AssignedEndpoint!=null)
+				assigned = AssignedEndpoint.Sync;
+			if (InProcessOfMovingToEndpoint != null)
+				inProcess = InProcessOfMovingToEndpoint.Sync;
+			return string.Format("Index: {0,4}, Assigned: {1}, Tentative: {2}, Backups: {3}, Tentative Backups: {4}",
+			                     Index, assigned, inProcess, Backups.Count, PendingBackups.Count);
 		}
 
 		public bool BelongsTo(NodeEndpoint endpoint)
 		{
 			return endpoint.Equals(AssignedEndpoint) ||
-			       endpoint.Equals(InProcessOfMovingToEndpoint);
+				   endpoint.Equals(InProcessOfMovingToEndpoint);
 		}
 
 		public bool Match(Segment other)

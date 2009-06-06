@@ -1,14 +1,11 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Transactions;
-using Google.ProtocolBuffers;
 using log4net;
 using Rhino.DistributedHashTable.Commands;
 using Rhino.DistributedHashTable.Parameters;
-using Rhino.DistributedHashTable.Protocol;
 using Rhino.DistributedHashTable.Remote;
 using Rhino.DistributedHashTable.Util;
 using Rhino.Queues;
@@ -62,16 +59,20 @@ namespace Rhino.DistributedHashTable.Internal
 						if (numOfErrors > 5)
 						{
 							log.ErrorFormat("Could not process message {0}, failed too many times, discarding", id);
+							tx.Complete(); //to make sure that the message is consumed
 							continue;
 						}
 
 						var requests = messageSerializer.Deserialize(message.Data);
 						var puts = requests.OfType<ExtendedPutRequest>().ToArray();
 						var removes = requests.OfType<ExtendedRemoveRequest>().ToArray();
+						log.DebugFormat("Accepting {0} puts and {1} removes for background replication",
+							puts.Length, removes.Length);
 						if (puts.Length > 0)
 							Storage.Put(GetTopologyVersion(), puts);
 						if (removes.Length > 0)
 							Storage.Remove(GetTopologyVersion(), removes);
+						
 						tx.Complete();
 					}
 					errors.Remove(id);
@@ -119,6 +120,9 @@ namespace Rhino.DistributedHashTable.Internal
 			var ownerSegment = Topology.GetSegment(segment);
 			if (ownerSegment.AssignedEndpoint == null)
 				return;
+			log.DebugFormat("Sending {0} requests to owner {1}",
+				requests.Length,
+				ownerSegment.AssignedEndpoint.Async);
 			queueManager.Send(ownerSegment.AssignedEndpoint.Async,
 							  new MessagePayload
 							  {
@@ -138,6 +142,9 @@ namespace Rhino.DistributedHashTable.Internal
 			{
 				if (otherBackup == null)
 					continue;
+				log.DebugFormat("Sending {0} requests to backup {1}",
+				                requests.Length,
+				                ownerSegment.AssignedEndpoint.Async);
 				queueManager.Send(otherBackup.Async,
 								  new MessagePayload
 								  {

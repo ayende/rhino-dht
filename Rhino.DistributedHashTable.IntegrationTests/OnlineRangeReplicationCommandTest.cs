@@ -7,7 +7,7 @@ using Rhino.DistributedHashTable.Remote;
 using Rhino.Mocks;
 using Xunit;
 
-namespace Rhino.DistributedHashTable.IntegrationTests.Mini
+namespace Rhino.DistributedHashTable.IntegrationTests
 {
 	public class OnlineSegmentReplicationCommandTest : EsentTestBase
 	{

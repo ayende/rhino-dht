@@ -147,20 +147,17 @@ namespace Rhino.DistributedHashTable.Commands
 		private List<Segment> AssignAllEmptySegmentsFromEndpoint(List<int> processedSegments)
 		{
 			var remainingSegments = new List<Segment>();
-			foreach (var pagedSegment in segments.Page(500))
-			{
-				var assignedSegments = otherNode.AssignAllEmptySegments(
-					node.Endpoint, 
-					pagedSegment.Select(x=>x.Index).ToArray());
-				
-				processedSegments.AddRange(assignedSegments);
-				node.DoneReplicatingSegments(type,assignedSegments);
+			var assignedSegments = otherNode.AssignAllEmptySegments(
+				node.Endpoint,
+				segments.Select(x => x.Index).ToArray());
 
-				log.DebugFormat("{0} empty segments assigned from {1}", assignedSegments.Length, endpoint);
-				remainingSegments.AddRange(
-					pagedSegment.Where(x => assignedSegments.Contains(x.Index) == false)
-					);
-			}
+			processedSegments.AddRange(assignedSegments);
+			node.DoneReplicatingSegments(type, assignedSegments);
+
+			log.DebugFormat("{0} empty segments assigned from {1}", assignedSegments.Length, endpoint);
+			remainingSegments.AddRange(
+				segments.Where(x => assignedSegments.Contains(x.Index) == false)
+				);
 			return remainingSegments;
 		}
 
