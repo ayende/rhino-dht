@@ -24,6 +24,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		private readonly IDistributedHashTableNode node;
 		private readonly QueueManager queueManager;
 		private readonly IDistributedHashTableStorage storage;
+		private IDistributedHashTableNodeReplication replication;
 
 		public DistributedHashTableStorageHost(Uri master)
 			: this(master, "node", 2201)
@@ -50,7 +51,9 @@ namespace Rhino.DistributedHashTable.Hosting
 				queueManager,
 				new NonPooledDistributedHashTableNodeFactory()
 				);
-			storage = new DistributedHashTableStorage(name + ".data.esent", node);
+			var dhtStorage = new DistributedHashTableStorage(name + ".data.esent", node);
+			replication = dhtStorage.Replication;
+			storage = dhtStorage;
 			
 			listener = new TcpListener(
 				Socket.OSSupportsIPv6 ? IPAddress.IPv6Any : IPAddress.Any, 
@@ -180,7 +183,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		private void HandleReplicateNextPage(StorageMessageUnion wrapper,
 											 MessageStreamWriter<StorageMessageUnion> writer)
 		{
-			var replicationResult = storage.Replication.ReplicateNextPage(
+			var replicationResult = replication.ReplicateNextPage(
 				wrapper.ReplicateNextPageRequest.ReplicationEndpoint.GetNodeEndpoint(),
                 wrapper.ReplicateNextPageRequest.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership,
 				wrapper.ReplicateNextPageRequest.Segment
@@ -206,7 +209,7 @@ namespace Rhino.DistributedHashTable.Hosting
 		private void HandleAssignEmpty(StorageMessageUnion wrapper,
 									   MessageStreamWriter<StorageMessageUnion> writer)
 		{
-			var segments = storage.Replication.AssignAllEmptySegments(
+			var segments = replication.AssignAllEmptySegments(
 				wrapper.AssignAllEmptySegmentsRequest.ReplicationEndpoint.GetNodeEndpoint(),
 				wrapper.AssignAllEmptySegmentsRequest.Type == ReplicationType.Backup ? Internal.ReplicationType.Backup : Internal.ReplicationType.Ownership,
 				wrapper.AssignAllEmptySegmentsRequest.SegmentsList.ToArray()

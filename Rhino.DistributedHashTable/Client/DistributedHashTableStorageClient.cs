@@ -26,7 +26,7 @@ namespace Rhino.DistributedHashTable.Client
 		IDistributedHashTableRemoteNode
 	{
 		private readonly NodeEndpoint endpoint;
-		private readonly TcpClient client;
+		protected readonly TcpClient client;
 		private readonly NetworkStream stream;
 		private readonly MessageStreamWriter<StorageMessageUnion> writer;
 
@@ -43,7 +43,7 @@ namespace Rhino.DistributedHashTable.Client
 			get { return endpoint; }
 		}
 
-		public void Dispose()
+		public virtual void Dispose()
 		{
 			stream.Dispose();
 			client.Close();

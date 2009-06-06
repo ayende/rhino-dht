@@ -125,13 +125,21 @@ namespace Rhino.DistributedHashTable.Internal
 			}
 		}
 
-		private void AssertMatchingTopologyVersion(int topologyVersion)
+		private void AssertMatchingTopologyVersion(int topologyVersionFromClient)
 		{
-			if(TopologyVersion != topologyVersion)
+			//client thinks that the version is newer
+			if(topologyVersionFromClient > TopologyVersion)
+			{
+				log.InfoFormat("Got request for topology {0} but current local version is {1}, forcing topology update, request will still fail",
+							   topologyVersionFromClient, 
+							   TopologyVersion);
+				distributedHashTableNode.UpdateTopology();
+			}
+			if(TopologyVersion != topologyVersionFromClient)
 			{
 				log.InfoFormat("Got request for topology {0} but current local version is {1}",
-				               TopologyVersion,
-				               topologyVersion);
+				               topologyVersionFromClient,
+				               TopologyVersion);
 				throw new TopologyVersionDoesNotMatchException("Topology Version doesn't match, you need to refresh the topology from the master");
 			}
 		}

@@ -183,7 +183,7 @@ namespace Rhino.DistributedHashTable.Internal
 						segmentToReplicate.ToArray(),
 						ReplicationType.Ownership,
 						this,
-						replicationFactory.Create(segmentToReplicate.Key))
+						replicationFactory)
 					);
 			}
 
@@ -214,7 +214,7 @@ namespace Rhino.DistributedHashTable.Internal
 					segmentToReplicate.ToArray(),
 					ReplicationType.Backup,
 					this,
-					replicationFactory.Create(segmentToReplicate.Key));
+					replicationFactory);
 
 				Interlocked.Increment(ref currentlyReplicatingBackups);
 
@@ -257,7 +257,7 @@ namespace Rhino.DistributedHashTable.Internal
 					IsLocal = true
 				};
 			var movedMarkers = Storage.Get(GetTopologyVersion(),
-			                               segmentsThatWereMovedFromNode.ToArray());
+										   segmentsThatWereMovedFromNode.ToArray());
 			var requests = movedMarkers
 				.Where(x => x.Length == 1)
 				.Select(values => values[0])

@@ -1,6 +1,5 @@
 using System;
 using Rhino.DistributedHashTable.Parameters;
-using Rhino.DistributedHashTable.Remote;
 using Rhino.PersistentHashTable;
 
 namespace Rhino.DistributedHashTable.Internal
@@ -12,7 +11,5 @@ namespace Rhino.DistributedHashTable.Internal
 		bool[] Remove(int topologyVersion, params ExtendedRemoveRequest[] valuesToRemove);
 
 		Value[][] Get(int topologyVersion, params ExtendedGetRequest[] valuesToGet);
-
-		IDistributedHashTableNodeReplication Replication { get; }
 	}
 }

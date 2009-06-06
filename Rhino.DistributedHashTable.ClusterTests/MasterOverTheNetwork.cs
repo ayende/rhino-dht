@@ -30,7 +30,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				Assert.NotNull(topology);
 				Assert.NotEqual(0, topology.Version);
 				Assert.NotEqual(DateTime.MinValue, topology.Timestamp);
-				Assert.Equal(8192, topology.Segments.Length);
+				Assert.Equal(Constants.NumberOfSegments, topology.Segments.Length);
 				Assert.True(topology.Segments.All(x => x.AssignedEndpoint == null));
 			}
 
@@ -43,7 +43,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Sync = new Uri("rhino.dht://localhost:2201")
 				};
 				var segments = masterProxy.Join(endpoint);
-				Assert.Equal(8192, segments.Length);
+				Assert.Equal(Constants.NumberOfSegments, segments.Length);
 				Assert.True(segments.All(x => x.AssignedEndpoint.Equals(endpoint)));
 			}
 

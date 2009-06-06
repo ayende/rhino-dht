@@ -13,9 +13,10 @@ namespace Rhino.DistributedHashTable.Commands
 		private readonly ILog log = LogManager.GetLogger(typeof(OnlineSegmentReplicationCommand));
 
 		private readonly IDistributedHashTableNode node;
-		private readonly IDistributedHashTableNodeReplication otherNode;
-		private readonly string endpoint;
+		private readonly IDistributedHashTableNodeReplicationFactory factory;
+		private IDistributedHashTableNodeReplication otherNode;
 		private readonly Segment[] segments;
+		private readonly NodeEndpoint endpoint;
 		private readonly ReplicationType type;
 		private bool continueWorking = true;
 
@@ -26,13 +27,13 @@ namespace Rhino.DistributedHashTable.Commands
 			Segment[] segments,
             ReplicationType type,
 			IDistributedHashTableNode node,
-			IDistributedHashTableNodeReplication otherNode)
+			IDistributedHashTableNodeReplicationFactory factory)
 		{
-			this.endpoint = endpoint.Sync.ToString();
+			this.endpoint = endpoint;
 			this.segments = segments;
 			this.type = type;
 			this.node = node;
-			this.otherNode = otherNode;
+			this.factory = factory;
 		}
 
 		public void AbortExecution()
@@ -42,13 +43,14 @@ namespace Rhino.DistributedHashTable.Commands
 
 		public bool Execute()
 		{
-			log.DebugFormat("Replication from {0} of {1} segments for {2}", endpoint, segments.Length, type);
+			log.DebugFormat("Replication from {0} of {1} segments for {2}", endpoint.Sync, segments.Length, type);
 			var processedSegments = new List<int>();
 
 			if (continueWorking == false)
 				return false;
 			try
 			{
+				otherNode = factory.Create(endpoint);
 				var segmentsToLoad = AssignAllEmptySegmentsFromEndpoint(processedSegments);
 				if (continueWorking == false)
 					return false;
@@ -56,7 +58,7 @@ namespace Rhino.DistributedHashTable.Commands
 			}
 			catch (Exception e)
 			{
-				log.Warn("Could not replicate segments", e);
+				log.Warn("Could not replicate segments for " + type, e);
 				return false;
 			}
 			finally
@@ -70,8 +72,9 @@ namespace Rhino.DistributedHashTable.Commands
 						{
 							if (log.IsWarnEnabled)
 							{
-								log.WarnFormat("Giving up replicating the following segments: [{0}]",
-								               string.Join(", ", array.Select(x => x.ToString()).ToArray()));
+								log.WarnFormat("Giving up replicating for {0} the {0} segments",
+								               type,
+								               array.Length);
 							}
 							node.GivingUpOn(type, array);
 						}
@@ -123,12 +126,12 @@ namespace Rhino.DistributedHashTable.Commands
 			{
 				log.DebugFormat("Starting replication of segment [{0}] from {1}",
 								segment,
-								endpoint);
+								endpoint.Sync);
 
 				var result = otherNode.ReplicateNextPage(node.Endpoint, type, segment.Index);
 				log.DebugFormat("Replication of segment [{0}] from {1} got {2} puts & {3} removals",
 								segment,
-								endpoint,
+								endpoint.Sync,
 								result.PutRequests.Length,
 								result.RemoveRequests.Length);
 
@@ -155,7 +158,7 @@ namespace Rhino.DistributedHashTable.Commands
 			processedSegments.AddRange(assignedSegments);
 			node.DoneReplicatingSegments(type, assignedSegments);
 
-			log.DebugFormat("{0} empty segments assigned from {1}", assignedSegments.Length, endpoint);
+			log.DebugFormat("{0} empty segments assigned from {1}", assignedSegments.Length, endpoint.Sync);
 			remainingSegments.AddRange(
 				segments.Where(x => assignedSegments.Contains(x.Index) == false)
 				);

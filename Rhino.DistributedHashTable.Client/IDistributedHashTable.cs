@@ -1,9 +1,8 @@
 using System.Collections.Generic;
+using Rhino.PersistentHashTable;
 
-namespace Rhino.DistributedHashTable
+namespace Rhino.DistributedHashTable.Client
 {
-	using PersistentHashTable;
-
 	public interface IDistributedHashTable
 	{
 		PutResult[] Put(params PutRequest[] valuesToAdd);

@@ -97,7 +97,6 @@
     <Compile Include="Parameters\IExtendedRequest.cs" />
     <Compile Include="Util\PrtoBufConverter.cs" />
     <Compile Include="Util\EnumerableExtensions.cs" />
-    <Compile Include="IDistributedHashTable.cs" />
     <Compile Include="Internal\IDistributedHashTableMaster.cs" />
     <Compile Include="Internal\NodeState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

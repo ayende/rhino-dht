@@ -27,12 +27,14 @@ namespace Rhino.DistributedHashTable.IntegrationTests
 			storage = MockRepository.GenerateStub<IDistributedHashTableStorage>();
 			node.Storage = storage;
 			node.Stub(x => x.GetTopologyVersion()).Return(topologyVersion);
+			var factory = MockRepository.GenerateStub<IDistributedHashTableNodeReplicationFactory>();
+			factory.Stub(x => x.Create(null)).IgnoreArguments().Return(replication);
 			command = new OnlineSegmentReplicationCommand(
 				endpoint,
 				new[] { new Segment { Index = 0 }, new Segment { Index = 1 }, },
                 ReplicationType.Ownership, 
 				node,
-				replication);
+				factory);
 		}
 
 		[Fact]

@@ -57,7 +57,7 @@ namespace Rhino.DistributedHashTable.Tests
 			[Fact]
 			public void WillNotChangeTotalNumberOfSegments()
 			{
-				Assert.Equal(8192, master.Segments.Count());
+				Assert.Equal(Constants.NumberOfSegments, master.Segments.Count());
 			}
 
 			[Fact]
@@ -119,7 +119,7 @@ namespace Rhino.DistributedHashTable.Tests
 			[Fact]
 			public void WillNotChangeTotalNumberOfSegments()
 			{
-				Assert.Equal(8192, master.Segments.Count());
+				Assert.Equal(Constants.NumberOfSegments, master.Segments.Count());
 			}
 
 			[Fact]

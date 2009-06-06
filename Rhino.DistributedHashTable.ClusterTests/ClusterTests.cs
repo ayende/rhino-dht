@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using Rhino.DistributedHashTable.Client;
+using Rhino.DistributedHashTable.Exceptions;
 using Rhino.DistributedHashTable.Hosting;
 using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Parameters;
@@ -57,33 +58,39 @@ namespace Rhino.DistributedHashTable.ClusterTests
 
 				topology = masterProxy.GetTopology();
 				var segment = topology.Segments.First(x => x.AssignedEndpoint == storageHostA.Endpoint).Index;
-				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
+				RepeatWhileThereAreTopologyChangedErrors(() =>
 				{
-					nodeA.Put(topology.Version, new ExtendedPutRequest
+					using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
 					{
-						Bytes = new byte[] { 2, 2, 0, 0 },
-						Key = "abc",
-						Segment = segment
-					});
-				}
-
-				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
-				{
-					topology = masterProxy.GetTopology();
-					Value[][] values = null;
-					for (var i = 0; i < 100; i++)
-					{
-						values = nodeB.Get(topology.Version, new ExtendedGetRequest
+						nodeA.Put(topology.Version, new ExtendedPutRequest
 						{
+							Bytes = new byte[] { 2, 2, 0, 0 },
 							Key = "abc",
 							Segment = segment
 						});
-						if (values[0].Length != 0)
-							break;
-						Thread.Sleep(250);
 					}
-					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
-				}
+				});
+
+				RepeatWhileThereAreTopologyChangedErrors(() =>
+				{
+					using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
+					{
+						topology = masterProxy.GetTopology();
+						Value[][] values = null;
+						for (var i = 0; i < 100; i++)
+						{
+							values = nodeB.Get(topology.Version, new ExtendedGetRequest
+							{
+								Key = "abc",
+								Segment = segment
+							});
+							if (values[0].Length != 0)
+								break;
+							Thread.Sleep(250);
+						}
+						Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+					}
+				});
 			}
 
 			[Fact]
@@ -106,35 +113,43 @@ namespace Rhino.DistributedHashTable.ClusterTests
 					Thread.Sleep(500);
 				}
 
-				topology = masterProxy.GetTopology();
-				var segment = topology.Segments.First(x => x.AssignedEndpoint == storageHostA.Endpoint).Index;
-				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
-				{
-					nodeA.Put(topology.Version, new ExtendedPutRequest
-					{
-						Bytes = new byte[] { 2, 2, 0, 0 },
-						Key = "abc",
-						Segment = segment
-					});
-				}
-
-				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
+				int segment = 0;	
+				
+				RepeatWhileThereAreTopologyChangedErrors(() =>
 				{
 					topology = masterProxy.GetTopology();
-					Value[][] values = null;
-					for (var i = 0; i < 100; i++)
+					segment = topology.Segments.First(x => x.AssignedEndpoint == storageHostA.Endpoint).Index;
+					using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
 					{
-						values = nodeB.Get(topology.Version, new ExtendedGetRequest
+						nodeA.Put(topology.Version, new ExtendedPutRequest
 						{
+							Bytes = new byte[] {2, 2, 0, 0},
 							Key = "abc",
 							Segment = segment
 						});
-						if (values[0].Length != 0)
-							break;
-						Thread.Sleep(250);
 					}
-					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
-				}
+				});
+
+				RepeatWhileThereAreTopologyChangedErrors(() =>
+				{
+					using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
+					{
+						topology = masterProxy.GetTopology();
+						Value[][] values = null;
+						for (var i = 0; i < 100; i++)
+						{
+							values = nodeB.Get(topology.Version, new ExtendedGetRequest
+							{
+								Key = "abc",
+								Segment = segment
+							});
+							if (values[0].Length != 0)
+								break;
+							Thread.Sleep(250);
+						}
+						Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+					}
+				});
 
 				using (var nodeA = new DistributedHashTableStorageClient(storageHostA.Endpoint))
 				{
@@ -234,6 +249,24 @@ namespace Rhino.DistributedHashTable.ClusterTests
 						Segment = 1
 					});
 					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+				}
+			}
+		}
+
+		// we have to do this ugliness because the cluster is in a state of flux right now
+		// with segments moving & topology changes
+		public static void RepeatWhileThereAreTopologyChangedErrors(Action action)
+		{
+			while(true)
+			{
+				try
+				{
+					action();
+					break;
+				}
+				catch (TopologyVersionDoesNotMatchException)
+				{
+					
 				}
 			}
 		}

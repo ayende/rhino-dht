@@ -163,7 +163,7 @@ namespace Rhino.DistributedHashTable.Internal
 
 		private static IEnumerable<Segment> CreateDefaultSegments()
 		{
-			for (var i = 0; i < 8192; i++)
+			for (var i = 0; i < Constants.NumberOfSegments; i++)
 			{
 				var segment = new Segment
 				{
