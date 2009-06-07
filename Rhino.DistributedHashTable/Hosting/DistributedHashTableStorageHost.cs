@@ -285,9 +285,8 @@ namespace Rhino.DistributedHashTable.Hosting
 		public void Dispose()
 		{
 			listener.Stop();
-			queueManager.Dispose();
-
 			node.Dispose();
+			queueManager.Dispose();
 			storage.Dispose();
 		}
 	}

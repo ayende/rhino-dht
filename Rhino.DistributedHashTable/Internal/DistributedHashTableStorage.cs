@@ -127,6 +127,9 @@ namespace Rhino.DistributedHashTable.Internal
 
 		private void AssertMatchingTopologyVersion(int topologyVersionFromClient)
 		{
+			if (TopologyVersion == topologyVersionFromClient)
+				return;
+			
 			//client thinks that the version is newer
 			if(topologyVersionFromClient > TopologyVersion)
 			{
@@ -135,13 +138,14 @@ namespace Rhino.DistributedHashTable.Internal
 							   TopologyVersion);
 				distributedHashTableNode.UpdateTopology();
 			}
-			if(TopologyVersion != topologyVersionFromClient)
+			else
 			{
 				log.InfoFormat("Got request for topology {0} but current local version is {1}",
-				               topologyVersionFromClient,
-				               TopologyVersion);
-				throw new TopologyVersionDoesNotMatchException("Topology Version doesn't match, you need to refresh the topology from the master");
+							   topologyVersionFromClient,
+							   TopologyVersion);
 			}
+			throw new TopologyVersionDoesNotMatchException(
+				"Topology Version doesn't match, you need to refresh the topology from the master");
 		}
 
 		public bool[] Remove(int topologyVersion, params ExtendedRemoveRequest[] valuesToRemove)
@@ -157,19 +161,23 @@ namespace Rhino.DistributedHashTable.Internal
 						if (request.IsReplicationRequest == false && request.IsLocal == false) 
 							AssertSegmentNotMoved(actions, request.Segment);
 
-						if (request.SpecificVersion == null)
-							throw new ArgumentException("Could not accept request with no SpecificVersion");
-
 						if (request.Key.StartsWith(Constants.RhinoDhtStartToken) && request.IsLocal == false)
 							throw new ArgumentException(Constants.RhinoDhtStartToken + " is a reserved key prefix");
 
-						foreach (var hash in actions.GetReplicationHashes(request.Key, request.SpecificVersion))
+						if(request.SpecificVersion!=null)
 						{
-							actions.AddReplicationRemovalInfo(
-								request.Key,
-								request.SpecificVersion,
-								hash
-								);
+							RegisterRemovalForReplication(request, actions, request.SpecificVersion);
+						}
+						else// all versions
+						{
+							var values = actions.Get(new GetRequest
+							{
+								Key = request.Key
+							});
+							foreach (var value in values)
+							{
+								RegisterRemovalForReplication(request, actions, value.Version);
+							}
 						}
 
 						var remove = actions.Remove(request);
@@ -184,6 +192,20 @@ namespace Rhino.DistributedHashTable.Internal
 				tx.Complete();
 			}
 			return results.ToArray();
+		}
+
+		private static void RegisterRemovalForReplication(RemoveRequest request,
+		                                           PersistentHashTableActions actions,
+		                                           ValueVersion version)
+		{
+			foreach (var hash in actions.GetReplicationHashes(request.Key, version))
+			{
+				actions.AddReplicationRemovalInfo(
+					request.Key,
+					version,
+					hash
+					);
+			}
 		}
 
 		private void HandleReplication(

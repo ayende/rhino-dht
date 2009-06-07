@@ -11,6 +11,8 @@ namespace Rhino.DistributedHashTable.Commands
 
 		private readonly IDistributedHashTableMaster master;
 		private readonly DistributedHashTableNode node;
+		public event Action Completed = delegate { };
+
 		public UpdateTopologyCommand(IDistributedHashTableMaster master,
 		                             DistributedHashTableNode node)
 		{
@@ -37,6 +39,10 @@ namespace Rhino.DistributedHashTable.Commands
 			{
 				log.Warn("Unable to update topology, we are probably running on incosistent topology", e);
 				return false;
+			}
+			finally
+			{
+				Completed();
 			}
 		}
 	}

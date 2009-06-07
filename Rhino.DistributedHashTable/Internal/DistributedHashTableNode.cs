@@ -24,6 +24,8 @@ namespace Rhino.DistributedHashTable.Internal
 		private readonly Thread backgroundReplication;
 		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableNode));
 
+		private int pendingUpdating;
+
 		public DistributedHashTableNode(IDistributedHashTableMaster master,
 										IExecuter executer,
 										IMessageSerializer messageSerializer,
@@ -102,7 +104,12 @@ namespace Rhino.DistributedHashTable.Internal
 
 		public void UpdateTopology()
 		{
-			executer.RegisterForExecution(new UpdateTopologyCommand(master, this));
+			if (Interlocked.CompareExchange(ref pendingUpdating, 0, 0) != 0)
+				return;
+			Interlocked.Increment(ref pendingUpdating);
+			var command = new UpdateTopologyCommand(master, this);
+			command.Completed += () => Interlocked.Decrement(ref pendingUpdating);
+			executer.RegisterForExecution(command);
 		}
 
 		public int GetTopologyVersion()
@@ -231,45 +238,38 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			disposed = true;
 			executer.Dispose();
+			queueManager.Dispose();
 			backgroundReplication.Join();
 		}
 
 		public void SetTopology(Topology topology)
 		{
-			RemoveMoveMarkerForSegmentsThatWeAReNoLongerResponsibleFor(topology);
+			RemoveMoveMarkerForSegmentsThatWeAreNoLongerResponsibleFor(topology);
 			Topology = topology;
 			StartPendingBackupsForCurrentNode(topology);
 		}
 
-		private void RemoveMoveMarkerForSegmentsThatWeAReNoLongerResponsibleFor(Topology topology)
+		private void RemoveMoveMarkerForSegmentsThatWeAreNoLongerResponsibleFor(Topology topology)
 		{
 			if (Topology == null || topology == null)
 				return;
 
-			var segmentsThatWereMovedFromNode =
-				from prev in Topology.Segments
-				join current in topology.Segments on prev.Index equals current.Index
-				where prev.AssignedEndpoint == endpoint && current.AssignedEndpoint != endpoint
-				select new ExtendedGetRequest
-				{
-					Key = Constants.MovedSegment + prev.Index,
-					Segment = prev.Index,
-					IsLocal = true
-				};
-			var movedMarkers = Storage.Get(GetTopologyVersion(),
-										   segmentsThatWereMovedFromNode.ToArray());
-			var requests = movedMarkers
-				.Where(x => x.Length == 1)
-				.Select(values => values[0])
-				.Select(value => new ExtendedRemoveRequest
-				{
-					Key = value.Key,
-					SpecificVersion = value.Version,
-					IsLocal = true
-				}).ToArray();
-			if (requests.Length == 0)
+			var removeSegmentsThatWereMovedFromNode =
+				(
+					from prev in Topology.Segments
+					join current in topology.Segments on prev.Index equals current.Index
+					where prev.AssignedEndpoint == endpoint && current.AssignedEndpoint != endpoint
+					select new ExtendedRemoveRequest
+					{
+						Key = Constants.MovedSegment + prev.Index,
+						Segment = prev.Index,
+						IsLocal = true
+					}
+				).ToArray();
+
+			if (removeSegmentsThatWereMovedFromNode.Length == 0)
 				return;
-			Storage.Remove(GetTopologyVersion(), requests);
+			Storage.Remove(GetTopologyVersion(), removeSegmentsThatWereMovedFromNode);
 		}
 	}
 }

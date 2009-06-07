@@ -266,7 +266,7 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				}
 				catch (TopologyVersionDoesNotMatchException)
 				{
-					
+					Thread.Sleep(250);	
 				}
 			}
 		}

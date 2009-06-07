@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -9,6 +10,7 @@ using Rhino.DistributedHashTable.Internal;
 using Rhino.DistributedHashTable.Protocol;
 using Rhino.DistributedHashTable.Remote;
 using Rhino.DistributedHashTable.Util;
+using Rhino.PersistentHashTable;
 using NodeEndpoint = Rhino.DistributedHashTable.Internal.NodeEndpoint;
 using ReplicationType=Rhino.DistributedHashTable.Protocol.ReplicationType;
 
@@ -21,18 +23,20 @@ namespace Rhino.DistributedHashTable.Hosting
 
 		private readonly TcpListener listener;
 		private readonly DistributedHashTableMaster master;
+		private readonly PersistentHashTable.PersistentHashTable hashTable;
 
 		public DistributedHashTableMasterHost()
-			: this(new ThreadPoolExecuter(), 2200)
+			: this("master.esent", new ThreadPoolExecuter(), 2200)
 		{
 		}
 
-		public DistributedHashTableMasterHost(IExecuter executer, int port)
+		public DistributedHashTableMasterHost(string name, IExecuter executer, int port)
 		{
 			this.executer = executer;
 			master = new DistributedHashTableMaster();
 			master.TopologyChanged += OnTopologyChanged;
 			listener = new TcpListener(IPAddress.Any, port);
+			hashTable = new PersistentHashTable.PersistentHashTable(name);
 		}
 
 		private void OnTopologyChanged()
@@ -41,17 +45,68 @@ namespace Rhino.DistributedHashTable.Hosting
 			executer.RegisterForExecution(new NotifyEndpointsAboutTopologyChange(
 				master.Endpoints.ToArray(),
 				new NonPooledDistributedHashTableNodeFactory()
-				));
+				)); 
+			
+			PersistTopology();
+		}
+
+		private void PersistTopology()
+		{
+			byte[] buffer;
+			var topology = master.Topology.GetTopology();
+			using (var stream = new MemoryStream())
+			{
+				var writer = new MessageStreamWriter<TopologyResultMessage>(stream);
+				writer.Write(topology);
+				writer.Flush();
+				buffer = stream.ToArray();
+			}
+
+			hashTable.Batch(actions =>
+			{
+				var values = actions.Get(new GetRequest
+				{
+					Key = Constants.Topology
+				});
+				actions.Put(new PutRequest
+				{
+					Key = Constants.Topology,
+					ParentVersions = values.Select(x => x.Version).ToArray(),
+					Bytes = buffer,
+					IsReadOnly = true
+				});
+
+				actions.Commit();
+			});
 		}
 
 		public void Dispose()
 		{
 			listener.Stop();
 			executer.Dispose();
+			master.Dispose();
+			hashTable.Dispose();
 		}
 
 		public void Start()
 		{
+			hashTable.Initialize();
+			hashTable.Batch(actions =>
+			{
+				var value = actions.Get(new GetRequest {Key = Constants.Topology}).LastOrDefault();
+
+				if (value != null)
+				{
+					var topology = MessageStreamIterator<TopologyResultMessage>
+						.FromStreamProvider(() => new MemoryStream(value.Data))
+						.First();
+
+					master.Topology = topology.GetTopology();
+					master.RefreshEndpoints();
+				}
+				actions.Commit();
+			});
+
 			listener.Start();
 			listener.BeginAcceptTcpClient(OnAcceptTcpClient, null);
 			OnTopologyChanged();

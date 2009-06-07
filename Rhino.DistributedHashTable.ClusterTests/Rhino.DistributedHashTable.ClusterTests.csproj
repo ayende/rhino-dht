@@ -58,8 +58,10 @@
     <Compile Include="ClusterTests.cs" />
     <Compile Include="FullIntegrationTest.cs" />
     <Compile Include="MasterOverTheNetwork.cs" />
+    <Compile Include="DistributedHashTableMasterHostTest.cs" />
     <Compile Include="NodeOverTheNetwork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WithDebug.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\pht\Rhino.PersistentHashTable\Rhino.PersistentHashTable.csproj">

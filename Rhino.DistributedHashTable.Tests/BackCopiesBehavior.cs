@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using Rhino.DistributedHashTable.Internal;
 using Xunit;
@@ -7,7 +8,7 @@ namespace Rhino.DistributedHashTable.Tests
 {
 	public class BackCopiesBehavior
 	{
-		public class OnEmptyMaster
+		public class OnEmptyMaster : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -25,9 +26,14 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.True(master.Segments.All(x => x.PendingBackups.Count == 0));
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class OnMasterWithOneExistingNode
+		public class OnMasterWithOneExistingNode : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -60,9 +66,14 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.True(wasChanged);
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class OnMasterWithTwoNodes
+		public class OnMasterWithTwoNodes : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -87,9 +98,14 @@ namespace Rhino.DistributedHashTable.Tests
 				master.CaughtUp(endPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				Assert.True(master.Segments.All(x => x.PendingBackups.Count == 2));
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class OnMasterWithThreeNodes
+		public class OnMasterWithThreeNodes : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -116,6 +132,11 @@ namespace Rhino.DistributedHashTable.Tests
 				var ranges = master.Join(yetAnotherEndPoint);
 				master.CaughtUp(yetAnotherEndPoint, ReplicationType.Ownership, ranges.Select(x => x.Index).ToArray());
 				Assert.True(master.Segments.All(x => x.PendingBackups.Count >= 2));
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
 			}
 		}
 	}

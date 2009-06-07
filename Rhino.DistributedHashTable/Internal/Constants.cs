@@ -5,5 +5,6 @@ namespace Rhino.DistributedHashTable.Internal
 		public const int NumberOfSegments = 8192;
 		public const string RhinoDhtStartToken = "@rdht://";
 		public const string MovedSegment = RhinoDhtStartToken + "Segment/Moved/";
+		public const string Topology = RhinoDhtStartToken + "Topology/";
 	}
 }

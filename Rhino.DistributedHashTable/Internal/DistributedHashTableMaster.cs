@@ -12,7 +12,7 @@ namespace Rhino.DistributedHashTable.Internal
 	/// The master is a SIGNLE THREADED service that manages all
 	/// operations in the cluster. 
 	/// </summary>
-	public class DistributedHashTableMaster : IDistributedHashTableMaster
+	public class DistributedHashTableMaster : IDistributedHashTableMaster, IDisposable
 	{
 		private readonly HashSet<NodeEndpoint> endpoints = new HashSet<NodeEndpoint>();
 		private readonly ILog log = LogManager.GetLogger(typeof(DistributedHashTableMaster));
@@ -274,14 +274,25 @@ namespace Rhino.DistributedHashTable.Internal
 				return Segments.Where(x => x.BelongsTo(endpoint)).ToArray();
 			}
 
-			var segmentsThatHadNoOwner = Segments
-				.Where(x => x.AssignedEndpoint == null)
-				.Apply(x => x.AssignedEndpoint = endpoint)
-				.ToArray();
-			if (segmentsThatHadNoOwner.Length > 0)
+			var thereAreSegementsWithNoowners = Segments
+				.Any(x => x.AssignedEndpoint == null);
+			if (thereAreSegementsWithNoowners)
 			{
+				Topology = new Topology(Segments
+				                        	.Where(x => x.AssignedEndpoint == null)
+				                        	.Select(x => new Segment
+				                        	{
+				                        		AssignedEndpoint = endpoint,
+				                        		Backups = x.Backups,
+				                        		Index = x.Index,
+				                        		InProcessOfMovingToEndpoint = x.InProcessOfMovingToEndpoint,
+				                        		PendingBackups = x.PendingBackups
+				                        	}).ToArray(),
+				                        Topology.Version + 1
+					);
+				TopologyChanged();
 				log.DebugFormat("Endpoint {0} was assigned all segments without owners", endpoint.Sync);
-				return segmentsThatHadNoOwner;
+				return Segments.Where(x => x.AssignedEndpoint == endpoint).ToArray();
 			}
 
 			log.DebugFormat("New endpoint {0}, allocating segments for it", endpoint.Sync);
@@ -345,6 +356,30 @@ namespace Rhino.DistributedHashTable.Internal
 			public int TentativeCount;
 			public int BackupCount;
 			public int TentativeBackupCount;
+		}
+
+		public void Dispose()
+		{
+			
+		}
+
+		public void RefreshEndpoints()
+		{
+			foreach (var segment in Segments)
+			{
+				if (segment.AssignedEndpoint != null)
+					endpoints.Add(segment.AssignedEndpoint);
+				if (segment.InProcessOfMovingToEndpoint != null)
+					endpoints.Add(segment.InProcessOfMovingToEndpoint);
+				foreach (var backup in segment.Backups)
+				{
+					endpoints.Add(backup);
+				}
+				foreach (var backup in segment.PendingBackups)
+				{
+					endpoints.Add(backup);
+				}
+			}
 		}
 	}
 }

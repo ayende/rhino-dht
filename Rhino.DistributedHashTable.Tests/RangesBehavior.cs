@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using Rhino.DistributedHashTable.Internal;
 using Xunit;
@@ -7,7 +8,7 @@ namespace Rhino.DistributedHashTable.Tests
 {
 	public class SegmentsBehavior
 	{
-		public class WhenMasterCreatesSegment
+		public class WhenMasterCreatesSegment : MasterTestBase, IDisposable
 		{
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
 
@@ -15,6 +16,11 @@ namespace Rhino.DistributedHashTable.Tests
 			public void ThereShouldBe8192Segments()
 			{
 				Assert.Equal(8192, master.Segments.Count());
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
 			}
 		}
 	}

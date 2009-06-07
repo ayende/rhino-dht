@@ -59,6 +59,7 @@
     <Compile Include="MasterCaughtUpBehavior.cs" />
     <Compile Include="MasterGaveUpBehavior.cs" />
     <Compile Include="MasterJoinBehavior.cs" />
+    <Compile Include="MasterTestBase.cs" />
     <Compile Include="NodeReplicationBehavior.cs" />
     <Compile Include="NodeStartupBehavior.cs" />
     <Compile Include="Program.cs" />

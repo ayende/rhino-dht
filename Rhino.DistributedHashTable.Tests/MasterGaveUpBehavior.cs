@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Rhino.DistributedHashTable.Internal;
 using Xunit;
@@ -6,7 +7,7 @@ namespace Rhino.DistributedHashTable.Tests
 {
 	public class MasterGaveUpBehavior
 	{
-		public class OnGaveUp
+		public class OnGaveUp : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -48,6 +49,11 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.Empty(segment.PendingBackups);
 				Assert.Equal(0, segment.Backups.Count);
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
 			}
 		}
 	}

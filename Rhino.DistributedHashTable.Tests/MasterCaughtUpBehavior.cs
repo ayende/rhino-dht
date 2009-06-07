@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Net;
 using Rhino.DistributedHashTable.Internal;
@@ -7,7 +8,7 @@ namespace Rhino.DistributedHashTable.Tests
 {
 	public class MasterCaughtUpBehavior
 	{
-		public class OnCaughtUp
+		public class OnCaughtUp : MasterTestBase
 		{
 			private readonly DistributedHashTableMaster master;
 			private readonly NodeEndpoint endPoint;
@@ -48,6 +49,11 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.Empty(segment.PendingBackups);
 				Assert.Equal(1, segment.Backups.Count);
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
 			}
 		}
 	}

@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Net;
 using Rhino.DistributedHashTable.Internal;
@@ -7,7 +8,7 @@ namespace Rhino.DistributedHashTable.Tests
 {
 	public class MasterJoinBehavior
 	{
-		public class OnEmptyMaster
+		public class OnEmptyMaster : MasterTestBase
 		{
 			private readonly NodeEndpoint endPoint = NodeEndpoint.ForTest(0);
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
@@ -19,9 +20,26 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.True(master.Segments.All(x => x.AssignedEndpoint == endPoint));
 			}
+
+			[Fact]
+			public void DirectlyModifyingTopologyAndThenCallingRefreshEndpointsShouldShowAllEndpoints()
+			{
+				Assert.False(master.Endpoints.Any(x=>x == NodeEndpoint.ForTest(1)));
+
+				master.Topology.Segments[0].AssignedEndpoint = NodeEndpoint.ForTest(1);
+				master.RefreshEndpoints();
+
+				Assert.True(master.Endpoints.Any(x => x == NodeEndpoint.ForTest(1)));
+
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class JoiningTwice
+		public class JoiningTwice : MasterTestBase
 		{
 			private readonly NodeEndpoint endPoint = NodeEndpoint.ForTest(0);
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
@@ -34,10 +52,15 @@ namespace Rhino.DistributedHashTable.Tests
 
 				Assert.Equal(ranges1, ranges2);
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class NewEndpointJoiningNonEmptyMaster
-		{
+		public class NewEndpointJoiningNonEmptyMaster : MasterTestBase
+		{ 
 			private readonly NodeEndpoint endPoint = NodeEndpoint.ForTest(0);
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
 			private readonly NodeEndpoint newEndpoint = NodeEndpoint.ForTest(1);
@@ -66,9 +89,14 @@ namespace Rhino.DistributedHashTable.Tests
 				Assert.Equal(master.Segments.Count()/2, 
 					master.Segments.Count(x => x.InProcessOfMovingToEndpoint == newEndpoint));				
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class NewEndpointJoiningMasterWhenAnotherJoinIsInTheProcessOfJoining
+		public class NewEndpointJoiningMasterWhenAnotherJoinIsInTheProcessOfJoining : MasterTestBase
 		{
 			private readonly NodeEndpoint endPoint = NodeEndpoint.ForTest(0);
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
@@ -99,9 +127,14 @@ namespace Rhino.DistributedHashTable.Tests
 			{
 				Assert.Equal(4096, master.Segments.Count(x => x.InProcessOfMovingToEndpoint == anotherNodeInTheProcessOfJoining));
 			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
+			}
 		}
 
-		public class NewEndpointJoiningMasterWithTwoNodes
+		public class NewEndpointJoiningMasterWithTwoNodes : MasterTestBase
 		{
 			private readonly NodeEndpoint endPoint = NodeEndpoint.ForTest(0);
 			private readonly DistributedHashTableMaster master = new DistributedHashTableMaster();
@@ -132,6 +165,11 @@ namespace Rhino.DistributedHashTable.Tests
 			public void ThirdOfTheAvailableSegmentsWillBeAssignedToNewNode()
 			{
 				Assert.Equal(2730, master.Segments.Count(x => x.InProcessOfMovingToEndpoint == newEndpoint));
+			}
+
+			public override void Dispose()
+			{
+				master.Dispose();
 			}
 		}
 	}
