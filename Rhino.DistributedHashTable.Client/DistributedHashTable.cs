@@ -116,6 +116,9 @@ namespace Rhino.DistributedHashTable.Client
 
 		private static int GetSegmentFromKey(string key)
 		{
+			// we use @ as a locality separator, that is:
+			// foo@5 and bar@5 are both going to reside in the same
+			// segment, ensuring locality & one shot calls
 			var partialKey = key.Split('@').Last();
 			var crc32 = (int)Crc32.Compute(Encoding.Unicode.GetBytes(partialKey));
 			return Math.Abs(crc32 % Constants.NumberOfSegments);
