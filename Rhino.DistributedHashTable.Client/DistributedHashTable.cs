@@ -116,7 +116,8 @@ namespace Rhino.DistributedHashTable.Client
 
 		private static int GetSegmentFromKey(string key)
 		{
-			var crc32 = (int)Crc32.Compute(Encoding.Unicode.GetBytes(key));
+			var partialKey = key.Split('@').Last();
+			var crc32 = (int)Crc32.Compute(Encoding.Unicode.GetBytes(partialKey));
 			return Math.Abs(crc32 % Constants.NumberOfSegments);
 		}
 
