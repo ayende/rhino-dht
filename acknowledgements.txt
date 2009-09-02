@@ -1,0 +1,3 @@
+Rhino DHT is making use of the builtin Esent database and the ManagedEsent project (http://codeplex.com/ManagedEsent),
+Google's Protocol Buffers using dotnet-protobufs (http://github.com/jskeet/dotnet-protobufs/tree/master) from Jon Skeet
+and of the Wintellect Power Threading (http://www.wintellect.com/PowerThreading.aspx) library

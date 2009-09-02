@@ -4,7 +4,8 @@ using Rhino.DistributedHashTable.Internal;
 
 namespace Rhino.DistributedHashTable.Commands
 {
-	public class UpdateTopologyCommand : ICommand
+    [CLSCompliant(false)]
+    public class UpdateTopologyCommand : ICommand
 	{
 		private bool continueWorking = true;
 		private ILog log = LogManager.GetLogger(typeof (UpdateTopologyCommand));

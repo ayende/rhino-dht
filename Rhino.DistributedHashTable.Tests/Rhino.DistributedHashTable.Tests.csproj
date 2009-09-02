@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C44B2EA9-28FD-4F05-B43B-A45231EE0FDC}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rhino.DistributedHashTable.Tests</RootNamespace>
     <AssemblyName>Rhino.DistributedHashTable.Tests</AssemblyName>
@@ -14,6 +14,8 @@
     <FileAlignment>512</FileAlignment>
     <StartupObject>
     </StartupObject>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ayende-open-source.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,9 +35,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Rhino.Mocks, Version=3.5.0.1337, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+    <Reference Include="Rhino.Mocks, Version=3.6.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OSS\rhino-tools\build\net-3.5\debug\Rhino.Mocks.dll</HintPath>
+      <HintPath>..\SharedLibs\Rhino.Mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.PersistentHashTable, Version=1.7.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Rhino.PersistentHashTable.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.Queues, Version=1.2.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Rhino.Queues.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -51,7 +61,7 @@
     <Reference Include="System.Xml" />
     <Reference Include="xunit, Version=1.1.0.1323, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\OSS\rhino-tools\SharedLibs\xUnit\xunit.dll</HintPath>
+      <HintPath>..\SharedLibs\xunit.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,23 +72,19 @@
     <Compile Include="MasterTestBase.cs" />
     <Compile Include="NodeReplicationBehavior.cs" />
     <Compile Include="NodeStartupBehavior.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangesBehavior.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\pht\Rhino.PersistentHashTable\Rhino.PersistentHashTable.csproj">
-      <Project>{F30B2D63-CED5-4C8A-908F-0B5503D984A9}</Project>
-      <Name>Rhino.PersistentHashTable</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\queues\Rhino.Queues\Rhino.Queues.csproj">
-      <Project>{398BF580-41F5-418E-A017-19D19B289A97}</Project>
-      <Name>Rhino.Queues</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rhino.DistributedHashTable\Rhino.DistributedHashTable.csproj">
       <Project>{4E8D44D2-505D-488C-B92C-51147748B104}</Project>
       <Name>Rhino.DistributedHashTable</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ayende-open-source.snk">
+      <Link>ayende-open-source.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

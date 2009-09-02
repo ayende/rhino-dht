@@ -12,6 +12,8 @@
     <AssemblyName>Rhino.DistributedHashTable.Client</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>..\ayende-open-source.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,11 +35,15 @@
   <ItemGroup>
     <Reference Include="Google.ProtocolBuffers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=17b3b1f090c3ea48, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\SharedLibs\Google\Google.ProtocolBuffers.dll</HintPath>
+      <HintPath>..\SharedLibs\Google.ProtocolBuffers.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Rhino.DistributedHashTable\bin\Debug\log4net.dll</HintPath>
+      <HintPath>..\SharedLibs\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Rhino.PersistentHashTable, Version=1.7.0.0, Culture=neutral, PublicKeyToken=0b3305902db7183f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\SharedLibs\Rhino.PersistentHashTable.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -62,14 +68,15 @@
     <Compile Include="Util\Crc32.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\pht\Rhino.PersistentHashTable\Rhino.PersistentHashTable.csproj">
-      <Project>{F30B2D63-CED5-4C8A-908F-0B5503D984A9}</Project>
-      <Name>Rhino.PersistentHashTable</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Rhino.DistributedHashTable\Rhino.DistributedHashTable.csproj">
       <Project>{4E8D44D2-505D-488C-B92C-51147748B104}</Project>
       <Name>Rhino.DistributedHashTable</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\ayende-open-source.snk">
+      <Link>ayende-open-source.snk</Link>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

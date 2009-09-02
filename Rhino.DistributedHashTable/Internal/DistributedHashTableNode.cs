@@ -13,6 +13,7 @@ using Rhino.Queues.Model;
 
 namespace Rhino.DistributedHashTable.Internal
 {
+    [CLSCompliant(false)]
 	public class DistributedHashTableNode : IDistributedHashTableNode
 	{
 		private readonly NodeEndpoint endpoint;
