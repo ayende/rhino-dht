@@ -41,7 +41,10 @@ namespace Rhino.DistributedHashTable.Internal
 			this.queueManager = queueManager;
 			this.replicationFactory = replicationFactory;
 			State = NodeState.NotStarted;
-			backgroundReplication = new Thread(BackgroundReplication);
+			backgroundReplication = new Thread(BackgroundReplication)
+			{
+			    IsBackground = true
+			};
 		}
 
 		private void BackgroundReplication()

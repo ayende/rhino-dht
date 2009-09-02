@@ -129,7 +129,6 @@ namespace Rhino.DistributedHashTable.Internal
 		{
 			if (TopologyVersion == topologyVersionFromClient)
 				return;
-			
 			//client thinks that the version is newer
 			if(topologyVersionFromClient > TopologyVersion)
 			{

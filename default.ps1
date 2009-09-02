@@ -87,6 +87,18 @@ task Release -depends Test {
 		$release_dir\Rhino.DistributedHashTable.zip `
 		$build_dir\Rhino.DistributedHashTable.dll `
 		$build_dir\Rhino.DistributedHashTable.xml `
+        $build_dir\Esent.Interop.dll `
+        $build_dir\Esent.Interop.xml `
+        $build_dir\log4net.dll `
+        $build_dir\log4net.xml `
+        Rhino.DistributedHashTable.Client.dll `
+        Rhino.DistributedHashTable.Client.xml `
+        $build_dir\Rhino.PersistentHashTable.dll `
+        $build_dir\Rhino.PersistentHashTable.xml `
+        $build_dir\Rhino.Queues.dll `
+        $build_dir\Rhino.Queues.xml `
+        $build_dir\Wintellect.Threading.dll `
+        $build_dir\Wintellect.Threading.xml `
 		license.txt `
 		acknowledgements.txt
 	if ($lastExitCode -ne 0) {

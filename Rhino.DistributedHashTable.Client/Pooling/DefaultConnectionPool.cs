@@ -76,7 +76,7 @@ namespace Rhino.DistributedHashTable.Client.Pooling
 
 			public bool Connected
 			{
-				get { return client.Connected; }
+				get { return Client.Connected; }
 			}
 
 			public override void Dispose()
