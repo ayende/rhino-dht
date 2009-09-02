@@ -91,8 +91,8 @@ task Release -depends Test {
         $build_dir\Esent.Interop.xml `
         $build_dir\log4net.dll `
         $build_dir\log4net.xml `
-        Rhino.DistributedHashTable.Client.dll `
-        Rhino.DistributedHashTable.Client.xml `
+        $build_dir\Rhino.DistributedHashTable.Client.dll `
+        $build_dir\Rhino.DistributedHashTable.Client.xml `
         $build_dir\Rhino.PersistentHashTable.dll `
         $build_dir\Rhino.PersistentHashTable.xml `
         $build_dir\Rhino.Queues.dll `
