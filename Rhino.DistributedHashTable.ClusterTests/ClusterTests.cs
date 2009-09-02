@@ -243,12 +243,16 @@ namespace Rhino.DistributedHashTable.ClusterTests
 				using (var nodeB = new DistributedHashTableStorageClient(storageHostB.Endpoint))
 				{
 					var topology = masterProxy.GetTopology();
-					var values = nodeB.Get(topology.Version, new ExtendedGetRequest
-					{
-						Key = "abc",
-						Segment = 1
-					});
-					Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
+					Value[][] values = null;
+				    RepeatWhileThereAreTopologyChangedErrors(() =>
+                    {
+                         values = nodeB.Get(topology.Version, new ExtendedGetRequest
+                         {
+                             Key = "abc",
+                             Segment = 1
+                         });
+                    });
+				    Assert.Equal(new byte[] { 2, 2, 0, 0 }, values[0][0].Data);
 				}
 			}
 		}
@@ -257,18 +261,19 @@ namespace Rhino.DistributedHashTable.ClusterTests
 		// with segments moving & topology changes
 		public static void RepeatWhileThereAreTopologyChangedErrors(Action action)
 		{
-			while(true)
-			{
+		    for (int i = 0; i < 10; i++)
+		    {
 				try
 				{
 					action();
-					break;
+				    return;
 				}
 				catch (TopologyVersionDoesNotMatchException)
 				{
 					Thread.Sleep(250);	
 				}
 			}
+            throw new InvalidOperationException("Could not execute action because we got too many TopologyVersionDoesNotMatchException");
 		}
 	}
 }
